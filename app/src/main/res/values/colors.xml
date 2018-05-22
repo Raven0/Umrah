@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f44336</color>
+    <color name="colorPrimaryDark">#ba000d</color>
+    <color name="colorAccent">#ff7961</color>
+    <color name="colorPrimaryLight">#ff7961</color>
+
+    <!-- basic color -->
+    <color name="white">#ffffff</color>
+    <color name="white_transparent">#b5ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00bf00</color>
+    <color name="grey">#b7b7b7</color>
+    <color name="yellow">#fcda35</color>
+    <color name="grayLight">#b7b7b7</color>
+    <color name="grayDarker">#595858</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="default_background_color">#e9ebea</color>
+    <color name="tab_color">#363636</color>
+    <color name="tab_font_color">#9b9b9b</color>
+    <color name="date_font_color">#979797</color>
+    <color name="button_grey_color">#646464</color>
+    <color name="masuk_color">#22cb80</color>
+    <color name="terlambat_color">#6292fb</color>
+    <color name="tdk_color">#fe6164</color>
+
+
+    <color name="cyan">#1aa9de</color>
+    <color name="cyan_dark">#1898c7</color>
+    <color name="blue">#2d60a0</color>
+    <color name="blue_dark">#254d80</color>
+    <color name="greenb">#53b3ae</color>
+    <color name="green_dark">#418c88</color>
+
+    <color name="floating_label">#000</color>
+    <color name="base">#000</color>
+    <color name="highlight">#f44336</color>
+    <color name="error">#ff7961</color>
+    <color name="hint">#ba000d</color>
+
+</resources>

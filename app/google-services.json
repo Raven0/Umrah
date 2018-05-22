@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "217349213187",
+    "firebase_url": "https://ischool-9555b.firebaseio.com",
+    "project_id": "ischool-9555b",
+    "storage_bucket": "ischool-9555b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217349213187:android:52ccbf2b749a020b",
+        "android_client_info": {
+          "package_name": "com.birutekno.aiwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217349213187-ctdru22qijlr4be926tmhk3a4g0fo4u7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.birutekno.aiwa",
+            "certificate_hash": "691bc2f7a323488c9bfdf689be4218913c4c7486"
+          }
+        },
+        {
+          "client_id": "217349213187-loem64goj3a18t615rci65t62s2fslfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo0tbwGuRxXQ-0EJ8fpbIaq-Gn3yWNndI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217349213187-loem64goj3a18t615rci65t62s2fslfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
