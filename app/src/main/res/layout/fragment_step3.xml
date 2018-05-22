@@ -1,93 +1,260 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    tools:context="com.ysn.codepolitan_examplestepperlayout.Step3Fragment"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
 
-    <!--biodata diri-->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Biodata Diri"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimaryDark"
-        />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama Lengkap"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="10dp"
-        />
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clickable="false"
+            app:cardCornerRadius="5dp"
+            app:cardUseCompatPadding="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view_nama_lengkap"
-        android:text="Yudi Setiawan"
-        android:paddingTop="3dp"
-        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alamat"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="13dp"
-        />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view_alamat"
-        android:text="Jalan Klambir 5 no. 65 Medan"
-        android:paddingTop="3dp"
-        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textStyle="bold"/>
 
-    <!--orang tua-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Orang Tua"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:textAlignment="textEnd"
+                        android:text="Rp.58.000.000"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama Ibu"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="10dp"
-        />
+                </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view_nama_ibu"
-        android:text="Rosmaini"
-        android:paddingTop="3dp"
-        />
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="#e2e2e2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama Ayah"
-        android:layout_marginTop="13dp"
-        android:textColor="@android:color/darker_gray"
-        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="#0000"
+                        android:text="Informasi"
+                        android:textSize="@dimen/_15sdp"
+                        android:background="#c4c4c4"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view_nama_ayah"
-        android:text="Mardi"
-        android:paddingTop="3dp"
-        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="25dp"
+                        android:padding="20dp">
 
-</LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="95dp"
+                                android:layout_height="30dp"
+                                android:text="Nama (PIC)" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="95dp"
+                                android:layout_height="50dp"
+                                android:text="Tanggal Berangkat" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="95dp"
+                                android:layout_height="30dp"
+                                android:text="Jumlah" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="95dp"
+                                android:layout_height="30dp"
+                                android:text="Paket" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="95dp"
+                                android:layout_height="30dp"
+                                android:text="Kamar" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
+                        android:text="Diskon" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColorHint="#bababa"
+                        android:textSize="@dimen/_12sdp"
+                        android:theme="@style/EditTextThemes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
+                        android:text="Jenis Bayar" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:text="Dp."
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:text="Rp."
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*Due Date 2 Week"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <Button
+                        android:id="@+id/login"
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/bg_rounded_green_dark"
+                        android:text="Share"
+                        android:layout_centerInParent="true"
+                        android:textColor="@android:color/white" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

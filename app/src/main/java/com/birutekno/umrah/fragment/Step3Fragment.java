@@ -36,16 +36,16 @@ public class Step3Fragment extends Fragment {
     }
 
     private void loadComponent() {
-        textViewNamaLengkap = (TextView) view.findViewById(R.id.text_view_nama_lengkap);
-        textViewAlamat = (TextView) view.findViewById(R.id.text_view_alamat);
-        textViewNamaIbu = (TextView) view.findViewById(R.id.text_view_nama_ibu);
-        textViewNamaAyah = (TextView) view.findViewById(R.id.text_view_nama_ayah);
-
-        Bundle bundle = getArguments();
-        textViewNamaLengkap.setText(bundle.getString("namaLengkap"));
-        textViewAlamat.setText(bundle.getString("alamat"));
-        textViewNamaIbu.setText(bundle.getString("namaIbu"));
-        textViewNamaAyah.setText(bundle.getString("namaAyah"));
+//        textViewNamaLengkap = (TextView) view.findViewById(R.id.text_view_nama_lengkap);
+//        textViewAlamat = (TextView) view.findViewById(R.id.text_view_alamat);
+//        textViewNamaIbu = (TextView) view.findViewById(R.id.text_view_nama_ibu);
+//        textViewNamaAyah = (TextView) view.findViewById(R.id.text_view_nama_ayah);
+//
+//        Bundle bundle = getArguments();
+//        textViewNamaLengkap.setText(bundle.getString("namaLengkap"));
+//        textViewAlamat.setText(bundle.getString("alamat"));
+//        textViewNamaIbu.setText(bundle.getString("namaIbu"));
+//        textViewNamaAyah.setText(bundle.getString("namaAyah"));
     }
 
 }

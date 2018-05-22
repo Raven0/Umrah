@@ -16,7 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 
-import com.birutekno.umrah.InpucActivity;
 import com.birutekno.umrah.InputActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.WhatsapActivity;
@@ -76,9 +75,6 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
 
     @OnClick(R.id.nilai)
     void nilaiClicked() {
-        Intent intent = InpucActivity.createIntent(getActivity());
-        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
 //        Intent intent = ScoreActivity.createIntent(getActivity());
 //        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
 //        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());

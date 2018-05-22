@@ -37,8 +37,8 @@ public class Step1Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void loadComponent() {
-        editTextNamaLengkap = (EditText) view.findViewById(R.id.edit_text_nama_lengkap);
-        editTextAlamat = (EditText) view.findViewById(R.id.edit_text_alamat);
+//        editTextNamaLengkap = (EditText) view.findViewById(R.id.edit_text_nama_lengkap);
+//        editTextAlamat = (EditText) view.findViewById(R.id.edit_text_alamat);
         buttonNext = (Button) view.findViewById(R.id.button_next_fragment_step_1);
         buttonNext.setOnClickListener(this);
     }
@@ -46,13 +46,13 @@ public class Step1Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == buttonNext) {
-            String namaLengkap = editTextNamaLengkap.getText().toString().trim();
-            String alamat = editTextAlamat.getText().toString().trim();
+//            String namaLengkap = editTextNamaLengkap.getText().toString().trim();
+//            String alamat = editTextAlamat.getText().toString().trim();
             InputActivity.goToStepOrangTua();
             Step2Fragment step2Fragment = new Step2Fragment();
             Bundle bundle = new Bundle();
-            bundle.putString("namaLengkap", namaLengkap.isEmpty() ? "-" : namaLengkap);
-            bundle.putString("alamat", alamat.isEmpty() ? "-" : alamat);
+//            bundle.putString("namaLengkap", namaLengkap.isEmpty() ? "-" : namaLengkap);
+//            bundle.putString("alamat", alamat.isEmpty() ? "-" : alamat);
             step2Fragment.setArguments(bundle);
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
