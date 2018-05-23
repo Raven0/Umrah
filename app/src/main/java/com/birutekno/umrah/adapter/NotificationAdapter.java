@@ -4,10 +4,8 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.Material;
 import com.birutekno.umrah.model.Notification;
 import com.birutekno.umrah.ui.adapter.BaseRecyclerAdapter;
-import com.birutekno.umrah.view.MaterialItemView;
 import com.birutekno.umrah.view.NotificationItemView;
 
 /**

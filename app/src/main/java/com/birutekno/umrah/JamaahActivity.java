@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.birutekno.umrah.adapter.AbsensiAdapter;
 import com.birutekno.umrah.helper.Shortcuts;
 import com.birutekno.umrah.ui.BaseActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -35,7 +34,6 @@ public class JamaahActivity extends BaseActivity implements DatePickerDialog.OnD
         showCalendar();
     }
 
-    private AbsensiAdapter mAdapter;
     private String mDate = "";
 
     public static Intent createIntent(Context context) {
@@ -65,12 +63,8 @@ public class JamaahActivity extends BaseActivity implements DatePickerDialog.OnD
 //        spinner.setAdapter(adapterK);
 //        spinner1.setAdapter(adapterP);
 
-        setUpAdapter();
     }
 
-    private void setUpAdapter() {
-        mAdapter = new AbsensiAdapter(mContext);
-    }
 
     private void showCalendar() {
         Calendar now = Calendar.getInstance();

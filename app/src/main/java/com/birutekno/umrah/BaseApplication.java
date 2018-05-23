@@ -20,7 +20,7 @@ public class BaseApplication extends Application {
         super.onCreate();
 
         Fresco.initialize(this);
-        FirebaseApp.initializeApp(this);
+//        FirebaseApp.initializeApp(this);
 
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
                 .deleteRealmIfMigrationNeeded()

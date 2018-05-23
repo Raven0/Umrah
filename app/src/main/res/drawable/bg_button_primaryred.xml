@@ -1,0 +1,10 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_focused="true"
+        android:drawable="@drawable/bg_button_rounded_red"/>
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/bg_button_rounded_red_dark" />
+    <item
+        android:drawable="@drawable/bg_button_rounded_red" />
+</selector>

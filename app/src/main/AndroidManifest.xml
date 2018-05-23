@@ -30,12 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".JamaahActivity" />
-        <activity android:name=".AkademicActivity" />
-        <activity android:name=".ScoreActivity" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".ScheduleActivity" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".MapActivity" />
         <activity android:name=".WhatsapActivity" />
         <activity android:name=".InputActivity" />
     </application>

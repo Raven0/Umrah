@@ -3,7 +3,6 @@ package com.birutekno.umrah.view;
 import android.content.Context;
 import android.view.View;
 
-import com.birutekno.umrah.model.Material;
 import com.birutekno.umrah.model.Notification;
 import com.birutekno.umrah.ui.adapter.BaseRecyclerAdapter;
 import com.birutekno.umrah.ui.adapter.viewholder.BaseItemViewHolder;
