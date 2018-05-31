@@ -17,8 +17,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 
 import com.birutekno.umrah.InputActivity;
+import com.birutekno.umrah.KalkulasiActivity;
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.WhatsapActivity;
 import com.birutekno.umrah.adapter.BannerAdapter;
 import com.birutekno.umrah.adapter.BannerPagerAdapter;
 import com.birutekno.umrah.helper.AutoScrollViewPager;
@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
     @OnClick(R.id.akademik)
     void akademikClicked() {
 
-        Intent intent = WhatsapActivity.createIntent(getActivity());
+        Intent intent = KalkulasiActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
