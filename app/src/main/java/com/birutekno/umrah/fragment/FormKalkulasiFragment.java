@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.birutekno.umrah.InputActivity;
 import com.birutekno.umrah.R;
@@ -19,8 +20,13 @@ import com.birutekno.umrah.R;
 public class FormKalkulasiFragment extends Fragment implements View.OnClickListener {
 
     private View view;
-    private EditText jumlah;
     private EditText pic;
+    private EditText maskapai;
+    private EditText hari;
+    private EditText sisa_seat;
+    private EditText jumlah;
+    private TextView depart_date;
+    private TextView arrive_date;
     private Button buttonNext;
 
     public FormKalkulasiFragment() {
@@ -48,14 +54,11 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
         if (view == buttonNext) {
             String input = jumlah.getText().toString().trim();
             int jml = Integer.parseInt(input);
-//            String alamat = editTextAlamat.getText().toString().trim();
             InputActivity.goToStepOrangTua();
             Step2Fragment step2Fragment = new Step2Fragment();
             Bundle bundle = new Bundle();
-//            bundle.putString("jumlah", namaLengkap.isEmpty() ? "-" : namaLengkap);
             bundle.putInt("jumlah", jml);
             bundle.putInt("cjumlah", 1);
-//            bundle.putString("alamat", alamat.isEmpty() ? "-" : alamat);
             step2Fragment.setArguments(bundle);
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
