@@ -28,12 +28,12 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="95dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:text="Nama (PIC)" />
 
                     <EditText
@@ -49,12 +49,12 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="95dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:text="Tanggal Keberangkatan" />
 
                     <TextView
@@ -62,10 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:drawableRight="@drawable/ic_calendar"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:textSize="@dimen/_12sdp"
                         android:background="?attr/editTextBackground"
-                        android:gravity="center_vertical"
                         android:theme="@style/EditTextThemes"/>
 
                 </LinearLayout>
@@ -83,8 +80,7 @@
                     <com.jaredrummler.materialspinner.MaterialSpinner
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
-                        android:textColorHint="#bababa"
-                        android:textSize="@dimen/_12sdp"/>
+                        android:text="asd"/>
 
                 </LinearLayout>
 

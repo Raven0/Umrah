@@ -33,6 +33,7 @@
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".WhatsapActivity" />
         <activity android:name=".InputActivity" />
+        <activity android:name=".KalkulasiActivity"></activity>
     </application>
 
 </manifest>

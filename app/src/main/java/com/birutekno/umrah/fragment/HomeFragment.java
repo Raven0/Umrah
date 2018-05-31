@@ -52,17 +52,10 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
         Intent intent = WhatsapActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
-
-//        Intent intent = AkademicActivity.createIntent(getActivity());
-//        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-//        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
     @OnClick(R.id.jadwal)
     void jadwalClicked() {
-//        Intent intent = ScheduleActivity.createIntent(getActivity());
-//        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-//        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
 
         NotificationManager notif=(NotificationManager)getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notify=new Notification.Builder
@@ -75,33 +68,18 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
 
     @OnClick(R.id.nilai)
     void nilaiClicked() {
-//        Intent intent = ScoreActivity.createIntent(getActivity());
-//        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-//        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
     @OnClick(R.id.pembayaran)
     void pembayaranClicked() {
-//        Intent intent = PaymentActivity.createIntent(getActivity());
-//        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-//        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
     @OnClick(R.id.anjas)
     void anjasClicked() {
-//        Intent intent = MapActivity.createIntent(getActivity());
-//        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-//        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
     @Bind(R.id.tutoringRecyclerView)
     RecyclerView mTutoringRecyclerView;
-
-//    @Bind(R.id.stationaryRecyclerView)
-//    RecyclerView mStationaryRecyclerView;
-
-//    @Bind(R.id.changeMe)
-//    ImageView changeMe;
 
     @Bind(R.id.pager)
     protected AutoScrollViewPager mPager;
@@ -199,7 +177,7 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
     }
 
     private void initBanner(){
-        List<Banner> data = new ArrayList<>();
+        final List<Banner> data = new ArrayList<>();
 
         data.add(new Banner(1, R.drawable.banners));
         data.add(new Banner(2, R.drawable.image1));
@@ -218,6 +196,12 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                int pos = mPager.getCurrentItem();
+//                int size = data.size();
+//
+//                if(pos == size){
+//                    mPager.setCurrentItem(1);
+//                }
 
             }
 
@@ -228,6 +212,7 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
 
             @Override
             public void onPageScrollStateChanged(int state) {
+//                Toast.makeText(mContext, state , Toast.LENGTH_SHORT).show();
 
             }
         });

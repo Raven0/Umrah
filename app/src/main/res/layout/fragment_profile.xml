@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="Nama Siswa"
+        android:text="Nama Agen"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sdp" />
 

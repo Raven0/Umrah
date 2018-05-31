@@ -16,14 +16,14 @@ import com.birutekno.umrah.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Step1Fragment extends Fragment implements View.OnClickListener {
+public class FormKalkulasiFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private EditText jumlah;
-    private EditText editTextAlamat;
+    private EditText pic;
     private Button buttonNext;
 
-    public Step1Fragment() {
+    public FormKalkulasiFragment() {
         // Required empty public constructor
     }
 
@@ -38,7 +38,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener {
 
     private void loadComponent() {
         jumlah = (EditText) view.findViewById(R.id.jumlah);
-//        editTextAlamat = (EditText) view.findViewById(R.id.edit_text_alamat);
+
         buttonNext = (Button) view.findViewById(R.id.button_next_fragment_step_1);
         buttonNext.setOnClickListener(this);
     }
