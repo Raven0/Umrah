@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".JadwalActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="10dp"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Lokasi"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/mekah"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/mekah"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="#80000000"
+                android:layout_alignParentBottom="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MEKAH"
+                android:textSize="24dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="60dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="#fff"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBottom="@+id/mekah"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/madinah"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/madinah"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="#80000000"
+                android:layout_alignParentBottom="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MADINAH"
+                android:textSize="24dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="32dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="#fff"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBottom="@+id/madinah"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/palestina"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/palestina"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="#80000000"
+                android:layout_alignParentBottom="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PALESTINA"
+                android:textSize="24dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="#fff"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBottom="@+id/palestina"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/turki"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/turki"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="#80000000"
+                android:layout_alignParentBottom="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TURKI"
+                android:textSize="24dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="70dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="#fff"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBottom="@+id/turki"/>
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>

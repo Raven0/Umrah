@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.birutekno.umrah.InputActivity;
 import com.birutekno.umrah.R;
@@ -46,22 +47,23 @@ public class Step1Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == buttonNext) {
-            String input = jumlah.getText().toString().trim();
-            int jml = Integer.parseInt(input);
-//            String alamat = editTextAlamat.getText().toString().trim();
-            InputActivity.goToStepOrangTua();
-            Step2Fragment step2Fragment = new Step2Fragment();
-            Bundle bundle = new Bundle();
-//            bundle.putString("jumlah", namaLengkap.isEmpty() ? "-" : namaLengkap);
-            bundle.putInt("jumlah", jml);
-            bundle.putInt("cjumlah", 1);
-//            bundle.putString("alamat", alamat.isEmpty() ? "-" : alamat);
-            step2Fragment.setArguments(bundle);
-            getFragmentManager().beginTransaction()
-                    .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
-                    .replace(R.id.frame_layout, step2Fragment)
-                    .addToBackStack(null)
-                    .commit();
+            if(jumlah.getText().toString().trim().length() == 0){
+                Toast.makeText(getContext(), "Pastikan jumlah jamaah terisi", Toast.LENGTH_SHORT).show();
+            }else {
+                String input = jumlah.getText().toString().trim();
+                int jml = Integer.parseInt(input);
+                InputActivity.goToStepOrangTua();
+                Step2Fragment step2Fragment = new Step2Fragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("jumlah", jml);
+                bundle.putInt("cjumlah", 1);
+                step2Fragment.setArguments(bundle);
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
+                        .replace(R.id.frame_layout, step2Fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
         }
     }
 }

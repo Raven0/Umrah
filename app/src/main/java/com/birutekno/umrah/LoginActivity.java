@@ -31,6 +31,13 @@ public class LoginActivity extends BaseActivity {
         ActivityCompat.startActivity(this, intentReward, optionsReward.toBundle());
     }
 
+    @OnClick(R.id.create)
+    void createClicked() {
+        Intent intentReward = RegistrationActivity.createIntent(this);
+        ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(this, intentReward, optionsReward.toBundle());
+    }
+
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         return intent;

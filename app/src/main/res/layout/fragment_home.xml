@@ -59,7 +59,7 @@
                             android:layout_marginRight="@dimen/_10sdp"
                             android:background="@color/white"
                             android:clickable="false"
-                            app:cardCornerRadius="5dp"
+                            app:cardCornerRadius="2dp"
                             app:cardUseCompatPadding="true"
                             card_view:cardElevation="@dimen/_5sdp">
 
@@ -70,7 +70,7 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/absensi"
+                                    android:id="@+id/jamaah"
                                     android:layout_width="@dimen/_80sdp"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"
@@ -94,7 +94,7 @@
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:background="@color/white"
                             android:clickable="false"
-                            app:cardCornerRadius="5dp"
+                            app:cardCornerRadius="2dp"
                             app:cardUseCompatPadding="true"
                             card_view:cardElevation="@dimen/_5sdp">
 
@@ -105,7 +105,7 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/akademik"
+                                    android:id="@+id/kalkulasi"
                                     android:layout_width="@dimen/_80sdp"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"
@@ -138,7 +138,7 @@
                             android:layout_marginRight="@dimen/_10sdp"
                             android:background="@color/white"
                             android:clickable="false"
-                            app:cardCornerRadius="5dp"
+                            app:cardCornerRadius="2dp"
                             app:cardUseCompatPadding="true"
                             card_view:cardElevation="@dimen/_5sdp">
 
@@ -173,7 +173,7 @@
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:background="@color/white"
                             android:clickable="false"
-                            app:cardCornerRadius="5dp"
+                            app:cardCornerRadius="2dp"
                             app:cardUseCompatPadding="true"
                             card_view:cardElevation="@dimen/_5sdp">
 
@@ -184,7 +184,7 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/nilai"
+                                    android:id="@+id/itinerary"
                                     android:layout_width="@dimen/_80sdp"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"
@@ -217,7 +217,7 @@
                             android:layout_marginRight="@dimen/_10sdp"
                             android:background="@color/white"
                             android:clickable="false"
-                            app:cardCornerRadius="5dp"
+                            app:cardCornerRadius="2dp"
                             app:cardUseCompatPadding="true"
                             card_view:cardElevation="@dimen/_5sdp">
 
@@ -228,7 +228,7 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/pembayaran"
+                                    android:id="@+id/lokasi"
                                     android:layout_width="@dimen/_80sdp"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"
@@ -252,7 +252,7 @@
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:background="@color/white"
                             android:clickable="false"
-                            app:cardCornerRadius="5dp"
+                            app:cardCornerRadius="2dp"
                             app:cardUseCompatPadding="true"
                             card_view:cardElevation="@dimen/_5sdp">
 
@@ -263,7 +263,7 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/anjas"
+                                    android:id="@+id/galeri"
                                     android:layout_width="@dimen/_80sdp"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"

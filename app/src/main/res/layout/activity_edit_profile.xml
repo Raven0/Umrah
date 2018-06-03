@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".EditProfileActivity">
+
+    <!--stepper layout start-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="10dp"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Jama'ah"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clickable="false"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/imgView"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:src="@drawable/foto_profil" />
+
+                            <ImageView
+                                android:id="@+id/imgBtnCancel"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/button_edit"
+                                android:layout_alignEnd="@id/imgView"
+                                android:layout_alignBottom="@id/imgView"
+                                android:layout_alignRight="@id/imgView" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="Budi"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_18sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Id" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Nama" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Password" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="No Telepon" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Email" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Alamat" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Jenis Kelamin" />
+
+                        <EditText
+                            android:id="@+id/picName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="80dp">
+
+                        <Button
+                            android:id="@+id/btnEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_button_rounded_red"
+                            android:text="Edit Profile"
+                            android:textColor="@android:color/white" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

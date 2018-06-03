@@ -6,18 +6,18 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_30sdp"
-        android:src="@drawable/image_placeholder" />
+        android:src="@drawable/foto_profil" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="Nama Agen"
+        android:text="Budi"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sdp" />
 
@@ -28,18 +28,53 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@color/grayLight" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="NIP: 1354962525521425" />
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:text="Kelas: 10" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Id: 1354962525521425" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Nama: Budi dudido" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="No Telepon: +6295876123" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Email: budi@gmail.com" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Alamat: Bandung" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Jenis Kelamin: L" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,5 +82,14 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@color/grayLight" />
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@drawable/button_outline_black"
+        android:text="Edit" />
 
 </LinearLayout>

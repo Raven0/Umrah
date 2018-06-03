@@ -49,10 +49,10 @@ public class MainActivity extends BaseActivity {
         mPager.setCurrentItem(0);
     }
 
-//    @OnClick(R.id.profileTab)
-//    void profileTabClicked() {
-//        mPager.setCurrentItem(2);
-//    }
+    @OnClick(R.id.profileTab)
+    void profileTabClicked() {
+        mPager.setCurrentItem(2);
+    }
 
     private MainPagerAdapter mAdapter;
 

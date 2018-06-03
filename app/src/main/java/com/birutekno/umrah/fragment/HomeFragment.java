@@ -1,8 +1,5 @@
 package com.birutekno.umrah.fragment;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,8 +13,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 
+import com.birutekno.umrah.GalleryActivity;
 import com.birutekno.umrah.InputActivity;
+import com.birutekno.umrah.ItineraryActivity;
+import com.birutekno.umrah.JadwalActivity;
 import com.birutekno.umrah.KalkulasiActivity;
+import com.birutekno.umrah.LokasiActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.adapter.BannerAdapter;
 import com.birutekno.umrah.adapter.BannerPagerAdapter;
@@ -39,15 +40,15 @@ import butterknife.OnClick;
 
 public class HomeFragment extends BaseFragment implements BannerItemView.OnActionListener {
 
-    @OnClick(R.id.absensi)
-    void absensiClicked() {
+    @OnClick(R.id.jamaah)
+    void jamaahClicked() {
         Intent intent = InputActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
-    @OnClick(R.id.akademik)
-    void akademikClicked() {
+    @OnClick(R.id.kalkulasi)
+    void kalkulasiClicked() {
 
         Intent intent = KalkulasiActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
@@ -57,25 +58,38 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
     @OnClick(R.id.jadwal)
     void jadwalClicked() {
 
-        NotificationManager notif=(NotificationManager)getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notify=new Notification.Builder
-                (getContext().getApplicationContext()).setContentTitle("Please check payment status").setContentText("The Payment Status of Jamaah ID 12 Is Almost Over").
-                setContentTitle("Payment Status").setSmallIcon(R.drawable.ic_notif_white).build();
+        Intent intent = JadwalActivity.createIntent(getActivity());
+        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
 
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        notif.notify(0, notify);
+//        NotificationManager notif=(NotificationManager)getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+//        Notification notify=new Notification.Builder
+//                (getContext().getApplicationContext()).setContentTitle("Please check payment status").setContentText("The Payment Status of Jamaah ID 12 Is Almost Over").
+//                setContentTitle("Payment Status").setSmallIcon(R.drawable.ic_notif_white).build();
+//
+//        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+//        notif.notify(0, notify);
     }
 
-    @OnClick(R.id.nilai)
-    void nilaiClicked() {
+    @OnClick(R.id.itinerary)
+    void itineraryClicked() {
+        Intent intent = ItineraryActivity.createIntent(getActivity());
+        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
-    @OnClick(R.id.pembayaran)
-    void pembayaranClicked() {
+    @OnClick(R.id.lokasi)
+    void lokasiClicked() {
+        Intent intent = LokasiActivity.createIntent(getActivity());
+        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
-    @OnClick(R.id.anjas)
-    void anjasClicked() {
+    @OnClick(R.id.galeri)
+    void galeriClicked() {
+        Intent intent = GalleryActivity.createIntent(getActivity());
+        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
     @Bind(R.id.tutoringRecyclerView)
