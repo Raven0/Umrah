@@ -33,7 +33,9 @@
         <activity android:name=".WhatsapActivity" />
         <activity android:name=".InputActivity" /> <!-- Jamaah -->
         <activity android:name=".KalkulasiActivity"></activity>
+        <activity android:name=".InputKalkulasiActivity"></activity>
         <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".ItineraryActivity"></activity>
         <activity android:name=".JadwalActivity"></activity>

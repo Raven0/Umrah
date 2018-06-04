@@ -23,6 +23,33 @@
         android:background="@color/colorPrimary">
 
         <LinearLayout
+            android:id="@+id/dashboardTab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/dashboardImage"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp" />
+
+            <TextView
+                android:id="@+id/dashboardText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="DASHBOARD"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/homeTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

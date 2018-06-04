@@ -45,7 +45,7 @@ public class EditProfileActivity extends BaseActivity {
 
     @Override
     protected int getResourceLayout() {
-        return R.layout.activity_registration;
+        return R.layout.activity_edit_profile;
     }
 
     @Override

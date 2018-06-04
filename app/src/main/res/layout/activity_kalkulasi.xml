@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    tools:context=".KalkulasiActivity">
+    android:orientation="vertical">
 
-    <!--stepper layout start-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,9 +30,63 @@
 
     </RelativeLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frame_layout" />
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/jul"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="List Data Calom Jamaah"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/searchKalkulasi"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_outline_black"
+            android:layout_toLeftOf="@+id/idSearch"/>
+
+        <ImageView
+            android:id="@+id/idSearch"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.birutekno.umrah.ui.view.BaseRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="tambah kalkulasi"
+                android:background="#ffb300"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

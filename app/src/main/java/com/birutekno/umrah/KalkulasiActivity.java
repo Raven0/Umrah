@@ -2,59 +2,118 @@ package com.birutekno.umrah;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import com.birutekno.umrah.fragment.FormKalkulasiFragment;
+import com.birutekno.umrah.adapter.KalkulasiAdapter;
+import com.birutekno.umrah.model.Kalkulasi;
+import com.birutekno.umrah.ui.BaseActivity;
+import com.birutekno.umrah.ui.adapter.BaseRecyclerAdapter;
+import com.birutekno.umrah.ui.view.BaseRecyclerView;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
-public class KalkulasiActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    public static int width = 0;
-    public static int position = 0;
-    public Toolbar mToolbar;
+import butterknife.Bind;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kalkulasi);
+public class KalkulasiActivity extends BaseActivity {
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
-        mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //What to do on back clicked
-                KalkulasiActivity.super.onBackPressed();
-            }
-        });
+    @Bind(R.id.recyclerView)
+    BaseRecyclerView mRecyclerView;
 
-        loadFragment();
-    }
+    private KalkulasiAdapter mAdapter;
+    private String mDate = "";
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, KalkulasiActivity.class);
         return intent;
     }
 
-    private void loadFragment() {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_layout, new FormKalkulasiFragment())
-                .commit();
-    }
-
-    public static void goToStepTotal() {
-        position = 2;
+    @Override
+    protected int getResourceLayout() {
+        return R.layout.activity_kalkulasi;
     }
 
     @Override
-    public void onBackPressed() {
-        position--;
-        super.onBackPressed();
+    protected void onViewReady(Bundle savedInstanceState) {
+        setupToolbar(mToolbar, true);
+        setTitle("");
+
+        setUpAdapter();
+        setUpRecyclerView();
+        setData();
+
+        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                LinearLayout edit = (LinearLayout) view.findViewById(R.id.edit);
+                LinearLayout detail = (LinearLayout) view.findViewById(R.id.view);
+
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                detail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(KalkulasiActivity.this, InputKalkulasiActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
+    }
+
+    private void setData() {
+        List<Kalkulasi> data = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++){
+            data.add(new Kalkulasi(i));
+        }
+
+        mAdapter.addAll(data);
+        mAdapter.notifyDataSetChanged();
+        if (mRecyclerView != null) {
+            mRecyclerView.loadMoreComplete();
+            mRecyclerView.refreshComplete();
+        }
+    }
+
+    private void setUpAdapter() {
+        mAdapter = new KalkulasiAdapter(mContext);
+    }
+
+    private void setUpRecyclerView() {
+        mRecyclerView.setUpAsList();
+        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setPullRefreshEnabled(true);
+        mRecyclerView.setLoadingMoreEnabled(true);
+        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                setData();
+            }
+
+            @Override
+            public void onLoadMore() {
+            }
+        });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

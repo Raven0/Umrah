@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.birutekno.umrah.InputActivity;
+import com.birutekno.umrah.InputKalkulasiActivity;
 import com.birutekno.umrah.R;
 
 
@@ -48,11 +48,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private void loadComponent() {
         etJumlah = (EditText) view.findViewById(R.id.jumlah);
         pic = (EditText) view.findViewById(R.id.picName);
-        maskapai = (EditText) view.findViewById(R.id.etMaskapai);
-        hari = (EditText) view.findViewById(R.id.etHari);
-        sisa_seat = (EditText) view.findViewById(R.id.etSeat);
         depart_date= (TextView) view.findViewById(R.id.dateDeparture);
-        arrive_date = (TextView) view.findViewById(R.id.dateArrival);
 
         buttonNext = (Button) view.findViewById(R.id.btnNext);
         buttonNext.setOnClickListener(this);
@@ -62,39 +58,54 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         if (view == buttonNext) {
 
-            if(cjumlah == jumlah){
-                InputActivity.goToStepUlasan();
+            InputKalkulasiActivity.goToStepTotal();
 //            String namaIbu = editTextNamaIbu.getText().toString().trim();
 //            String namaAyah = editTextNamaAyah.getText().toString().trim();
-                Step3Fragment step3Fragment = new Step3Fragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("jumlah", jumlah);
+            TotalKalkulasiFragment step3Fragment = new TotalKalkulasiFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("jumlah", jumlah);
 //            bundle.putString("namaIbu", namaIbu.isEmpty() ? "-" : namaIbu);
 //            bundle.putString("namaAyah", namaAyah.isEmpty() ? "-" : namaAyah);
-                step3Fragment.setArguments(bundle);
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
-                        .replace(R.id.frame_layout, step3Fragment)
-                        .addToBackStack(null)
-                        .commit();
-            }else {
-//            String alamat = editTextAlamat.getText().toString().trim();
-                InputActivity.goToStepOrangTua();
-                Step2Fragment step2Fragment = new Step2Fragment();
-                Bundle bundle = new Bundle();
-//            bundle.putString("jumlah", namaLengkap.isEmpty() ? "-" : namaLengkap);
-                bundle.putInt("jumlah", jumlah);
-                cjumlah++;
-                bundle.putInt("cjumlah", cjumlah);
-//            bundle.putString("alamat", alamat.isEmpty() ? "-" : alamat);
-                step2Fragment.setArguments(bundle);
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
-                        .replace(R.id.frame_layout, step2Fragment)
-                        .addToBackStack(null)
-                        .commit();
+            step3Fragment.setArguments(bundle);
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
+                    .replace(R.id.frame_layout, step3Fragment)
+                    .addToBackStack(null)
+                    .commit();
 
-            }
+//            if(cjumlah == jumlah){
+//                InputActivity.goToStepUlasan();
+////            String namaIbu = editTextNamaIbu.getText().toString().trim();
+////            String namaAyah = editTextNamaAyah.getText().toString().trim();
+//                Step3Fragment step3Fragment = new Step3Fragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("jumlah", jumlah);
+////            bundle.putString("namaIbu", namaIbu.isEmpty() ? "-" : namaIbu);
+////            bundle.putString("namaAyah", namaAyah.isEmpty() ? "-" : namaAyah);
+//                step3Fragment.setArguments(bundle);
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
+//                        .replace(R.id.frame_layout, step3Fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//            }else {
+////            String alamat = editTextAlamat.getText().toString().trim();
+//                InputActivity.goToStepOrangTua();
+//                Step2Fragment step2Fragment = new Step2Fragment();
+//                Bundle bundle = new Bundle();
+////            bundle.putString("jumlah", namaLengkap.isEmpty() ? "-" : namaLengkap);
+//                bundle.putInt("jumlah", jumlah);
+//                cjumlah++;
+//                bundle.putInt("cjumlah", cjumlah);
+////            bundle.putString("alamat", alamat.isEmpty() ? "-" : alamat);
+//                step2Fragment.setArguments(bundle);
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
+//                        .replace(R.id.frame_layout, step2Fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//
+//            }
         }
     }
 }
