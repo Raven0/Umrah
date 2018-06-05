@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_calendar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="03 November 2018"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:text="P"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:background="@drawable/red_circle_promotion"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/dropdown"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:rotation="90"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:el_duration="300"
+        app:el_expanded="false">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:text="No"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:text="Keberangkatan"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:text="Kepulangan"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:text="Maskapai"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:text="Paket"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:text="Status"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="03 November 2018"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="11 November 2018"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="Saudi"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="9 Hari"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="Sold Out"
+                                android:textColor="@color/colorPrimary"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                        </TableRow>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#fff"/>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:text="2"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="03 November 2018"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="14 November 2018"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="Qatar"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="12 Hari"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="Sold Out"
+                                android:textColor="@color/colorPrimary"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                                android:textSize="14dp" />
+
+                        </TableRow>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#fff"/>
+
+                    </LinearLayout>
+
+                </android.support.v4.widget.NestedScrollView>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#999"/>
+
+</LinearLayout>

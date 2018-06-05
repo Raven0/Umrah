@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EAEBEB"
-    android:orientation="vertical"
     android:padding="10dp">
     
     <android.support.v7.widget.CardView
         android:id="@+id/profilCard"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="65dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,9 +19,9 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profil"
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/foto_profil"
+                android:src="@drawable/icon_profil"
                 app:civ_border_width="1dp"
                 app:civ_border_color="#000"/>
 
@@ -33,12 +32,12 @@
                 android:gravity="center"
                 android:text="Profil Akun"
                 android:textStyle="bold"
-                android:textSize="22dp"
+                android:textSize="18dp"
                 android:layout_toRightOf="@id/profil"
                 android:layout_marginLeft="20dp"/>
 
             <ImageView
-                android:layout_width="18dp"
+                android:layout_width="12dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/dropdown"
                 android:layout_alignParentEnd="true"
@@ -51,8 +50,9 @@
     <android.support.v7.widget.CardView
         android:id="@+id/komisiCard"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp">
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/profilCard">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,9 +62,9 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/komisi"
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/icon_komisi"
+                android:src="@drawable/icon_komisi_setting"
                 app:civ_border_width="1dp"
                 app:civ_border_color="#000" />
 
@@ -75,12 +75,12 @@
                 android:gravity="center"
                 android:text="Komisi"
                 android:textStyle="bold"
-                android:textSize="22dp"
+                android:textSize="18dp"
                 android:layout_toRightOf="@id/komisi"
                 android:layout_marginLeft="20dp"/>
 
             <ImageView
-                android:layout_width="18dp"
+                android:layout_width="12dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/dropdown"
                 android:layout_alignParentEnd="true"
@@ -90,4 +90,57 @@
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/agenCard"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/komisiCard">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/agen"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_sub_agen"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#000" />
+
+            <TextView
+                android:id="@+id/agenText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Sub Agen"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_toRightOf="@id/agen"
+                android:layout_marginLeft="20dp"/>
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/dropdown"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="logout"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"/>
+
+</RelativeLayout>

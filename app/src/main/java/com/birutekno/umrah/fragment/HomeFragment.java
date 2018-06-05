@@ -14,9 +14,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 
 import com.birutekno.umrah.GalleryActivity;
-import com.birutekno.umrah.InputActivity;
 import com.birutekno.umrah.ItineraryActivity;
 import com.birutekno.umrah.JadwalActivity;
+import com.birutekno.umrah.JamaahActivity;
 import com.birutekno.umrah.KalkulasiActivity;
 import com.birutekno.umrah.LokasiActivity;
 import com.birutekno.umrah.R;
@@ -42,7 +42,7 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
 
     @OnClick(R.id.jamaah)
     void jamaahClicked() {
-        Intent intent = InputActivity.createIntent(getActivity());
+        Intent intent = JamaahActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }

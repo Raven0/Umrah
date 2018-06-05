@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import com.birutekno.umrah.adapter.JadwalAdapter;
-import com.birutekno.umrah.model.Jadwal;
+import com.birutekno.umrah.adapter.JamaahAdapter;
+import com.birutekno.umrah.model.Jamaah;
 import com.birutekno.umrah.ui.BaseActivity;
 import com.birutekno.umrah.ui.adapter.BaseRecyclerAdapter;
 import com.birutekno.umrah.ui.view.BaseRecyclerView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-
-import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.Bind;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class JadwalActivity extends BaseActivity {
+public class JamaahActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -29,17 +29,17 @@ public class JadwalActivity extends BaseActivity {
     @Bind(R.id.recyclerView)
     BaseRecyclerView mRecyclerView;
 
-    private JadwalAdapter mAdapter;
+    private JamaahAdapter mAdapter;
     private String mDate = "";
 
     public static Intent createIntent(Context context) {
-        Intent intent = new Intent(context, JadwalActivity.class);
+        Intent intent = new Intent(context, JamaahActivity.class);
         return intent;
     }
 
     @Override
     protected int getResourceLayout() {
-        return R.layout.activity_jadwal;
+        return R.layout.activity_jamaah;
     }
 
     @Override
@@ -54,21 +54,32 @@ public class JadwalActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ExpandableLayout expandableLayout = (ExpandableLayout) view.findViewById(R.id.expandable_layout);
-                if (expandableLayout.isExpanded()) {
-                    expandableLayout.collapse();
-                } else {
-                    expandableLayout.expand();
-                }
+                LinearLayout edit = (LinearLayout) view.findViewById(R.id.edit);
+                LinearLayout detail = (LinearLayout) view.findViewById(R.id.view);
+
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                detail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(JamaahActivity.this, InputActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
 
     private void setData() {
-        List<Jadwal> data = new ArrayList<>();
+        List<Jamaah> data = new ArrayList<>();
 
         for (int i = 0; i < 3; i++){
-            data.add(new Jadwal(i));
+            data.add(new Jamaah(i));
         }
 
         mAdapter.addAll(data);
@@ -80,7 +91,7 @@ public class JadwalActivity extends BaseActivity {
     }
 
     private void setUpAdapter() {
-        mAdapter = new JadwalAdapter(mContext);
+        mAdapter = new JamaahAdapter(mContext);
     }
 
     private void setUpRecyclerView() {

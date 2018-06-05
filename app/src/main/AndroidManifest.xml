@@ -31,17 +31,20 @@
         </activity>
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".WhatsapActivity" />
-        <activity android:name=".InputActivity" /> <!-- Jamaah -->
-        <activity android:name=".KalkulasiActivity"></activity>
-        <activity android:name=".InputKalkulasiActivity"></activity>
-        <activity android:name=".RegistrationActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".EditProfileActivity"></activity>
-        <activity android:name=".ItineraryActivity"></activity>
-        <activity android:name=".JadwalActivity"></activity>
-        <activity android:name=".LokasiActivity"></activity>
-        <activity android:name=".HotelActivity"></activity>
-        <activity android:name=".GalleryActivity"></activity>
+        <activity android:name=".JamaahActivity" />
+        <activity android:name=".InputActivity" />
+        <activity android:name=".KalkulasiActivity" />
+        <activity android:name=".InputKalkulasiActivity" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".ItineraryActivity" />
+        <activity android:name=".JadwalActivity" />
+        <activity android:name=".LokasiActivity" />
+        <activity android:name=".HotelActivity" />
+        <activity android:name=".GalleryActivity" />
+        <activity android:name=".SubAgenActivity" />
+        <activity android:name=".KomisiActivity" />
     </application>
 
 </manifest>

@@ -32,280 +32,45 @@
 
     </RelativeLayout>
 
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-        <TableLayout
+        <EditText
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:paddingLeft="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/outline_black"
+            android:drawableRight="@drawable/drawable_filter"
+            android:hint="Filter"
+            android:textSize="15dp"/>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_height="30dp">
 
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_outline_black"
+                android:textSize="15dp"
+                android:hint="Search"
+                android:drawableRight="@drawable/drawable_search"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+        </RelativeLayout>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+    </LinearLayout>
 
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="No"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Keberangkatan"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Kepulangan"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Maskapai"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Paket"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Status"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="1"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="10 Juni 2018"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="19 Juni 2018"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Qatar"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="9 Hari"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Sold Out"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#fff"/>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="2"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="10 Juni 2018"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="19 Juni 2018"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Saudi"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="9 Hari"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Sold Out"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#fff"/>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="3"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="13 Juni 2018"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="23 Juni 2018"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Turkish"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="10 Hari"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Available"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                </LinearLayout>
-
-            </android.support.v4.widget.NestedScrollView>
-
-        </TableLayout>
-
-    </HorizontalScrollView>
+    <com.birutekno.umrah.ui.view.BaseRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Kalkulasi"
+            android:text="Jamaah"
             android:textColor="@color/white"
             android:textSize="16dp" />
 
@@ -84,7 +84,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="tambah kalkulasi"
+                android:text="tambah jamaah"
                 android:background="#ffb300"/>
 
         </LinearLayout>
