@@ -139,8 +139,8 @@
         android:layout_height="50dp"
         android:text="logout"
         android:textColor="#fff"
+        android:background="#ffb300"
         android:textSize="18dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"/>
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

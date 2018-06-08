@@ -35,17 +35,61 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Komisi Anda Saat ini"/>
+            android:text="Komisi Anda Saat ini"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rp. 250.000.000"/>
+            android:text="Rp. 250.000.000"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:textColor="#FF8800"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:paddingLeft="15dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15dp"
+            android:text="List Laporan Komisi"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <EditText
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_outline_black"
+                android:textSize="15dp"
+                android:hint="Search"
+                android:drawableRight="@drawable/drawable_search"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -85,7 +129,7 @@
                             android:layout_height="wrap_content"
                             android:background="#999999"
                             android:padding="18dip"
-                            android:text="Nama"
+                            android:text="Nama Jamaah"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -94,7 +138,7 @@
                             android:layout_height="wrap_content"
                             android:background="#999999"
                             android:padding="18dip"
-                            android:text="No. Telp"
+                            android:text="Tgl Lunas"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -103,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:background="#999999"
                             android:padding="18dip"
-                            android:text="Total Caljam"
+                            android:text="Tgl Terima"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -112,7 +156,7 @@
                             android:layout_height="wrap_content"
                             android:background="#999999"
                             android:padding="18dip"
-                            android:text="Total Jamaah"
+                            android:text="Nilai Komisi"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -136,7 +180,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="Andika Saputra"
+                            android:text="Abdul Kodir"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -145,7 +189,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="08236281"
+                            android:text="27/08/2017"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -154,7 +198,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="11"
+                            android:text="12/09/2017"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -163,7 +207,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="20"
+                            android:text="Rp. 200.000"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -192,7 +236,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="Bayu Dirga"
+                            android:text="Saepudin"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -201,7 +245,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="088732"
+                            android:text="27/08/2017"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -210,7 +254,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="2"
+                            android:text="12/09/2017"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 
@@ -219,63 +263,7 @@
                             android:layout_height="wrap_content"
                             android:background="#CCCCCC"
                             android:padding="18dip"
-                            android:text="15"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#fff"/>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="3"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Depras Nuryadi"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="0876321"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="5"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="30"
+                            android:text="Rp. 200.000"
                             android:textColor="#fff"
                             android:textSize="14dp" />
 

@@ -32,14 +32,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="95dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Nama (PIC)" />
 
                     <EditText
                         android:id="@+id/picName"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColorHint="#bababa"
                         android:textSize="@dimen/_12sdp"
@@ -53,52 +53,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="95dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Tanggal Keberangkatan" />
-
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:drawableRight="@drawable/ic_calendar"
-                        android:background="?attr/editTextBackground"
-                        android:theme="@style/EditTextThemes"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="95dp"
-                        android:layout_height="30dp"
-                        android:text=" Jenis Paket" />
-
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:text="asd"/>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="95dp"
-                        android:layout_height="30dp"
-                        android:text="Jumlah" />
+                        android:text="No. Telp" />
 
                     <EditText
-                        android:id="@+id/jumlah"
+                        android:id="@+id/picTelp"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColorHint="#bababa"
                         android:textSize="@dimen/_12sdp"
@@ -109,8 +71,89 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="10dp">
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Jumlah" />
+
+                    <EditText
+                        android:id="@+id/jumlah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColorHint="#bababa"
+                        android:textSize="@dimen/_12sdp"
+                        android:theme="@style/EditTextThemes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Keberangkatan" />
+
+                    <TextView
+                        android:id="@+id/dateDeparture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/editTextBackground"
+                        android:drawableRight="@drawable/ic_action_date"
+                        android:text="28 Januari 2018"
+                        android:theme="@style/EditTextThemes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Paket" />
+
+                    <EditText
+                        android:id="@+id/etPaket"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="Reguler Madinah CGKMED"
+                        android:textColorHint="#bababa"
+                        android:textSize="@dimen/_12sdp"
+                        android:theme="@style/EditTextThemes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
+                        android:text=" Hotel" />
+
+                    <com.jaredrummler.materialspinner.MaterialSpinner
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:text="RAHMAH"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="90dp"
@@ -124,27 +167,27 @@
 
                         <Button
                             android:id="@+id/dua"
-                            android:layout_width="60dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/bg_rounded_orange"
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/bg_rounded_grey_1"
                             android:text="2"
-                            android:textColor="@android:color/white"
-                            android:layout_marginRight="10dp"/>
+                            android:textColor="@android:color/white" />
 
                         <Button
                             android:id="@+id/tiga"
-                            android:layout_width="60dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/bg_rounded_orange"
-                            android:text="2"
-                            android:textColor="@android:color/white"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/bg_rounded_grey_1"
+                            android:text="3"
+                            android:textColor="@android:color/white" />
 
                         <Button
                             android:id="@+id/empat"
-                            android:layout_width="60dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/bg_rounded_grey"
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_rounded_grey_1"
                             android:text="4"
                             android:textColor="@android:color/white" />
 
@@ -152,26 +195,80 @@
 
                 </LinearLayout>
 
-
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="80dp">
+                    android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/button_next_fragment_step_1"
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pembayaran" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_rounded_orange"
-                        android:text="Daftar"
-                        android:textColor="@android:color/white" />
+                        android:orientation="vertical">
 
-                </RelativeLayout>
+                        <EditText
+                            android:id="@+id/etPembayaran"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:text="DP."
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                        <EditText
+                            android:id="@+id/etPembayaransa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:text="Rp. 0"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginTop="80dp">-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button_next_fragment_step_1"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@drawable/bg_rounded_orange"-->
+                        <!--android:text="Daftar"-->
+                        <!--android:textColor="@android:color/white" />-->
+
+                <!--</RelativeLayout>-->
 
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/button_next_fragment_step_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="daftar"
+            android:textColor="#fff"
+            android:background="#ffb300"/>
 
     </LinearLayout>
 

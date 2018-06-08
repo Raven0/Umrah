@@ -54,17 +54,18 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
-                            android:text="Nama Jama'ah" />
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Jamaah" />
 
                         <EditText
+                            android:id="@+id/jamName"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColorHint="#bababa"
                             android:textSize="@dimen/_12sdp"
@@ -74,63 +75,18 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="50dp"
-                            android:text="Tanggal Keberangkatan" />
-
-                        <TextView
-                            android:id="@+id/date1"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:background="?attr/editTextBackground"
-                            android:drawableRight="@drawable/ic_calendar"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:textSize="@dimen/_12sdp"
-                            android:theme="@style/EditTextThemes" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="50dp"
-                            android:text="Tanggal Pulang" />
-
-                        <TextView
-                            android:id="@+id/date2"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:background="?attr/editTextBackground"
-                            android:drawableRight="@drawable/ic_calendar"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:textSize="@dimen/_12sdp"
-                            android:theme="@style/EditTextThemes" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
                             android:text="Alamat" />
 
                         <EditText
+                            android:id="@+id/jamAl"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColorHint="#bababa"
                             android:textSize="@dimen/_12sdp"
@@ -140,17 +96,18 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
-                            android:text="No. Telepon" />
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="No. Telpon" />
 
                         <EditText
+                            android:id="@+id/jamTel"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColorHint="#bababa"
                             android:textSize="@dimen/_12sdp"
@@ -160,17 +117,18 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
                             android:text="Jenis Kelamin" />
 
                         <EditText
+                            android:id="@+id/jamKel"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColorHint="#bababa"
                             android:textSize="@dimen/_12sdp"
@@ -180,17 +138,18 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
                             android:text="Batasan Usia" />
 
                         <EditText
+                            android:id="@+id/jamUsia"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColorHint="#bababa"
                             android:textSize="@dimen/_12sdp"
@@ -211,16 +170,16 @@
 
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
-                            android:text="Pas Foto" />
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Pas Foto"
+                            android:layout_marginTop="10dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -228,55 +187,23 @@
                             android:orientation="vertical">
 
                             <EditText
+                                android:id="@+id/jamFoto"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_35sdp"
+                                android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
                                 android:textSize="@dimen/_12sdp"
                                 android:theme="@style/EditTextThemes" />
 
                             <Button
+                                android:id="@+id/upFot"
                                 android:layout_width="wrap_content"
-                                android:layout_height="40dp"
+                                android:layout_height="30dp"
                                 android:layout_marginRight="10dp"
-                                android:background="@drawable/bg_rounded_green_dark"
-                                android:text="upload"
-                                android:textColor="@android:color/white" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
-                            android:text="Passport" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_35sdp"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/bg_rounded_green_dark"
-                                android:text="upload"
+                                android:drawableLeft="@drawable/drawable_upload"
+                                android:background="#7cb342"
+                                android:textAllCaps="false"
+                                android:text="Upload"
                                 android:textColor="@android:color/white" />
 
                         </LinearLayout>
@@ -285,13 +212,14 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="30dp"
-                            android:text="Menigitis" />
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Passport"
+                            android:layout_marginTop="10dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -299,19 +227,63 @@
                             android:orientation="vertical">
 
                             <EditText
+                                android:id="@+id/jamPass"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_35sdp"
+                                android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
                                 android:textSize="@dimen/_12sdp"
                                 android:theme="@style/EditTextThemes" />
 
                             <Button
+                                android:id="@+id/upPas"
                                 android:layout_width="wrap_content"
-                                android:layout_height="40dp"
+                                android:layout_height="30dp"
                                 android:layout_marginRight="10dp"
-                                android:background="@drawable/bg_rounded_green_dark"
-                                android:text="upload"
+                                android:drawableLeft="@drawable/drawable_upload"
+                                android:background="#7cb342"
+                                android:textAllCaps="false"
+                                android:text="Upload"
+                                android:textColor="@android:color/white" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Meningitis"
+                            android:layout_marginTop="10dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/jamMen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                            <Button
+                                android:id="@+id/upMen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginRight="10dp"
+                                android:drawableLeft="@drawable/drawable_upload"
+                                android:background="#7cb342"
+                                android:textAllCaps="false"
+                                android:text="Upload"
                                 android:textColor="@android:color/white" />
 
                         </LinearLayout>
@@ -321,18 +293,20 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="30dp">
 
                         <Button
                             android:id="@+id/button_next_fragment_step_2"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:paddingLeft="10dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/bg_rounded_orange"
-                            android:padding="5dp"
+                            android:background="@drawable/bg_rounded_orange_1"
                             android:text="Selanjutnya"
+                            android:drawableRight="@drawable/drawable_next"
+                            android:textAllCaps="false"
                             android:textColor="@android:color/white" />
 
                     </RelativeLayout>

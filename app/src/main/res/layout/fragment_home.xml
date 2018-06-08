@@ -154,7 +154,7 @@
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"
                                     android:padding="@dimen/_10sdp"
-                                    android:src="@drawable/jadwal" />
+                                    android:src="@drawable/icon_jadwal" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -233,7 +233,7 @@
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_gravity="center"
                                     android:padding="@dimen/_10sdp"
-                                    android:src="@drawable/lokasi" />
+                                    android:src="@drawable/icon_hotel" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
