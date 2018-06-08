@@ -395,11 +395,13 @@
 
                     <Button
                         android:id="@+id/shareBtn"
-                        android:layout_width="95dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:background="@drawable/bg_rounded_green_dark"
-                        android:text="Share"
+                        android:drawableLeft="@drawable/drawable_share"
+                        android:background="#7cb342"
+                        android:textAllCaps="false"
                         android:layout_centerInParent="true"
+                        android:text="Share"
                         android:textColor="@android:color/white" />
 
                 </RelativeLayout>

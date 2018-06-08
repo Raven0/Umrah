@@ -3,7 +3,6 @@ package com.birutekno.umrah;
 import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.google.firebase.FirebaseApp;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -11,7 +10,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by No Name on 7/29/2017.
- */
+ **/
 
 public class BaseApplication extends Application {
 
