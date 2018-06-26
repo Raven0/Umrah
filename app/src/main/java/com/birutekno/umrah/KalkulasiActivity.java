@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.birutekno.umrah.adapter.KalkulasiAdapter;
 import com.birutekno.umrah.model.Kalkulasi;
@@ -28,6 +28,9 @@ public class KalkulasiActivity extends BaseActivity {
 
     @Bind(R.id.recyclerView)
     BaseRecyclerView mRecyclerView;
+
+    @Bind(R.id.tambah)
+    Button btnTambah;
 
     private KalkulasiAdapter mAdapter;
     private String mDate = "";
@@ -60,7 +63,8 @@ public class KalkulasiActivity extends BaseActivity {
                 edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(KalkulasiActivity.this, InputKalkulasiActivity.class);
+                        startActivity(intent);
                     }
                 });
 
@@ -71,6 +75,14 @@ public class KalkulasiActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
+            }
+        });
+
+        btnTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KalkulasiActivity.this, InputKalkulasiActivity.class);
+                startActivity(intent);
             }
         });
     }

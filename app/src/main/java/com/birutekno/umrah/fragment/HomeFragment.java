@@ -95,6 +95,9 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
     @Bind(R.id.tutoringRecyclerView)
     RecyclerView mTutoringRecyclerView;
 
+    @Bind(R.id.stationaryRecyclerView)
+    RecyclerView mStationaryRecyclerView;
+
     @Bind(R.id.pager)
     protected AutoScrollViewPager mPager;
 
@@ -136,9 +139,9 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
         mTutoringRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mTutoringRecyclerView.setAdapter(mTutoringAdapter);
 
-//        mStationaryRecyclerView.setHasFixedSize(true);
-//        mStationaryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//        mStationaryRecyclerView.setAdapter(mStationaryAdapter);
+        mStationaryRecyclerView.setHasFixedSize(true);
+        mStationaryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mStationaryRecyclerView.setAdapter(mStationaryAdapter);
     }
 
     private void setData() {

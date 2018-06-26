@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
@@ -24,6 +25,7 @@ public class TotalKalkulasiFragment extends Fragment {
     private TextView textViewNamaIbu;
     private TextView textViewNamaAyah;
     private Button shareBtn;
+    private ProgressBar progressBar;
 
     public TotalKalkulasiFragment() {
         // Required empty public constructor
@@ -93,6 +95,8 @@ public class TotalKalkulasiFragment extends Fragment {
 //        textViewNamaAyah.setText(bundle.getString("namaAyah"));
 
         shareBtn = (Button) view.findViewById(R.id.shareBtn);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_loader);
+//        progressBar.setVisibility(View.GONE);
     }
 
 }

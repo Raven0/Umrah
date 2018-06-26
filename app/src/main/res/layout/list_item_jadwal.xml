@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="03 November 2018"
+                android:text="23 Desember 2018"
                 android:textColor="#000"/>
 
         </LinearLayout>
@@ -95,10 +95,10 @@
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="No"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -106,10 +106,32 @@
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Penerbangan"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Pukul"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Keberangkatan"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -117,10 +139,10 @@
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Kepulangan"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -128,10 +150,10 @@
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Maskapai"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -139,10 +161,10 @@
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Paket"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -150,10 +172,10 @@
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Status"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -161,10 +183,10 @@
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
-                                android:text="Action"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Action"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -177,67 +199,84 @@
                             <TextView
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="1"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="03 November 2018"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="CGKJED, SV 817"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="11 November 2018"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="20.00 - 02.00"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="Saudi"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="23 Desember 2018"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="30 Desember 2018"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Saudia"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="9 Hari"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Sold Out"
                                 android:textColor="@color/colorPrimary"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textSize="14dp" />
 
                             <Button
-                                android:id="@+id/share"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
-                                android:drawableLeft="@drawable/drawable_share"
-                                android:background="#7cb342"
-                                android:textAllCaps="false"
                                 android:layout_centerInParent="true"
+                                android:background="#7cb342"
+                                android:drawableLeft="@drawable/drawable_share"
                                 android:text="Share"
+                                android:textAllCaps="false"
                                 android:textColor="@android:color/white" />
 
                         </TableRow>
@@ -245,7 +284,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:background="#fff"/>
+                            android:background="#fff" />
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -254,67 +293,85 @@
                             <TextView
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="2"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="03 November 2018"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="CGKMED, SV 825"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="14 November 2018"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="11.00 - 17.10"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="Qatar"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="23 Desember 2018"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="12 Hari"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="30 Desmeber 2018"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Saudia"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="9 Hari"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Sold Out"
                                 android:textColor="@color/colorPrimary"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:gravity="center"
                                 android:textSize="14dp" />
 
                             <Button
                                 android:id="@+id/share"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
-                                android:drawableLeft="@drawable/drawable_share"
-                                android:background="#7cb342"
-                                android:textAllCaps="false"
                                 android:layout_centerInParent="true"
+                                android:background="#7cb342"
+                                android:drawableLeft="@drawable/drawable_share"
                                 android:text="Share"
+                                android:textAllCaps="false"
                                 android:textColor="@android:color/white" />
 
                         </TableRow>
@@ -322,7 +379,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:background="#fff"/>
+                            android:background="#fff" />
 
                     </LinearLayout>
 
@@ -337,6 +394,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#999"/>
+        android:background="#999" />
 
 </LinearLayout>

@@ -14,21 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <!-- <activity android:name=".LaunchScreenActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".WhatsapActivity" />
         <activity android:name=".JamaahActivity" />
@@ -45,6 +38,9 @@
         <activity android:name=".GalleryActivity" />
         <activity android:name=".SubAgenActivity" />
         <activity android:name=".KomisiActivity" />
+        <activity android:name=".FaqActivity" />
+        <activity android:name=".WizardActivity" />
+        <activity android:name=".DetailHotelActivity" />
     </application>
 
 </manifest>

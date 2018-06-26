@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 
+import com.birutekno.umrah.FaqActivity;
 import com.birutekno.umrah.KomisiActivity;
 import com.birutekno.umrah.LoginActivity;
 import com.birutekno.umrah.ProfileActivity;
@@ -38,6 +39,13 @@ public class SettingFragment extends BaseFragment{
     @OnClick(R.id.komisiCard)
     void komisiCardClicked() {
         Intent intent = KomisiActivity.createIntent(getActivity());
+        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
+    }
+
+    @OnClick(R.id.faqCard)
+    void faqCardClicked() {
+        Intent intent = FaqActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }

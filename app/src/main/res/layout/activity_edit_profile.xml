@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
-                            <ImageView
+                            <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/imgView"
                                 android:layout_width="120dp"
                                 android:layout_height="120dp"
@@ -85,15 +85,6 @@
                                 android:layout_alignRight="@id/imgView" />
 
                         </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:text="Budi"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_18sdp" />
 
                     </LinearLayout>
 

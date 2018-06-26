@@ -2,17 +2,17 @@ package com.birutekno.umrah.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.ui.chart.LineView;
+import com.birutekno.umrah.adapter.AcademicPagerAdapter;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -20,13 +20,37 @@ import butterknife.Bind;
 
 public class DashboardFragment extends BaseFragment{
 
-    int randomint = 12;
+    @Bind(R.id.sayaText)
+    TextView mMateriText;
 
-    @Bind(R.id.line_view)
-    LineView line;
+    @Bind(R.id.agenText)
+    TextView mSoalText;
 
-    @Bind(R.id.line_view_two)
-    LineView line_two;
+    @Bind(R.id.sayaTab)
+    LinearLayout mMateriTab;
+
+    @Bind(R.id.agenTab)
+    LinearLayout mSoalTab;
+
+    @Bind(R.id.pager)
+    ViewPager mPager;
+
+    @OnClick(R.id.sayaTab)
+    void materiClicked(){
+        mPager.setCurrentItem(0);
+    }
+
+    @OnClick(R.id.agenTab)
+    void soalClicked(){
+        mPager.setCurrentItem(1);
+    }
+
+    private AcademicPagerAdapter mAdapter;
+
+//    public static Intent createIntent(Context context) {
+//        Intent intent = new Intent(context, DashboardFragment.class);
+//        return intent;
+//    }
 
     public static DashboardFragment newInstance() {
         DashboardFragment fragment = new DashboardFragment();
@@ -39,111 +63,49 @@ public class DashboardFragment extends BaseFragment{
     }
 
     @Override
-    protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        initLineView(line);
-        initLineView(line_two);
-
-        ArrayList<Integer> dataList = new ArrayList<>();
-        dataList.add(100);
-        dataList.add(80);
-        dataList.add(210);
-        dataList.add(200);
-        dataList.add(220);
-        dataList.add(220);
-        dataList.add(240);
-        dataList.add(350);
-        dataList.add(400);
-        dataList.add(340);
-        dataList.add(420);
-        dataList.add(500);
-
-        ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
-        dataLists.add(dataList);
-
-        line.setDataList(dataLists);
-
-        ArrayList<Float> dataListF = new ArrayList<>();
-        float randomF = (float) (Math.random() * 9 + 1);
-        for (int i = 0; i < randomint; i++) {
-            dataListF.add((float) (Math.random() * randomF));
-        }
-
-        ArrayList<Float> dataListF2 = new ArrayList<>();
-        randomF = (int) (Math.random() * 9 + 1);
-        for (int i = 0; i < randomint; i++) {
-            dataListF2.add((float) (Math.random() * randomF));
-        }
-
-        ArrayList<ArrayList<Float>> dataListFs = new ArrayList<>();
-        dataListFs.add(dataListF);
-        dataListFs.add(dataListF2);
-
-        line_two.setFloatDataList(dataListFs);
-
-//        randomSet(line,line_two);
+    protected void onViewReady(Bundle savedInstanceState) {
+        setupPager();
     }
 
-    private void initLineView(LineView lineView) {
-        ArrayList<String> test = new ArrayList<String>();
-        Calendar calendar = Calendar.getInstance();
-        for (int i = 0; i < randomint; i++) {
-            SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
-            calendar.set(Calendar.MONTH, i);
-            String month_name = month_date.format(calendar.getTime());
-            test.add(month_name);
-        }
-        lineView.setBottomTextList(test);
-        lineView.setColorArray(new int[]{Color.GREEN,Color.RED});
-        lineView.setDrawDotLine(true);
-        lineView.setShowPopup(LineView.SHOW_POPUPS_NONE);
+    private void setupPager() {
+        mAdapter = new AcademicPagerAdapter(getChildFragmentManager());
+        mPager.setAdapter(mAdapter);
+        mPager.setOffscreenPageLimit(3);
+        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources()
+                .getDisplayMetrics());
+        mPager.setPageMargin(pageMargin);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        mMateriText.setTextColor(Color.WHITE);
+                        mMateriTab.setBackgroundResource(R.drawable.bg);
+
+                        mSoalText.setTextColor(Color.GRAY);
+                        mSoalTab.setBackgroundColor(Color.WHITE);
+                        break;
+                    case 1:
+                        mMateriText.setTextColor(Color.GRAY);
+                        mMateriTab.setBackgroundColor(Color.WHITE);
+
+                        mSoalText.setTextColor(Color.WHITE);
+                        mSoalTab.setBackgroundResource(R.drawable.bg);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-//    private void randomSet(LineView lineView, LineView lineViewTwo) {
-//        ArrayList<Integer> dataList = new ArrayList<>();
-//        float random = (float) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataList.add((int) (Math.random() * random));
-//        }
-//
-//        ArrayList<Integer> dataList2 = new ArrayList<>();
-//        random = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataList2.add((int) (Math.random() * random));
-//        }
-//
-//        ArrayList<Integer> dataList3 = new ArrayList<>();
-//        random = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataList3.add((int) (Math.random() * random));
-//        }
-//
-//        ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
-//        dataLists.add(dataList);
-//
-//        lineView.setDataList(dataLists);
-//
-//        ArrayList<Float> dataListF = new ArrayList<>();
-//        float randomF = (float) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataListF.add((float) (Math.random() * randomF));
-//        }
-//
-//        ArrayList<Float> dataListF2 = new ArrayList<>();
-//        randomF = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataListF2.add((float) (Math.random() * randomF));
-//        }
-//
-//        ArrayList<Float> dataListF3 = new ArrayList<>();
-//        randomF = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataListF3.add((float) (Math.random() * randomF));
-//        }
-//
-//        ArrayList<ArrayList<Float>> dataListFs = new ArrayList<>();
-//        dataListFs.add(dataListF);
-//        dataListFs.add(dataListF2);
-//
-//        lineViewTwo.setFloatDataList(dataListFs);
-//    }
 }
