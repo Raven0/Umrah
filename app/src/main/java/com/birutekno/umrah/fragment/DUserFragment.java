@@ -1,12 +1,17 @@
 package com.birutekno.umrah.fragment;
 
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.ui.chart.LineView;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,7 +23,7 @@ import butterknife.Bind;
  * Created by No Name on 7/29/2017.
  */
 
-public class DUserFragment extends BaseFragment{
+public class DUserFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener{
 
     private static final String TYPE = "type";
 
@@ -29,6 +34,9 @@ public class DUserFragment extends BaseFragment{
 
     @Bind(R.id.line_view_two)
     LineView line_two;
+
+    @Bind(R.id.periode)
+    Button periode;
 
     public static DUserFragment newInstance(int type) {
         DUserFragment fragment = new DUserFragment();
@@ -52,6 +60,20 @@ public class DUserFragment extends BaseFragment{
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         initLineView(line);
         initLineView(line_two);
+
+        periode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getFragmentManager();
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance((DatePickerDialog.OnDateSetListener) DUserFragment.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.setTitle("Pilih Periode");
+                datePickerDialog.show(fm,"Date");
+            }
+        });
 
         ArrayList<Integer> dataList = new ArrayList<>();
         dataList.add(100);
@@ -93,6 +115,12 @@ public class DUserFragment extends BaseFragment{
 //        randomSet(line,line_two);
     }
 
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int month, int day){
+        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", day,month,year), Toast.LENGTH_LONG).show();
+        periode.setText(String.format("%d/%d/%d", day,month,year));
+    }
+
     private void initLineView(LineView lineView) {
         ArrayList<String> test = new ArrayList<String>();
         Calendar calendar = Calendar.getInstance();
@@ -103,7 +131,7 @@ public class DUserFragment extends BaseFragment{
             test.add(month_name);
         }
         lineView.setBottomTextList(test);
-        lineView.setColorArray(new int[]{Color.GREEN,Color.RED});
+        lineView.setColorArray(new int[]{Color.BLUE,Color.RED});
         lineView.setDrawDotLine(true);
         lineView.setShowPopup(LineView.SHOW_POPUPS_NONE);
     }

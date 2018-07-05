@@ -18,230 +18,30 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-30dp"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
-
-                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/spinner_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@color/white"/>
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
-
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <android.support.v4.widget.NestedScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Bulan"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Jumlah"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Januari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="150"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="2dp"
-                                    android:background="#fff"/>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Februari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="100"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                            </LinearLayout>
-
-                        </android.support.v4.widget.NestedScrollView>
-
-                    </TableLayout>
-
-                </HorizontalScrollView>
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
-
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <android.support.v4.widget.NestedScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Bulan"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Jumlah"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Januari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="150"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="2dp"
-                                    android:background="#fff"/>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Februari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="100"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                            </LinearLayout>
-
-                        </android.support.v4.widget.NestedScrollView>
-
-                    </TableLayout>
-
-                </HorizontalScrollView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <Button
+                        android:id="@+id/periode"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="pilih periode"
+                        android:background="@color/white"/>
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/spinner_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@color/white"/>
+
+                </LinearLayout>
 
                 <HorizontalScrollView
                     android:layout_width="fill_parent"
@@ -288,7 +88,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Komisi"
-                                    android:textColor="@color/green"/>
+                                    android:textColor="@color/blue"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -302,6 +102,241 @@
                         </LinearLayout>
 
                     </android.support.v7.widget.CardView>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v4.widget.NestedScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tabel Prospek"
+                                    android:padding="18dp"
+                                    android:textColor="#fff"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:background="#848484"/>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#999999"
+                                        android:padding="18dp"
+                                        android:text="Bulan"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#999999"
+                                        android:padding="18dip"
+                                        android:text="Jumlah"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="Januari"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="150"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                </TableRow>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#fff"/>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="Februari"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="100"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                </TableRow>
+
+                            </LinearLayout>
+
+                        </android.support.v4.widget.NestedScrollView>
+
+                    </TableLayout>
+
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v4.widget.NestedScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tabel Jamaah"
+                                    android:padding="18dp"
+                                    android:textColor="#fff"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:background="#848484"/>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#999999"
+                                        android:padding="18dip"
+                                        android:text="Bulan"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#999999"
+                                        android:padding="18dip"
+                                        android:text="Jumlah"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="Januari"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="150"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                </TableRow>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#fff"/>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="Februari"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="#CCCCCC"
+                                        android:padding="18dip"
+                                        android:text="100"
+                                        android:textColor="#fff"
+                                        android:textSize="14dp" />
+
+                                </TableRow>
+
+                            </LinearLayout>
+
+                        </android.support.v4.widget.NestedScrollView>
+
+                    </TableLayout>
 
                 </HorizontalScrollView>
 

@@ -16,6 +16,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/periode"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="17dp"
+                android:text="pilih periode"
+                android:background="@color/white"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,9 +61,10 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="40dp"
+                                    android:layout_width="35dp"
                                     android:layout_marginLeft="5dp"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="55dp"
+                                    android:scaleType="fitXY"
                                     android:src="@drawable/icon_caljam" />
 
                                 <LinearLayout
@@ -67,7 +76,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Total Caljam"
+                                        android:text="Prospek / Follow Up"
+                                        android:textAlignment="center"
                                         android:textStyle="bold"
                                         android:textColor="#000"
                                         android:textSize="15dp"/>
@@ -103,9 +113,10 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="40dp"
+                                    android:layout_width="50dp"
                                     android:layout_marginLeft="5dp"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="55dp"
+                                    android:scaleType="fitXY"
                                     android:src="@drawable/icon_jamaah" />
 
                                 <LinearLayout
@@ -118,6 +129,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Total Jamaah"
+                                        android:textAlignment="center"
                                         android:textStyle="bold"
                                         android:textColor="#000"
                                         android:textSize="15dp"/>
@@ -161,10 +173,11 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="40dp"
+                                    android:layout_width="55dp"
                                     android:layout_marginLeft="5dp"
-                                    android:layout_height="match_parent"
-                                    android:src="@drawable/icon_komisi" />
+                                    android:layout_height="55dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/icon_potensi_new" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -175,7 +188,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Total Komisi"
+                                        android:text="Potensi Komisi"
+                                        android:textAlignment="center"
                                         android:textStyle="bold"
                                         android:textColor="#000"
                                         android:textSize="15dp"/>
@@ -211,10 +225,11 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="40dp"
+                                    android:layout_width="50dp"
                                     android:layout_marginLeft="5dp"
-                                    android:layout_height="match_parent"
-                                    android:src="@drawable/icon_penagihan" />
+                                    android:layout_height="50dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/icon_komisi_new" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -225,7 +240,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Penagihan"
+                                        android:text="Total Komisi Diterima"
+                                        android:textAlignment="center"
                                         android:textStyle="bold"
                                         android:textColor="#000"
                                         android:textSize="15dp"/>
@@ -272,7 +288,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Grafik Jamaah"
+                                android:text="Grafik Total Jamaah Perbulan"
                                 android:layout_marginLeft="10dp"
                                 android:textStyle="bold"/>
 
@@ -308,7 +324,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Grafik Komisi dan Potensi"
+                                android:text="Grafik Total Komisi &amp; Potensi Perbulan"
                                 android:layout_marginLeft="10dp"
                                 android:textStyle="bold"/>
 
@@ -335,7 +351,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Komisi"
-                                    android:textColor="@color/green"/>
+                                    android:textColor="@color/blue"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"

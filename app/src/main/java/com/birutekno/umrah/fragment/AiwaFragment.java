@@ -1,13 +1,17 @@
 package com.birutekno.umrah.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.birutekno.umrah.LoginActivity;
 import com.birutekno.umrah.R;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
@@ -36,6 +40,9 @@ public class AiwaFragment extends Fragment implements BlockingStep {
     }
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
+        Intent intent = LoginActivity.createIntent(getActivity());
+        ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+        ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {

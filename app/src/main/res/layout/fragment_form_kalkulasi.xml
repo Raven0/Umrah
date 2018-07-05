@@ -64,31 +64,10 @@
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
-                                android:text="No Telp" />
+                                android:text="Dewasa" />
 
                             <EditText
-                                android:id="@+id/etTelp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Jumlah" />
-
-                            <EditText
-                                android:id="@+id/etJumlah"
+                                android:id="@+id/etDewasa"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/_10sdp"
@@ -142,7 +121,22 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:gravity="center_vertical"
+                                android:layout_height="30dp"
+                                android:text="Total :" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal">
 
                             <TextView
@@ -150,14 +144,21 @@
                                 android:layout_height="wrap_content"
                                 android:text="Tanggal Keberangkatan" />
 
-                            <TextView
+                            <!--<TextView-->
+                                <!--android:id="@+id/dateDeparture"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:background="?attr/editTextBackground"-->
+                                <!--android:drawableRight="@drawable/ic_action_date"-->
+                                <!--android:text="28 Januari 2018"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                            <Button
                                 android:id="@+id/dateDeparture"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="?attr/editTextBackground"
-                                android:drawableRight="@drawable/ic_action_date"
-                                android:text="28 Januari 2018"
-                                android:theme="@style/EditTextThemes" />
+                                android:text="Pilih Tanggal"
+                                android:textAllCaps="false"/>
 
                         </LinearLayout>
 
@@ -168,8 +169,7 @@
 
                             <TextView
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Nama Paket" />
+                                android:layout_height="wrap_content" />
 
                             <EditText
                                 android:id="@+id/etPaket"
@@ -181,22 +181,29 @@
                                 android:textSize="@dimen/_12sdp"
                                 android:theme="@style/EditTextThemes" />
 
+                            <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner-->
+                                <!--android:id="@+id/spinner_search_1"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="35dp"/>-->
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text=" Hotel" />
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text=" Jenis" />
 
-                            <com.jaredrummler.materialspinner.MaterialSpinner
+                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                android:id="@+id/searchJenis"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_35sdp"
-                                android:text="RAHMAH" />
+                                android:layout_height="35dp"/>
 
                         </LinearLayout>
 
@@ -217,7 +224,7 @@
                                     android:text="Jenis Kamar" />
 
                                 <TextView
-                                    android:layout_width="90dp"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="30dp"
                                     android:text="Jumlah Orang" />
 
@@ -243,7 +250,7 @@
                                         android:layout_width="40dp"
                                         android:layout_height="20dp"
                                         android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_grey_1"
+                                        android:background="@drawable/bg_rounded_red_accent"
                                         android:text="2"
                                         android:textColor="@android:color/white" />
 
@@ -274,7 +281,7 @@
                                         android:layout_width="40dp"
                                         android:layout_height="20dp"
                                         android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_grey_1"
+                                        android:background="@drawable/bg_rounded_blue_primary"
                                         android:text="3"
                                         android:textColor="@android:color/white" />
 
@@ -305,7 +312,7 @@
                                         android:layout_width="40dp"
                                         android:layout_height="20dp"
                                         android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_grey_1"
+                                        android:background="@drawable/bg_rounded_red_dark"
                                         android:text="4"
                                         android:textColor="@android:color/white" />
 
@@ -331,18 +338,9 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Passport" />
-
-                            <EditText
-                                android:id="@+id/etPassport"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
+                                android:text="Dokumen Cheklist" />
 
                         </LinearLayout>
 
@@ -351,19 +349,37 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="100dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Maningitis" />
+                                android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/etManingitis"
-                                android:layout_width="match_parent"
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Passport" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
+                                android:orientation="horizontal">
+
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Meningitis" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -372,19 +388,37 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="100dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Pas Foto" />
+                                android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/etPasFoto"
-                                android:layout_width="match_parent"
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pas Foto" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
+                                android:orientation="horizontal">
+
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Buku Nikah" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -393,40 +427,21 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="100dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Buku Nikah" />
+                                android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/etBukuNikah"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="FC Akta Lahir" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="FC Akta Lahir" />
-
-                            <EditText
-                                android:id="@+id/etFC"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -447,6 +462,7 @@
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
                                 android:textSize="@dimen/_12sdp"
+                                android:text="Rp. 7.600.000"
                                 android:theme="@style/EditTextThemes" />
 
                         </LinearLayout>
@@ -468,28 +484,7 @@
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
                                 android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Tanggal Followup" />
-
-                            <EditText
-                                android:id="@+id/etFollowup"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:drawableRight="@drawable/ic_calendar"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
+                                android:text="Rp. 7.600.000"
                                 android:theme="@style/EditTextThemes" />
 
                         </LinearLayout>
@@ -504,14 +499,73 @@
                                 android:layout_height="wrap_content"
                                 android:text="Keterangan" />
 
-                            <EditText
-                                android:id="@+id/etKeterangan"
+                            <ScrollView
+                                android:id="@+id/ScrollView01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/etKeterangan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:textColorHint="#bababa"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Rp. 7.600.000"
+                                    android:theme="@style/EditTextThemes" />
+
+                            </ScrollView>
+
+                        </LinearLayout>
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Tanggal Followup" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etFollowup"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:drawableRight="@drawable/ic_calendar"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Tanggal Followup" />
+
+                            <!--<TextView-->
+                            <!--android:id="@+id/dateDeparture"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:background="?attr/editTextBackground"-->
+                            <!--android:drawableRight="@drawable/ic_action_date"-->
+                            <!--android:text="28 Januari 2018"-->
+                            <!--android:theme="@style/EditTextThemes" />-->
+
+                            <Button
+                                android:id="@+id/dateFollow"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
+                                android:text="Pilih Tanggal"
+                                android:textAllCaps="false"/>
 
                         </LinearLayout>
 
@@ -585,11 +639,11 @@
                             android:text="SIMPAN"
                             android:textColor="#fff"/>
 
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#ffff00"
-                            android:text="DAFTAR"/>
+                        <!--<Button-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:background="#ffff00"-->
+                            <!--android:text="DAFTAR"/>-->
 
                     </LinearLayout>
 

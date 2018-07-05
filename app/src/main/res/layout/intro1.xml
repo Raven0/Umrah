@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:text="AIWA"
-        android:textSize="32dp"
+        android:text="Assalamu’alaikum"
+        android:textSize="28dp"
         android:textStyle="bold"
         android:textColor="@color/yellow"
         android:textAlignment="center"/>
@@ -30,6 +30,6 @@
         android:layout_marginRight="20dp"
         android:textSize="16dp"
         android:textColor="@color/white"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+        android:text="Selamat anda telah berhasil menginstall aplikasi AIWA. AIWA adalah aplikasi android yang telah dirancang sedemikian rupa guna menunjang dan mempermudah proses penjualan paket umroh oleh para agen umroh alhijaz indowisata khusus group bunda Nike Ari Arham.                      "/>
 
 </LinearLayout>
