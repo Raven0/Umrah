@@ -8,27 +8,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_calendar"/>
+            <!--<ImageView-->
+                <!--android:layout_width="25dp"-->
+                <!--android:layout_height="28dp"-->
+                <!--android:src="@drawable/ic_calendar"/>-->
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="23 Desember 2018"
-                android:textColor="#000"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/berangkat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="23 Desember 2018"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:id="@+id/detailBerangkat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="10dp"
+                    android:text="CKGMED,SV 823 (22.00 - 05.20)"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:id="@+id/pulang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="23 Desember 2018"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:id="@+id/detailPulang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="10dp"
+                    android:text="JEDCKG, SV826 (22.00 - 05.20)"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -37,20 +73,21 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:text="P"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:background="@drawable/red_circle_promotion"
-                android:layout_centerVertical="true"/>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:text="P"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#fff"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@drawable/red_circle_promotion"-->
+                <!--android:layout_centerVertical="true"/>-->
 
             <ImageView
+                android:id="@+id/imgDrop"
                 android:layout_width="12dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/dropdown"
@@ -58,6 +95,16 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:rotation="90"/>
+
+            <TextView
+                android:id="@+id/paket"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="10 Hari"
+                android:layout_marginRight="20dp"
+                android:textColor="#000"
+                android:layout_toLeftOf="@id/imgDrop"/>
 
         </RelativeLayout>
 
@@ -98,7 +145,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="No"
+                                android:text="JENIS"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -109,7 +156,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="Penerbangan"
+                                android:text="DOUBLE"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -120,7 +167,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="Pukul"
+                                android:text="TRIPLE"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -131,7 +178,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="Keberangkatan"
+                                android:text="QUARD"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -142,7 +189,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="Kepulangan"
+                                android:text="MADINAH"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -153,7 +200,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="Maskapai"
+                                android:text="MEKKAH"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -164,18 +211,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="Paket"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="Status"
+                                android:text="MANASIK"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -194,82 +230,68 @@
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/jenis"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="1"
+                                android:text="RAHMAH"
                                 android:textSize="14dp" />
 
                             <TextView
+                                android:id="@+id/hargaDouble"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="CGKJED, SV 817"
+                                android:text="31.900.000"
                                 android:textSize="14dp" />
 
                             <TextView
+                                android:id="@+id/hargaTriple"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="20.00 - 02.00"
+                                android:text="30.600.000"
                                 android:textSize="14dp" />
 
                             <TextView
+                                android:id="@+id/hargaQuard"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="23 Desember 2018"
+                                android:text="29.300.000"
                                 android:textSize="14dp" />
 
                             <TextView
+                                android:id="@+id/hotelMadinah"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="30 Desember 2018"
+                                android:text="NOKHBA ROYAL INN"
                                 android:textSize="14dp" />
 
                             <TextView
+                                android:id="@+id/hotelMekah"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="Saudia"
+                                android:text="ZAM-ZAM TOWER"
                                 android:textSize="14dp" />
 
                             <TextView
+                                android:id="@+id/manasik"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="9 Hari"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="Sold Out"
-                                android:textColor="@color/colorPrimary"
+                                android:text="13/10/2018
+08:30"
                                 android:textSize="14dp" />
 
                             <Button
+                                android:id="@+id/shareDetail"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
@@ -281,105 +303,10 @@
 
                         </TableRow>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#fff" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="2"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="CGKMED, SV 825"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="11.00 - 17.10"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="23 Desember 2018"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="30 Desmeber 2018"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="Saudia"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="9 Hari"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="Sold Out"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="14dp" />
-
-                            <Button
-                                android:id="@+id/share"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:background="#7cb342"
-                                android:drawableLeft="@drawable/drawable_share"
-                                android:text="Share"
-                                android:textAllCaps="false"
-                                android:textColor="@android:color/white" />
-
-                        </TableRow>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#fff" />
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="2dp"-->
+                            <!--android:background="#fff" />-->
 
                     </LinearLayout>
 

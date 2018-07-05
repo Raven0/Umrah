@@ -1,4 +1,4 @@
-package com.birutekno.umrah.helper;
+package com.birutekno.umrah.model;
 
 public class Paket {
     private String bintang_mekkah;

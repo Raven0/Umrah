@@ -1,24 +1,31 @@
 package com.birutekno.umrah;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.birutekno.umrah.adapter.JadwalAdapter;
+import com.birutekno.umrah.helper.AIWAAdapter;
+import com.birutekno.umrah.helper.AIWAInterface;
+import com.birutekno.umrah.helper.AIWAResponse;
+import com.birutekno.umrah.model.Data;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.ui.BaseActivity;
-import com.birutekno.umrah.ui.adapter.BaseRecyclerAdapter;
-import com.birutekno.umrah.ui.view.BaseRecyclerView;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
-
-import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import butterknife.Bind;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class JadwalActivity extends BaseActivity {
@@ -27,10 +34,15 @@ public class JadwalActivity extends BaseActivity {
     Toolbar mToolbar;
 
     @Bind(R.id.recyclerView)
-    BaseRecyclerView mRecyclerView;
+    RecyclerView recyclerView;
 
-    private JadwalAdapter mAdapter;
     private String mDate = "";
+
+    private ArrayList<Data> pojo;
+    private ArrayList<Jadwal> jadwal;
+    private AIWAAdapter adapter;
+
+    private ProgressDialog pDialog;
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, JadwalActivity.class);
@@ -47,56 +59,43 @@ public class JadwalActivity extends BaseActivity {
         setupToolbar(mToolbar, true);
         setTitle("");
 
-        setUpAdapter();
-        setUpRecyclerView();
-        setData();
+        initViews();
+    }
 
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+    private void initViews(){
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        loadJSON();
+    }
+
+    private void loadJSON(){
+        pDialog = new ProgressDialog(JadwalActivity.this);
+        pDialog.setMessage("Please wait...");
+        pDialog.show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://115.124.86.218")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        AIWAInterface request = retrofit.create(AIWAInterface.class);
+        Call<AIWAResponse> call = request.getJSON();
+        call.enqueue(new Callback<AIWAResponse>() {
             @Override
-            public void onItemClick(View view, int position) {
-                ExpandableLayout expandableLayout = (ExpandableLayout) view.findViewById(R.id.expandable_layout);
-                if (expandableLayout.isExpanded()) {
-                    expandableLayout.collapse();
-                } else {
-                    expandableLayout.expand();
-                }
-            }
-        });
-    }
+            public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
 
-    private void setData() {
-        List<Jadwal> data = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++){
-            data.add(new Jadwal(i));
-        }
-
-        mAdapter.addAll(data);
-        mAdapter.notifyDataSetChanged();
-        if (mRecyclerView != null) {
-            mRecyclerView.loadMoreComplete();
-            mRecyclerView.refreshComplete();
-        }
-    }
-
-    private void setUpAdapter() {
-        mAdapter = new JadwalAdapter(mContext);
-    }
-
-    private void setUpRecyclerView() {
-        mRecyclerView.setUpAsList();
-        mRecyclerView.setAdapter(mAdapter);
-
-        mRecyclerView.setPullRefreshEnabled(true);
-        mRecyclerView.setLoadingMoreEnabled(true);
-        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                setData();
+                AIWAResponse jsonResponse = response.body();
+                pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                Toast.makeText(JadwalActivity.this, String.valueOf(pojo.size()), Toast.LENGTH_SHORT).show();
+                adapter = new AIWAAdapter(pojo);
+                recyclerView.setAdapter(adapter);
+                pDialog.dismiss();
             }
 
             @Override
-            public void onLoadMore() {
+            public void onFailure(Call<AIWAResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
             }
         });
     }

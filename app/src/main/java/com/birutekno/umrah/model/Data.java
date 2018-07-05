@@ -1,6 +1,4 @@
-package com.birutekno.umrah.helper;
-
-import com.birutekno.umrah.model.Jadwal;
+package com.birutekno.umrah.model;
 
 public class Data {
     private Jadwal[] jadwal;
