@@ -28,41 +28,91 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/berangkat"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="23 Desember 2018"
-                    android:textStyle="bold"
-                    android:textColor="#000"/>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/detailBerangkat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="12dp"
-                    android:text="CKGMED,SV 823 (22.00 - 05.20)"
-                    android:textColor="#000"/>
+                    <TextView
+                        android:id="@+id/berangkat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="23 Desember 2018"
+                        android:textStyle="bold"
+                        android:textColor="#000"/>
 
-                <TextView
-                    android:id="@+id/pulang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="23 Desember 2018"
-                    android:textStyle="bold"
-                    android:textColor="#000"/>
+                    <TextView
+                        android:id="@+id/detailBerangkat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="12dp"
+                        android:text="CKGMED"
+                        android:textColor="#000"/>
 
-                <TextView
-                    android:id="@+id/detailPulang"
+                </LinearLayout>
+
+                <!--<TextView-->
+                    <!--android:id="@+id/berangkat"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:text="23 Desember 2018"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="#000"/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/detailBerangkat"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:textSize="12dp"-->
+                    <!--android:text="CKGMED,SV 823 (22.00 - 05.20)"-->
+                    <!--android:textColor="#000"/>-->
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="12dp"
-                    android:text="JEDCKG, SV826 (22.00 - 05.20)"
-                    android:textColor="#000"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pulang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="23 Desember 2018"
+                        android:textStyle="bold"
+                        android:textColor="#000"/>
+
+                    <TextView
+                        android:id="@+id/detailPulang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="12dp"
+                        android:text="JEDCKG"
+                        android:textColor="#000"/>
+
+                </LinearLayout>
+
+                <!--<TextView-->
+                    <!--android:id="@+id/pulang"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:text="23 Desember 2018"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="#000"/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/detailPulang"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:textSize="12dp"-->
+                    <!--android:text="JEDCKG, SV826 (22.00 - 05.20)"-->
+                    <!--android:textColor="#000"/>-->
 
             </LinearLayout>
 
@@ -204,23 +254,31 @@
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="Action"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
                         </TableRow>
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/listPaket"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/shareDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:background="#7cb342"
+                                android:drawableLeft="@drawable/drawable_share"
+                                android:text="Share"
+                                android:layout_margin="10dp"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white" />
+
+                        </LinearLayout>
 
                         <!--<TableLayout-->
                             <!--android:id="@+id/tableLayout"-->

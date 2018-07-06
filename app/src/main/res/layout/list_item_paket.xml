@@ -17,6 +17,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="RAHMAH"
             android:textSize="14dp" />
 
@@ -25,6 +27,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="Quard"
             android:textSize="14dp" />
 
@@ -33,6 +37,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="31.900.000"
             android:textSize="14dp" />
 
@@ -41,6 +47,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="NOKHBA ROYAL INN"
             android:textSize="14dp" />
 
@@ -49,6 +57,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="ZAM-ZAM TOWER"
             android:textSize="14dp" />
 
@@ -57,20 +67,11 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="13/10/2018
 08:30"
             android:textSize="14dp" />
-
-        <Button
-            android:id="@+id/shareDetail"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="#7cb342"
-            android:drawableLeft="@drawable/drawable_share"
-            android:text="Share"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
 
     </TableRow>
 
