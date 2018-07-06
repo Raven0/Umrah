@@ -8,13 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.birutekno.umrah.helper.AIWAAdapter;
+import com.birutekno.umrah.adapter.JadwalAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAInterface;
 import com.birutekno.umrah.helper.AIWAResponse;
 import com.birutekno.umrah.model.Data;
-import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
@@ -39,8 +37,7 @@ public class JadwalActivity extends BaseActivity {
     private String mDate = "";
 
     private ArrayList<Data> pojo;
-    private ArrayList<Jadwal> jadwal;
-    private AIWAAdapter adapter;
+    private JadwalAiwaAdapter adapter;
 
     private ProgressDialog pDialog;
 
@@ -86,8 +83,7 @@ public class JadwalActivity extends BaseActivity {
 
                 AIWAResponse jsonResponse = response.body();
                 pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-                Toast.makeText(JadwalActivity.this, String.valueOf(pojo.size()), Toast.LENGTH_SHORT).show();
-                adapter = new AIWAAdapter(pojo);
+                adapter = new JadwalAiwaAdapter(pojo, getBaseContext());
                 recyclerView.setAdapter(adapter);
                 pDialog.dismiss();
             }

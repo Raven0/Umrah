@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/jenis"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="RAHMAH"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/kamar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Quard"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/hargaAja"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="31.900.000"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/hotelMadinah"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="NOKHBA ROYAL INN"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/hotelMekah"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ZAM-ZAM TOWER"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/manasik"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="13/10/2018
+08:30"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/shareDetail"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#7cb342"
+            android:drawableLeft="@drawable/drawable_share"
+            android:text="Share"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+    </TableRow>
+
+</LinearLayout>

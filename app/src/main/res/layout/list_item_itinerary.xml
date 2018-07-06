@@ -21,24 +21,49 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/berangkat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Umrah Reguler"
-                    android:textColor="#000" />
+                    android:layout_marginLeft="15dp"
+                    android:text="23 Desember 2018"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
 
                 <TextView
+                    android:id="@+id/detailBerangkat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="24/08/2018" />
+                    android:layout_marginLeft="15dp"
+                    android:textSize="10dp"
+                    android:text="CKGMED,SV 823 (22.00 - 05.20)"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:id="@+id/pulang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="23 Desember 2018"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:id="@+id/detailPulang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="10dp"
+                    android:text="JEDCKG, SV826 (22.00 - 05.20)"
+                    android:textColor="#000"/>
 
             </LinearLayout>
 

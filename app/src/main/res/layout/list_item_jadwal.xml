@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:textSize="10dp"
+                    android:textSize="12dp"
                     android:text="CKGMED,SV 823 (22.00 - 05.20)"
                     android:textColor="#000"/>
 
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:textSize="10dp"
+                    android:textSize="12dp"
                     android:text="JEDCKG, SV826 (22.00 - 05.20)"
                     android:textColor="#000"/>
 
@@ -139,7 +139,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
                                 android:gravity="center"
@@ -150,13 +150,13 @@
                                 android:textSize="14dp" />
 
                             <TextView
-                                android:layout_width="200dp"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="#999999"
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="DOUBLE"
+                                android:text="KAMAR"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -167,18 +167,7 @@
                                 android:gravity="center"
                                 android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:text="TRIPLE"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="QUARD"
+                                android:text="HARGA"
                                 android:textColor="#fff"
                                 android:textSize="14dp" />
 
@@ -228,80 +217,17 @@
 
                         </TableRow>
 
-                        <TableRow
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/listPaket"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
+                            android:layout_height="wrap_content"/>
 
-                            <TextView
-                                android:id="@+id/jenis"
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="RAHMAH"
-                                android:textSize="14dp" />
+                        <!--<TableLayout-->
+                            <!--android:id="@+id/tableLayout"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content">-->
 
-                            <TextView
-                                android:id="@+id/hargaDouble"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="31.900.000"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/hargaTriple"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="30.600.000"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/hargaQuard"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="29.300.000"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/hotelMadinah"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="NOKHBA ROYAL INN"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/hotelMekah"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="ZAM-ZAM TOWER"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/manasik"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="13/10/2018
-08:30"
-                                android:textSize="14dp" />
-
-                            <Button
-                                android:id="@+id/shareDetail"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:background="#7cb342"
-                                android:drawableLeft="@drawable/drawable_share"
-                                android:text="Share"
-                                android:textAllCaps="false"
-                                android:textColor="@android:color/white" />
-
-                        </TableRow>
+                        <!--</TableLayout>-->
 
                         <!--<LinearLayout-->
                             <!--android:layout_width="match_parent"-->
