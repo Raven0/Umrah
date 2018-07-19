@@ -184,79 +184,6 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="JENIS"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="KAMAR"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="HARGA"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="MADINAH"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="MEKKAH"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:background="#999999"
-                                android:gravity="center"
-                                android:paddingBottom="5dp"
-                                android:paddingTop="5dp"
-                                android:text="MANASIK"
-                                android:textColor="#fff"
-                                android:textSize="14dp" />
-
-                        </TableRow>
-
-                        <!--BACKUP TH DETAILED ATAU SUDAH DIOLAH-->
                         <!--<TableRow-->
                             <!--android:layout_width="match_parent"-->
                             <!--android:layout_height="match_parent">-->
@@ -273,35 +200,13 @@
                                 <!--android:textSize="14dp" />-->
 
                             <!--<TextView-->
-                                <!--android:layout_width="150dp"-->
+                                <!--android:layout_width="100dp"-->
                                 <!--android:layout_height="wrap_content"-->
                                 <!--android:background="#999999"-->
                                 <!--android:gravity="center"-->
                                 <!--android:paddingBottom="5dp"-->
                                 <!--android:paddingTop="5dp"-->
-                                <!--android:text="Double"-->
-                                <!--android:textColor="#fff"-->
-                                <!--android:textSize="14dp" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_width="150dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:background="#999999"-->
-                                <!--android:gravity="center"-->
-                                <!--android:paddingBottom="5dp"-->
-                                <!--android:paddingTop="5dp"-->
-                                <!--android:text="Triple"-->
-                                <!--android:textColor="#fff"-->
-                                <!--android:textSize="14dp" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_width="150dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:background="#999999"-->
-                                <!--android:gravity="center"-->
-                                <!--android:paddingBottom="5dp"-->
-                                <!--android:paddingTop="5dp"-->
-                                <!--android:text="Quard"-->
+                                <!--android:text="KAMAR"-->
                                 <!--android:textColor="#fff"-->
                                 <!--android:textSize="14dp" />-->
 
@@ -312,7 +217,7 @@
                                 <!--android:gravity="center"-->
                                 <!--android:paddingBottom="5dp"-->
                                 <!--android:paddingTop="5dp"-->
-                                <!--android:text="Madinah"-->
+                                <!--android:text="HARGA"-->
                                 <!--android:textColor="#fff"-->
                                 <!--android:textSize="14dp" />-->
 
@@ -323,7 +228,7 @@
                                 <!--android:gravity="center"-->
                                 <!--android:paddingBottom="5dp"-->
                                 <!--android:paddingTop="5dp"-->
-                                <!--android:text="Mekkah"-->
+                                <!--android:text="MADINAH"-->
                                 <!--android:textColor="#fff"-->
                                 <!--android:textSize="14dp" />-->
 
@@ -334,18 +239,115 @@
                                 <!--android:gravity="center"-->
                                 <!--android:paddingBottom="5dp"-->
                                 <!--android:paddingTop="5dp"-->
-                                <!--android:text="Manasik"-->
+                                <!--android:text="MEKKAH"-->
+                                <!--android:textColor="#fff"-->
+                                <!--android:textSize="14dp" />-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="200dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:background="#999999"-->
+                                <!--android:gravity="center"-->
+                                <!--android:paddingBottom="5dp"-->
+                                <!--android:paddingTop="5dp"-->
+                                <!--android:text="MANASIK"-->
                                 <!--android:textColor="#fff"-->
                                 <!--android:textSize="14dp" />-->
 
                         <!--</TableRow>-->
 
-                        <!--BACKUP ADAPTER DI JADWAL ADAPTER-->
+                        <!--BACKUP TH DETAILED ATAU SUDAH DIOLAH-->
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="JENIS"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Double"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Triple"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Quard"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Madinah"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Mekkah"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="#999999"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:text="Manasik"
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                        </TableRow>
+
+                        <!--BACKUP ISI-->
                         <!--<TableRow-->
+                            <!--android:id="@+id/rahmahRow"-->
                             <!--android:layout_width="match_parent"-->
                             <!--android:layout_height="match_parent">-->
 
                             <!--<TextView-->
+                                <!--android:id="@+id/rahmah"-->
                                 <!--android:layout_width="100dp"-->
                                 <!--android:layout_height="wrap_content"-->
                                 <!--android:gravity="center"-->
@@ -417,10 +419,12 @@
                         <!--</TableRow>-->
 
                         <!--<TableRow-->
+                            <!--android:id="@+id/nurRow"-->
                             <!--android:layout_width="match_parent"-->
                             <!--android:layout_height="match_parent">-->
 
                             <!--<TextView-->
+                                <!--android:id="@+id/nur"-->
                                 <!--android:layout_width="100dp"-->
                                 <!--android:layout_height="wrap_content"-->
                                 <!--android:gravity="center"-->
@@ -492,10 +496,12 @@
                         <!--</TableRow>-->
 
                         <!--<TableRow-->
+                            <!--android:id="@+id/uhudRow"-->
                             <!--android:layout_width="match_parent"-->
                             <!--android:layout_height="match_parent">-->
 
                             <!--<TextView-->
+                                <!--android:id="@+id/uhud"-->
                                 <!--android:layout_width="100dp"-->
                                 <!--android:layout_height="wrap_content"-->
                                 <!--android:gravity="center"-->
@@ -565,6 +571,7 @@
                                 <!--android:textSize="14dp" />-->
 
                         <!--</TableRow>-->
+                        <!--END BACKUPISI-->
 
                         <TextView
                             android:id="@+id/emptyData"
@@ -582,25 +589,6 @@
                             android:id="@+id/listPaket"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/shareDetail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_centerInParent="true"
-                                android:background="#7cb342"
-                                android:drawableLeft="@drawable/drawable_share"
-                                android:text="Share"
-                                android:layout_margin="10dp"
-                                android:textAllCaps="false"
-                                android:textColor="@android:color/white" />
-
-                        </LinearLayout>
 
                         <!--<TableLayout-->
                             <!--android:id="@+id/tableLayout"-->

@@ -13,6 +13,7 @@ import com.birutekno.umrah.model.Paket;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.ViewHolder> {
     private final Context context;
@@ -28,6 +29,10 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
     String manasik = "KOSONG";
     Integer sizeReturn;
 
+    HashMap<String, String> uhud = new HashMap<String, String>();
+    HashMap<String, String> nur = new HashMap<String, String>();
+    HashMap<String, String> rahmah = new HashMap<String, String>();
+
     public PaketAiwaAdapter(ArrayList<Jadwal> jadwal, ArrayList<Paket> paket, Context context) {
         this.jadwal = jadwal;
         this.paket = paket;
@@ -37,7 +42,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
     @Override
     public PaketAiwaAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_paket, viewGroup, false);
-        return new ViewHolder(view);
+        return new PaketAiwaAdapter.ViewHolder(view);
     }
 
     @Override
@@ -52,14 +57,6 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
         hotelMadinah = paket.get(i).getHotel_madinah();
         hotelMekah = paket.get(i).getHotel_mekkah();
         sizeReturn = paket.size();
-//        for (int a = 0; a < paket.size(); a++){
-//            Jenis = paket.get(a).getNama_paket();
-//            Kamar = paket.get(a).getKamar();
-//            harga = paket.get(a).getHarga();
-//            hotelMadinah = paket.get(a).getHotel_madinah();
-//            hotelMekah = paket.get(a).getHotel_mekkah();
-//            sizeReturn = paket.size();
-//        }
 
         viewHolder.jenis.setText(Jenis);
         viewHolder.kamar.setText(Kamar);

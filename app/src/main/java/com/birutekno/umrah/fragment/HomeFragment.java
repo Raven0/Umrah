@@ -151,11 +151,11 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
         data.add(new Banner(5, R.drawable.brosur2));
         data.add(new Banner(6, R.drawable.brosur3));
 
-        mTutoringAdapter.addAll(data);
-        mTutoringAdapter.notifyDataSetChanged();
-
-        mStationaryAdapter.addAll(data);
-        mStationaryAdapter.notifyDataSetChanged();
+//        mTutoringAdapter.addAll(data);
+//        mTutoringAdapter.notifyDataSetChanged();
+//
+//        mStationaryAdapter.addAll(data);
+//        mStationaryAdapter.notifyDataSetChanged();
     }
 
     @Override

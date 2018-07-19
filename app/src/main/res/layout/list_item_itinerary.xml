@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:textSize="10dp"
+                    android:textSize="12dp"
                     android:text="CKGMED,SV 823 (22.00 - 05.20)"
                     android:textColor="#000"/>
 
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:textSize="10dp"
+                    android:textSize="12dp"
                     android:text="JEDCKG, SV826 (22.00 - 05.20)"
                     android:textColor="#000"/>
 
@@ -78,9 +78,7 @@
                     android:orientation="vertical"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true">
+                    android:layout_toRightOf="@+id/download">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -105,8 +103,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:layout_toLeftOf="@+id/share">
+                    android:padding="5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"

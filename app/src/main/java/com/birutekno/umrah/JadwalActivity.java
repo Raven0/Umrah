@@ -8,10 +8,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.birutekno.umrah.adapter.JadwalAiwaAdapter;
-import com.birutekno.umrah.helper.AIWAInterface;
+import com.birutekno.umrah.adapter.JadwalAiwaAdapterTES;
 import com.birutekno.umrah.helper.AIWAResponse;
+import com.birutekno.umrah.helper.UtilsApi;
 import com.birutekno.umrah.model.Data;
 import com.birutekno.umrah.ui.BaseActivity;
 
@@ -22,8 +25,6 @@ import butterknife.Bind;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class JadwalActivity extends BaseActivity {
@@ -34,10 +35,17 @@ public class JadwalActivity extends BaseActivity {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @Bind(R.id.btnSearch)
+    Button btnSearch;
+
+    @Bind(R.id.btnFilter)
+    Button btnFilter;
+
     private String mDate = "";
 
     private ArrayList<Data> pojo;
     private JadwalAiwaAdapter adapter;
+    private JadwalAiwaAdapterTES adapterB;
 
     private ProgressDialog pDialog;
 
@@ -57,26 +65,33 @@ public class JadwalActivity extends BaseActivity {
         setTitle("");
 
         initViews();
+
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadJSON();
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadJSON2();
+            }
+        });
     }
 
     private void initViews(){
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        loadJSON();
     }
 
     private void loadJSON(){
         pDialog = new ProgressDialog(JadwalActivity.this);
         pDialog.setMessage("Please wait...");
         pDialog.show();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://115.124.86.218")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        AIWAInterface request = retrofit.create(AIWAInterface.class);
-        Call<AIWAResponse> call = request.getJSON();
+        Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON();
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
@@ -85,6 +100,30 @@ public class JadwalActivity extends BaseActivity {
                 pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
                 adapter = new JadwalAiwaAdapter(pojo, getBaseContext());
                 recyclerView.setAdapter(adapter);
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<AIWAResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
+            }
+        });
+    }
+
+    private void loadJSON2(){
+        pDialog = new ProgressDialog(JadwalActivity.this);
+        pDialog.setMessage("Please wait...");
+        pDialog.show();
+        Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON();
+        call.enqueue(new Callback<AIWAResponse>() {
+            @Override
+            public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
+
+                AIWAResponse jsonResponse = response.body();
+                pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                adapterB = new JadwalAiwaAdapterTES(pojo, getBaseContext());
+                recyclerView.setAdapter(adapterB);
                 pDialog.dismiss();
             }
 

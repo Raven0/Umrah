@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
@@ -19,14 +18,14 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.ViewHolder> {
+public class JadwalAiwaAdapterTES extends RecyclerView.Adapter<JadwalAiwaAdapterTES.ViewHolder> {
     private final Context context;
 
     private ArrayList<Data> data;
     private ArrayList<Jadwal> jadwal;
     private ArrayList<Paket> paket;
 
-    private PaketAiwaAdapter adapter;
+    private PaketAiwaAdapterBACKUP adapter;
 
     String berangkatDetail;
     String pulangDetail;
@@ -36,19 +35,19 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     String paketHari;
     String linkItinerary;
 
-    public JadwalAiwaAdapter(ArrayList<Data> data, Context context) {
+    public JadwalAiwaAdapterTES(ArrayList<Data> data, Context context) {
         this.data = data;
         this.context = context;
     }
 
     @Override
-    public JadwalAiwaAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_jadwal, viewGroup, false);
+    public JadwalAiwaAdapterTES.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_jadwalb, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(JadwalAiwaAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(JadwalAiwaAdapterTES.ViewHolder viewHolder, int i) {
         //initialize Array List
         jadwal = new ArrayList<>(Arrays.asList(data.get(i).getJadwal()));
         paket = new ArrayList<>(Arrays.asList(jadwal.get(0).getPaket()));
@@ -62,10 +61,11 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         viewHolder.pulang.setText(jadwal.get(0).getTgl_pulang());
         viewHolder.detailBerangkat.setText(jadwal.get(0).getRute_berangkat());
         viewHolder.detailPulang.setText(jadwal.get(0).getRute_pulang());
-        viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.");
+//        viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.");
+        viewHolder.paketHari.setText(jadwal.get(0).getId());
 
 //        set adapter for paket list recyclerview
-        adapter = new PaketAiwaAdapter(jadwal, paket, context);
+        adapter = new PaketAiwaAdapterBACKUP(jadwal, paket, context);
         if (adapter.getItemCount() != 0){
             viewHolder.paketList.setAdapter(adapter);
             viewHolder.emptyData.setVisibility(View.GONE);
@@ -90,7 +90,6 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView berangkat,pulang,detailBerangkat,detailPulang,paketHari,emptyData;
         private RecyclerView paketList;
-        private Button shareBtn;
         private ExpandableLayout expandableLayout;
         public ViewHolder(View view) {
             super(view);
@@ -102,7 +101,6 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
             paketHari = (TextView)view.findViewById(R.id.paket);
             emptyData = (TextView)view.findViewById(R.id.emptyData);
             paketList = (RecyclerView)view.findViewById(R.id.listPaket);
-            shareBtn = (Button)view.findViewById(R.id.shareDetail);
             expandableLayout = (ExpandableLayout) view.findViewById(R.id.expandable_layout);
 
             //initialize view for paket list recyclerview
@@ -117,50 +115,9 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
                         expandableLayout.collapse();
                     } else {
                         expandableLayout.expand();
-
                     }
                 }
             });
-
-//            shareBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    String whatsAppMessage = "Keberangkatan = "+tglBerangkat+" "+ berangkatDetail + "\n" +
-//                            "Kepulangan = "+tglPulang+" "+ berangkatDetail + "\n" +
-//                            "Maskapai = "+maskapai+"\n" +
-//                            "Paket = "+paketHari+"\n" +
-//                            "Manasik = "+manasik+"\n" +
-//                            "Link Itinerary = "+linkItinerary+"\n" +
-//                            "\n" +
-//                            "=============================\n" +
-//                            "Harga : \n" +
-//                            "-Jenis Rahmah\n" +
-//                            "\tKamar Double = "+rahmah.get("harga_double")+"\n" +
-//                            "\tKamar Triple = "+rahmah.get("harga_triple")+"\n" +
-//                            "\tKamar Quard = "+rahmah.get("harga_quard")+"\n" +
-//                            "\tHotel Madinah = "+rahmah.get("hotel_double_madinah")+"\n" +
-//                            "\tHotel Mekkah = "+rahmah.get("hotel_double_mekkah")+"\n" +
-//                            "-Jenis NUR\n" +
-//                            "\tKamar Double = "+nur.get("harga_double")+"\n" +
-//                            "\tKamar Triple = "+nur.get("harga_triple")+"\n" +
-//                            "\tKamar Quard = "+nur.get("harga_quard")+"\n" +
-//                            "\tHotel Madinah = "+nur.get("hotel_double_madinah")+"\n" +
-//                            "\tHotel Mekkah = "+nur.get("hotel_double_mekkah")+"\n" +
-//                            "-Jenis UHUD\n" +
-//                            "\tKamar Double = "+uhud.get("harga_double")+"\n" +
-//                            "\tKamar Triple = "+uhud.get("harga_triple")+"\n" +
-//                            "\tKamar Quard = "+uhud.get("harga_quard")+"\n" +
-//                            "\tHotel Madinah = "+uhud.get("hotel_double_madinah")+"\n" +
-//                            "\tHotel Mekkah = "+uhud.get("hotel_double_mekkah")+"\n" +
-//                            "\n" +
-//                            "*Harga diatas hanya simulasi";
-//
-//                    Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                    shareIntent.setType("text/plain");
-//                    shareIntent.putExtra(Intent.EXTRA_TEXT, whatsAppMessage);
-//                    context.startActivity(Intent.createChooser(shareIntent,"Share with"));
-//                }
-//            });
 
         }
     }

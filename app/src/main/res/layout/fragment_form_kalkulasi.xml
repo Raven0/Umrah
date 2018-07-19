@@ -68,10 +68,12 @@
 
                             <EditText
                                 android:id="@+id/etDewasa"
+                                android:inputType="number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
+                                android:text="0"
                                 android:textSize="@dimen/_12sdp"
                                 android:theme="@style/EditTextThemes" />
 
@@ -89,10 +91,12 @@
 
                             <EditText
                                 android:id="@+id/etInfant"
+                                android:inputType="number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
+                                android:text="0"
                                 android:textSize="@dimen/_12sdp"
                                 android:theme="@style/EditTextThemes" />
 
@@ -110,10 +114,12 @@
 
                             <EditText
                                 android:id="@+id/etBalita"
+                                android:inputType="number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
+                                android:text="0"
                                 android:textSize="@dimen/_12sdp"
                                 android:theme="@style/EditTextThemes" />
 
@@ -126,6 +132,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/totalIndicator"
                                 android:layout_width="match_parent"
                                 android:gravity="center_vertical"
                                 android:layout_height="30dp"
@@ -144,21 +151,10 @@
                                 android:layout_height="wrap_content"
                                 android:text="Tanggal Keberangkatan" />
 
-                            <!--<TextView-->
-                                <!--android:id="@+id/dateDeparture"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:background="?attr/editTextBackground"-->
-                                <!--android:drawableRight="@drawable/ic_action_date"-->
-                                <!--android:text="28 Januari 2018"-->
-                                <!--android:theme="@style/EditTextThemes" />-->
-
-                            <Button
-                                android:id="@+id/dateDeparture"
+                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                android:id="@+id/searchBerangkat"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Pilih Tanggal"
-                                android:textAllCaps="false"/>
+                                android:layout_height="35dp"/>
 
                         </LinearLayout>
 
@@ -171,20 +167,11 @@
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content" />
 
-                            <EditText
-                                android:id="@+id/etPaket"
+                            <TextView
+                                android:id="@+id/namaJadwal"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:text="Reguler Madinah CGKMED"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                            <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner-->
-                                <!--android:id="@+id/spinner_search_1"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="35dp"/>-->
+                                android:paddingLeft="10dp"
+                                android:layout_height="35dp"/>
 
                         </LinearLayout>
 
@@ -250,7 +237,7 @@
                                         android:layout_width="40dp"
                                         android:layout_height="20dp"
                                         android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_red_accent"
+                                        android:background="@drawable/bg_rounded_red_dark"
                                         android:text="2"
                                         android:textColor="@android:color/white" />
 
@@ -260,6 +247,7 @@
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="@dimen/_10sdp"
                                         android:textColorHint="#bababa"
+                                        android:text="0"
                                         android:textSize="@dimen/_12sdp"
                                         android:theme="@style/EditTextThemes" />
 
@@ -281,7 +269,7 @@
                                         android:layout_width="40dp"
                                         android:layout_height="20dp"
                                         android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_blue_primary"
+                                        android:background="@drawable/bg_rounded_green_primary"
                                         android:text="3"
                                         android:textColor="@android:color/white" />
 
@@ -291,6 +279,7 @@
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="@dimen/_10sdp"
                                         android:textColorHint="#bababa"
+                                        android:text="0"
                                         android:textSize="@dimen/_12sdp"
                                         android:theme="@style/EditTextThemes" />
 
@@ -312,7 +301,7 @@
                                         android:layout_width="40dp"
                                         android:layout_height="20dp"
                                         android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_red_dark"
+                                        android:background="@drawable/bg_rounded_blue_primary"
                                         android:text="4"
                                         android:textColor="@android:color/white" />
 
@@ -322,6 +311,7 @@
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="@dimen/_10sdp"
                                         android:textColorHint="#bababa"
+                                        android:text="0"
                                         android:textSize="@dimen/_12sdp"
                                         android:theme="@style/EditTextThemes" />
 
@@ -355,6 +345,8 @@
                                 android:orientation="horizontal">
 
                                 <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/passport"
+                                    android:checked="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
@@ -371,6 +363,8 @@
                                 android:orientation="horizontal">
 
                                 <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/meningitis"
+                                    android:checked="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
@@ -394,6 +388,8 @@
                                 android:orientation="horizontal">
 
                                 <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/foto"
+                                    android:checked="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
@@ -410,6 +406,8 @@
                                 android:orientation="horizontal">
 
                                 <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/nikah"
+                                    android:checked="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
@@ -433,6 +431,8 @@
                                 android:orientation="horizontal">
 
                                 <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/akta"
+                                    android:checked="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
@@ -462,7 +462,7 @@
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
                                 android:textSize="@dimen/_12sdp"
-                                android:text="Rp. 7.600.000"
+                                android:text="7600000"
                                 android:theme="@style/EditTextThemes" />
 
                         </LinearLayout>
@@ -484,7 +484,7 @@
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColorHint="#bababa"
                                 android:textSize="@dimen/_12sdp"
-                                android:text="Rp. 7.600.000"
+                                android:text="0"
                                 android:theme="@style/EditTextThemes" />
 
                         </LinearLayout>
@@ -501,7 +501,7 @@
 
                             <ScrollView
                                 android:id="@+id/ScrollView01"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <EditText
@@ -511,34 +511,11 @@
                                     android:paddingLeft="@dimen/_10sdp"
                                     android:textColorHint="#bababa"
                                     android:textSize="@dimen/_12sdp"
-                                    android:text="Rp. 7.600.000"
                                     android:theme="@style/EditTextThemes" />
 
                             </ScrollView>
 
                         </LinearLayout>
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="match_parent"-->
-                            <!--android:orientation="horizontal">-->
-
-                            <!--<TextView-->
-                                <!--android:layout_width="100dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="Tanggal Followup" />-->
-
-                            <!--<EditText-->
-                                <!--android:id="@+id/etFollowup"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:drawableRight="@drawable/ic_calendar"-->
-                                <!--android:paddingLeft="@dimen/_10sdp"-->
-                                <!--android:textColorHint="#bababa"-->
-                                <!--android:textSize="@dimen/_12sdp"-->
-                                <!--android:theme="@style/EditTextThemes" />-->
-
-                        <!--</LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -551,19 +528,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Tanggal Followup" />
 
-                            <!--<TextView-->
-                            <!--android:id="@+id/dateDeparture"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:background="?attr/editTextBackground"-->
-                            <!--android:drawableRight="@drawable/ic_action_date"-->
-                            <!--android:text="28 Januari 2018"-->
-                            <!--android:theme="@style/EditTextThemes" />-->
-
                             <Button
                                 android:id="@+id/dateFollow"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:background="#fff"
                                 android:text="Pilih Tanggal"
                                 android:textAllCaps="false"/>
 
@@ -584,25 +553,10 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <EditText
-                                    android:id="@+id/etPembayaran"
+                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                    android:id="@+id/spinnerPembayaran"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:paddingLeft="@dimen/_10sdp"
-                                    android:text="DP."
-                                    android:textColorHint="#bababa"
-                                    android:textSize="@dimen/_12sdp"
-                                    android:theme="@style/EditTextThemes" />
-
-                                <EditText
-                                    android:id="@+id/etPembayaransa"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:paddingLeft="@dimen/_10sdp"
-                                    android:text="Rp. 0"
-                                    android:textColorHint="#bababa"
-                                    android:textSize="@dimen/_12sdp"
-                                    android:theme="@style/EditTextThemes" />
+                                    android:layout_height="35dp"/>
 
                             </LinearLayout>
 
@@ -638,12 +592,6 @@
                             android:background="#ba000d"
                             android:text="SIMPAN"
                             android:textColor="#fff"/>
-
-                        <!--<Button-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:background="#ffff00"-->
-                            <!--android:text="DAFTAR"/>-->
 
                     </LinearLayout>
 
