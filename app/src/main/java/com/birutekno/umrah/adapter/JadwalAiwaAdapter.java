@@ -11,7 +11,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 
@@ -23,8 +23,8 @@ import java.util.Arrays;
 public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.ViewHolder> implements Filterable {
     private final Context context;
 
-    private ArrayList<Data> data;
-    private ArrayList<Data> mFilterData;
+    private ArrayList<DataJadwal> data;
+    private ArrayList<DataJadwal> mFilterData;
     private ArrayList<Jadwal> jadwal;
     private ArrayList<Paket> paket;
 
@@ -38,7 +38,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     String paketHari;
     String linkItinerary;
 
-    public JadwalAiwaAdapter(ArrayList<Data> data, Context context) {
+    public JadwalAiwaAdapter(ArrayList<DataJadwal> data, Context context) {
         this.data = data;
         mFilterData = data;
         this.context = context;
@@ -122,9 +122,9 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
                     mFilterData = data;
                 } else {
 
-                    ArrayList<Data> filterData = new ArrayList<>();
+                    ArrayList<DataJadwal> filterData = new ArrayList<>();
 
-                    for (Data data: data) {
+                    for (DataJadwal data: data) {
                         jadwal = new ArrayList<>(Arrays.asList(data.getJadwal()));
 
 //                        String berangkat= jadwal.get(0).getTgl_berangkat();
@@ -155,7 +155,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilterData = (ArrayList<Data>) filterResults.values;
+                mFilterData = (ArrayList<DataJadwal>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

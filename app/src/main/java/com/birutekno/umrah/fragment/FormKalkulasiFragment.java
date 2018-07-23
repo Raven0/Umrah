@@ -25,7 +25,7 @@ import com.birutekno.umrah.R;
 import com.birutekno.umrah.helper.AIWAInterface;
 import com.birutekno.umrah.helper.AIWAResponse;
 import com.birutekno.umrah.helper.UtilsApi;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -48,7 +48,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
 
     List<Jadwal> objJadwal;
     List<Paket> objPaket;
-    List<Data> alldata;
+    List<DataJadwal> alldata;
 
     List<String> listJadwal = new ArrayList<String>();
     List<String> ketJadwal = new ArrayList<String>();

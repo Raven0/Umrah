@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 
@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdapter.ViewHolder> {
     private final Context context;
-    private ArrayList<Data> data;
+    private ArrayList<DataJadwal> data;
     private ArrayList<Jadwal> jadwal;
     private ArrayList<Paket> paket;
 
@@ -34,7 +34,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
     LinearLayout download;
     LinearLayout share;
 
-    public ItineraryAiwaAdapter(ArrayList<Data> data, Context context) {
+    public ItineraryAiwaAdapter(ArrayList<DataJadwal> data, Context context) {
         this.data = data;
         this.context = context;
     }

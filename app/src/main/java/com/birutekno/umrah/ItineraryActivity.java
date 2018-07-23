@@ -12,7 +12,7 @@ import android.util.Log;
 import com.birutekno.umrah.adapter.ItineraryAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAResponse;
 import com.birutekno.umrah.helper.UtilsApi;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class ItineraryActivity extends BaseActivity{
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    private ArrayList<Data> pojo;
+    private ArrayList<DataJadwal> pojo;
     private ItineraryAiwaAdapter adapter;
 
     private ProgressDialog pDialog;
