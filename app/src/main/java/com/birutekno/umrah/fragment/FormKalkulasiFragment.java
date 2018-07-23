@@ -559,7 +559,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     public void initSpinnerJadwal(){
         loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, false);
 
-        apiservice.getJSON().enqueue(new Callback<AIWAResponse>() {
+        apiservice.getJSON("1440").enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
                 if (response.isSuccessful()) {

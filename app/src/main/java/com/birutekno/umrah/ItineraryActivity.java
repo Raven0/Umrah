@@ -10,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.birutekno.umrah.adapter.ItineraryAiwaAdapter;
-import com.birutekno.umrah.helper.AIWAInterface;
 import com.birutekno.umrah.helper.AIWAResponse;
+import com.birutekno.umrah.helper.UtilsApi;
 import com.birutekno.umrah.model.Data;
 import com.birutekno.umrah.ui.BaseActivity;
 
@@ -65,10 +65,10 @@ public class ItineraryActivity extends BaseActivity{
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        loadJSON();
+        loadJSON("1440");
     }
 
-    private void loadJSON(){
+    private void loadJSON(String periode){
         pDialog = new ProgressDialog(ItineraryActivity.this);
         pDialog.setMessage("Please wait...");
         pDialog.show();
@@ -77,8 +77,7 @@ public class ItineraryActivity extends BaseActivity{
                 .baseUrl("http://115.124.86.218")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        AIWAInterface request = retrofit.create(AIWAInterface.class);
-        Call<AIWAResponse> call = request.getJSON();
+        Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON(periode);
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {

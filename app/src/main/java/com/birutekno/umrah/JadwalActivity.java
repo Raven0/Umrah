@@ -4,15 +4,20 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.birutekno.umrah.adapter.JadwalAiwaAdapter;
-import com.birutekno.umrah.adapter.JadwalAiwaAdapterTES;
 import com.birutekno.umrah.helper.AIWAResponse;
 import com.birutekno.umrah.helper.UtilsApi;
 import com.birutekno.umrah.model.Data;
@@ -20,6 +25,7 @@ import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -35,17 +41,12 @@ public class JadwalActivity extends BaseActivity {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    @Bind(R.id.btnSearch)
-    Button btnSearch;
+    @Bind(R.id.spinnerFilter)
+    Spinner spinnerFilter;
 
-    @Bind(R.id.btnFilter)
-    Button btnFilter;
-
-    private String mDate = "";
-
+    List<String> listPeriode = new ArrayList<String>();
     private ArrayList<Data> pojo;
-    private JadwalAiwaAdapter adapter;
-    private JadwalAiwaAdapterTES adapterB;
+    private JadwalAiwaAdapter adapterB;
 
     private ProgressDialog pDialog;
 
@@ -62,45 +63,53 @@ public class JadwalActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
-        setTitle("");
+        setTitle("Jadwal");
 
         initViews();
 
-        btnFilter.setOnClickListener(new View.OnClickListener() {
+        spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                loadJSON();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                loadJSON(selectedItem);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadJSON2();
-            }
-        });
     }
 
     private void initViews(){
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
+
+        initSpinnerPeriode();
     }
 
-    private void loadJSON(){
+    private void loadJSON(String periode){
         pDialog = new ProgressDialog(JadwalActivity.this);
-        pDialog.setMessage("Please wait...");
+        pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
         pDialog.show();
-        Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON();
+        Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON(periode);
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
-
-                AIWAResponse jsonResponse = response.body();
-                pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-                adapter = new JadwalAiwaAdapter(pojo, getBaseContext());
-                recyclerView.setAdapter(adapter);
-                pDialog.dismiss();
+                if(response.isSuccessful()){
+                    AIWAResponse jsonResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    adapterB = new JadwalAiwaAdapter(pojo, getBaseContext());
+                    recyclerView.setAdapter(adapterB);
+                    pDialog.dismiss();
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
+                }
             }
 
             @Override
@@ -111,26 +120,46 @@ public class JadwalActivity extends BaseActivity {
         });
     }
 
-    private void loadJSON2(){
-        pDialog = new ProgressDialog(JadwalActivity.this);
-        pDialog.setMessage("Please wait...");
-        pDialog.show();
-        Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON();
-        call.enqueue(new Callback<AIWAResponse>() {
-            @Override
-            public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
+    public void initSpinnerPeriode() {
+        listPeriode.add("1440");
+        listPeriode.add("1439");
 
-                AIWAResponse jsonResponse = response.body();
-                pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-                adapterB = new JadwalAiwaAdapterTES(pojo, getBaseContext());
-                recyclerView.setAdapter(adapterB);
-                pDialog.dismiss();
+        ArrayAdapter<String> adapterC= new ArrayAdapter<String>(getBaseContext(),
+                android.R.layout.simple_spinner_item, listPeriode);
+        adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilter.setAdapter(adapterC);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        search(searchView);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        title.setVisibility(View.GONE);
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void search(SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
 
             @Override
-            public void onFailure(Call<AIWAResponse> call, Throwable t) {
-                Log.d("Error",t.getMessage());
-                pDialog.dismiss();
+            public boolean onQueryTextChange(String newText) {
+//                title.setVisibility(View.VISIBLE);
+                adapterB.getFilter().filter(newText);
+                return true;
             }
         });
     }

@@ -32,18 +32,21 @@
                 android:layout_marginLeft="15dp">
 
                 <TextView
+                    android:id="@+id/namaProspek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Muhammad Abdul Kodir"
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/noTelp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="08991234567"
                     android:textSize="11dp"/>
 
                 <TextView
+                    android:id="@+id/alamatProspek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="28 Januari 2018"
@@ -69,8 +72,8 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/share_img"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/mata"/>
 
                 </LinearLayout>
@@ -87,8 +90,8 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/download_img"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/edit"/>
 
                 </LinearLayout>
