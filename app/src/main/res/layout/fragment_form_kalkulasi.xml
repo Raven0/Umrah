@@ -58,6 +58,27 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="No Telp" />
+
+                            <EditText
+                                android:id="@+id/telp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
@@ -587,6 +608,7 @@
                         android:orientation="vertical">
 
                         <Button
+                            android:id="@+id/btnSimpan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#ba000d"

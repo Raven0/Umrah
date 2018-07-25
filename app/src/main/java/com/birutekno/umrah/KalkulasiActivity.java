@@ -61,6 +61,13 @@ public class KalkulasiActivity extends BaseActivity {
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
         setTitle("Kalkulasi");
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KalkulasiActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         initViews();
         loadJSON();
@@ -85,7 +92,7 @@ public class KalkulasiActivity extends BaseActivity {
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
         pDialog.show();
-        Call<WEBResponse> call = WebApi.getAPIService().getJSON();
+        Call<WEBResponse> call = WebApi.getAPIService().getProspek();
         call.enqueue(new Callback<WEBResponse>() {
             @Override
             public void onResponse(Call<WEBResponse> call, Response<WEBResponse> response) {

@@ -1,6 +1,6 @@
 package com.birutekno.umrah.model;
 
-public class Anggota {
+public class DataAgen {
     private String no_telp;
 
     private String id;
@@ -16,6 +16,8 @@ public class Anggota {
     private String jenis_kelamin;
 
     private String nama;
+
+    private String alamat;
 
     private String no_ktp;
 
@@ -99,6 +101,16 @@ public class Anggota {
     public void setNama (String nama)
     {
         this.nama = nama;
+    }
+
+    public String getAlamat ()
+    {
+        return alamat;
+    }
+
+    public void setAlamat (String alamat)
+    {
+        this.alamat = alamat;
     }
 
     public String getNo_ktp ()

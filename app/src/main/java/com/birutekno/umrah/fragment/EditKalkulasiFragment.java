@@ -29,8 +29,10 @@ import com.birutekno.umrah.helper.AIWAResponse;
 import com.birutekno.umrah.helper.UtilsApi;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataJadwal;
+import com.birutekno.umrah.model.DataProspek;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
+import com.birutekno.umrah.model.ProspekObject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
@@ -48,11 +50,12 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FormKalkulasiFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
+public class EditKalkulasiFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
 
     List<Jadwal> objJadwal;
     List<Paket> objPaket;
     List<DataJadwal> alldata;
+    List<DataProspek> prospeks;
 
     List<String> listJadwal = new ArrayList<String>();
     List<String> ketJadwal = new ArrayList<String>();
@@ -62,11 +65,18 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     HashMap<String, String> map = new HashMap<String, String>();
     HashMap<String, String> insertVal = new HashMap<String, String>();
 
+    ArrayAdapter<String> adapterJadwal;
+    ArrayAdapter<String> adapterHotel;
+    ArrayAdapter<String> adapterPembayaran;
+
     private AIWAInterface apiservice;
     ProgressDialog loading;
 
     private View view;
     private TextView namaJadwal, totalIndicator;
+
+    //Bundle
+    private String id;
 
     // Input
     private EditText pic;
@@ -139,8 +149,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private String tglFollowup;
 
     private ProgressDialog pDialog;
+    private ProgressDialog nDialog;
 
-    public FormKalkulasiFragment() {
+    public EditKalkulasiFragment() {
         // Required empty public constructor
     }
 
@@ -149,7 +160,10 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_form_kalkulasi, container, false);
+        id = getArguments().getString("id");
         loadComponent();
+        setupAdapter();
+        loadData(id);
         return view;
     }
 
@@ -180,8 +194,6 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
         cbFoto = (CheckBox) view.findViewById(R.id.foto);
         cbBukuNikah = (CheckBox) view.findViewById(R.id.nikah);
         cbAkta = (CheckBox) view.findViewById(R.id.akta);
-
-        setupAdapter();
 
         dewasa.addTextChangedListener(new TextWatcher() {
             @Override
@@ -468,7 +480,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getFragmentManager();
                 Calendar now = Calendar.getInstance();
-                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance((DatePickerDialog.OnDateSetListener) FormKalkulasiFragment.this,
+                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance((DatePickerDialog.OnDateSetListener) EditKalkulasiFragment.this,
                         now.get(Calendar.YEAR),
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH));
@@ -476,6 +488,56 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 datePickerDialog.show(fm,"Date");
 
                 Toast.makeText(getContext(), String.valueOf(jmlDiskon), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadData(String id){
+//        Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
+        nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
+        Call<ProspekObject> call = WebApi.getAPIService().showProspek(id);
+        call.enqueue(new Callback<ProspekObject>() {
+            @Override
+            public void onResponse(Call<ProspekObject> call, Response<ProspekObject> response) {
+                try{
+                    DataProspek dataProspek = response.body().getData();
+                    pic.setText(dataProspek.getPic());
+                    telp.setText(dataProspek.getNo_telp());
+                    dewasa.setText(dataProspek.getJml_dewasa());
+                    infant.setText(dataProspek.getJml_infant());
+                    balita.setText(dataProspek.getJml_balita());
+
+                    int posJadwal = adapterJadwal.getPosition(dataProspek.getTgl_keberangkatan());
+                    jadwal.setSelection(posJadwal);
+                    if(adapterHotel != null){
+                        int posHotel = adapterHotel.getPosition(dataProspek.getJenis());
+                        hotel.setSelection(posHotel);
+                    }
+
+                    dobel.setText(dataProspek.getDobel());
+                    tripel.setText(dataProspek.getTriple());
+                    quard.setText(dataProspek.getQuard());
+//                cbPassport.setChecked(dataProspek.getPassport());
+//                cbMeningitis.setChecked(dataProspek.getMeningitis());
+//                cbFoto.setChecked(dataProspek.getPas_foto());
+//                cbBukuNikah.setChecked(dataProspek.getBuku_nikah());
+//                cbAkta.setChecked(dataProspek.getFc_akta());
+                    progresif.setText(dataProspek.getVisa_progresif());
+                    diskonboy.setText(dataProspek.getDiskon());
+                    keterangan.setText(dataProspek.getKeterangan());
+                    followUp.setText(dataProspek.getTanggal_followup());
+
+                    int posPembayaran = adapterPembayaran.getPosition(dataProspek.getPembayaran());
+                    pembayaran.setSelection(posPembayaran);
+                }catch (Exception ex){
+                    Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                nDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ProspekObject> call, Throwable t) {
+                nDialog.dismiss();
             }
         });
     }
@@ -564,6 +626,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         } else if (view == buttonSimpan){
 
+            Toast.makeText(getContext(), "AHAAHHA", Toast.LENGTH_SHORT).show();
             picName = pic.getText().toString().trim();
             no_telp = telp.getText().toString().trim();
             jmlDewasa = Integer.parseInt(dewasa.getText().toString().trim());
@@ -633,7 +696,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             pDialog.setCancelable(false);
             pDialog.show();
 
-            Call<ResponseBody> result = WebApi.getAPIService().insertProspek(params);
+            Call<ResponseBody> result = WebApi.getAPIService().editProspek(id, params);
             result.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -688,10 +751,10 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                         ketJadwal.add(jadwal .get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                    adapterJadwal = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_spinner_item, listJadwal);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    jadwal.setAdapter(adapter);
+                    adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    jadwal.setAdapter(adapterJadwal);
 
                 } else {
                     loading.dismiss();
@@ -791,19 +854,19 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             madinah = map.get("hotel_madinah_uhud");
         }
 
-        ArrayAdapter<String> adapterB = new ArrayAdapter<String>(getContext(),
+        adapterHotel = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, listPaket);
-        adapterB.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        hotel.setAdapter(adapterB);
+        adapterHotel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        hotel.setAdapter(adapterHotel);
     }
 
     public void initSpinnerPembayaran() {
         listPembayaran.add("PROSPEK");
         listPembayaran.add("DP");
 
-        ArrayAdapter<String> adapterC= new ArrayAdapter<String>(getContext(),
+        adapterPembayaran = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, listPembayaran);
-        adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pembayaran.setAdapter(adapterC);
+        adapterPembayaran.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pembayaran.setAdapter(adapterPembayaran);
     }
 }

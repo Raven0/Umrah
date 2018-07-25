@@ -29,6 +29,8 @@
         <activity android:name=".InputActivity" />
         <activity android:name=".KalkulasiActivity" />
         <activity android:name=".InputKalkulasiActivity" />
+        <activity android:name=".EditKalkulasiActivity" />
+        <activity android:name=".DetailKalkulasiActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity" />
