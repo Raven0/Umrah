@@ -20,7 +20,7 @@ import android.widget.Spinner;
 import com.birutekno.umrah.adapter.JadwalAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAResponse;
 import com.birutekno.umrah.helper.UtilsApi;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class JadwalActivity extends BaseActivity {
     Spinner spinnerFilter;
 
     List<String> listPeriode = new ArrayList<String>();
-    private ArrayList<Data> pojo;
+    private ArrayList<DataJadwal> pojo;
     private JadwalAiwaAdapter adapterB;
 
     private ProgressDialog pDialog;

@@ -8,32 +8,358 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:clickable="false"
-                app:cardCornerRadius="5dp"
-                app:cardUseCompatPadding="true">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Nama (PIC)" />
+
+                        <EditText
+                            android:id="@+id/picName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="No Telp" />
+
+                        <EditText
+                            android:id="@+id/telp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:inputType="number"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <!--DEWASA-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:text="Dewasa" />
+
+                        <EditText
+                            android:id="@+id/etDewasa"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:text=""
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <!--INFANT-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:text="Infant (0 - 23 bulan)" />
+
+                        <EditText
+                            android:id="@+id/etInfant"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:text=""
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <!--BALITA-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:text="Balita (Dengan Kasur)" />
+
+                        <EditText
+                            android:id="@+id/etBalitaKasur"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:text=""
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <!--BALITA NOBED-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:text="Balita (Tanpa Kasur)" />
+
+                        <EditText
+                            android:id="@+id/etBalita"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:text=""
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <!--PERLENGKAPAN DEWASA-->
+                    <LinearLayout
+                        android:id="@+id/viewPerlengkapanDewasa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:visibility="gone"
+                        android:background="@drawable/bg_rounded_greyish"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text="Pilih Perlengkapan"
+                            android:textStyle="bold"
+                            android:textColor="#000"/>
+
+                        <RadioGroup
+                            android:id="@+id/groupPerlengkapanDewasa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/perlengkapanDefault"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perlengkapan Default"/>
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/perlengkapanPromo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perlengkapan Promo"/>
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <!--PERLENGKAPAN BALITA-->
+                    <LinearLayout
+                        android:id="@+id/viewPerlengkapan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:visibility="gone"
+                        android:background="@drawable/bg_rounded_greyish"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text="Perlengkapan Balita"
+                            android:textStyle="bold"
+                            android:textColor="#000"/>
+
+                        <RadioGroup
+                            android:id="@+id/groupPerlengkapan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/perlengkapanFull"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perlengkapan + Handling + Travel Insurance"/>
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/perlengkapanLite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Handling + Travel Insurance "/>
+
+                        </RadioGroup>
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="15dp"-->
+                            <!--android:layout_marginBottom="15dp"-->
+                            <!--android:text="Jenis Paket Balita"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textColor="#000"/>-->
+
+                        <!--<RadioGroup-->
+                            <!--android:id="@+id/groupKamar"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content">-->
+
+                            <!--<android.support.v7.widget.AppCompatRadioButton-->
+                                <!--android:id="@+id/kamarRahmah"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="RAHMAH"/>-->
+
+                            <!--<android.support.v7.widget.AppCompatRadioButton-->
+                                <!--android:id="@+id/kamarNur"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="NUR"/>-->
+
+                            <!--<android.support.v7.widget.AppCompatRadioButton-->
+                                <!--android:id="@+id/kamarUhud"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="UHUD"/>-->
+
+                        <!--</RadioGroup>-->
+
+                    </LinearLayout>
+
+                    <!--INDIKATOR TOTAL-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/totalIndicator"
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="30dp"
+                            android:text="Total :" />
+
+                    </LinearLayout>
+
+                    <!--TANGGAL BERANGKAT-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Tanggal Keberangkatan" />
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:id="@+id/searchBerangkat"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"/>
+
+                    </LinearLayout>
+
+                    <!--DETAIL BERANGKAT-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/namaJadwal"
+                            android:layout_width="match_parent"
+                            android:paddingLeft="10dp"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <!--JENIS PAKET-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text=" Jenis" />
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:id="@+id/searchJenis"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"/>
+
+                    </LinearLayout>
+
+                    <!--JENIS KAMAR-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -42,162 +368,19 @@
 
                             <TextView
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Nama (PIC)" />
-
-                            <EditText
-                                android:id="@+id/picName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Dewasa" />
-
-                            <EditText
-                                android:id="@+id/etDewasa"
-                                android:inputType="number"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:text="0"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Infant" />
-
-                            <EditText
-                                android:id="@+id/etInfant"
-                                android:inputType="number"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:text="0"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Balita" />
-
-                            <EditText
-                                android:id="@+id/etBalita"
-                                android:inputType="number"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:text="0"
-                                android:textSize="@dimen/_12sdp"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/totalIndicator"
-                                android:layout_width="match_parent"
-                                android:gravity="center_vertical"
                                 android:layout_height="30dp"
-                                android:text="Total :" />
+                                android:text="Jenis Kamar" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="30dp"
+                                android:text="Jumlah Orang" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Tanggal Keberangkatan" />
-
-                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                                android:id="@+id/searchBerangkat"
-                                android:layout_width="match_parent"
-                                android:layout_height="35dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:id="@+id/namaJadwal"
-                                android:layout_width="match_parent"
-                                android:paddingLeft="10dp"
-                                android:layout_height="35dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:text=" Jenis" />
-
-                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                                android:id="@+id/searchJenis"
-                                android:layout_width="match_parent"
-                                android:layout_height="35dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:orientation="vertical">
 
                             <LinearLayout
@@ -206,398 +389,1085 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:layout_width="100dp"
+                                    android:layout_width="50dp"
                                     android:layout_height="30dp"
-                                    android:text="Jenis Kamar" />
+                                    android:text="Double" />
 
-                                <TextView
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="30dp"
-                                    android:text="Jumlah Orang" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="50dp"
-                                        android:layout_height="30dp"
-                                        android:text="Double" />
-
-                                    <Button
-                                        android:id="@+id/dua"
-                                        android:layout_width="40dp"
-                                        android:layout_height="20dp"
-                                        android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_red_dark"
-                                        android:text="2"
-                                        android:textColor="@android:color/white" />
-
-                                    <EditText
-                                        android:id="@+id/etDouble"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="@dimen/_10sdp"
-                                        android:textColorHint="#bababa"
-                                        android:text="0"
-                                        android:textSize="@dimen/_12sdp"
-                                        android:theme="@style/EditTextThemes" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="50dp"
-                                        android:layout_height="30dp"
-                                        android:text="Triple" />
-
-                                    <Button
-                                        android:id="@+id/tiga"
-                                        android:layout_width="40dp"
-                                        android:layout_height="20dp"
-                                        android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_green_primary"
-                                        android:text="3"
-                                        android:textColor="@android:color/white" />
-
-                                    <EditText
-                                        android:id="@+id/etTriple"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="@dimen/_10sdp"
-                                        android:textColorHint="#bababa"
-                                        android:text="0"
-                                        android:textSize="@dimen/_12sdp"
-                                        android:theme="@style/EditTextThemes" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="50dp"
-                                        android:layout_height="30dp"
-                                        android:text="Quard" />
-
-                                    <Button
-                                        android:id="@+id/empat"
-                                        android:layout_width="40dp"
-                                        android:layout_height="20dp"
-                                        android:layout_marginRight="10dp"
-                                        android:background="@drawable/bg_rounded_blue_primary"
-                                        android:text="4"
-                                        android:textColor="@android:color/white" />
-
-                                    <EditText
-                                        android:id="@+id/etQuard"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="@dimen/_10sdp"
-                                        android:textColorHint="#bababa"
-                                        android:text="0"
-                                        android:textSize="@dimen/_12sdp"
-                                        android:theme="@style/EditTextThemes" />
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Dokumen Cheklist" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatCheckBox
-                                    android:id="@+id/passport"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Passport" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatCheckBox
-                                    android:id="@+id/meningitis"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Meningitis" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatCheckBox
-                                    android:id="@+id/foto"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Pas Foto" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatCheckBox
-                                    android:id="@+id/nikah"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Buku Nikah" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatCheckBox
-                                    android:id="@+id/akta"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="FC Akta Lahir" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Visa Progresif" />
-
-                            <EditText
-                                android:id="@+id/etVisa"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:text="7600000"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Diskon" />
-
-                            <EditText
-                                android:id="@+id/etDiskon"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:textColorHint="#bababa"
-                                android:textSize="@dimen/_12sdp"
-                                android:text="0"
-                                android:theme="@style/EditTextThemes" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Keterangan" />
-
-                            <ScrollView
-                                android:id="@+id/ScrollView01"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/dua"
+                                    android:layout_width="40dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@drawable/bg_rounded_red_dark"
+                                    android:text="2"
+                                    android:textColor="@android:color/white" />
 
                                 <EditText
-                                    android:id="@+id/etKeterangan"
+                                    android:id="@+id/etDouble"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="@dimen/_10sdp"
                                     android:textColorHint="#bababa"
+                                    android:text=""
+                                    android:inputType="number"
                                     android:textSize="@dimen/_12sdp"
                                     android:theme="@style/EditTextThemes" />
 
-                            </ScrollView>
 
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Tanggal Followup" />
-
-                            <Button
-                                android:id="@+id/dateFollow"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="#fff"
-                                android:text="Pilih Tanggal"
-                                android:textAllCaps="false"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Pembayaran" />
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="horizontal">
 
-                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                                    android:id="@+id/spinnerPembayaran"
+                                <TextView
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"
+                                    android:text="Triple" />
+
+                                <Button
+                                    android:id="@+id/tiga"
+                                    android:layout_width="40dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@drawable/bg_rounded_green_primary"
+                                    android:text="3"
+                                    android:textColor="@android:color/white" />
+
+                                <EditText
+                                    android:id="@+id/etTriple"
                                     android:layout_width="match_parent"
-                                    android:layout_height="35dp"/>
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:textColorHint="#bababa"
+                                    android:text=""
+                                    android:inputType="number"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:theme="@style/EditTextThemes" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"
+                                    android:text="Quard" />
+
+                                <Button
+                                    android:id="@+id/empat"
+                                    android:layout_width="40dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@drawable/bg_rounded_blue_primary"
+                                    android:text="4"
+                                    android:textColor="@android:color/white" />
+
+                                <EditText
+                                    android:id="@+id/etQuard"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:textColorHint="#bababa"
+                                    android:text=""
+                                    android:inputType="number"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:theme="@style/EditTextThemes" />
+
 
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <RelativeLayout
+                    </LinearLayout>
+
+                    <!--DOKUMEN-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp">
+                            android:text="Dokumen Cheklist" />
 
-                            <Button
-                                android:id="@+id/btnNext"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:id="@+id/passport"
+                                android:checked="false"
                                 android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/bg_rounded_orange_1"
-                                android:text="Proses"
-                                android:textAllCaps="false"
-                                android:textColor="@android:color/white" />
-                        </RelativeLayout>
+                                android:layout_height="wrap_content" />
 
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Passport" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:id="@+id/meningitis"
+                                android:checked="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Meningitis" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:id="@+id/foto"
+                                android:checked="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Pas Foto" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:id="@+id/nikah"
+                                android:checked="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Buku Nikah" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:id="@+id/akta"
+                                android:checked="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="FC Akta Lahir" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <Button
-                            android:layout_width="match_parent"
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/cbvisa"
+                            android:checked="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:background="#ba000d"
-                            android:text="SIMPAN"
-                            android:textColor="#fff"/>
+                            android:text="Visa Progresif" />
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/cbdiskon"
+                            android:checked="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Diskon" />
 
                     </LinearLayout>
 
+                    <!--VISA-->
+                    <LinearLayout
+                        android:id="@+id/viewVisavisa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Visa Progresif" />
+
+                            <TextView
+                                android:id="@+id/etVisa"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:background="@drawable/bg_rounded_greyish"
+                                android:textSize="@dimen/_12sdp"
+                                android:text="7600000"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Jumlah Orang" />
+
+                            <EditText
+                                android:id="@+id/etVisaJml"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:text=""
+                                android:inputType="number"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--ENDOFVISA-->
+
+                    <!--DISKON-->
+                    <LinearLayout
+                        android:id="@+id/viewDiskondiskon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Diskon" />
+
+                        <EditText
+                            android:id="@+id/etDiskon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:text=""
+                            android:inputType="number"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <!--KETERANGAN-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Keterangan" />
+
+                        <ScrollView
+                            android:id="@+id/ScrollView01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/etKeterangan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </ScrollView>
+
+                    </LinearLayout>
+
+                    <!--FOLLOWUP-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Tanggal Followup" />
+
+                        <Button
+                            android:id="@+id/dateFollow"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_button_rounded_red"
+                            android:textColor="#fff"
+                            android:text="Pilih Tanggal"
+                            android:textAllCaps="false"/>
+
+                    </LinearLayout>
+
+                    <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<TextView-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Pembayaran" />-->
+
+                    <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner-->
+                    <!--android:id="@+id/spinnerPembayaran"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="35dp"/>-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--</LinearLayout>-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <Button
+                            android:id="@+id/btnNext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/bg_rounded_orange_1"
+                            android:text="Proses"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white" />
+                    </RelativeLayout>
+
+
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnSimpan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ba000d"
+                        android:text="SIMPAN"
+                        android:textColor="#fff"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:clickable="false"-->
+                <!--app:cardCornerRadius="5dp"-->
+                <!--app:cardUseCompatPadding="true">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:padding="10dp">-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Nama (PIC)" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/picName"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="No Telp" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/telp"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="190dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Dewasa" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etDewasa"-->
+                                <!--android:inputType="number"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:text="0"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="190dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Infant (0 - 23 bulan)" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etInfant"-->
+                                <!--android:inputType="number"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:text="0"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="190dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Balita (Tanpa Kasur)" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etBalita"-->
+                                <!--android:inputType="number"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:text="0"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/totalIndicator"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:gravity="center_vertical"-->
+                                <!--android:layout_height="30dp"-->
+                                <!--android:text="Total :" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Tanggal Keberangkatan" />-->
+
+                            <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner-->
+                                <!--android:id="@+id/searchBerangkat"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="35dp"/>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content" />-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/namaJadwal"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:paddingLeft="10dp"-->
+                                <!--android:layout_height="35dp"/>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="match_parent"-->
+                                <!--android:gravity="center_vertical"-->
+                                <!--android:text=" Jenis" />-->
+
+                            <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner-->
+                                <!--android:id="@+id/searchJenis"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="35dp"/>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:orientation="vertical">-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="100dp"-->
+                                    <!--android:layout_height="30dp"-->
+                                    <!--android:text="Jenis Kamar" />-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="fill_parent"-->
+                                    <!--android:layout_height="30dp"-->
+                                    <!--android:text="Jumlah Orang" />-->
+
+                            <!--</LinearLayout>-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="vertical">-->
+
+                                <!--<LinearLayout-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:orientation="horizontal">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="50dp"-->
+                                        <!--android:layout_height="30dp"-->
+                                        <!--android:text="Double" />-->
+
+                                    <!--<Button-->
+                                        <!--android:id="@+id/dua"-->
+                                        <!--android:layout_width="40dp"-->
+                                        <!--android:layout_height="20dp"-->
+                                        <!--android:layout_marginRight="10dp"-->
+                                        <!--android:background="@drawable/bg_rounded_red_dark"-->
+                                        <!--android:text="2"-->
+                                        <!--android:textColor="@android:color/white" />-->
+
+                                    <!--<EditText-->
+                                        <!--android:id="@+id/etDouble"-->
+                                        <!--android:layout_width="match_parent"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:paddingLeft="@dimen/_10sdp"-->
+                                        <!--android:textColorHint="#bababa"-->
+                                        <!--android:text="0"-->
+                                        <!--android:inputType="number"-->
+                                        <!--android:textSize="@dimen/_12sdp"-->
+                                        <!--android:theme="@style/EditTextThemes" />-->
+
+
+                                <!--</LinearLayout>-->
+
+                                <!--<LinearLayout-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:orientation="horizontal">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="50dp"-->
+                                        <!--android:layout_height="30dp"-->
+                                        <!--android:text="Triple" />-->
+
+                                    <!--<Button-->
+                                        <!--android:id="@+id/tiga"-->
+                                        <!--android:layout_width="40dp"-->
+                                        <!--android:layout_height="20dp"-->
+                                        <!--android:layout_marginRight="10dp"-->
+                                        <!--android:background="@drawable/bg_rounded_green_primary"-->
+                                        <!--android:text="3"-->
+                                        <!--android:textColor="@android:color/white" />-->
+
+                                    <!--<EditText-->
+                                        <!--android:id="@+id/etTriple"-->
+                                        <!--android:layout_width="match_parent"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:paddingLeft="@dimen/_10sdp"-->
+                                        <!--android:textColorHint="#bababa"-->
+                                        <!--android:text="0"-->
+                                        <!--android:inputType="number"-->
+                                        <!--android:textSize="@dimen/_12sdp"-->
+                                        <!--android:theme="@style/EditTextThemes" />-->
+
+
+                                <!--</LinearLayout>-->
+
+                                <!--<LinearLayout-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:orientation="horizontal">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="50dp"-->
+                                        <!--android:layout_height="30dp"-->
+                                        <!--android:text="Quard" />-->
+
+                                    <!--<Button-->
+                                        <!--android:id="@+id/empat"-->
+                                        <!--android:layout_width="40dp"-->
+                                        <!--android:layout_height="20dp"-->
+                                        <!--android:layout_marginRight="10dp"-->
+                                        <!--android:background="@drawable/bg_rounded_blue_primary"-->
+                                        <!--android:text="4"-->
+                                        <!--android:textColor="@android:color/white" />-->
+
+                                    <!--<EditText-->
+                                        <!--android:id="@+id/etQuard"-->
+                                        <!--android:layout_width="match_parent"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:paddingLeft="@dimen/_10sdp"-->
+                                        <!--android:textColorHint="#bababa"-->
+                                        <!--android:text="0"-->
+                                        <!--android:inputType="number"-->
+                                        <!--android:textSize="@dimen/_12sdp"-->
+                                        <!--android:theme="@style/EditTextThemes" />-->
+
+
+                                <!--</LinearLayout>-->
+
+                            <!--</LinearLayout>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Dokumen Cheklist" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<android.support.v7.widget.AppCompatCheckBox-->
+                                    <!--android:id="@+id/passport"-->
+                                    <!--android:checked="false"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content" />-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="100dp"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Passport" />-->
+
+                            <!--</LinearLayout>-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<android.support.v7.widget.AppCompatCheckBox-->
+                                    <!--android:id="@+id/meningitis"-->
+                                    <!--android:checked="false"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content" />-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="100dp"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Meningitis" />-->
+
+                            <!--</LinearLayout>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<android.support.v7.widget.AppCompatCheckBox-->
+                                    <!--android:id="@+id/foto"-->
+                                    <!--android:checked="false"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content" />-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="100dp"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Pas Foto" />-->
+
+                            <!--</LinearLayout>-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<android.support.v7.widget.AppCompatCheckBox-->
+                                    <!--android:id="@+id/nikah"-->
+                                    <!--android:checked="false"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content" />-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="100dp"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Buku Nikah" />-->
+
+                            <!--</LinearLayout>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<android.support.v7.widget.AppCompatCheckBox-->
+                                    <!--android:id="@+id/akta"-->
+                                    <!--android:checked="false"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content" />-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="100dp"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="FC Akta Lahir" />-->
+
+                            <!--</LinearLayout>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Visa Progresif" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etVisa"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:text="7600000"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Jumlah Orang" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etVisaJml"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:text="7600000"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Diskon" />-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/etDiskon"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="@dimen/_10sdp"-->
+                                <!--android:textColorHint="#bababa"-->
+                                <!--android:textSize="@dimen/_12sdp"-->
+                                <!--android:text="0"-->
+                                <!--android:theme="@style/EditTextThemes" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Keterangan" />-->
+
+                            <!--<ScrollView-->
+                                <!--android:id="@+id/ScrollView01"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content">-->
+
+                                <!--<EditText-->
+                                    <!--android:id="@+id/etKeterangan"-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:paddingLeft="@dimen/_10sdp"-->
+                                    <!--android:textColorHint="#bababa"-->
+                                    <!--android:textSize="@dimen/_12sdp"-->
+                                    <!--android:theme="@style/EditTextThemes" />-->
+
+                            <!--</ScrollView>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Tanggal Followup" />-->
+
+                            <!--<Button-->
+                                <!--android:id="@+id/dateFollow"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:background="#ba000d"-->
+                                <!--android:textColor="#fff"-->
+                                <!--android:text="Pilih Tanggal"-->
+                                <!--android:textAllCaps="false"/>-->
+
+                        <!--</LinearLayout>-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="horizontal">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="100dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Pembayaran" />&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:orientation="vertical">&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;<com.toptoche.searchablespinnerlibrary.SearchableSpinner&ndash;&gt;-->
+                                    <!--&lt;!&ndash;android:id="@+id/spinnerPembayaran"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;android:layout_height="35dp"/>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                        <!--<RelativeLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="10dp">-->
+
+                            <!--<Button-->
+                                <!--android:id="@+id/btnNext"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="30dp"-->
+                                <!--android:layout_centerHorizontal="true"-->
+                                <!--android:background="@drawable/bg_rounded_orange_1"-->
+                                <!--android:text="Proses"-->
+                                <!--android:textAllCaps="false"-->
+                                <!--android:textColor="@android:color/white" />-->
+                        <!--</RelativeLayout>-->
+
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="vertical">-->
+
+                        <!--<Button-->
+                            <!--android:id="@+id/btnSimpan"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:background="#ba000d"-->
+                            <!--android:text="SIMPAN"-->
+                            <!--android:textColor="#fff"/>-->
+
+                    <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</android.support.v7.widget.CardView>-->
 
         </android.support.v4.widget.NestedScrollView>
 

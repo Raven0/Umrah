@@ -8,27 +8,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.ViewHolder> implements Filterable {
     private final Context context;
 
-    private ArrayList<Data> data;
-    private ArrayList<Data> mFilterData;
+    private ArrayList<DataJadwal> data;
+    private ArrayList<DataJadwal> mFilterData;
     private ArrayList<Jadwal> jadwal;
     private ArrayList<Paket> paket;
 
-    private PaketAiwaAdapterBACKUP adapter;
+    private PaketAiwaAdapter adapter;
 
     String berangkatDetail;
     String pulangDetail;
@@ -38,7 +42,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     String paketHari;
     String linkItinerary;
 
-    public JadwalAiwaAdapter(ArrayList<Data> data, Context context) {
+    public JadwalAiwaAdapter(ArrayList<DataJadwal> data, Context context) {
         this.data = data;
         mFilterData = data;
         this.context = context;
@@ -53,9 +57,6 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     @Override
     public void onBindViewHolder(JadwalAiwaAdapter.ViewHolder viewHolder, int i) {
         //initialize Array List
-
-        int dataSize = mFilterData.size();
-
         jadwal = new ArrayList<>(Arrays.asList(mFilterData.get(i).getJadwal()));
         paket = new ArrayList<>(Arrays.asList(jadwal.get(0).getPaket()));
 
@@ -64,31 +65,18 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         pulangDetail = jadwal.get(0).getRute_pulang() + " , " + jadwal.get(0).getPesawat_pulang() + "(Pukul" + jadwal.get(0).getJam_pulang() + ")" ;
 
         //assign attribute value into textView in recyclerview
-
-//        String berangkat= jadwal.get(0).getTgl_berangkat();
-//        String pulang= jadwal.get(0).getTgl_pulang();
-//        SimpleDateFormat spf=new SimpleDateFormat("YYYY-MM-DD");
-//        Date berangkatDate= null;
-//        Date pulangDate= null;
-//        try {
-//            berangkatDate = spf.parse(berangkat);
-//            pulangDate = spf.parse(pulang);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        spf= new SimpleDateFormat("dd MMM yyyy");
-//        berangkat = spf.format(berangkatDate );
-//        pulang = spf.format(pulangDate);
-
-        viewHolder.berangkat.setText(jadwal.get(0).getTgl_berangkat());
-        viewHolder.pulang.setText(jadwal.get(0).getTgl_pulang());
+        viewHolder.berangkat.setText(convertDate(jadwal.get(0).getTgl_berangkat()));
+        viewHolder.pulang.setText(convertDate(jadwal.get(0).getTgl_pulang()));
         viewHolder.detailBerangkat.setText(jadwal.get(0).getRute_berangkat());
         viewHolder.detailPulang.setText(jadwal.get(0).getRute_pulang());
         viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.");
-//        viewHolder.paketHari.setText(jadwal.get(0).getId());
 
-//        set adapter for paket list recyclerview
-        adapter = new PaketAiwaAdapterBACKUP(jadwal, paket, context);
+//        if (jadwal.get(0).getStatus().equals("SOLD OUT")){
+//            viewHolder.jadwal.setBackgroundColor(Color.RED);
+//            viewHolder.paketHari.setText("SOLD OUT");
+//        }
+
+        adapter = new PaketAiwaAdapter(jadwal, paket, context);
         if (adapter.getItemCount() != 0){
             viewHolder.paketList.setAdapter(adapter);
             viewHolder.emptyData.setVisibility(View.GONE);
@@ -101,7 +89,6 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         maskapai = jadwal.get(0).getMaskapai();
         paketHari = jadwal.get(0).getJml_hari() + " Hari";
         linkItinerary = jadwal.get(0).getItinerary();
-//        manasik = jadwal.get(0).getTgl_manasik() + ", Pukul " + jadwal.get(0).getJam_manasik();
 
     }
 
@@ -122,23 +109,10 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
                     mFilterData = data;
                 } else {
 
-                    ArrayList<Data> filterData = new ArrayList<>();
+                    ArrayList<DataJadwal> filterData = new ArrayList<>();
 
-                    for (Data data: data) {
+                    for (DataJadwal data: data) {
                         jadwal = new ArrayList<>(Arrays.asList(data.getJadwal()));
-
-//                        String berangkat= jadwal.get(0).getTgl_berangkat();
-//                        String pulang= jadwal.get(0).getTgl_berangkat();
-//                        SimpleDateFormat spf=new SimpleDateFormat("YYYY-MM-DD");
-//                        Date newDate= null;
-//                        try {
-//                            newDate = spf.parse(berangkat);
-//                            newDate = spf.parse(pulang);
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        spf= new SimpleDateFormat("dd mmm yyyy");
-//                        berangkat = spf.format(newDate);
 
                         if (jadwal.get(0).getTgl_berangkat().toLowerCase().contains(charString) || jadwal.get(0).getRute_berangkat().toLowerCase().contains(charString) || (jadwal.get(0).getJml_hari() + " Hari.").toLowerCase().contains(charString)) {
                             filterData.add(data);
@@ -155,7 +129,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilterData = (ArrayList<Data>) filterResults.values;
+                mFilterData = (ArrayList<DataJadwal>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
@@ -164,10 +138,12 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView berangkat,pulang,detailBerangkat,detailPulang,paketHari,emptyData;
         private RecyclerView paketList;
+        private LinearLayout jadwal;
         private ExpandableLayout expandableLayout;
         public ViewHolder(View view) {
             super(view);
 
+            jadwal = (LinearLayout)view.findViewById(R.id.jadwal);
             berangkat = (TextView)view.findViewById(R.id.berangkat);
             pulang = (TextView)view.findViewById(R.id.pulang);
             detailBerangkat = (TextView)view.findViewById(R.id.detailBerangkat);
@@ -194,6 +170,21 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
             });
 
         }
+    }
+
+    public String convertDate(String args) {
+        String date = args;
+        SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = null;
+        try {
+            newDate = spf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        spf = new SimpleDateFormat("dd MMM yyyy");
+        String newDateString = spf.format(newDate);
+
+        return newDateString ;
     }
 
 }

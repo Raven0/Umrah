@@ -11,16 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdapter.ViewHolder> {
     private final Context context;
-    private ArrayList<Data> data;
+    private ArrayList<DataJadwal> data;
     private ArrayList<Jadwal> jadwal;
     private ArrayList<Paket> paket;
 
@@ -32,9 +35,9 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
     String itinerary;
 
     LinearLayout download;
-    LinearLayout share;
+//    LinearLayout share;
 
-    public ItineraryAiwaAdapter(ArrayList<Data> data, Context context) {
+    public ItineraryAiwaAdapter(ArrayList<DataJadwal> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -54,8 +57,8 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
         pulangDetail = jadwal.get(0).getRute_pulang() + " , " + jadwal.get(0).getPesawat_pulang() + "(" + jadwal.get(0).getJam_pulang() + ")" ;
         itinerary = jadwal.get(0).getItinerary();
 
-        viewHolder.berangkat.setText(jadwal.get(0).getTgl_berangkat());
-        viewHolder.pulang.setText(jadwal.get(0).getTgl_pulang());
+        viewHolder.berangkat.setText(convertDate(jadwal.get(0).getTgl_berangkat()));
+        viewHolder.pulang.setText(convertDate(jadwal.get(0).getTgl_pulang()));
         viewHolder.detailBerangkat.setText(berangkatDetail);
         viewHolder.detailPulang.setText(pulangDetail);
     }
@@ -75,7 +78,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
             detailBerangkat = (TextView)view.findViewById(R.id.detailBerangkat);
             detailPulang = (TextView)view.findViewById(R.id.detailPulang);
             download = (LinearLayout)view.findViewById(R.id.download);
-            share = (LinearLayout)view.findViewById(R.id.share);
+//            share = (LinearLayout)view.findViewById(R.id.share);
 
             download.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,18 +90,33 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
                 }
             });
 
-            share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-//                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Berikut Link download untuk itinerary keberangkatan " + berangkat + " " + detailBerangkat + " dan kepulangan " + pulang + " " + pulangDetail + "URL : " +itinerary);
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, itinerary);
-                    context.startActivity(Intent.createChooser(shareIntent,"Share with"));
-                }
-            });
+//            share.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//                    shareIntent.setType("text/plain");
+////                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Berikut Link download untuk itinerary keberangkatan " + berangkat + " " + detailBerangkat + " dan kepulangan " + pulang + " " + pulangDetail + "URL : " +itinerary);
+//                    shareIntent.putExtra(Intent.EXTRA_TEXT, itinerary);
+//                    context.startActivity(Intent.createChooser(shareIntent,"Share with"));
+//                }
+//            });
 
         }
+    }
+
+    public String convertDate(String args) {
+        String date = args;
+        SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = null;
+        try {
+            newDate = spf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        spf = new SimpleDateFormat("dd MMM yyyy");
+        String newDateString = spf.format(newDate);
+
+        return newDateString ;
     }
 
 }

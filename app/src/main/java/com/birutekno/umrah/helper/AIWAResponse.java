@@ -1,15 +1,15 @@
 package com.birutekno.umrah.helper;
 
-import com.birutekno.umrah.model.Data;
+import com.birutekno.umrah.model.DataJadwal;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 
 public class AIWAResponse {
-    private Data[] data;
+    private DataJadwal[] data;
     private Jadwal[] jadwal;
     private Paket[] paket;
 
-    public Data[] getData() {
+    public DataJadwal[] getData() {
         return data;
     }
     public Jadwal[] getJadwal() {

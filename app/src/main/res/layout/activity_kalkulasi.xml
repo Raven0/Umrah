@@ -52,7 +52,7 @@
             <!--android:id="@+id/jul"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="match_parent"-->
-            <!--android:text="List Data Calon Jamaah"-->
+            <!--android:text="List DataJadwal Calon Jamaah"-->
             <!--android:textSize="16dp"-->
             <!--android:textColor="#000"-->
             <!--android:textStyle="bold"-->

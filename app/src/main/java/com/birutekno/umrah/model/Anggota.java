@@ -120,10 +120,4 @@ public class Anggota {
     {
         this.password = password;
     }
-
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [no_telp = "+no_telp+", id = "+id+", username = "+username+", koordinator = "+koordinator+", status = "+status+", email = "+email+", jenis_kelamin = "+jenis_kelamin+", nama = "+nama+", no_ktp = "+no_ktp+", password = "+password+"]";
-    }
 }

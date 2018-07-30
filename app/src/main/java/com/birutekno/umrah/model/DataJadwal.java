@@ -1,6 +1,6 @@
 package com.birutekno.umrah.model;
 
-public class Data {
+public class DataJadwal {
     private Jadwal[] jadwal;
 
     public Jadwal[] getJadwal ()

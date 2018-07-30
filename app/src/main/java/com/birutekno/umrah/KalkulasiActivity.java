@@ -14,9 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.birutekno.umrah.adapter.KalkulasiAdapter;
-import com.birutekno.umrah.helper.WEBResponse;
+import com.birutekno.umrah.helper.ProspekResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataProspek;
 import com.birutekno.umrah.ui.BaseActivity;
@@ -61,6 +62,13 @@ public class KalkulasiActivity extends BaseActivity {
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
         setTitle("Kalkulasi");
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KalkulasiActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         initViews();
         loadJSON();
@@ -85,13 +93,13 @@ public class KalkulasiActivity extends BaseActivity {
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
         pDialog.show();
-        Call<WEBResponse> call = WebApi.getAPIService().getJSON();
-        call.enqueue(new Callback<WEBResponse>() {
+        Call<ProspekResponse> call = WebApi.getAPIService().getProspek();
+        call.enqueue(new Callback<ProspekResponse>() {
             @Override
-            public void onResponse(Call<WEBResponse> call, Response<WEBResponse> response) {
+            public void onResponse(Call<ProspekResponse> call, Response<ProspekResponse> response) {
                 if(response.isSuccessful()){
-                    WEBResponse jsonResponse = response.body();
-                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    ProspekResponse jsonResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getProspek()));
                     mAdapter = new KalkulasiAdapter(pojo, getBaseContext());
                     mRecyclerView.setAdapter(mAdapter);
                     pDialog.dismiss();
@@ -104,13 +112,15 @@ public class KalkulasiActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<WEBResponse> call, Throwable t) {
+            public void onFailure(Call<ProspekResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
+                Toast.makeText(KalkulasiActivity.this, "Server Error, Coba Lagi : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
             }
         });
     }
 
+    //SEARCH
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -124,7 +134,6 @@ public class KalkulasiActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        title.setVisibility(View.GONE);
         return super.onOptionsItemSelected(item);
     }
 
@@ -138,7 +147,6 @@ public class KalkulasiActivity extends BaseActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//                title.setVisibility(View.VISIBLE);
                 mAdapter.getFilter().filter(newText);
                 return true;
             }

@@ -1,9 +1,76 @@
 package com.birutekno.umrah.helper;
 
+import com.birutekno.umrah.model.AgenObject;
+import com.birutekno.umrah.model.JamaahObject;
+import com.birutekno.umrah.model.ProspekObject;
+
+import java.util.HashMap;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface WEBInterface {
+    //DATA PROSPEK
+
+    //GET ALL PROSPEK
+    @GET("prospek")
+    Call<ProspekResponse> getProspek();
+
+    //GET SHOW PROSPEK
+    @GET("prospek/{id}/show")
+    Call<ProspekObject> showProspek(@Path("id") String id);
+
+    //POST NEW PROSPEK
+    @FormUrlEncoded
+    @POST("prospek")
+    Call<ResponseBody> insertProspek(@FieldMap HashMap<String, String> params);
+
+    //PUT PROSPEK
+    @FormUrlEncoded
+    @PUT("prospek/{id}/edit")
+    Call<ResponseBody> editProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
+
+    //DATA AGEN
+    //GET ALL PROSPEK
+    @GET("agen")
+    Call<LoginResponse> getAgen();
+
+    //GET SHOW PROSPEK
+    @GET("agen/{id}/show")
+    Call<AgenObject> showAgen(@Path("id") String id);
+
+    //POST NEW PROSPEK
+    @FormUrlEncoded
+    @POST("agen")
+    Call<ResponseBody> insertAgen(@FieldMap HashMap<String, String> params);
+
+    //PUT PROSPEK
+    @FormUrlEncoded
+    @PUT("agen/{id}/edit")
+    Call<ResponseBody> editAgen(@Path("id") String id, @FieldMap HashMap<String, String> params);
+
+    //DATA JAMAAH
+    //GET ALL PROSPEK
     @GET("jamaah")
-    Call<WEBResponse> getJSON();
+    Call<JamaahResponse> getJamaah();
+
+    //GET SHOW PROSPEK
+    @GET("jamaah/{id}/show")
+    Call<JamaahObject> showJamaah(@Path("id") String id);
+
+    //POST NEW PROSPEK
+    @FormUrlEncoded
+    @POST("jamaah")
+    Call<ResponseBody> insertJamaah(@FieldMap HashMap<String, String> params);
+
+    //PUT PROSPEK
+    @FormUrlEncoded
+    @PUT("jamaah/{id}/edit")
+    Call<ResponseBody> editJamaah(@Path("id") String id, @FieldMap HashMap<String, String> params);
 }
