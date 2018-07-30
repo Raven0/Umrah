@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.widget.EditText;
-<<<<<<< HEAD
 import android.widget.Toast;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.ui.BaseActivity;
@@ -77,11 +74,7 @@ public class RegistrationActivity extends BaseActivity {
         no_telp = notelp.getText().toString().trim();
         username = usrnm.getText().toString().trim();
         koordinator = koord.getText().toString().trim();
-<<<<<<< HEAD
         status = "1";
-=======
-        status = "WAIT";
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         email = emil.getText().toString().trim();
         jenis_kelamin = jk.getText().toString().trim();
         nama = nma.getText().toString().trim();
@@ -106,7 +99,6 @@ public class RegistrationActivity extends BaseActivity {
         pDialog.setCancelable(false);
         pDialog.show();
 
-<<<<<<< HEAD
         Call<ResponseBody> result = WebApi.getAPIService().insertAgen(params);
         result.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -129,30 +121,6 @@ public class RegistrationActivity extends BaseActivity {
                 t.printStackTrace();
             }
         });
-=======
-//        Call<ResponseBody> result = WebApi.getAPIService().insertAgen(params);
-//        result.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                pDialog.dismiss();
-//                try {
-//                    if(response.body()!=null){
-//                        Toast.makeText(mContext, "Registrasi berhasil, Tunggu Approval", Toast.LENGTH_LONG).show();
-//                        Intent intent = new Intent(mContext, LoginActivity.class);
-//                        startActivity(intent);
-//                    }
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                pDialog.dismiss();
-//                t.printStackTrace();
-//            }
-//        });
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     @OnClick(R.id.here)

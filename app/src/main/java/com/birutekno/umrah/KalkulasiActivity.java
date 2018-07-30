@@ -93,13 +93,8 @@ public class KalkulasiActivity extends BaseActivity {
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
         pDialog.show();
-<<<<<<< HEAD
         Call<ProspekResponse> call = WebApi.getAPIService().getProspek();
         call.enqueue(new Callback<ProspekResponse>() {
-=======
-        Call<WEBResponse> call = WebApi.getAPIService().getProspek();
-        call.enqueue(new Callback<WEBResponse>() {
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
             @Override
             public void onResponse(Call<ProspekResponse> call, Response<ProspekResponse> response) {
                 if(response.isSuccessful()){

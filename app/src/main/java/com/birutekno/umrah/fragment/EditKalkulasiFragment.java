@@ -9,10 +9,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +18,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-<<<<<<< HEAD
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,18 +39,12 @@ import com.birutekno.umrah.model.Paket;
 import com.birutekno.umrah.model.ProspekObject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-<<<<<<< HEAD
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-=======
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 import java.util.HashMap;
 import java.util.List;
 
@@ -71,7 +59,6 @@ import retrofit2.Response;
  */
 public class EditKalkulasiFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
 
-<<<<<<< HEAD
     Boolean loaded = false;
 
     private List<Jadwal> objJadwal;
@@ -87,24 +74,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
     ArrayAdapter<String> adapterJadwal;
     ArrayAdapter<String> adapterHotel;
-=======
-    List<Jadwal> objJadwal;
-    List<Paket> objPaket;
-    List<DataJadwal> alldata;
-    List<DataProspek> prospeks;
-
-    List<String> listJadwal = new ArrayList<String>();
-    List<String> ketJadwal = new ArrayList<String>();
-    List<String> listPaket = new ArrayList<String>();
-    List<String> listPembayaran = new ArrayList<String>();
-
-    HashMap<String, String> map = new HashMap<String, String>();
-    HashMap<String, String> insertVal = new HashMap<String, String>();
-
-    ArrayAdapter<String> adapterJadwal;
-    ArrayAdapter<String> adapterHotel;
-    ArrayAdapter<String> adapterPembayaran;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     private AIWAInterface apiservice;
     ProgressDialog loading;
@@ -116,20 +85,16 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private String id;
 
     // Input
-<<<<<<< HEAD
     private RadioGroup radioGroup,radioGroup1;
     private RadioButton rb1, rbDefault;
     private RadioButton rb2, rbPromo;
     private LinearLayout viewPerlengkapan, viewPerlengkapanDewasa, viewVisa, viewDiskon;
 
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     private EditText pic;
     private EditText telp;
     private EditText dewasa;
     private EditText infant;
     private EditText balita;
-<<<<<<< HEAD
     private EditText balitaKasur;
     private EditText dobel;
     private EditText tripel;
@@ -140,14 +105,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private EditText keterangan;
 
     private CheckBox cbVisa, cbDiskon;
-=======
-    private EditText dobel;
-    private EditText tripel;
-    private EditText quard;
-    private EditText progresif;
-    private EditText diskonboy;
-    private EditText keterangan;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     private CheckBox cbPassport;
     private Boolean passport = false;
     private String passportString = "Tidak";
@@ -163,28 +120,18 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private CheckBox cbBukuNikah;
     private Boolean bukuNikah = false;
     private String bukuNikahString = "Tidak";
-<<<<<<< HEAD
 
     private Button buttonNext;
     private Button buttonSimpan;
     private Button followUp;
     private Spinner hotel, jadwal;
 //    pembayaran
-=======
-    private Button buttonNext;
-    private Button buttonSimpan;
-    private Button followUp;
-    private Spinner hotel, jadwal, pembayaran;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     // Calculation
     private int jmlDewasa = 0;
     private int jmlInfant = 0;
     private int jmlBalita = 0;
-<<<<<<< HEAD
     private int jmlBalitaKasur = 0;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     private int jmlTotal = 0;
 
     // Actual Calculation
@@ -193,22 +140,16 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private int jmlQuard = 0;
     private int jmlKamar = 0;
     private int jmlProgresif = 0;
-<<<<<<< HEAD
     private int jmlvisa = 0;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     private int jmlDiskon = 0;
 
     private Boolean quardBool = false;
     private Boolean tripleBool = false;
     private Boolean doubleBool = false;
-<<<<<<< HEAD
     private Boolean perlengkapanFull = false;
     private Boolean perlengkapanDefault = false;
     private Boolean perlengkapanLite = false;
     private Boolean perlengkapanPromo = false;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     // Reference Calculation
     private int hargaDouble;
@@ -219,10 +160,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private String no_telp;
     private String tgl_berangkat;
     private String jenisPaket;
-<<<<<<< HEAD
     private String sendTgl;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     private String maskapai;
     private String landing;
     private String pesawat;
@@ -233,11 +171,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private String madinah;
     private String statPembayaran;
     private String tglFollowup;
-<<<<<<< HEAD
     private String jenisPerlengkapan;
     private String jenisPerlengkapanDewasa;
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     private ProgressDialog pDialog;
     private ProgressDialog nDialog;
@@ -254,7 +189,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         id = getArguments().getString("id");
         loadComponent();
         setupAdapter();
-<<<<<<< HEAD
         nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
         for (int i = 1 ; i < 4 ; i++){
             nDialog.show();
@@ -265,9 +199,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 Toast.makeText(getContext(), "Load data : OK", Toast.LENGTH_SHORT).show();
             }
         }
-=======
-        loadData(id);
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         return view;
     }
 
@@ -277,10 +208,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         dewasa = (EditText) view.findViewById(R.id.etDewasa);
         infant = (EditText) view.findViewById(R.id.etInfant);
         balita = (EditText) view.findViewById(R.id.etBalita);
-<<<<<<< HEAD
         balitaKasur = (EditText) view.findViewById(R.id.etBalitaKasur);
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         buttonNext = (Button) view.findViewById(R.id.btnNext);
         buttonSimpan = (Button) view.findViewById(R.id.btnSimpan);
         buttonNext.setOnClickListener(this);
@@ -289,7 +217,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         namaJadwal = (TextView) view.findViewById(R.id.namaJadwal);
         totalIndicator = (TextView) view.findViewById(R.id.totalIndicator);
         hotel = (Spinner) view.findViewById(R.id.searchJenis);
-<<<<<<< HEAD
         dobel = (EditText) view.findViewById(R.id.etDouble);
         tripel = (EditText) view.findViewById(R.id.etTriple);
         quard = (EditText) view.findViewById(R.id.etQuard);
@@ -305,23 +232,12 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
         cbVisa = (CheckBox) view.findViewById(R.id.cbvisa);
         cbDiskon = (CheckBox) view.findViewById(R.id.cbdiskon);
-=======
-        pembayaran = (Spinner) view.findViewById(R.id.spinnerPembayaran);
-        dobel = (EditText) view.findViewById(R.id.etDouble);
-        tripel = (EditText) view.findViewById(R.id.etTriple);
-        quard = (EditText) view.findViewById(R.id.etQuard);
-        progresif = (EditText) view.findViewById(R.id.etVisa);
-        diskonboy = (EditText) view.findViewById(R.id.etDiskon);
-        keterangan = (EditText) view.findViewById(R.id.etKeterangan);
-        followUp = (Button) view.findViewById(R.id.dateFollow);
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         cbPassport = (CheckBox) view.findViewById(R.id.passport);
         cbMeningitis = (CheckBox) view.findViewById(R.id.meningitis);
         cbFoto = (CheckBox) view.findViewById(R.id.foto);
         cbBukuNikah = (CheckBox) view.findViewById(R.id.nikah);
         cbAkta = (CheckBox) view.findViewById(R.id.akta);
 
-<<<<<<< HEAD
         radioGroup = (RadioGroup) view.findViewById(R.id.groupPerlengkapan);
         radioGroup1 = (RadioGroup) view.findViewById(R.id.groupPerlengkapanDewasa);
         rb1 = (RadioButton) view.findViewById(R.id.perlengkapanFull);
@@ -355,8 +271,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         dewasa.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -369,7 +283,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dewasa.getText())){
-<<<<<<< HEAD
 //                    dewasa.setText("0");
                     jmlDewasa = 0;
                     viewPerlengkapanDewasa.setVisibility(View.GONE);
@@ -388,13 +301,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
                     }
 
-=======
-                    dewasa.setText("0");
-                }else {
-                    jmlDewasa = Integer.parseInt(dewasa.getText().toString().trim());
-                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita;
-                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal));
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                 }
             }
         });
@@ -411,7 +317,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(infant.getText())){
-<<<<<<< HEAD
                     jmlInfant = 0;
                 }else {
                     try {
@@ -422,13 +327,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         infant.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
                     }
-=======
-                    infant.setText("0");
-                }else {
-                    jmlInfant = Integer.parseInt(infant.getText().toString().trim());
-                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita;
-                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal));
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                 }
             }
         });
@@ -445,7 +343,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balita.getText())){
-<<<<<<< HEAD
 //                    balita.setText("0");
                     jmlBalita = 0;
                     viewPerlengkapan.setVisibility(View.GONE);
@@ -492,13 +389,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         balitaKasur.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
                     }
-=======
-                    balita.setText("0");
-                }else {
-                    jmlBalita = Integer.parseInt(balita.getText().toString().trim());
-                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita;
-                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal));
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                 }
             }
         });
@@ -515,7 +405,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dobel.getText())){
-<<<<<<< HEAD
                     jmlDobel = 0;
                     doubleBool = false;
                 }else {
@@ -534,16 +423,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     }catch (Exception ex){
                         dobel.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
-=======
-                    dobel.setText("0");
-                }else {
-                    jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
-                    jmlKamar = jmlQuard + jmlTripel + jmlDobel;
-                    if(jmlDobel == 0){
-                        doubleBool = false;
-                    }else {
-                        doubleBool = true;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                     }
                 }
             }
@@ -561,7 +440,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(tripel.getText())){
-<<<<<<< HEAD
                     jmlTripel = 0;
                     tripleBool = false;
                 }else {
@@ -580,16 +458,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     }catch (Exception ex){
                         tripel.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
-=======
-                    tripel.setText("0");
-                }else {
-                    jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
-                    jmlKamar = jmlQuard + jmlTripel + jmlDobel;
-                    if(jmlTripel == 0){
-                        tripleBool = false;
-                    }else {
-                        tripleBool = true;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                     }
                 }
             }
@@ -607,7 +475,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(quard.getText())){
-<<<<<<< HEAD
 //                    quard.setText("0");
                     jmlQuard = 0;
                     quardBool = false;
@@ -627,16 +494,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     }catch (Exception ex){
                         quard.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
-=======
-                    quard.setText("0");
-                }else {
-                    jmlQuard = Integer.parseInt(quard.getText().toString().trim());
-                    jmlKamar = jmlQuard + jmlTripel + jmlDobel;
-                    if(jmlQuard == 0){
-                        quardBool = false;
-                    }else {
-                        quardBool = true;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                     }
                 }
             }
@@ -655,7 +512,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(diskonboy.getText())){
-<<<<<<< HEAD
                     jmlDiskon = 0;
                 }else {
                     try {
@@ -664,9 +520,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         diskonboy.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
                     }
-=======
-                    diskonboy.setText("0");
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                 }
             }
         });
@@ -684,7 +537,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(progresif.getText())){
-<<<<<<< HEAD
                     jmlProgresif = 0;
                 }else {
                     try {
@@ -719,9 +571,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         progresifJml.setText("0");
                         Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
                     }
-=======
-                    progresif.setText("0");
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                 }
             }
         });
@@ -740,10 +589,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 initSpinnerPaket(objPaket);
                 namaJadwal.setText(detailJadwal);
 
-<<<<<<< HEAD
                 sendTgl = objJadwal.get(0).getTgl_berangkat();
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                 maskapai = objJadwal.get(0).getMaskapai();
                 landing = objJadwal.get(0).getRute_berangkat();
                 pesawat = objJadwal.get(0).getPesawat_berangkat();
@@ -824,21 +670,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
-<<<<<<< HEAD
-=======
-        pembayaran.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                statPembayaran = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         followUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -856,33 +687,23 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         });
     }
 
-<<<<<<< HEAD
     private void loadData(final String id){
-=======
-    private void loadData(String id){
-//        Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
-        nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         Call<ProspekObject> call = WebApi.getAPIService().showProspek(id);
         call.enqueue(new Callback<ProspekObject>() {
             @Override
             public void onResponse(Call<ProspekObject> call, Response<ProspekObject> response) {
                 try{
-<<<<<<< HEAD
                     if (response.isSuccessful()){
                         Log.d("MSGASD", "SUCCESS");
                     }else {
                         Log.d("MSGASD", "FAIL");
                     }
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                     DataProspek dataProspek = response.body().getData();
                     pic.setText(dataProspek.getPic());
                     telp.setText(dataProspek.getNo_telp());
                     dewasa.setText(dataProspek.getJml_dewasa());
                     infant.setText(dataProspek.getJml_infant());
                     balita.setText(dataProspek.getJml_balita());
-<<<<<<< HEAD
                     balitaKasur.setText(dataProspek.getJml_balita_kasur());
                     dobel.setText(dataProspek.getDobel());
                     tripel.setText(dataProspek.getTriple());
@@ -920,7 +741,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         if(perlengkapanDewasa.equals("DEFAULT")){
                             rbDefault.setChecked(true);
                             rbPromo.setChecked(false);
-                        }else if (perlengkapan.equals("PROMO")){
+                        }else if (perlengkapanDewasa.equals("PROMO")){
                             rbDefault.setChecked(false);
                             rbPromo.setChecked(true);
                         }
@@ -940,8 +761,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         cbDiskon.setChecked(false);
                         viewDiskon.setVisibility(View.GONE);
                     }
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
                     int posJadwal = adapterJadwal.getPosition(dataProspek.getTgl_keberangkatan());
                     jadwal.setSelection(posJadwal);
@@ -950,7 +769,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         hotel.setSelection(posHotel);
                     }
 
-<<<<<<< HEAD
                     Toast.makeText(getContext(), String.valueOf(jmlVisas), Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(getContext(), dataProspek.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception ex){
@@ -962,32 +780,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void onFailure(Call<ProspekObject> call, Throwable t) {
                 loadData(id);
-=======
-                    dobel.setText(dataProspek.getDobel());
-                    tripel.setText(dataProspek.getTriple());
-                    quard.setText(dataProspek.getQuard());
-//                cbPassport.setChecked(dataProspek.getPassport());
-//                cbMeningitis.setChecked(dataProspek.getMeningitis());
-//                cbFoto.setChecked(dataProspek.getPas_foto());
-//                cbBukuNikah.setChecked(dataProspek.getBuku_nikah());
-//                cbAkta.setChecked(dataProspek.getFc_akta());
-                    progresif.setText(dataProspek.getVisa_progresif());
-                    diskonboy.setText(dataProspek.getDiskon());
-                    keterangan.setText(dataProspek.getKeterangan());
-                    followUp.setText(dataProspek.getTanggal_followup());
-
-                    int posPembayaran = adapterPembayaran.getPosition(dataProspek.getPembayaran());
-                    pembayaran.setSelection(posPembayaran);
-                }catch (Exception ex){
-                    Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-                nDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<ProspekObject> call, Throwable t) {
-                nDialog.dismiss();
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
             }
         });
     }
@@ -995,7 +787,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     // NEXT PAGE
     @Override
     public void onClick(View view) {
-<<<<<<< HEAD
         try {
             jmlProgresif = Integer.parseInt(progresif.getText().toString().trim());
             jmlvisa = Integer.parseInt(progresifJml.getText().toString().trim());
@@ -1029,17 +820,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 perlengkapanPromo = false;
                 jenisPerlengkapanDewasa = "NULL";
             }
-=======
-        if (view == buttonNext) {
-            jmlDewasa = Integer.parseInt(dewasa.getText().toString().trim());
-            jmlInfant = Integer.parseInt(infant.getText().toString().trim());
-            jmlBalita = Integer.parseInt(balita.getText().toString().trim());
-            jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
-            jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
-            jmlQuard = Integer.parseInt(quard.getText().toString().trim());
-            jmlDiskon = Integer.parseInt(diskonboy.getText().toString().trim());
-            jmlProgresif = Integer.parseInt(progresif.getText().toString().trim());
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
             if(cbPassport.isChecked()){
                 passport = true;
@@ -1071,7 +851,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 akta = false;
             }
 
-<<<<<<< HEAD
             if(jmlDewasa + jmlBalitaKasur == jmlKamar){
                 if(jmlBalita != 0){
                     if (perlengkapanFull || perlengkapanLite){
@@ -1295,168 +1074,21 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     }
                 });
             }
-=======
-            if(jmlDewasa == jmlKamar){
-                InputKalkulasiActivity.goToStepTotal();
-                TotalKalkulasiFragment step3Fragment = new TotalKalkulasiFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("maskapai", maskapai);
-                bundle.putString("landing", landing);
-                bundle.putString("pesawat", pesawat);
-                bundle.putString("pukul", pukul);
-                bundle.putString("mekah", mekahSend);
-                bundle.putString("madinah", madinahSend);
-
-                bundle.putString("jenisPaket", jenisPaket);
-                bundle.putInt("hargaDouble", hargaDouble);
-                bundle.putInt("hargaTriple", hargaTriple);
-                bundle.putInt("hargaQuard", hargaQuard);
-
-                bundle.putBoolean("boolDouble", doubleBool);
-                bundle.putBoolean("boolTriple", tripleBool);
-                bundle.putBoolean("boolQuard", quardBool);
-                bundle.putBoolean("passport", passport);
-                bundle.putBoolean("meningitis", meningitis);
-                bundle.putBoolean("foto", foto);
-                bundle.putBoolean("nikah", bukuNikah);
-                bundle.putBoolean("akta", akta);
-                bundle.putInt("jmlDobel", jmlDobel);
-                bundle.putInt("jmlTripel", jmlTripel);
-                bundle.putInt("jmlQuard", jmlQuard);
-                bundle.putInt("visa", jmlProgresif);
-                bundle.putInt("diskon", jmlDiskon);
-
-                step3Fragment.setArguments(bundle);
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
-                        .replace(R.id.frame_layout, step3Fragment)
-                        .addToBackStack(null)
-                        .commit();
-            }else {
-                Toast.makeText(getContext(), "Pastikan Jumlah Total", Toast.LENGTH_SHORT).show();
-            }
-        } else if (view == buttonSimpan){
-
-            Toast.makeText(getContext(), "AHAAHHA", Toast.LENGTH_SHORT).show();
-            picName = pic.getText().toString().trim();
-            no_telp = telp.getText().toString().trim();
-            jmlDewasa = Integer.parseInt(dewasa.getText().toString().trim());
-            jmlInfant = Integer.parseInt(infant.getText().toString().trim());
-            jmlBalita = Integer.parseInt(balita.getText().toString().trim());
-            jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
-            jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
-            jmlQuard = Integer.parseInt(quard.getText().toString().trim());
-            jmlDiskon = Integer.parseInt(diskonboy.getText().toString().trim());
-            jmlProgresif = Integer.parseInt(progresif.getText().toString().trim());
-
-            if(cbPassport.isChecked()){
-                passportString = "Ya";
-            }else {
-                passportString = "Tidak";
-            }
-
-            if(cbMeningitis.isChecked()){
-                meningitisString = "Ya";
-            }else {
-                meningitisString = "Tidak";
-            }
-
-            if(cbFoto.isChecked()){
-                fotoString = "Ya";
-            }else {
-                fotoString = "Tidak";
-            }
-
-            if(cbBukuNikah.isChecked()){
-                bukuNikahString = "Ya";
-            }else {
-                bukuNikahString = "Tidak";
-            }
-
-            if(cbAkta.isChecked()){
-                aktaString = "Ya";
-            }else {
-                aktaString = "Tidak";
-            }
-
-            HashMap<String, String> params = new HashMap<>();
-            params.put("no_telp", no_telp);
-            params.put("tgl_keberangkatan", tgl_berangkat);
-            params.put("pas_foto", fotoString);
-            params.put("anggota_id", "45");
-            params.put("visa_progresif", String.valueOf(jmlProgresif));
-            params.put("jml_infant", String.valueOf(jmlInfant));
-            params.put("pembayaran", statPembayaran);
-            params.put("pic", picName);
-            params.put("dobel", String.valueOf(jmlDobel));
-            params.put("fc_akta", aktaString);
-            params.put("meningitis", meningitisString);
-            params.put("quard", String.valueOf(jmlQuard));
-            params.put("keterangan", keterangan.getText().toString().trim());
-            params.put("diskon", String.valueOf(jmlDiskon));
-            params.put("triple", String.valueOf(jmlTripel));
-            params.put("jenis", jenisPaket);
-            params.put("tanggal_followup", tglFollowup);
-            params.put("jml_balita", String.valueOf(jmlBalita));
-            params.put("passport", passportString);
-            params.put("buku_nikah", bukuNikahString);
-            params.put("jml_dewasa", String.valueOf(jmlDewasa));
-
-            pDialog = new ProgressDialog(getContext());
-            pDialog.setMessage("Harap tunggu...");
-            pDialog.setCancelable(false);
-            pDialog.show();
-
-            Call<ResponseBody> result = WebApi.getAPIService().editProspek(id, params);
-            result.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    pDialog.dismiss();
-                    try {
-                        if(response.body()!=null){
-//                            Toast.makeText(getContext()," response message "+response.body().string(),Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                            startActivity(intent);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    pDialog.dismiss();
-                    t.printStackTrace();
-                }
-            });
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         }
     }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-<<<<<<< HEAD
         Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear+1,year), Toast.LENGTH_LONG).show();
         followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year));
         tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year);
-=======
-        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear,year), Toast.LENGTH_LONG).show();
-        followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear,year));
-        tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear,year);
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     public void setupAdapter(){
 
         apiservice = UtilsApi.getAPIService();
-<<<<<<< HEAD
         initSpinnerJadwal();
 //        initSpinnerPembayaran();
-=======
-
-        initSpinnerJadwal();
-        initSpinnerPembayaran();
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     public void initSpinnerJadwal(){
@@ -1470,15 +1102,10 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     alldata = Arrays.asList(response.body().getData());
                     for (int i = 0; i < alldata.size(); i++){
                         List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
-<<<<<<< HEAD
                         listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
 //                        listJadwal.add(convertDate(jadwal .get(0).getTgl_berangkat()) + "\nBerangkat : " + jadwal .get(0).getRute_berangkat() + "\nMaskapai : " + jadwal.get(0).getMaskapai() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
 //                        ketJadwal.add(jadwal .get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
-=======
-                        listJadwal.add(jadwal .get(0).getTgl_berangkat() + "\nBerangkat : " + jadwal .get(0).getRute_berangkat() + "\nMaskapai : " + jadwal.get(0).getMaskapai());
-                        ketJadwal.add(jadwal .get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
                     }
 
                     adapterJadwal = new ArrayAdapter<String>(getContext(),
@@ -1495,11 +1122,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 loading.dismiss();
-<<<<<<< HEAD
                 Toast.makeText(getContext(), "Server Jadwal bermasalah", Toast.LENGTH_SHORT).show();
-=======
-                Toast.makeText(getContext(), "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
             }
         });
     }
@@ -1594,7 +1217,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         hotel.setAdapter(adapterHotel);
     }
 
-<<<<<<< HEAD
     public String convertDate(String args) {
         String date = args;
         SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd");
@@ -1608,15 +1230,5 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         String newDateString = spf.format(newDate);
 
         return newDateString ;
-=======
-    public void initSpinnerPembayaran() {
-        listPembayaran.add("PROSPEK");
-        listPembayaran.add("DP");
-
-        adapterPembayaran = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, listPembayaran);
-        adapterPembayaran.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pembayaran.setAdapter(adapterPembayaran);
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 }

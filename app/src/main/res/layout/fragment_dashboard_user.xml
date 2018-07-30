@@ -66,13 +66,13 @@
 
                                 <ImageView
                                     android:layout_width="35dp"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_height="55dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/icon_caljam" />
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
                                     android:gravity="center">
@@ -117,13 +117,13 @@
 
                                 <ImageView
                                     android:layout_width="50dp"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_height="55dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/icon_jamaah" />
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
                                     android:gravity="center">
@@ -183,7 +183,7 @@
                                     android:src="@drawable/icon_potensi_new" />
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
                                     android:gravity="center">
@@ -233,7 +233,7 @@
                                     android:src="@drawable/icon_komisi_new" />
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
                                     android:gravity="center">

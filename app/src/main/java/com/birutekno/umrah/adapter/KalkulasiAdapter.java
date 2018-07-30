@@ -46,7 +46,6 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
         viewHolder.id.setText(mFilterData.get(i).getId());
         viewHolder.nama.setText(mFilterData.get(i).getPic());
         viewHolder.telp.setText(mFilterData.get(i).getNo_telp());
-<<<<<<< HEAD
 
         int jmldewasa = Integer.parseInt(mFilterData.get(i).getJml_dewasa());
         int jmlinfant = Integer.parseInt(mFilterData.get(i).getJml_infant());
@@ -54,9 +53,6 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
         int jmlbalitaKasur = Integer.parseInt(mFilterData.get(i).getJml_balita_kasur());
         int pax = jmldewasa + jmlinfant + jmlbalita + jmlbalitaKasur;
         viewHolder.alamat.setText(String.valueOf(pax)+ " PAX");
-=======
-        viewHolder.alamat.setText(mFilterData.get(i).getPembayaran());
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     }
 

@@ -3,27 +3,16 @@ package com.birutekno.umrah.model;
 public class DataProspek {
     private String pas_foto;
 
-<<<<<<< HEAD
     private String perlengkapan_dewasa;
 
     private String anggota_id;
 
     private String jml_visa;
-=======
-    private String tgl_keberangkatan;
-
-    private String pas_foto;
-
-    private String anggota_id;
-
-    private String visa_progresif;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     private String jml_infant;
 
     private String pembayaran;
 
-<<<<<<< HEAD
     private String jml_balita_kasur;
 
     private String fc_akta;
@@ -41,29 +30,9 @@ public class DataProspek {
     private String diskon;
 
     private String keterangan;
-=======
-    private Anggota anggota;
 
-    private String pic;
+    private String jml_balita;
 
-    private String dobel;
-
-    private String fc_akta;
-
-    private String id;
-
-    private String meningitis;
-
-    private String quard;
-
-    private String keterangan;
-
-    private String diskon;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
-
-    private String triple;
-
-<<<<<<< HEAD
     private String perlengkapan_balita;
 
     private String jml_dewasa;
@@ -73,23 +42,12 @@ public class DataProspek {
     private String no_telp;
 
     private String visa_progresif;
-=======
-    private String jenis;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
-    private String tanggal_followup;
+    private Anggota anggota;
 
-    private String jml_balita;
-
-<<<<<<< HEAD
     private String pic;
 
     private String jenis;
-=======
-    private String passport;
-
-    private String buku_nikah;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     private String tanggal_followup;
 
@@ -107,7 +65,6 @@ public class DataProspek {
         this.pas_foto = pas_foto;
     }
 
-<<<<<<< HEAD
     public String getPerlengkapan_dewasa ()
     {
         return perlengkapan_dewasa;
@@ -116,26 +73,6 @@ public class DataProspek {
     public void setPerlengkapan_dewasa (String perlengkapan_dewasa)
     {
         this.perlengkapan_dewasa = perlengkapan_dewasa;
-=======
-    public String getTgl_keberangkatan ()
-    {
-        return tgl_keberangkatan;
-    }
-
-    public void setTgl_keberangkatan (String tgl_keberangkatan)
-    {
-        this.tgl_keberangkatan = tgl_keberangkatan;
-    }
-
-    public String getPas_foto ()
-    {
-        return pas_foto;
-    }
-
-    public void setPas_foto (String pas_foto)
-    {
-        this.pas_foto = pas_foto;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     public String getAnggota_id ()
@@ -148,7 +85,6 @@ public class DataProspek {
         this.anggota_id = anggota_id;
     }
 
-<<<<<<< HEAD
     public String getJml_visa ()
     {
         return jml_visa;
@@ -157,16 +93,6 @@ public class DataProspek {
     public void setJml_visa (String jml_visa)
     {
         this.jml_visa = jml_visa;
-=======
-    public String getVisa_progresif ()
-    {
-        return visa_progresif;
-    }
-
-    public void setVisa_progresif (String visa_progresif)
-    {
-        this.visa_progresif = visa_progresif;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     public String getJml_infant ()
@@ -180,89 +106,6 @@ public class DataProspek {
     }
 
     public String getPembayaran ()
-<<<<<<< HEAD
-=======
-    {
-        return pembayaran;
-    }
-
-    public void setPembayaran (String pembayaran)
-    {
-        this.pembayaran = pembayaran;
-    }
-
-    public Anggota getAnggota ()
-    {
-        return anggota;
-    }
-
-    public void setAnggota (Anggota anggota)
-    {
-        this.anggota = anggota;
-    }
-
-    public String getPic ()
-    {
-        return pic;
-    }
-
-    public void setPic (String pic)
-    {
-        this.pic = pic;
-    }
-
-    public String getDobel()
-    {
-        return dobel;
-    }
-
-    public void setDobel(String dobel)
-    {
-        this.dobel = dobel;
-    }
-
-    public String getFc_akta ()
-    {
-        return fc_akta;
-    }
-
-    public void setFc_akta (String fc_akta)
-    {
-        this.fc_akta = fc_akta;
-    }
-
-    public String getId ()
-    {
-        return id;
-    }
-
-    public void setId (String id)
-    {
-        this.id = id;
-    }
-
-    public String getMeningitis ()
-    {
-        return meningitis;
-    }
-
-    public void setMeningitis (String meningitis)
-    {
-        this.meningitis = meningitis;
-    }
-
-    public String getQuard ()
-    {
-        return quard;
-    }
-
-    public void setQuard (String quard)
-    {
-        this.quard = quard;
-    }
-
-    public String getKeterangan ()
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     {
         return pembayaran;
     }
@@ -312,7 +155,6 @@ public class DataProspek {
         this.id = id;
     }
 
-<<<<<<< HEAD
     public String getQuard ()
     {
         return quard;
@@ -361,29 +203,18 @@ public class DataProspek {
     public void setKeterangan (String keterangan)
     {
         this.keterangan = keterangan;
-=======
-    public String getDiskon ()
-    {
-        return diskon;
     }
 
-    public void setDiskon (String diskon)
+    public String getJml_balita ()
     {
-        this.diskon = diskon;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
+        return jml_balita;
     }
 
-    public String getTriple ()
+    public void setJml_balita (String jml_balita)
     {
-        return triple;
+        this.jml_balita = jml_balita;
     }
 
-    public void setTriple (String triple)
-    {
-        this.triple = triple;
-    }
-
-<<<<<<< HEAD
     public String getPerlengkapan_balita ()
     {
         return perlengkapan_balita;
@@ -432,29 +263,18 @@ public class DataProspek {
     public void setVisa_progresif (String visa_progresif)
     {
         this.visa_progresif = visa_progresif;
-=======
-    public String getJenis ()
-    {
-        return jenis;
     }
 
-    public void setJenis (String jenis)
+    public Anggota getAnggota ()
     {
-        this.jenis = jenis;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
+        return anggota;
     }
 
-    public String getTanggal_followup ()
+    public void setAnggota (Anggota anggota)
     {
-        return tanggal_followup;
+        this.anggota = anggota;
     }
 
-    public void setTanggal_followup (String tanggal_followup)
-    {
-        this.tanggal_followup = tanggal_followup;
-    }
-
-<<<<<<< HEAD
     public String getPic ()
     {
         return pic;
@@ -473,36 +293,6 @@ public class DataProspek {
     public void setJenis (String jenis)
     {
         this.jenis = jenis;
-=======
-    public String getJml_balita ()
-    {
-        return jml_balita;
-    }
-
-    public void setJml_balita (String jml_balita)
-    {
-        this.jml_balita = jml_balita;
-    }
-
-    public String getPassport ()
-    {
-        return passport;
-    }
-
-    public void setPassport (String passport)
-    {
-        this.passport = passport;
-    }
-
-    public String getBuku_nikah ()
-    {
-        return buku_nikah;
-    }
-
-    public void setBuku_nikah (String buku_nikah)
-    {
-        this.buku_nikah = buku_nikah;
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     public String getTanggal_followup ()
@@ -534,12 +324,9 @@ public class DataProspek {
     {
         this.buku_nikah = buku_nikah;
     }
-<<<<<<< HEAD
 
     public String toString()
     {
         return "ClassPojo [pas_foto = "+pas_foto+", perlengkapan_dewasa = "+perlengkapan_dewasa+", anggota_id = "+anggota_id+", jml_visa = "+jml_visa+", jml_infant = "+jml_infant+", pembayaran = "+pembayaran+", jml_balita_kasur = "+jml_balita_kasur+", fc_akta = "+fc_akta+", dobel = "+dobel+", id = "+id+", quard = "+quard+", meningitis = "+meningitis+", triple = "+triple+", diskon = "+diskon+", keterangan = "+keterangan+", jml_balita = "+jml_balita+", perlengkapan_balita = "+perlengkapan_balita+", jml_dewasa = "+jml_dewasa+", tgl_keberangkatan = "+tgl_keberangkatan+", no_telp = "+no_telp+", visa_progresif = "+visa_progresif+", anggota = "+anggota+", pic = "+pic+", jenis = "+jenis+", tanggal_followup = "+tanggal_followup+", passport = "+passport+", buku_nikah = "+buku_nikah+"]";
     }
-=======
->>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 }
