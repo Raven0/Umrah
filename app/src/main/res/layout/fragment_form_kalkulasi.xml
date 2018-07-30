@@ -109,11 +109,36 @@
                             android:inputType="number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+<<<<<<< HEAD
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColorHint="#bababa"
                             android:text=""
                             android:textSize="@dimen/_12sdp"
                             android:theme="@style/EditTextThemes" />
+=======
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="No Telp" />
+
+                            <EditText
+                                android:id="@+id/telp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColorHint="#bababa"
+                                android:textSize="@dimen/_12sdp"
+                                android:theme="@style/EditTextThemes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
                     </LinearLayout>
 
@@ -807,6 +832,7 @@
                         android:layout_marginTop="10dp">
 
                         <Button
+<<<<<<< HEAD
                             android:id="@+id/btnNext"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
@@ -816,6 +842,14 @@
                             android:textAllCaps="false"
                             android:textColor="@android:color/white" />
                     </RelativeLayout>
+=======
+                            android:id="@+id/btnSimpan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#ba000d"
+                            android:text="SIMPAN"
+                            android:textColor="#fff"/>
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
 
                 </LinearLayout>

@@ -1,7 +1,10 @@
 package com.birutekno.umrah.helper;
 
+<<<<<<< HEAD
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.JamaahObject;
+=======
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 import com.birutekno.umrah.model.ProspekObject;
 
 import java.util.HashMap;
@@ -20,7 +23,11 @@ public interface WEBInterface {
 
     //GET ALL PROSPEK
     @GET("prospek")
+<<<<<<< HEAD
     Call<ProspekResponse> getProspek();
+=======
+    Call<WEBResponse> getProspek();
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     //GET SHOW PROSPEK
     @GET("prospek/{id}/show")
@@ -35,6 +42,7 @@ public interface WEBInterface {
     @FormUrlEncoded
     @PUT("prospek/{id}/edit")
     Call<ResponseBody> editProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
+<<<<<<< HEAD
 
     //DATA AGEN
     //GET ALL PROSPEK
@@ -73,4 +81,6 @@ public interface WEBInterface {
     @FormUrlEncoded
     @PUT("jamaah/{id}/edit")
     Call<ResponseBody> editJamaah(@Path("id") String id, @FieldMap HashMap<String, String> params);
+=======
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 }

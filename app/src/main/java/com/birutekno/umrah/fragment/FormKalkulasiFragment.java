@@ -65,6 +65,10 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     List<String> listPaket = new ArrayList<String>();
 
     HashMap<String, String> map = new HashMap<String, String>();
+<<<<<<< HEAD
+=======
+    HashMap<String, String> insertVal = new HashMap<String, String>();
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     private AIWAInterface apiservice;
     ProgressDialog loading;
@@ -95,6 +99,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private CheckBox cbVisa, cbDiskon;
     private CheckBox cbPassport;
     private Boolean passport = false;
+<<<<<<< HEAD
     private String passportString = "false";
     private CheckBox cbFoto;
     private Boolean foto = false;
@@ -109,6 +114,21 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private Boolean bukuNikah = false;
     private String bukuNikahString = "false";
 
+=======
+    private String passportString = "Tidak";
+    private CheckBox cbFoto;
+    private Boolean foto = false;
+    private String fotoString = "Tidak";
+    private CheckBox cbAkta;
+    private Boolean akta = false;
+    private String aktaString = "Tidak";
+    private CheckBox cbMeningitis;
+    private Boolean meningitis = false;
+    private String meningitisString = "Tidak";
+    private CheckBox cbBukuNikah;
+    private Boolean bukuNikah = false;
+    private String bukuNikahString = "Tidak";
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     private Button buttonNext;
     private Button buttonSimpan;
     private Button followUp;
@@ -157,10 +177,15 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private String mekah;
     private String madinahSend;
     private String madinah;
+<<<<<<< HEAD
     private String tglFollowup;
     private String jenisPerlengkapan;
     private String jenisPerlengkapanDewasa;
     private String paketHotelBalita;
+=======
+    private String statPembayaran;
+    private String tglFollowup;
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
 
     private ProgressDialog pDialog;
 
@@ -647,6 +672,21 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+<<<<<<< HEAD
+=======
+        pembayaran.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                statPembayaran = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
         followUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -953,14 +993,113 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                     }
                 });
             }
+        } else if (view == buttonSimpan){
+
+            picName = pic.getText().toString().trim();
+            no_telp = telp.getText().toString().trim();
+            jmlDewasa = Integer.parseInt(dewasa.getText().toString().trim());
+            jmlInfant = Integer.parseInt(infant.getText().toString().trim());
+            jmlBalita = Integer.parseInt(balita.getText().toString().trim());
+            jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
+            jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
+            jmlQuard = Integer.parseInt(quard.getText().toString().trim());
+            jmlDiskon = Integer.parseInt(diskonboy.getText().toString().trim());
+            jmlProgresif = Integer.parseInt(progresif.getText().toString().trim());
+
+            if(cbPassport.isChecked()){
+                passportString = "Ya";
+            }else {
+                passportString = "Tidak";
+            }
+
+            if(cbMeningitis.isChecked()){
+                meningitisString = "Ya";
+            }else {
+                meningitisString = "Tidak";
+            }
+
+            if(cbFoto.isChecked()){
+                fotoString = "Ya";
+            }else {
+                fotoString = "Tidak";
+            }
+
+            if(cbBukuNikah.isChecked()){
+                bukuNikahString = "Ya";
+            }else {
+                bukuNikahString = "Tidak";
+            }
+
+            if(cbAkta.isChecked()){
+                aktaString = "Ya";
+            }else {
+                aktaString = "Tidak";
+            }
+
+            HashMap<String, String> params = new HashMap<>();
+            params.put("no_telp", no_telp);
+            params.put("tgl_keberangkatan", tgl_berangkat);
+            params.put("pas_foto", fotoString);
+            params.put("anggota_id", "45");
+            params.put("visa_progresif", String.valueOf(jmlProgresif));
+            params.put("jml_infant", String.valueOf(jmlInfant));
+            params.put("pembayaran", statPembayaran);
+            params.put("pic", picName);
+            params.put("dobel", String.valueOf(jmlDobel));
+            params.put("fc_akta", aktaString);
+            params.put("meningitis", meningitisString);
+            params.put("quard", String.valueOf(jmlQuard));
+            params.put("keterangan", keterangan.getText().toString().trim());
+            params.put("diskon", String.valueOf(jmlDiskon));
+            params.put("triple", String.valueOf(jmlTripel));
+            params.put("jenis", jenisPaket);
+            params.put("tanggal_followup", tglFollowup);
+            params.put("jml_balita", String.valueOf(jmlBalita));
+            params.put("passport", passportString);
+            params.put("buku_nikah", bukuNikahString);
+            params.put("jml_dewasa", String.valueOf(jmlDewasa));
+
+            pDialog = new ProgressDialog(getContext());
+            pDialog.setMessage("Harap tunggu...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+            Call<ResponseBody> result = WebApi.getAPIService().insertProspek(params);
+            result.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    pDialog.dismiss();
+                    try {
+                        if(response.body()!=null){
+//                            Toast.makeText(getContext()," response message "+response.body().string(),Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                            startActivity(intent);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    pDialog.dismiss();
+                    t.printStackTrace();
+                }
+            });
         }
     }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+<<<<<<< HEAD
         Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear+1,year), Toast.LENGTH_LONG).show();
         followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year));
         tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year);
+=======
+        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear,year), Toast.LENGTH_LONG).show();
+        followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear,year));
+        tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear,year);
+>>>>>>> 2b7161a532d384f67bc9e81c63136c2e27c8badf
     }
 
     public void setupAdapter(){
