@@ -1,42 +1,39 @@
 package com.birutekno.umrah.model;
 
 public class JamaahObject {
-    public class MyPojo
+    private DataJamaah[] data;
+
+    private Links links;
+
+    private Meta meta;
+
+    public DataJamaah[] getData ()
     {
-        private DataJamaah[] data;
+        return data;
+    }
 
-        private Links links;
+    public void setData (DataJamaah[] data)
+    {
+        this.data = data;
+    }
 
-        private Meta meta;
+    public Links getLinks ()
+    {
+        return links;
+    }
 
-        public DataJamaah[] getData ()
-        {
-            return data;
-        }
+    public void setLinks (Links links)
+    {
+        this.links = links;
+    }
 
-        public void setData (DataJamaah[] data)
-        {
-            this.data = data;
-        }
+    public Meta getMeta ()
+    {
+        return meta;
+    }
 
-        public Links getLinks ()
-        {
-            return links;
-        }
-
-        public void setLinks (Links links)
-        {
-            this.links = links;
-        }
-
-        public Meta getMeta ()
-        {
-            return meta;
-        }
-
-        public void setMeta (Meta meta)
-        {
-            this.meta = meta;
-        }
+    public void setMeta (Meta meta)
+    {
+        this.meta = meta;
     }
 }

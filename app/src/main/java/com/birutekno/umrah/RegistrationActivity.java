@@ -6,14 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.birutekno.umrah.helper.AgenResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +37,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class RegistrationActivity extends BaseActivity {
 
     private List<DataAgen> alldata;
+    List<String> idAgen = new ArrayList<String>();
+    List<String> namaAgen = new ArrayList<String>();
 
     private String no_telp;
     private String username;
@@ -72,6 +80,19 @@ public class RegistrationActivity extends BaseActivity {
         almt = (EditText) findViewById(R.id.alamat);
         nokt = (EditText) findViewById(R.id.noktp);
         pasw = (EditText) findViewById(R.id.password);
+
+        initSpinnerAgen();
+        koord.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                koordinator = idAgen.get(position);
+                Toast.makeText(mContext, koordinator, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @OnClick(R.id.kirim)
@@ -79,7 +100,6 @@ public class RegistrationActivity extends BaseActivity {
 
         no_telp = notelp.getText().toString().trim();
         username = usrnm.getText().toString().trim();
-//        koordinator = koord.getText().toString().trim();
         status = "0";
         email = emil.getText().toString().trim();
         jenis_kelamin = jk.getText().toString().trim();
@@ -98,7 +118,7 @@ public class RegistrationActivity extends BaseActivity {
         params.put("alamat", alamat);
         params.put("no_telp", no_telp);
         params.put("status", status);
-        params.put("koordinator", "0");
+        params.put("koordinator", koordinator);
 
         pDialog = new ProgressDialog(mContext);
         pDialog.setMessage("Harap tunggu...");
@@ -143,41 +163,42 @@ public class RegistrationActivity extends BaseActivity {
         return intent;
     }
 
-//    public void initSpinnerAgen(){
-//        loading = ProgressDialog.show(mContext, null, "Harap tunggu...", true, false);
-//
-//        Call<AgenResponse> call = WebApi.getAPIService().getAgen();
-//        call.enqueue(new Callback<AgenResponse>() {
-//            @Override
-//            public void onResponse(Call<AgenResponse> call, Response<AgenResponse> response) {
-//                if (response.isSuccessful()) {
-//                    loading.dismiss();
-//                    alldata = Arrays.asList(response.body().getAgen();
-//                    for (int i = 0; i < alldata.size(); i++){
-//                        List<Jadwal> jadwal = Arrays.asList(alldata.get(i).get);
-//                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
-//                        ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
-////                        ketJadwal.add(jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
-//                    }
-//
-//                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-//                            android.R.layout.simple_spinner_item, listJadwal);
-//                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    jadwal.setAdapter(adapter);
-//
-//                } else {
-//                    loading.dismiss();
-//                    Toast.makeText(getContext(), "Gagal mengambil data jadwal", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<AgenResponse> call, Throwable t) {
-//                loading.dismiss();
-//                Toast.makeText(getContext(), "Server Jadwal bermasalah", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    public void initSpinnerAgen(){
+        loading = ProgressDialog.show(mContext, null, "Harap tunggu...", true, false);
+
+        Call<AgenResponse> call = WebApi.getAPIService().getAgen();
+        call.enqueue(new Callback<AgenResponse>() {
+            @Override
+            public void onResponse(Call<AgenResponse> call, Response<AgenResponse> response) {
+                if (response.isSuccessful()) {
+                    loading.dismiss();
+                    alldata = Arrays.asList(response.body().getAgen());
+                    for (int i = 0; i < alldata.size(); i++){
+                        int id = Integer.parseInt(alldata.get(i).getId());
+                        String nama = alldata.get(i).getNama();
+
+                        idAgen.add(String.valueOf(id));
+                        namaAgen.add(nama);
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                            android.R.layout.simple_spinner_item, namaAgen);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    koord.setAdapter(adapter);
+
+                } else {
+                    loading.dismiss();
+                    Toast.makeText(mContext, "Gagal mengambil data Koordinator", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AgenResponse> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(mContext, "Server bermasalah", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
