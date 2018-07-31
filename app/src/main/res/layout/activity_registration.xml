@@ -195,16 +195,22 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="40dp">
 
-                    <EditText
+                    <!--<EditText-->
+                        <!--android:id="@+id/koordinator"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Id Link"-->
+                        <!--android:paddingLeft="@dimen/_10sdp"-->
+                       <!---->
+                        <!--android:textSize="@dimen/_12sdp"-->
+                        <!--android:theme="@style/EditTextTheme" />-->
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/koordinator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Id Link"
-                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="#ffff"
-                        android:textColorHint="#ffff"
-                        android:textSize="@dimen/_12sdp"
-                        android:theme="@style/EditTextTheme" />
+                        android:textColorHint="#ffff"/>
 
                 </LinearLayout>
 

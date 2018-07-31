@@ -77,7 +77,14 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
 
                     for (DataProspek data: dataProspeks) {
 
-                        if (data.getPic().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || data.getPembayaran().toLowerCase().contains(charString)) {
+                        int jmldewasa = Integer.parseInt(data.getJml_dewasa());
+                        int jmlinfant = Integer.parseInt(data.getJml_infant());
+                        int jmlbalita = Integer.parseInt(data.getJml_balita());
+                        int jmlbalitaKasur = Integer.parseInt(data.getJml_balita_kasur());
+                        int pax = jmldewasa + jmlinfant + jmlbalita + jmlbalitaKasur;
+                        String strPax = pax + " PAX";
+
+                        if (data.getPic().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || strPax.toLowerCase().contains(charString)) {
                             filterData.add(data);
                         }
                     }

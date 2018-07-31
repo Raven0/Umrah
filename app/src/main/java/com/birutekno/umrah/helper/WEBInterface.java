@@ -2,6 +2,7 @@ package com.birutekno.umrah.helper;
 
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.JamaahObject;
+import com.birutekno.umrah.model.LoginModel;
 import com.birutekno.umrah.model.ProspekObject;
 
 import java.util.HashMap;
@@ -17,10 +18,13 @@ import retrofit2.http.Path;
 
 public interface WEBInterface {
     //DATA PROSPEK
-
     //GET ALL PROSPEK
-    @GET("prospek")
+    @GET("prospek/")
     Call<ProspekResponse> getProspek();
+
+    //GET PROSPEK BY AGEN
+    @GET("prospek/{id}/agen")
+    Call<ProspekResponse> getProspekAgen(@Path("id") String id);
 
     //GET SHOW PROSPEK
     @GET("prospek/{id}/show")
@@ -36,40 +40,53 @@ public interface WEBInterface {
     @PUT("prospek/{id}/edit")
     Call<ResponseBody> editProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
 
-    //DATA AGEN
-    //GET ALL PROSPEK
-    @GET("agen")
-    Call<LoginResponse> getAgen();
 
-    //GET SHOW PROSPEK
+
+
+
+    //DATA AGEN
+    //GET ALL AGEN
+    @GET("agen")
+    Call<AgenResponse> getAgen();
+
+    //GET SHOW AGEN
     @GET("agen/{id}/show")
     Call<AgenObject> showAgen(@Path("id") String id);
 
-    //POST NEW PROSPEK
+    //REGISTER AGEN
     @FormUrlEncoded
-    @POST("agen")
+    @POST("register")
     Call<ResponseBody> insertAgen(@FieldMap HashMap<String, String> params);
 
-    //PUT PROSPEK
+    //LOGIN AGEN
+    @FormUrlEncoded
+    @POST("login")
+    Call<LoginModel> loginAgen(@FieldMap HashMap<String, String> params);
+
+    //EDIT AGEN
     @FormUrlEncoded
     @PUT("agen/{id}/edit")
     Call<ResponseBody> editAgen(@Path("id") String id, @FieldMap HashMap<String, String> params);
 
+
+
+
+
     //DATA JAMAAH
-    //GET ALL PROSPEK
+    //GET ALL JAMAAH
     @GET("jamaah")
     Call<JamaahResponse> getJamaah();
 
-    //GET SHOW PROSPEK
+    //GET SHOW JAMAAH
     @GET("jamaah/{id}/show")
     Call<JamaahObject> showJamaah(@Path("id") String id);
 
-    //POST NEW PROSPEK
+    //POST NEW JAMAAH
     @FormUrlEncoded
     @POST("jamaah")
     Call<ResponseBody> insertJamaah(@FieldMap HashMap<String, String> params);
 
-    //PUT PROSPEK
+    //PUT JAMAAH
     @FormUrlEncoded
     @PUT("jamaah/{id}/edit")
     Call<ResponseBody> editJamaah(@Path("id") String id, @FieldMap HashMap<String, String> params);

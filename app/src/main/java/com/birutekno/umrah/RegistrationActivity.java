@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.birutekno.umrah.helper.WebApi;
+import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -27,6 +30,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RegistrationActivity extends BaseActivity {
 
+    private List<DataAgen> alldata;
+
     private String no_telp;
     private String username;
     private String koordinator;
@@ -39,10 +44,11 @@ public class RegistrationActivity extends BaseActivity {
     private String password;
 
     private ProgressDialog pDialog;
+    private ProgressDialog loading;
 
     EditText notelp;
     EditText usrnm;
-    EditText koord;
+    SearchableSpinner koord;
     EditText emil;
     EditText jk;
     EditText nma;
@@ -59,7 +65,7 @@ public class RegistrationActivity extends BaseActivity {
     protected void onViewReady(Bundle savedInstanceState) {
         notelp = (EditText) findViewById(R.id.telp);
         usrnm = (EditText) findViewById(R.id.username);
-        koord = (EditText) findViewById(R.id.koordinator);
+        koord = (SearchableSpinner) findViewById(R.id.koordinator);
         emil = (EditText) findViewById(R.id.email);
         jk = (EditText) findViewById(R.id.jk);
         nma = (EditText) findViewById(R.id.nama);
@@ -73,8 +79,8 @@ public class RegistrationActivity extends BaseActivity {
 
         no_telp = notelp.getText().toString().trim();
         username = usrnm.getText().toString().trim();
-        koordinator = koord.getText().toString().trim();
-        status = "1";
+//        koordinator = koord.getText().toString().trim();
+        status = "0";
         email = emil.getText().toString().trim();
         jenis_kelamin = jk.getText().toString().trim();
         nama = nma.getText().toString().trim();
@@ -83,16 +89,16 @@ public class RegistrationActivity extends BaseActivity {
         password = pasw.getText().toString().trim();
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("no_telp", no_telp);
-        params.put("username", username);
-        params.put("koordinator", koordinator);
-        params.put("status", status);
-        params.put("email", email);
-        params.put("jenis_kelamin", jenis_kelamin);
         params.put("nama", nama);
-        params.put("alamat", alamat);
-        params.put("no_ktp", no_ktp);
+        params.put("email", email);
+        params.put("username", username);
         params.put("password", password);
+        params.put("jenis_kelamin", jenis_kelamin);
+        params.put("no_ktp", no_ktp);
+        params.put("alamat", alamat);
+        params.put("no_telp", no_telp);
+        params.put("status", status);
+        params.put("koordinator", "0");
 
         pDialog = new ProgressDialog(mContext);
         pDialog.setMessage("Harap tunggu...");
@@ -112,6 +118,7 @@ public class RegistrationActivity extends BaseActivity {
                     }
                 }catch (Exception e){
                     e.printStackTrace();
+                    Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -119,6 +126,7 @@ public class RegistrationActivity extends BaseActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 pDialog.dismiss();
                 t.printStackTrace();
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -134,6 +142,42 @@ public class RegistrationActivity extends BaseActivity {
         Intent intent = new Intent(context, RegistrationActivity.class);
         return intent;
     }
+
+//    public void initSpinnerAgen(){
+//        loading = ProgressDialog.show(mContext, null, "Harap tunggu...", true, false);
+//
+//        Call<AgenResponse> call = WebApi.getAPIService().getAgen();
+//        call.enqueue(new Callback<AgenResponse>() {
+//            @Override
+//            public void onResponse(Call<AgenResponse> call, Response<AgenResponse> response) {
+//                if (response.isSuccessful()) {
+//                    loading.dismiss();
+//                    alldata = Arrays.asList(response.body().getAgen();
+//                    for (int i = 0; i < alldata.size(); i++){
+//                        List<Jadwal> jadwal = Arrays.asList(alldata.get(i).get);
+//                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
+//                        ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
+////                        ketJadwal.add(jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
+//                    }
+//
+//                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+//                            android.R.layout.simple_spinner_item, listJadwal);
+//                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    jadwal.setAdapter(adapter);
+//
+//                } else {
+//                    loading.dismiss();
+//                    Toast.makeText(getContext(), "Gagal mengambil data jadwal", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<AgenResponse> call, Throwable t) {
+//                loading.dismiss();
+//                Toast.makeText(getContext(), "Server Jadwal bermasalah", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity {
 
         mDtext.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.yellow));
         mDImage.setBackgroundResource(R.drawable.ic_dashboard_yellow);
+
         initPager();
     }
 

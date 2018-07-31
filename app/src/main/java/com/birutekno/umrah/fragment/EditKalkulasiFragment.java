@@ -4,6 +4,7 @@ package com.birutekno.umrah.fragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -37,6 +38,7 @@ import com.birutekno.umrah.model.DataProspek;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 import com.birutekno.umrah.model.ProspekObject;
+import com.blackcat.currencyedittext.CurrencyEditText;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.ParseException;
@@ -47,11 +49,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -59,8 +64,7 @@ import retrofit2.Response;
  */
 public class EditKalkulasiFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
 
-    Boolean loaded = false;
-
+    public static final String PREFS_NAME = "AUTH";
     private List<Jadwal> objJadwal;
     private List<Paket> objPaket;
     private List<DataJadwal> alldata;
@@ -101,7 +105,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private EditText quard;
     private TextView progresif;
     private EditText progresifJml;
-    private EditText diskonboy;
+    private CurrencyEditText diskonboy;
     private EditText keterangan;
 
     private CheckBox cbVisa, cbDiskon;
@@ -222,7 +226,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         quard = (EditText) view.findViewById(R.id.etQuard);
         progresif = (TextView) view.findViewById(R.id.etVisa);
         progresifJml = (EditText) view.findViewById(R.id.etVisaJml);
-        diskonboy = (EditText) view.findViewById(R.id.etDiskon);
+        diskonboy = (CurrencyEditText) view.findViewById(R.id.etDiskon);
         keterangan = (EditText) view.findViewById(R.id.etKeterangan);
         followUp = (Button) view.findViewById(R.id.dateFollow);
         viewPerlengkapan = (LinearLayout) view.findViewById(R.id.viewPerlengkapan);
@@ -499,6 +503,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        diskonboy.setLocale(new Locale("in","ID"));
         diskonboy.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -515,10 +520,10 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     jmlDiskon = 0;
                 }else {
                     try {
-                        jmlDiskon = Integer.parseInt(diskonboy.getText().toString().trim());
+                        jmlDiskon = (int) (long) diskonboy.getRawValue();
                     }catch (Exception ex){
                         diskonboy.setText("0");
-                        Toast.makeText(getContext(), "Batas Maximal sementara", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Batas Maximal sementara : "+ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -1015,9 +1020,11 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     aktaString = "false";
                 }
 
+                SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                int id_agen = prefs.getInt("iduser", 0);
                 HashMap<String, String> params = new HashMap<>();
                 //anggota_id
-                params.put("anggota_id", "1");
+                params.put("anggota_id", String.valueOf(id_agen));
                 params.put("pic", picName);
                 params.put("no_telp", no_telp);
                 params.put("jml_dewasa", String.valueOf(jmlDewasa));

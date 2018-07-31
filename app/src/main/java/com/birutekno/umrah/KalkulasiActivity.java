@@ -3,6 +3,7 @@ package com.birutekno.umrah;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +33,8 @@ import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class KalkulasiActivity extends BaseActivity {
+
+    public static final String PREFS_NAME = "AUTH";
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -93,7 +96,10 @@ public class KalkulasiActivity extends BaseActivity {
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
         pDialog.show();
-        Call<ProspekResponse> call = WebApi.getAPIService().getProspek();
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        int id = prefs.getInt("iduser", 0);
+        Call<ProspekResponse> call = WebApi.getAPIService().getProspekAgen(String.valueOf(id));
         call.enqueue(new Callback<ProspekResponse>() {
             @Override
             public void onResponse(Call<ProspekResponse> call, Response<ProspekResponse> response) {

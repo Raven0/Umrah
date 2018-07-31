@@ -5,147 +5,155 @@
     android:layout_height="match_parent"
     android:background="@drawable/header_bg">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/aiwalogo"
-                app:srcCompat="@drawable/aiwalogo" />
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_20sdp"
-            android:baselineAligned="false"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/aiwalogo"
+                    app:srcCompat="@drawable/aiwalogo" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp">
+                android:layout_margin="@dimen/_20sdp"
+                android:baselineAligned="false"
+                android:orientation="vertical">
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/drawable_username"
-                    android:hint="Username"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:textColor="#ffff"
-                    android:textColorHint="#ffff"
-                    android:textSize="@dimen/_12sdp"
-                    android:theme="@style/EditTextTheme" />
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp">
+
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/drawable_username"
+                        android:hint="Email"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColor="#ffff"
+                        android:textColorHint="#ffff"
+                        android:textSize="@dimen/_12sdp"
+                        android:theme="@style/EditTextTheme" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/drawable_password"
+                        android:hint="******"
+                        android:inputType="textPassword"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textColor="#ffff"
+                        android:textColorHint="#ffff"
+                        android:textSize="@dimen/_12sdp"
+                        android:theme="@style/EditTextTheme" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp">
 
-                <EditText
+                <Button
+                    android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/drawable_password"
-                    android:hint="******"
-                    android:inputType="textPassword"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:textColor="#ffff"
-                    android:textColorHint="#ffff"
-                    android:textSize="@dimen/_12sdp"
-                    android:theme="@style/EditTextTheme" />
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@drawable/button_outline"
+                    android:text="LOGIN"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lupa Password ?"
+                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/here"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:text="Klik Disini"
+                        android:textColor="#ffff00"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tidak Punya Akun ?"
+                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/create"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:text="Registrasi"
+                        android:textColor="#ffff00"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp">
-
-            <Button
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:background="@drawable/button_outline"
-                android:text="LOGIN"
-                android:textColor="@android:color/white" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lupa Password ?"
-                    android:textSize="@dimen/_10sdp"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:id="@+id/here"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:text="Klik Disini"
-                    android:textColor="#ffff00"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tidak Punya Akun ?"
-                    android:textSize="@dimen/_10sdp"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:id="@+id/create"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:text="Registrasi"
-                    android:textColor="#ffff00"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>
