@@ -41,8 +41,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.ViewHolder> implements Filterable {
 
     public static final String PREFS_NAME = "AUTH";
-    private ArrayList<DataProspek> dataProspeks;
-    private ArrayList<DataProspek> mFilterData;
+    public ArrayList<DataProspek> dataProspeks;
+    public ArrayList<DataProspek> mFilterData;
     private ProgressDialog pDialog;
     Context context;
 

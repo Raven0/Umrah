@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +33,11 @@ import com.birutekno.umrah.KalkulasiActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.helper.AIWAInterface;
 import com.birutekno.umrah.helper.AIWAResponse;
+import com.birutekno.umrah.helper.KalkulasiResponse;
 import com.birutekno.umrah.helper.UtilsApi;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataJadwal;
+import com.birutekno.umrah.model.DataKalkulasi;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 import com.blackcat.currencyedittext.CurrencyEditText;
@@ -67,6 +70,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     List<Jadwal> objJadwal;
     List<Paket> objPaket;
     List<DataJadwal> alldata;
+    ArrayList<DataKalkulasi> pojo;
 
     List<String> listJadwal = new ArrayList<String>();
     List<String> ketJadwal = new ArrayList<String>();
@@ -154,6 +158,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
 
     private String picName;
     private String no_telp;
+    private String ket;
     private String tgl_berangkat;
     private String jenisPaket;
     private String sendTgl;
@@ -171,6 +176,16 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
 
     private ProgressDialog pDialog;
 
+    //LOAD MASTER KALKULASI
+    private int hargaDefault = 0;
+    private int hargaPromo = 0;
+    private int hargaInfant = 0;
+    private int hargaFull = 0;
+    private int hargaLite = 0;
+    private int diskonBalitaUhud = 0;
+    private int diskonBalitaNur = 0;
+    private int diskonBalitaRahman = 0;
+
     public FormKalkulasiFragment() {
         // Required empty public constructor
     }
@@ -181,6 +196,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_form_kalkulasi, container, false);
         loadComponent();
+        loadKalkulasi();
         setupAdapter();
         return view;
     }
@@ -795,6 +811,15 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                         bundle.putInt("visa_jml", jmlvisa);
                         bundle.putInt("diskon", jmlDiskon);
 
+                        bundle.putInt("hargaDefault", hargaDefault);
+                        bundle.putInt("hargaPromo", hargaPromo);
+                        bundle.putInt("hargaInfant", hargaInfant);
+                        bundle.putInt("hargaFull", hargaFull);
+                        bundle.putInt("hargaLite", hargaLite);
+                        bundle.putInt("diskonBalitaUhud", diskonBalitaUhud);
+                        bundle.putInt("diskonBalitaNur", diskonBalitaNur);
+                        bundle.putInt("diskonBalitaRahman", diskonBalitaRahman);
+
                         step3Fragment.setArguments(bundle);
                         getFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
@@ -843,6 +868,15 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                         bundle.putInt("visa_jml", jmlvisa);
                         bundle.putInt("diskon", jmlDiskon);
 
+                        bundle.putInt("hargaDefault", hargaDefault);
+                        bundle.putInt("hargaPromo", hargaPromo);
+                        bundle.putInt("hargaInfant", hargaInfant);
+                        bundle.putInt("hargaFull", hargaFull);
+                        bundle.putInt("hargaLite", hargaLite);
+                        bundle.putInt("diskonBalitaUhud", diskonBalitaUhud);
+                        bundle.putInt("diskonBalitaNur", diskonBalitaNur);
+                        bundle.putInt("diskonBalitaRahman", diskonBalitaRahman);
+
                         step3Fragment.setArguments(bundle);
                         getFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_right, R.anim.slide_in_from_left, R.anim.slide_out_from_left)
@@ -857,11 +891,12 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 Toast.makeText(getContext(), "Pastikan Jumlah Dewasa dan Balita (Dengan Kasur) terisi sesuai dengan Jumlah Kamar", Toast.LENGTH_SHORT).show();
             }
         } else if (view == buttonSimpan){
-            if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim())){
-                Toast.makeText(getContext(), "Pastikan nama PIC dan Nomor Telepon Terisi", Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim()) || TextUtils.isEmpty(keterangan.getText().toString().trim()) || TextUtils.isEmpty(tglFollowup)){
+                Toast.makeText(getContext(), "Pastikan nama PIC, Nomor Telepon, Keterangan, dan Tanggal FollowUp Terisi", Toast.LENGTH_SHORT).show();
             }else {
                 picName = pic.getText().toString().trim();
                 no_telp = telp.getText().toString().trim();
+                ket = keterangan.getText().toString().trim();
 
                 if(rb1.isChecked()){
                     perlengkapanFull = true;
@@ -941,7 +976,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 params.put("fc_akta", aktaString);
                 params.put("visa_progresif", String.valueOf(jmlProgresif));
                 params.put("diskon", String.valueOf(jmlDiskon));
-                params.put("keterangan", keterangan.getText().toString().trim());
+                params.put("keterangan", ket);
                 params.put("tanggal_followup", tglFollowup);
                 params.put("pembayaran", "BELUM");
                 params.put("perlengkapan_balita", jenisPerlengkapan);
@@ -972,8 +1007,10 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         pDialog.dismiss();
-                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), "On Failure", Toast.LENGTH_SHORT).show();
+                        if (t.getMessage().equals("timeout")){
+                            Toast.makeText(getContext(), "Server timeout, Coba Lagi", Toast.LENGTH_SHORT).show();
+                        }
+//                        Toast.makeText(getContext(), "On Failure", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();
                     }
                 });
@@ -1139,5 +1176,44 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
         String temp = args;
         String output = temp.substring(temp.length()-3);
         return output;
+    }
+
+    private void loadKalkulasi(){
+        Call<KalkulasiResponse> call = WebApi.getAPIService().getKalkulasi();
+        call.enqueue(new Callback<KalkulasiResponse>() {
+            @Override
+            public void onResponse(Call<KalkulasiResponse> call, Response<KalkulasiResponse> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    KalkulasiResponse kalkulasiResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(kalkulasiResponse.getKalkulasi()));
+                    String jml = pojo.get(0).getHarga_visa();
+                    progresif.setText(jml);
+
+                    hargaDefault = Integer.parseInt(pojo.get(0).getHarga_default());
+                    hargaPromo = Integer.parseInt(pojo.get(0).getHarga_promo());
+                    hargaInfant = Integer.parseInt(pojo.get(0).getHarga_infant());
+                    hargaFull = Integer.parseInt(pojo.get(0).getHarga_full());
+                    hargaLite = Integer.parseInt(pojo.get(0).getHarga_lite());
+                    diskonBalitaUhud = Integer.parseInt(pojo.get(0).getDiskon_balita_uhud());
+                    diskonBalitaNur = Integer.parseInt(pojo.get(0).getDiskon_balita_nur());
+                    diskonBalitaRahman = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
+                }catch (Exception ex){
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<KalkulasiResponse> call, Throwable t) {
+                loadKalkulasi();
+            }
+        });
     }
 }

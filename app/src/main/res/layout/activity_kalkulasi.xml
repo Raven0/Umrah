@@ -38,50 +38,39 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:focusable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:paddingTop="5dp"-->
-        <!--android:paddingBottom="5dp"-->
-        <!--android:paddingLeft="10dp">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/jul"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="List DataJadwal Calon Jamaah"-->
-            <!--android:textSize="16dp"-->
-            <!--android:textColor="#000"-->
-            <!--android:textStyle="bold"-->
-            <!--android:gravity="center_vertical"/>-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/searchKalkulasi"-->
-            <!--android:layout_width="110dp"-->
-            <!--android:layout_height="25dp"-->
-            <!--android:background="@drawable/outline_black"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_toLeftOf="@+id/idSearch"/>-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/idSearch"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:src="@drawable/ic_search"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentRight="true" />-->
-
-    <!--</RelativeLayout>-->
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/loadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Database Timeout"/>
+
+        <Button
+            android:id="@+id/loadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_rounded_orange_1"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="Coba lagi"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/tambah"

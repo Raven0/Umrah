@@ -10,17 +10,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
+import com.birutekno.umrah.model.DataKalkulasi;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TotalKalkulasiFragment extends Fragment {
+
+    ArrayList<DataKalkulasi> pojo;
 
     private View view;
     private Button shareBtn;
@@ -94,17 +99,19 @@ public class TotalKalkulasiFragment extends Fragment {
     private String jenisPerlengkapan;
     private String jenisPerlengkapanDewasa;
 
+    String jml = "null";
+
     private int hargaDouble;
     private int hargaTriple;
     private int hargaQuard;
-    private int hargaDefault = 1200000;
+    private int hargaDefault = 0;
     private int hargaPromo = 0;
-    private int hargaInfant = 9500000;
-    private int hargaFull = 1200000;
-    private int hargaLite = 500000;
-    private int diskonBalitaUhud = 2500000;
-    private int diskonBalitaNur = 4000000;
-    private int diskonBalitaRahman = 4500000;
+    private int hargaInfant = 0;
+    private int hargaFull = 0;
+    private int hargaLite = 0;
+    private int diskonBalitaUhud = 0;
+    private int diskonBalitaNur = 0;
+    private int diskonBalitaRahman = 0;
 
     private int jmlDobel = 0;
     private int jmlTripel = 0;
@@ -153,6 +160,7 @@ public class TotalKalkulasiFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_total_kalkulasi, container, false);
         loadComponent();
+        Toast.makeText(getContext(), jml, Toast.LENGTH_SHORT).show();
         loadBundle();
         calculate();
 
@@ -232,6 +240,16 @@ public class TotalKalkulasiFragment extends Fragment {
     private void loadBundle(){
         //START BUNDLE
         Bundle bundle = getArguments();
+
+        hargaDefault = bundle.getInt("hargaDefault");
+        hargaPromo = bundle.getInt("hargaPromo");
+        hargaInfant = bundle.getInt("hargaInfant");
+        hargaFull = bundle.getInt("hargaFull");
+        hargaLite = bundle.getInt("hargaLite");
+        diskonBalitaUhud = bundle.getInt("diskonBalitaUhud");
+        diskonBalitaNur = bundle.getInt("diskonBalitaNur");
+        diskonBalitaRahman = bundle.getInt("diskonBalitaRahman");
+
         berangkatTanggal.setText(bundle.getString("berangkatTgl"));
         maskapai.setText(bundle.getString("maskapai"));
         landing.setText(bundle.getString("landing"));
@@ -244,7 +262,6 @@ public class TotalKalkulasiFragment extends Fragment {
         tripleBool = bundle.getBoolean("boolTriple");
         quardBool = bundle.getBoolean("boolQuard");
         jenisPaket = bundle.getString("jenisPaket");
-//        jenisPaketBalita = bundle.getString("paketHotelBalita");
         jenisPerlengkapan = bundle.getString("perlengkapan");
         jenisPerlengkapanDewasa = bundle.getString("perlengkapanDewasa");
 

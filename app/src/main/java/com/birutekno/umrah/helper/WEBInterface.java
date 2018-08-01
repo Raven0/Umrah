@@ -41,6 +41,10 @@ public interface WEBInterface {
     Call<ResponseBody> editProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
 
 
+    //DATA PROSPEK
+    //GET ALL PROSPEK
+    @GET("kalkulasi/")
+    Call<KalkulasiResponse> getKalkulasi();
 
 
 

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.birutekno.umrah.adapter.KalkulasiAdapter;
@@ -44,6 +45,12 @@ public class KalkulasiActivity extends BaseActivity {
 
     @Bind(R.id.tambah)
     Button btnTambah;
+
+    @Bind(R.id.loadBtn)
+    Button loadBtn;
+
+    @Bind(R.id.loadView)
+    LinearLayout loadview;
 
     private ArrayList<DataProspek> pojo;
     private KalkulasiAdapter mAdapter;
@@ -82,6 +89,13 @@ public class KalkulasiActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        loadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadJSON();
+            }
+        });
     }
 
     private void initViews(){
@@ -107,6 +121,13 @@ public class KalkulasiActivity extends BaseActivity {
                     pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
                     mAdapter = new KalkulasiAdapter(pojo, getBaseContext());
                     mRecyclerView.setAdapter(mAdapter);
+                    if (mAdapter.getItemCount() == 0){
+                        loadview.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
+                    }else {
+                        loadview.setVisibility(View.GONE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                    }
                     pDialog.dismiss();
                 }else {
                     Log.d("ERROR CODE" , String.valueOf(response.code()));
