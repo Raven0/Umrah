@@ -117,8 +117,8 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private Boolean bukuNikah = false;
     private String bukuNikahString = "false";
 
-    private Button buttonNext;
-    private Button buttonSimpan;
+    public Button buttonNext;
+    public Button buttonSimpan;
     private Button followUp;
     private Spinner hotel, jadwal;
 //    pembayaran
@@ -254,6 +254,21 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 }
             }
         });
+
+        if (jmlvisa > 0){
+            cbVisa.setChecked(true);
+            viewVisa.setVisibility(View.VISIBLE);
+        }else {
+            cbVisa.setChecked(false);
+            viewVisa.setVisibility(View.GONE);
+        }
+        if (jmlDiskon > 0){
+            cbDiskon.setChecked(true);
+            viewDiskon.setVisibility(View.VISIBLE);
+        }else {
+            cbDiskon.setChecked(false);
+            viewDiskon.setVisibility(View.GONE);
+        }
 
         dewasa.addTextChangedListener(new TextWatcher() {
             @Override
@@ -668,7 +683,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 datePickerDialog.setTitle("Pilih Periode");
                 datePickerDialog.show(fm,"Date");
 
-                Toast.makeText(getContext(), String.valueOf(jmlDiskon), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), String.valueOf(jmlDiskon), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -968,7 +983,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear+1,year), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear+1,year), Toast.LENGTH_LONG).show();
         followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year));
         tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year);
     }

@@ -1,8 +1,14 @@
 package com.birutekno.umrah.adapter;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +19,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.birutekno.umrah.EditKalkulasiActivity;
+import com.birutekno.umrah.KalkulasiActivity;
 import com.birutekno.umrah.R;
+import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataProspek;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by No Name on 7/31/2017.
@@ -24,8 +40,10 @@ import java.util.ArrayList;
 
 public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.ViewHolder> implements Filterable {
 
+    public static final String PREFS_NAME = "AUTH";
     private ArrayList<DataProspek> dataProspeks;
     private ArrayList<DataProspek> mFilterData;
+    private ProgressDialog pDialog;
     Context context;
 
     public KalkulasiAdapter(ArrayList<DataProspek> dataProspeks, Context context) {
@@ -46,6 +64,30 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
         viewHolder.id.setText(mFilterData.get(i).getId());
         viewHolder.nama.setText(mFilterData.get(i).getPic());
         viewHolder.telp.setText(mFilterData.get(i).getNo_telp());
+
+        viewHolder.pic = mFilterData.get(i).getPic();
+        viewHolder.no_telp = mFilterData.get(i).getNo_telp();
+        viewHolder.jml_dewasa = mFilterData.get(i).getJml_dewasa();
+        viewHolder.jml_infant= mFilterData.get(i).getJml_infant();
+        viewHolder.jml_balita= mFilterData.get(i).getJml_balita();
+        viewHolder.jml_visa = mFilterData.get(i).getJml_visa();
+        viewHolder.jml_balita_kasur = mFilterData.get(i).getJml_balita_kasur();
+        viewHolder.tgl_keberangkatan = mFilterData.get(i).getTgl_keberangkatan();
+        viewHolder.jenis = mFilterData.get(i).getJenis();
+        viewHolder.dobel = mFilterData.get(i).getDobel();
+        viewHolder.triple = mFilterData.get(i).getTriple();
+        viewHolder.quard = mFilterData.get(i).getQuard();
+        viewHolder.passport = mFilterData.get(i).getPassport();
+        viewHolder.meningitis = mFilterData.get(i).getMeningitis();
+        viewHolder.pas_foto = mFilterData.get(i).getPas_foto();
+        viewHolder.buku_nikah = mFilterData.get(i).getBuku_nikah();
+        viewHolder.fc_akta = mFilterData.get(i).getFc_akta();
+        viewHolder.visa_progresif = mFilterData.get(i).getVisa_progresif();
+        viewHolder.diskon = mFilterData.get(i).getDiskon();
+        viewHolder.keterangan = mFilterData.get(i).getKeterangan();
+        viewHolder.tanggal_followup = mFilterData.get(i).getTanggal_followup();
+        viewHolder.perlengkapan_balita = mFilterData.get(i).getPerlengkapan_balita();
+        viewHolder.perlengkapan_dewasa = mFilterData.get(i).getPerlengkapan_dewasa();
 
         int jmldewasa = Integer.parseInt(mFilterData.get(i).getJml_dewasa());
         int jmlinfant = Integer.parseInt(mFilterData.get(i).getJml_infant());
@@ -108,6 +150,29 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView id,nama,telp,alamat;
         private LinearLayout detail, edit;
+        String pic;
+        String no_telp;
+        String jml_dewasa;
+        String jml_infant;
+        String jml_balita;
+        String jml_visa;
+        String jml_balita_kasur;
+        String tgl_keberangkatan;
+        String jenis;
+        String dobel;
+        String triple;
+        String quard;
+        String passport;
+        String meningitis;
+        String pas_foto;
+        String buku_nikah;
+        String fc_akta;
+        String visa_progresif;
+        String diskon;
+        String keterangan;
+        String tanggal_followup;
+        String perlengkapan_balita;
+        String perlengkapan_dewasa;
         public ViewHolder(final View view) {
             super(view);
 
@@ -128,10 +193,85 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
 
             detail.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "pay", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(context, InputKalkulasiActivity.class);
-//                    context.startActivity(intent);
+                public void onClick(final View v) {
+                    AlertDialog.Builder adb = new AlertDialog.Builder((Activity) v.getContext());
+                    adb.setMessage("Apakah anda yakin?");
+                    adb.setTitle("Pembayaran DP Prospek");
+//                    adb.setIcon(android.R.drawable.ic_dialog_alert);
+                    adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            String sessionId = id.getText().toString();
+                            Toast.makeText(context,"PAY : " + sessionId, Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                            int id_agen = prefs.getInt("iduser", 0);
+                            HashMap<String, String> params = new HashMap<>();
+                            //anggota_id
+                            params.put("anggota_id", String.valueOf(id_agen));
+                            params.put("pic", pic);
+                            params.put("no_telp", no_telp);
+                            params.put("jml_dewasa", jml_dewasa);
+                            params.put("jml_infant", jml_infant);
+                            params.put("jml_balita", jml_balita);
+                            params.put("jml_visa", jml_visa);
+                            params.put("jml_balita_kasur", jml_balita_kasur);
+                            params.put("tgl_keberangkatan", tgl_keberangkatan);
+                            params.put("jenis", jenis);
+                            params.put("dobel", dobel);
+                            params.put("triple", triple);
+                            params.put("quard", quard);
+                            params.put("passport", passport);
+                            params.put("meningitis", meningitis);
+                            params.put("pas_foto", pas_foto);
+                            params.put("buku_nikah", buku_nikah);
+                            params.put("fc_akta", fc_akta);
+                            params.put("visa_progresif", visa_progresif);
+                            params.put("diskon", diskon);
+                            params.put("keterangan", keterangan);
+                            params.put("tanggal_followup", tanggal_followup);
+                            params.put("pembayaran", "SUDAH");
+                            params.put("perlengkapan_balita", perlengkapan_balita);
+                            params.put("perlengkapan_dewasa", perlengkapan_dewasa);
+
+                            pDialog = new ProgressDialog((Activity) v.getContext());
+                            pDialog.setMessage("Harap tunggu...");
+                            pDialog.setCancelable(false);
+                            pDialog.show();
+
+                            Call<ResponseBody> result = WebApi.getAPIService().editProspek(sessionId, params);
+                            result.enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    pDialog.dismiss();
+                                    try {
+                                        if(response.body()!=null){
+                                            Log.d("RES", "onResponse: " + response.body());
+                                            Toast.makeText((Activity) v.getContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(context, KalkulasiActivity.class);
+                                            context.startActivity(intent);
+                                        }
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                        Log.d("EXC", "onResponse: " + e.getMessage());
+                                        Toast.makeText((Activity) v.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    pDialog.dismiss();
+                                    t.printStackTrace();
+                                    Log.d("THROM", "onResponse: " + t.getMessage());
+                                    Toast.makeText((Activity) v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                    adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    adb.show();
                 }
             });
 

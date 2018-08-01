@@ -25,8 +25,6 @@ public class TotalKalkulasiFragment extends Fragment {
     private View view;
     private Button shareBtn;
 
-//    DecimalFormat formatter = new DecimalFormat("###,###,###,###,###");
-
     private LinearLayout quardView;
     private LinearLayout tripleView;
     private LinearLayout doubleView;

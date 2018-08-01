@@ -47,7 +47,6 @@ public class KalkulasiActivity extends BaseActivity {
 
     private ArrayList<DataProspek> pojo;
     private KalkulasiAdapter mAdapter;
-    private String mDate = "";
 
     private ProgressDialog pDialog;
 
@@ -105,7 +104,7 @@ public class KalkulasiActivity extends BaseActivity {
             public void onResponse(Call<ProspekResponse> call, Response<ProspekResponse> response) {
                 if(response.isSuccessful()){
                     ProspekResponse jsonResponse = response.body();
-                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getProspek()));
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
                     mAdapter = new KalkulasiAdapter(pojo, getBaseContext());
                     mRecyclerView.setAdapter(mAdapter);
                     pDialog.dismiss();

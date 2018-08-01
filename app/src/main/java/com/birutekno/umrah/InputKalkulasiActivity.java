@@ -1,6 +1,8 @@
 package com.birutekno.umrah;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,12 +51,31 @@ public class InputKalkulasiActivity extends AppCompatActivity {
     }
 
     public static void goToStepTotal() {
-        position = 2;
+        position = 1;
     }
 
     @Override
     public void onBackPressed() {
-        position--;
-        super.onBackPressed();
+//        position--;
+        final String pos = String.valueOf(position);
+        if (String.valueOf(position).equals("0")){
+            AlertDialog.Builder adb = new AlertDialog.Builder(InputKalkulasiActivity.this);
+            adb.setMessage("Apakah data ini akan disimpan?");
+            adb.setTitle("Data Prospek");
+            adb.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            adb.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    position--;
+                    InputKalkulasiActivity.super.onBackPressed();
+                }
+            });
+            adb.show();
+        }else {
+            position--;
+            super.onBackPressed();
+        }
     }
 }

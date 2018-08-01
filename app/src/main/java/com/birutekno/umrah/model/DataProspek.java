@@ -324,9 +324,4 @@ public class DataProspek {
     {
         this.buku_nikah = buku_nikah;
     }
-
-    public String toString()
-    {
-        return "ClassPojo [pas_foto = "+pas_foto+", perlengkapan_dewasa = "+perlengkapan_dewasa+", anggota_id = "+anggota_id+", jml_visa = "+jml_visa+", jml_infant = "+jml_infant+", pembayaran = "+pembayaran+", jml_balita_kasur = "+jml_balita_kasur+", fc_akta = "+fc_akta+", dobel = "+dobel+", id = "+id+", quard = "+quard+", meningitis = "+meningitis+", triple = "+triple+", diskon = "+diskon+", keterangan = "+keterangan+", jml_balita = "+jml_balita+", perlengkapan_balita = "+perlengkapan_balita+", jml_dewasa = "+jml_dewasa+", tgl_keberangkatan = "+tgl_keberangkatan+", no_telp = "+no_telp+", visa_progresif = "+visa_progresif+", anggota = "+anggota+", pic = "+pic+", jenis = "+jenis+", tanggal_followup = "+tanggal_followup+", passport = "+passport+", buku_nikah = "+buku_nikah+"]";
-    }
 }
