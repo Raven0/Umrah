@@ -1,5 +1,6 @@
 package com.birutekno.umrah;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class ProfileActivity extends BaseActivity {
 
     public static final String PREFS_NAME = "AUTH";
+    private ProgressDialog pDialog;
 
     public Toolbar mToolbar;
     public Button btnEdt;
@@ -90,10 +92,17 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void loadData(final String id){
+
+        pDialog = new ProgressDialog(mContext);
+        pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
         Call<AgenObject> call = WebApi.getAPIService().showAgen(id);
         call.enqueue(new Callback<AgenObject>() {
             @Override
             public void onResponse(Call<AgenObject> call, Response<AgenObject> response) {
+                pDialog.dismiss();
                 try{
                     if (response.isSuccessful()){
                         Log.d("MSGASD", "SUCCESS");

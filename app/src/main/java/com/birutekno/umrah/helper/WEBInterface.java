@@ -41,10 +41,14 @@ public interface WEBInterface {
     Call<ResponseBody> editProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
 
 
-    //DATA PROSPEK
-    //GET ALL PROSPEK
+
+
+    //DATA KALKULASI
+    //GET ALL KALKULASI
     @GET("kalkulasi/")
     Call<KalkulasiResponse> getKalkulasi();
+
+
 
 
 
@@ -94,4 +98,11 @@ public interface WEBInterface {
     @FormUrlEncoded
     @PUT("jamaah/{id}/edit")
     Call<ResponseBody> editJamaah(@Path("id") String id, @FieldMap HashMap<String, String> params);
+
+
+
+    //DATA FAQ
+    //GET ALL FAQ
+    @GET("faq/")
+    Call<FaqResponse> getFaq();
 }

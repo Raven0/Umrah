@@ -39,41 +39,66 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:background="@drawable/button_outline_black">
+                android:background="@color/white"
+                android:clickable="false"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="@dimen/_3sdp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:padding="10dp">
 
                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imgView"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:src="@drawable/foto_profil" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:text="No Ktp" />
+                            android:text="No Ktp"
+                            android:gravity="right"
+                            android:textSize="16dp"/>
 
                         <TextView
                             android:id="@+id/ktpAgen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="16dp"
                             android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"
-                            android:text="123123213"/>
+                            android:theme="@style/EditTextThemes"/>
 
                     </LinearLayout>
 
@@ -83,18 +108,19 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:text="Nama" />
+                            android:text="Nama"
+                            android:gravity="right"
+                            android:textSize="16dp"/>
 
                         <TextView
                             android:id="@+id/namaAgen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="16dp"
                             android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"
-                            android:text="Rohman"/>
+                            android:theme="@style/EditTextThemes"/>
 
                     </LinearLayout>
 
@@ -104,18 +130,19 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:text="No Telepon" />
+                            android:text="No Telepon"
+                            android:gravity="right"
+                            android:textSize="16dp"/>
 
                         <TextView
                             android:id="@+id/telpAgen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="16dp"
                             android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"
-                            android:text="08587267123"/>
+                            android:theme="@style/EditTextThemes"/>
 
                     </LinearLayout>
 
@@ -125,18 +152,19 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:text="Email" />
+                            android:text="Email"
+                            android:gravity="right"
+                            android:textSize="16dp"/>
 
                         <TextView
                             android:id="@+id/emailAgen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="16dp"
                             android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"
-                            android:text="rohman@aiwa.com"/>
+                            android:theme="@style/EditTextThemes"/>
 
                     </LinearLayout>
 
@@ -146,18 +174,19 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:text="Domisili" />
+                            android:text="Domisili"
+                            android:gravity="right"
+                            android:textSize="16dp"/>
 
                         <TextView
                             android:id="@+id/domisiliAgen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="16dp"
                             android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"
-                            android:text="Jl. Kawaluyaan Bandung"/>
+                            android:theme="@style/EditTextThemes"/>
 
                     </LinearLayout>
 
@@ -167,34 +196,41 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:text="Jenis Kelamin" />
+                            android:text="Jenis Kelamin"
+                            android:gravity="right"
+                            android:textSize="16dp"/>
 
                         <TextView
                             android:id="@+id/jkAgen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="16dp"
                             android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"
-                            android:text="L"/>
+                            android:theme="@style/EditTextThemes"/>
 
                     </LinearLayout>
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="80dp">
+
+                        <Button
+                            android:id="@+id/btnEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_button_rounded_red"
+                            android:text="Edit Profile"
+                            android:textColor="@android:color/white" />
+
+                    </RelativeLayout>
+
+
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_outline_black"
-                android:text="Edit"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"/>
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
 
