@@ -238,7 +238,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                             pDialog.setCancelable(false);
                             pDialog.show();
 
-                            Call<ResponseBody> result = WebApi.getAPIService().editProspek(sessionId, params);
+                            Call<ResponseBody> result = WebApi.getAPIService().bayarProspek(sessionId, params);
                             result.enqueue(new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

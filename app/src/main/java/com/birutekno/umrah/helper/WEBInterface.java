@@ -40,6 +40,11 @@ public interface WEBInterface {
     @PUT("prospek/{id}/edit")
     Call<ResponseBody> editProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
 
+    //BAYAR PROSPEK
+    @FormUrlEncoded
+    @PUT("prospek/{id}/bayar")
+    Call<ResponseBody> bayarProspek(@Path("id") String id, @FieldMap HashMap<String, String> params);
+
 
 
 
@@ -56,6 +61,10 @@ public interface WEBInterface {
     //GET ALL AGEN
     @GET("agen")
     Call<AgenResponse> getAgen();
+
+    //GET ALL AGEN
+    @GET("agen/approved")
+    Call<AgenResponse> getAgenApproved();
 
     //GET SHOW AGEN
     @GET("agen/{id}/show")

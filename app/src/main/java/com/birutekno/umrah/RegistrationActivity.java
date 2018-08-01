@@ -182,7 +182,7 @@ public class RegistrationActivity extends BaseActivity {
     public void initSpinnerAgen(){
         loading = ProgressDialog.show(mContext, null, "Harap tunggu...", true, false);
 
-        Call<AgenResponse> call = WebApi.getAPIService().getAgen();
+        Call<AgenResponse> call = WebApi.getAPIService().getAgenApproved();
         call.enqueue(new Callback<AgenResponse>() {
             @Override
             public void onResponse(Call<AgenResponse> call, Response<AgenResponse> response) {
