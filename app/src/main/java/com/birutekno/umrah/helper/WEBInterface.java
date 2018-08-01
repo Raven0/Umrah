@@ -105,4 +105,11 @@ public interface WEBInterface {
     //GET ALL FAQ
     @GET("faq/")
     Call<FaqResponse> getFaq();
+
+    //DATA GALLERY
+    //GET ALL GALLERY
+    @GET("gallery/foto/")
+    Call<GalleryResponse> getGalleryFoto();
+    @GET("gallery/video/")
+    Call<GalleryResponse> getGalleryVideo();
 }
