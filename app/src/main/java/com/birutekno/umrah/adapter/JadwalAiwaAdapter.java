@@ -1,6 +1,7 @@
 package com.birutekno.umrah.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,8 +26,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.ViewHolder> implements Filterable {
-    private final Context context;
 
+    private final Context context;
     private ArrayList<DataJadwal> data;
     private ArrayList<DataJadwal> mFilterData;
     private ArrayList<Jadwal> jadwal;
@@ -71,10 +72,9 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         viewHolder.detailPulang.setText(jadwal.get(0).getRute_pulang());
         viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.");
 
-//        if (jadwal.get(0).getStatus().equals("SOLD OUT")){
-//            viewHolder.jadwal.setBackgroundColor(Color.RED);
-//            viewHolder.paketHari.setText("SOLD OUT");
-//        }
+        if (jadwal.get(0).getStatus().equals("SOLD OUT")){
+            viewHolder.paketHari.setText("SOLD OUT");
+        }
 
         adapter = new PaketAiwaAdapter(jadwal, paket, context);
         if (adapter.getItemCount() != 0){
@@ -114,7 +114,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
                     for (DataJadwal data: data) {
                         jadwal = new ArrayList<>(Arrays.asList(data.getJadwal()));
 
-                        if (jadwal.get(0).getTgl_berangkat().toLowerCase().contains(charString) || jadwal.get(0).getRute_berangkat().toLowerCase().contains(charString) || (jadwal.get(0).getJml_hari() + " Hari.").toLowerCase().contains(charString)) {
+                        if (convertDate(jadwal.get(0).getTgl_berangkat()).toLowerCase().contains(charString) || jadwal.get(0).getRute_berangkat().toLowerCase().contains(charString) || (jadwal.get(0).getJml_hari() + " Hari.").toLowerCase().contains(charString)) {
                             filterData.add(data);
                         }
                     }

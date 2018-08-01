@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,9 +23,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdapter.ViewHolder> {
+public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdapter.ViewHolder>  implements Filterable {
+
     private final Context context;
     private ArrayList<DataJadwal> data;
+    private ArrayList<DataJadwal> mFilterData;
     private ArrayList<Jadwal> jadwal;
     private ArrayList<Paket> paket;
 
@@ -39,6 +43,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
 
     public ItineraryAiwaAdapter(ArrayList<DataJadwal> data, Context context) {
         this.data = data;
+        mFilterData = data;
         this.context = context;
     }
 
@@ -50,7 +55,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
 
     @Override
     public void onBindViewHolder(ItineraryAiwaAdapter.ViewHolder viewHolder, int i) {
-        jadwal = new ArrayList<>(Arrays.asList(data.get(i).getJadwal()));
+        jadwal = new ArrayList<>(Arrays.asList(mFilterData.get(i).getJadwal()));
         paket = new ArrayList<>(Arrays.asList(jadwal.get(0).getPaket()));
 
         berangkatDetail = jadwal.get(0).getRute_berangkat() + " , " + jadwal.get(0).getPesawat_berangkat() + "(" + jadwal.get(0).getJam_berangkat() + ")" ;
@@ -65,7 +70,45 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return mFilterData.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    mFilterData = data;
+                } else {
+
+                    ArrayList<DataJadwal> filterData = new ArrayList<>();
+
+                    for (DataJadwal data: data) {
+                        jadwal = new ArrayList<>(Arrays.asList(data.getJadwal()));
+
+                        if (convertDate(jadwal.get(0).getTgl_berangkat()).toLowerCase().contains(charString) || jadwal.get(0).getRute_berangkat().toLowerCase().contains(charString) || (jadwal.get(0).getJml_hari() + " Hari.").toLowerCase().contains(charString)) {
+                            filterData.add(data);
+                        }
+                    }
+
+                    mFilterData = filterData;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilterData;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilterData = (ArrayList<DataJadwal>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

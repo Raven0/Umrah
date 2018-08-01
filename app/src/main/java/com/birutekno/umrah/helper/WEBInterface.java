@@ -112,4 +112,10 @@ public interface WEBInterface {
     Call<GalleryResponse> getGalleryFoto();
     @GET("gallery/video/")
     Call<GalleryResponse> getGalleryVideo();
+
+    //DATA BROSUR
+    @GET("brosur/")
+    Call<BrosurResponse> getBrosur();
+//    @GET("gallery/video/")
+//    Call<GalleryResponse> getGalleryVideo();
 }

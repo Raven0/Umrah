@@ -299,7 +299,7 @@
                     android:text="Brosur Umrah" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/tutoringRecyclerView"
+                    android:id="@+id/brosur"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -311,7 +311,7 @@
                     android:text="Voucher Umrah" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/stationaryRecyclerView"
+                    android:id="@+id/voucher"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

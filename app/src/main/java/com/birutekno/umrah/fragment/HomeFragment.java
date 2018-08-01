@@ -1,9 +1,7 @@
 package com.birutekno.umrah.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -11,6 +9,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 
 import com.birutekno.umrah.GalleryActivity;
@@ -22,23 +21,32 @@ import com.birutekno.umrah.LokasiActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.adapter.BannerAdapter;
 import com.birutekno.umrah.adapter.BannerPagerAdapter;
+import com.birutekno.umrah.adapter.BrosurAdapter;
 import com.birutekno.umrah.helper.AutoScrollViewPager;
+import com.birutekno.umrah.helper.BrosurResponse;
 import com.birutekno.umrah.helper.CirclePageIndicator;
+import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.Banner;
+import com.birutekno.umrah.model.DataBrosur;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
-import com.birutekno.umrah.view.BannerItemView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by No Name on 7/29/2017.
  */
 
-public class HomeFragment extends BaseFragment implements BannerItemView.OnActionListener {
+public class HomeFragment extends BaseFragment{
+
+//    implements BannerItemView.OnActionListener
 
     @OnClick(R.id.jamaah)
     void jamaahClicked() {
@@ -92,11 +100,11 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
-    @Bind(R.id.tutoringRecyclerView)
-    RecyclerView mTutoringRecyclerView;
+    @Bind(R.id.brosur)
+    RecyclerView recyclerViewBrosur;
 
-    @Bind(R.id.stationaryRecyclerView)
-    RecyclerView mStationaryRecyclerView;
+    @Bind(R.id.voucher)
+    RecyclerView recyclerViewVoucher;
 
     @Bind(R.id.pager)
     protected AutoScrollViewPager mPager;
@@ -104,7 +112,9 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
     @Bind(R.id.circle_indicator)
     protected CirclePageIndicator mIndicator;
 
-    private BannerAdapter mTutoringAdapter;
+    private ArrayList<DataBrosur> pojo;
+    private ProgressDialog pDialog;
+    private BrosurAdapter brosurAdapter;
     private BannerAdapter mStationaryAdapter;
     private BannerPagerAdapter mBannerAdapter;
 
@@ -120,78 +130,55 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        setUpAdapter();
         setUpRecyclerView();
-        setData();
         initBanner();
-    }
-
-    private void setUpAdapter() {
-        mTutoringAdapter = new BannerAdapter(mContext);
-        mTutoringAdapter.setOnActionListener(this);
-
-        mStationaryAdapter = new BannerAdapter(mContext);
-        mStationaryAdapter.setOnActionListener(this);
+        loadJSON();
     }
 
     private void setUpRecyclerView() {
-        mTutoringRecyclerView.setHasFixedSize(true);
-        mTutoringRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mTutoringRecyclerView.setAdapter(mTutoringAdapter);
+        recyclerViewBrosur.setHasFixedSize(true);
+        recyclerViewBrosur.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewBrosur.setAdapter(brosurAdapter);
 
-        mStationaryRecyclerView.setHasFixedSize(true);
-        mStationaryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mStationaryRecyclerView.setAdapter(mStationaryAdapter);
+        recyclerViewVoucher.setHasFixedSize(true);
+        recyclerViewVoucher.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewVoucher.setAdapter(mStationaryAdapter);
     }
 
-    private void setData() {
-        List<Banner> data = new ArrayList<>();
-
-        data.add(new Banner(4, R.drawable.brosur1));
-        data.add(new Banner(5, R.drawable.brosur2));
-        data.add(new Banner(6, R.drawable.brosur3));
-
-//        mTutoringAdapter.addAll(data);
-//        mTutoringAdapter.notifyDataSetChanged();
+//    @Override
+//    public void onClick(BannerItemView view) {
+////        String itemPos = String.valueOf(view.getAdapterPosition());
+////        view.getBanner().getId()
+////        view.getBanner().getImage();
+////        String itemIds = String.valueOf(view.getBanner().getId());
+////        String itemImgS = String.valueOf(view.getBanner().getImage());
+////        int itemId = view.getBanner().getId();
+//        int itemImg = view.getBanner().getImage();
 //
-//        mStationaryAdapter.addAll(data);
-//        mStationaryAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onClick(BannerItemView view) {
-//        String itemPos = String.valueOf(view.getAdapterPosition());
-//        view.getBanner().getId()
-//        view.getBanner().getImage();
-//        String itemIds = String.valueOf(view.getBanner().getId());
-//        String itemImgS = String.valueOf(view.getBanner().getImage());
-//        int itemId = view.getBanner().getId();
-        int itemImg = view.getBanner().getImage();
-
-//        Drawable image = getResources().getDrawable(itemImg);
-//        Drawable image = getResources().getDrawable(itemId);
-
-//        changeMe.setImageResource(itemImg);
-
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),itemImg);
-        String path = getContext().getExternalCacheDir()+"/shareimage.jpg";
-        java.io.OutputStream out = null;
-        java.io.File file=new java.io.File(path);
-        try { out = new java.io.FileOutputStream(file); bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out); out.flush(); out.close(); } catch (Exception e) { e.printStackTrace(); } path=file.getPath();
-        Uri bmpUri = Uri.parse("file://"+path);
-
-        Intent shareIntent = new Intent();
-        shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-        shareIntent.setType("*/*");
-
-        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Alhijaz Indowisata Agen");
-        startActivity(Intent.createChooser(shareIntent,"Share with"));
-
-//        Toast.makeText(mContext, itemId + " and " + itemImg + " with " + image.toString(), Toast.LENGTH_SHORT).show();
-
-    }
+////        Drawable image = getResources().getDrawable(itemImg);
+////        Drawable image = getResources().getDrawable(itemId);
+//
+////        changeMe.setImageResource(itemImg);
+//
+//        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),itemImg);
+//        String path = getContext().getExternalCacheDir()+"/shareimage.jpg";
+//        java.io.OutputStream out = null;
+//        java.io.File file=new java.io.File(path);
+//        try { out = new java.io.FileOutputStream(file); bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out); out.flush(); out.close(); } catch (Exception e) { e.printStackTrace(); } path=file.getPath();
+//        Uri bmpUri = Uri.parse("file://"+path);
+//
+//        Intent shareIntent = new Intent();
+//        shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+//        shareIntent.setType("*/*");
+//
+//        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, "Alhijaz Indowisata Agen");
+//        startActivity(Intent.createChooser(shareIntent,"Share with"));
+//
+////        Toast.makeText(mContext, itemId + " and " + itemImg + " with " + image.toString(), Toast.LENGTH_SHORT).show();
+//
+//    }
 
     private void initBanner(){
         final List<Banner> data = new ArrayList<>();
@@ -241,5 +228,36 @@ public class HomeFragment extends BaseFragment implements BannerItemView.OnActio
         }else if(data.size() == 1){
             mPager.stopAutoScroll();
         }
+    }
+
+    private void loadJSON(){
+        pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        Call<BrosurResponse> call = WebApi.getAPIService().getBrosur();
+        call.enqueue(new Callback<BrosurResponse>() {
+            @Override
+            public void onResponse(Call<BrosurResponse> call, Response<BrosurResponse> response) {
+                if(response.isSuccessful()){
+                    BrosurResponse jsonResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    brosurAdapter = new BrosurAdapter(pojo, getContext());
+                    recyclerViewBrosur.setAdapter(brosurAdapter);
+                    pDialog.dismiss();
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BrosurResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
+            }
+        });
     }
 }
