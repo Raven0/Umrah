@@ -245,40 +245,6 @@
 
                         </RadioGroup>
 
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginTop="15dp"-->
-                            <!--android:layout_marginBottom="15dp"-->
-                            <!--android:text="Jenis Paket Balita"-->
-                            <!--android:textStyle="bold"-->
-                            <!--android:textColor="#000"/>-->
-
-                        <!--<RadioGroup-->
-                            <!--android:id="@+id/groupKamar"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content">-->
-
-                            <!--<android.support.v7.widget.AppCompatRadioButton-->
-                                <!--android:id="@+id/kamarRahmah"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="RAHMAH"/>-->
-
-                            <!--<android.support.v7.widget.AppCompatRadioButton-->
-                                <!--android:id="@+id/kamarNur"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="NUR"/>-->
-
-                            <!--<android.support.v7.widget.AppCompatRadioButton-->
-                                <!--android:id="@+id/kamarUhud"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="UHUD"/>-->
-
-                        <!--</RadioGroup>-->
-
                     </LinearLayout>
 
                     <!--INDIKATOR TOTAL-->

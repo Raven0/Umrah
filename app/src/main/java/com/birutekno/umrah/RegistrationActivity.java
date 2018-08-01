@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.birutekno.umrah.helper.AgenResponse;
@@ -51,6 +52,8 @@ public class RegistrationActivity extends BaseActivity {
     private String no_ktp;
     private String password;
 
+    private Boolean jk;
+
     private ProgressDialog pDialog;
     private ProgressDialog loading;
 
@@ -58,11 +61,11 @@ public class RegistrationActivity extends BaseActivity {
     EditText usrnm;
     SearchableSpinner koord;
     EditText emil;
-    EditText jk;
     EditText nma;
     EditText almt;
     EditText nokt;
     EditText pasw;
+    RadioButton rb1, rb2;
 
     @Override
     protected int getResourceLayout() {
@@ -75,11 +78,12 @@ public class RegistrationActivity extends BaseActivity {
         usrnm = (EditText) findViewById(R.id.username);
         koord = (SearchableSpinner) findViewById(R.id.koordinator);
         emil = (EditText) findViewById(R.id.email);
-        jk = (EditText) findViewById(R.id.jk);
         nma = (EditText) findViewById(R.id.nama);
         almt = (EditText) findViewById(R.id.alamat);
         nokt = (EditText) findViewById(R.id.noktp);
         pasw = (EditText) findViewById(R.id.password);
+        rb1 = (RadioButton) findViewById(R.id.pria);
+        rb2 = (RadioButton) findViewById(R.id.wanita);
 
         initSpinnerAgen();
         koord.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -102,53 +106,65 @@ public class RegistrationActivity extends BaseActivity {
         username = usrnm.getText().toString().trim();
         status = "0";
         email = emil.getText().toString().trim();
-        jenis_kelamin = jk.getText().toString().trim();
+        if(rb1.isChecked()){
+            jenis_kelamin = "L";
+            jk = true;
+        }else if(rb2.isChecked()){
+            jenis_kelamin = "P";
+            jk = true;
+        }else {
+            jk = false;
+        }
         nama = nma.getText().toString().trim();
         alamat = almt.getText().toString().trim();
         no_ktp = nokt.getText().toString().trim();
         password = pasw.getText().toString().trim();
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("nama", nama);
-        params.put("email", email);
-        params.put("username", username);
-        params.put("password", password);
-        params.put("jenis_kelamin", jenis_kelamin);
-        params.put("no_ktp", no_ktp);
-        params.put("alamat", alamat);
-        params.put("no_telp", no_telp);
-        params.put("status", status);
-        params.put("koordinator", koordinator);
+        if (jk){
+            HashMap<String, String> params = new HashMap<>();
+            params.put("nama", nama);
+            params.put("email", email);
+            params.put("username", username);
+            params.put("password", password);
+            params.put("jenis_kelamin", jenis_kelamin);
+            params.put("no_ktp", no_ktp);
+            params.put("alamat", alamat);
+            params.put("no_telp", no_telp);
+            params.put("status", status);
+            params.put("koordinator", koordinator);
 
-        pDialog = new ProgressDialog(mContext);
-        pDialog.setMessage("Harap tunggu...");
-        pDialog.setCancelable(false);
-        pDialog.show();
+            pDialog = new ProgressDialog(mContext);
+            pDialog.setMessage("Harap tunggu...");
+            pDialog.setCancelable(false);
+            pDialog.show();
 
-        Call<ResponseBody> result = WebApi.getAPIService().insertAgen(params);
-        result.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                pDialog.dismiss();
-                try {
-                    if(response.body()!=null){
-                        Toast.makeText(mContext, "Registrasi berhasil, Tunggu Approval", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(mContext, LoginActivity.class);
-                        startActivity(intent);
+            Call<ResponseBody> result = WebApi.getAPIService().insertAgen(params);
+            result.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    pDialog.dismiss();
+                    try {
+                        if(response.body()!=null){
+                            Toast.makeText(mContext, "Registrasi berhasil, Tunggu Approval", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(mContext, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                pDialog.dismiss();
-                t.printStackTrace();
-                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    pDialog.dismiss();
+                    t.printStackTrace();
+                    Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+            Toast.makeText(mContext, "Pilih Jenis Kelamin", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.here)

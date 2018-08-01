@@ -79,16 +79,38 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="40dp">
 
-                    <EditText
-                        android:id="@+id/jk"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Jenis Kelamin"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:textColor="#ffff"
-                        android:textColorHint="#ffff"
-                        android:textSize="@dimen/_12sdp"
-                        android:theme="@style/EditTextTheme" />
+                    <!--<EditText-->
+                        <!--android:id="@+id/jk"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Jenis Kelamin"-->
+                        <!--android:paddingLeft="@dimen/_10sdp"-->
+                        <!--android:textColor="#ffff"-->
+                        <!--android:textColorHint="#ffff"-->
+                        <!--android:textSize="@dimen/_12sdp"-->
+                        <!--android:theme="@style/EditTextTheme" />-->
+                    <RadioGroup
+                        android:id="@+id/groupJk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/pria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fff"
+                            android:buttonTint="#fff"
+                            android:text="Pria"/>
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/wanita"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fff"
+                            android:buttonTint="#fff"
+                            android:text="Wanita"/>
+
+                    </RadioGroup>
 
                 </LinearLayout>
 
@@ -189,22 +211,22 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih Koordinator"
+                    android:textColor="#ffff"
+                    android:textColorHint="#ffff"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_rounded_greyish"
                     android:orientation="horizontal"
                     android:layout_marginHorizontal="40dp">
-
-                    <!--<EditText-->
-                    <!--android:id="@+id/koordinator"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Id Link"-->
-                    <!--android:paddingLeft="@dimen/_10sdp"-->
-                    <!---->
-                    <!--android:textSize="@dimen/_12sdp"-->
-                    <!--android:theme="@style/EditTextTheme" />-->
 
                     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/koordinator"
