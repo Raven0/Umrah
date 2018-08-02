@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.birutekno.umrah.fragment.JBerangkatFragment;
 import com.birutekno.umrah.fragment.KomisiFragment;
+import com.birutekno.umrah.fragment.PotensiFragment;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -23,7 +23,7 @@ public class PotkomPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return KomisiFragment.newInstance();
             case 1:
-                return JBerangkatFragment.newInstance();
+                return PotensiFragment.newInstance();
             default:
                 return KomisiFragment.newInstance();
         }

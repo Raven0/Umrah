@@ -28,7 +28,7 @@ import retrofit2.Response;
  * Created by No Name on 7/29/2017.
  */
 
-public class KomisiFragment extends BaseFragment{
+public class PotensiFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
 
@@ -39,8 +39,8 @@ public class KomisiFragment extends BaseFragment{
     private PotkomAdapter mAdapter;
     private ProgressDialog pDialog;
 
-    public static KomisiFragment newInstance() {
-        KomisiFragment fragment = new KomisiFragment();
+    public static PotensiFragment newInstance() {
+        PotensiFragment fragment = new PotensiFragment();
         return fragment;
     }
 
@@ -70,7 +70,7 @@ public class KomisiFragment extends BaseFragment{
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         int id = prefs.getInt("iduser", 0);
 
-        Call<PotkomResponse> call = WebApi.getAPIService().getDataKomisi(String.valueOf(id));
+        Call<PotkomResponse> call = WebApi.getAPIService().getDataPotensi(String.valueOf(id));
         call.enqueue(new Callback<PotkomResponse>() {
             @Override
             public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {

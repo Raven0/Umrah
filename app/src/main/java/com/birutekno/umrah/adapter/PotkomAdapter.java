@@ -1,20 +1,17 @@
 package com.birutekno.umrah.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.birutekno.umrah.EditKalkulasiActivity;
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.DataKomisi;
+import com.birutekno.umrah.model.DataPotkom;
 
 import java.util.ArrayList;
 
@@ -22,31 +19,32 @@ import java.util.ArrayList;
  * Created by No Name on 7/31/2017.
  */
 
-public class KomisiAdapter extends RecyclerView.Adapter<KomisiAdapter.ViewHolder> implements Filterable {
+public class PotkomAdapter extends RecyclerView.Adapter<PotkomAdapter.ViewHolder> implements Filterable {
 
-    private ArrayList<DataKomisi> data;
-    private ArrayList<DataKomisi> mFilterData;
+    private ArrayList<DataPotkom> data;
+    private ArrayList<DataPotkom> mFilterData;
     Context context;
 
-    public KomisiAdapter(ArrayList<DataKomisi> data, Context context) {
+    public PotkomAdapter(ArrayList<DataPotkom> data, Context context) {
         this.data = data;
         mFilterData = data;
         this.context = context;
     }
 
     @Override
-    public KomisiAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_kalkulasi, viewGroup, false);
-        return new KomisiAdapter.ViewHolder(view);
+    public PotkomAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_potkom, viewGroup, false);
+        return new PotkomAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(KomisiAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(PotkomAdapter.ViewHolder viewHolder, int i) {
 
         viewHolder.id.setText(mFilterData.get(i).getId());
         viewHolder.nama.setText(mFilterData.get(i).getNama());
         viewHolder.telp.setText(mFilterData.get(i).getNo_telp());
         viewHolder.alamat.setText(mFilterData.get(i).getTgl_berangkat());
+        viewHolder.fee.setText(mFilterData.get(i).getMarketing_fee());
 
     }
 
@@ -67,9 +65,9 @@ public class KomisiAdapter extends RecyclerView.Adapter<KomisiAdapter.ViewHolder
                     mFilterData = data;
                 } else {
 
-                    ArrayList<DataKomisi> filterData = new ArrayList<>();
+                    ArrayList<DataPotkom> filterData = new ArrayList<>();
 
-                    for (DataKomisi data: data) {
+                    for (DataPotkom data: data) {
 
                         if (data.getNama().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString)) {
                             filterData.add(data);
@@ -86,15 +84,14 @@ public class KomisiAdapter extends RecyclerView.Adapter<KomisiAdapter.ViewHolder
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilterData = (ArrayList<DataKomisi>) filterResults.values;
+                mFilterData = (ArrayList<DataPotkom>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView id,nama,telp,alamat;
-        private LinearLayout detail, edit;
+        private TextView id,nama,telp,alamat,fee;
         public ViewHolder(final View view) {
             super(view);
 
@@ -102,33 +99,12 @@ public class KomisiAdapter extends RecyclerView.Adapter<KomisiAdapter.ViewHolder
             nama = (TextView)view.findViewById(R.id.namaProspek);
             telp = (TextView)view.findViewById(R.id.noTelp);
             alamat = (TextView)view.findViewById(R.id.alamatProspek);
-
-            detail = (LinearLayout)view.findViewById(R.id.view);
-            edit = (LinearLayout)view.findViewById(R.id.edit);
+            fee = (TextView)view.findViewById(R.id.fee);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, id.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "pay", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(context, InputKalkulasiActivity.class);
-//                    context.startActivity(intent);
-                }
-            });
-
-            edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, EditKalkulasiActivity.class);
-                    String sessionId = id.getText().toString();
-                    intent.putExtra("id", sessionId);
-                    context.startActivity(intent);
                 }
             });
 

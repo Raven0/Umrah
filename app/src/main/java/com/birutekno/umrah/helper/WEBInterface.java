@@ -137,7 +137,11 @@ public interface WEBInterface {
 
 
     //DATA KOMISI
-    //GET ALL KOMISI
-    @GET("jamaah/marketing")
-    Call<KomisiResponse> getKomisi();
+    //GET JAMAAG KOMISI
+    @GET("jamaah/{id}/agen/komisi")
+    Call<PotkomResponse> getDataKomisi(@Path("id") String id);
+
+    //GET JAMAAG POTENSI
+    @GET("jamaah/{id}/agen/potensi")
+    Call<PotkomResponse> getDataPotensi(@Path("id") String id);
 }
