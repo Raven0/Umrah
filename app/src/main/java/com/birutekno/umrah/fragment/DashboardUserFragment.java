@@ -1,23 +1,36 @@
 package com.birutekno.umrah.fragment;
 
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.birutekno.umrah.R;
+import com.birutekno.umrah.helper.WebApi;
+import com.birutekno.umrah.model.DashboardModel;
 import com.birutekno.umrah.ui.chart.LineView;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.Bind;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -25,7 +38,10 @@ import butterknife.Bind;
 
 public class DashboardUserFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener{
 
+    public static final String PREFS_NAME = "AUTH";
     private static final String TYPE = "type";
+
+    private ProgressDialog nDialog;
 
     int randomint = 12;
 
@@ -37,6 +53,18 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
 
     @Bind(R.id.periode)
     Button periode;
+
+    @Bind(R.id.potensi)
+    TextView potensi;
+
+    @Bind(R.id.komisi)
+    TextView komisi;
+
+    @Bind(R.id.prospek)
+    TextView prospek;
+
+    @Bind(R.id.jamaah)
+    TextView jamaah;
 
     public static DashboardUserFragment newInstance(int type) {
         DashboardUserFragment fragment = new DashboardUserFragment();
@@ -113,6 +141,20 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
         line_two.setFloatDataList(dataListFs);
 
 //        randomSet(line,line_two);
+
+        nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        int id_agen = prefs.getInt("iduser", 0);
+        nDialog.show();
+        try {
+            loadDataPotensi(String.valueOf(id_agen));
+            loadDataKomisi(String.valueOf(id_agen));
+            loadDataJamaah(String.valueOf(id_agen));
+            loadDataProspek(String.valueOf(id_agen));
+            nDialog.dismiss();
+        }catch (Exception ex){
+            nDialog.dismiss();
+        }
     }
 
     @Override
@@ -136,6 +178,140 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
         lineView.setShowPopup(LineView.SHOW_POPUPS_NONE);
     }
 
+    private void loadDataPotensi(final String id){
+        Call<DashboardModel> call = WebApi.getAPIService().getUangPotensi(id);
+        call.enqueue(new Callback<DashboardModel>() {
+            @Override
+            public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    potensi.setText("Rp. " + numberFormat(response.body().getResponse().getTotal()));
+//                    potensi.setText("Rp. " + numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
+
+                }catch (Exception ex){
+//                    nDialog.dismiss();
+//                    Toast.makeText(getContext(), "Exception " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<DashboardModel> call, Throwable t) {
+                loadDataPotensi(id);
+            }
+        });
+    }
+
+    private void loadDataKomisi(final String id){
+        Call<DashboardModel> call = WebApi.getAPIService().getUangKomisi(id);
+        call.enqueue(new Callback<DashboardModel>() {
+            @Override
+            public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    komisi.setText("Rp. " + numberFormat(response.body().getResponse().getTotal()));
+//                    komisi.setText(numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
+
+                }catch (Exception ex){
+//                    nDialog.dismiss();
+//                    Toast.makeText(getContext(), "Exception " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<DashboardModel> call, Throwable t) {
+                loadDataKomisi(id);
+            }
+        });
+    }
+
+    private void loadDataJamaah(final String id){
+        Call<DashboardModel> call = WebApi.getAPIService().getTotalJamaah(id);
+        call.enqueue(new Callback<DashboardModel>() {
+            @Override
+            public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    jamaah.setText(response.body().getResponse().getTotal());
+
+                }catch (Exception ex){
+//                    nDialog.dismiss();
+//                    Toast.makeText(getContext(), "Exception " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<DashboardModel> call, Throwable t) {
+                loadDataKomisi(id);
+            }
+        });
+    }
+
+    private void loadDataProspek(final String id){
+        Call<DashboardModel> call = WebApi.getAPIService().getTotalProspek(id);
+        call.enqueue(new Callback<DashboardModel>() {
+            @Override
+            public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    prospek.setText(response.body().getResponse().getTotal());
+
+                }catch (Exception ex){
+//                    nDialog.dismiss();
+//                    Toast.makeText(getContext(), "Exception " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<DashboardModel> call, Throwable t) {
+                loadDataKomisi(id);
+            }
+        });
+    }
+
+    public String numberFormat(String args){
+        NumberFormat formatter = new DecimalFormat("#,###");
+        double myNumber = Double.parseDouble(args);
+        String formattedNumber = formatter.format(myNumber);
+        return formattedNumber;
+    }
+
+    public String getFirstFour(String args){
+        String temp = args;
+        String output = temp.substring(temp.length()+4);
+        return output;
+    }
 //    private void randomSet(LineView lineView, LineView lineViewTwo) {
 //        ArrayList<Integer> dataList = new ArrayList<>();
 //        float random = (float) (Math.random() * 9 + 1);

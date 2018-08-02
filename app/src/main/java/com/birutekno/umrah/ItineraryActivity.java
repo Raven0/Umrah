@@ -10,8 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.birutekno.umrah.adapter.ItineraryAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAResponse;
@@ -61,6 +63,12 @@ public class ItineraryActivity extends BaseActivity{
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
         setTitle("Itinerary");
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         initViews();
     }
@@ -134,6 +142,26 @@ public class ItineraryActivity extends BaseActivity{
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent intent = new Intent(ItineraryActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

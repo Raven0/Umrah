@@ -1,6 +1,7 @@
 package com.birutekno.umrah.helper;
 
 import com.birutekno.umrah.model.AgenObject;
+import com.birutekno.umrah.model.DashboardModel;
 import com.birutekno.umrah.model.JamaahObject;
 import com.birutekno.umrah.model.LoginModel;
 import com.birutekno.umrah.model.ProspekObject;
@@ -144,4 +145,20 @@ public interface WEBInterface {
     //GET JAMAAG POTENSI
     @GET("jamaah/{id}/agen/potensi")
     Call<PotkomResponse> getDataPotensi(@Path("id") String id);
+
+    //GET UANG KOMISI
+    @GET("jamaah/{id}/agenfee/komisi")
+    Call<DashboardModel> getUangKomisi(@Path("id") String id);
+
+    //GET UANG POTENSI
+    @GET("jamaah/{id}/agenfee/potensi")
+    Call<DashboardModel> getUangPotensi(@Path("id") String id);
+
+    //GET TOTAL JAMAAH
+    @GET("jamaah/{id}/agen/total")
+    Call<DashboardModel> getTotalJamaah(@Path("id") String id);
+
+    //GET TOTAL PROSPEK
+    @GET("prospek/{id}/agen/total")
+    Call<DashboardModel> getTotalProspek(@Path("id") String id);
 }
