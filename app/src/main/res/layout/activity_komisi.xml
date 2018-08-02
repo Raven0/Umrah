@@ -20,261 +20,87 @@
             android:paddingLeft="10dp"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Agen"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
+        <!--<TextView-->
+            <!--android:id="@+id/title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="Agen"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="16dp" />-->
 
     </RelativeLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Komisi Anda Saat ini"
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rp. 250.000.000"
-            android:textSize="32dp"
-            android:textStyle="bold"
-            android:textColor="#FF8800"
-            android:textAlignment="center"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/colorPrimary">
 
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="30dp"
-            android:paddingLeft="15dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="15dp"
-            android:text="List Laporan Komisi"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp">
-
-            <EditText
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/button_outline_black"
-                android:textSize="15dp"
-                android:hint="Search"
-                android:drawableRight="@drawable/drawable_search"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TableLayout
+        <LinearLayout
+            android:id="@+id/komisiTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <android.support.v4.widget.NestedScrollView
+            <TextView
+                android:id="@+id/komisiText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Komisi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+            <LinearLayout
+                android:id="@+id/komisiIndicator"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@color/white"
+                android:orientation="vertical" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+        </LinearLayout>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/potensiTab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="No"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
+            <TextView
+                android:id="@+id/potensiText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Potensi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
 
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Nama Jamaah"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
+            <LinearLayout
+                android:id="@+id/potensiIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Tgl Lunas"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Tgl Terima"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
+    </LinearLayout>
 
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Nilai Komisi"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="1"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Abdul Kodir"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="27/08/2017"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="12/09/2017"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Rp. 200.000"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#fff"/>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="2"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Saepudin"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="27/08/2017"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="12/09/2017"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Rp. 200.000"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                </LinearLayout>
-
-            </android.support.v4.widget.NestedScrollView>
-
-        </TableLayout>
-
-    </HorizontalScrollView>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

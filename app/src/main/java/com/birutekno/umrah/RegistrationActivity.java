@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -131,7 +132,11 @@ public class RegistrationActivity extends BaseActivity {
             params.put("alamat", alamat);
             params.put("no_telp", no_telp);
             params.put("status", status);
-            params.put("koordinator", koordinator);
+            if (TextUtils.isEmpty(koordinator)){
+                params.put("koordinator", "0");
+            }else {
+                params.put("koordinator", koordinator);
+            }
 
             pDialog = new ProgressDialog(mContext);
             pDialog.setMessage("Harap tunggu...");

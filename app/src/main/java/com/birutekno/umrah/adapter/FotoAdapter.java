@@ -2,6 +2,7 @@ package com.birutekno.umrah.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,11 +68,15 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String shareBody = link;
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                    context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+//                    String shareBody = link;
+//                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                    sharingIntent.setType("text/plain");
+//                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//                    context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+                    String url = link;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    context.startActivity(i);
                 }
             });
 

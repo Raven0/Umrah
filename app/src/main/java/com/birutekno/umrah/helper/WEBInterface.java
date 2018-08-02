@@ -94,6 +94,10 @@ public interface WEBInterface {
     @GET("jamaah")
     Call<JamaahResponse> getJamaah();
 
+    //GET PROSPEK BY AGEN
+    @GET("jamaah/{id}/agen")
+    Call<JamaahResponse> getJamaahAgen(@Path("id") String id);
+
     //GET SHOW JAMAAH
     @GET("jamaah/{id}/show")
     Call<JamaahObject> showJamaah(@Path("id") String id);
@@ -127,4 +131,13 @@ public interface WEBInterface {
     Call<BrosurResponse> getBrosur();
 //    @GET("gallery/video/")
 //    Call<GalleryResponse> getGalleryVideo();
+
+
+
+
+
+    //DATA KOMISI
+    //GET ALL KOMISI
+    @GET("jamaah/marketing")
+    Call<KomisiResponse> getKomisi();
 }

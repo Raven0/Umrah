@@ -1,7 +1,6 @@
 package com.birutekno.umrah.fragment;
 
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +9,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.adapter.JamaahAdapter;
-import com.birutekno.umrah.helper.JamaahResponse;
+import com.birutekno.umrah.adapter.KomisiAdapter;
+import com.birutekno.umrah.helper.KomisiResponse;
 import com.birutekno.umrah.helper.WebApi;
-import com.birutekno.umrah.model.DataJamaah;
+import com.birutekno.umrah.model.DataKomisi;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
@@ -28,19 +27,17 @@ import retrofit2.Response;
  * Created by No Name on 7/29/2017.
  */
 
-public class JSemuaFragment extends BaseFragment{
-
-    public static final String PREFS_NAME = "AUTH";
+public class KomisiFragment extends BaseFragment{
 
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    private ArrayList<DataJamaah> pojo;
-    private JamaahAdapter mAdapter;
+    private ArrayList<DataKomisi> pojo;
+    private KomisiAdapter mAdapter;
     private ProgressDialog pDialog;
 
-    public static JSemuaFragment newInstance() {
-        JSemuaFragment fragment = new JSemuaFragment();
+    public static KomisiFragment newInstance() {
+        KomisiFragment fragment = new KomisiFragment();
         return fragment;
     }
 
@@ -66,18 +63,15 @@ public class JSemuaFragment extends BaseFragment{
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
         pDialog.show();
-
-        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
-
-        Call<JamaahResponse> call = WebApi.getAPIService().getJamaahAgen(String.valueOf(id));
-        call.enqueue(new Callback<JamaahResponse>() {
+        Call<KomisiResponse> call = WebApi.getAPIService().getKomisi();
+        call.enqueue(new Callback<KomisiResponse>() {
             @Override
-            public void onResponse(Call<JamaahResponse> call, Response<JamaahResponse> response) {
+            public void onResponse(Call<KomisiResponse> call, Response<KomisiResponse> response) {
                 if(response.isSuccessful()){
-                    JamaahResponse jsonResponse = response.body();
-                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getJamaah()));
-                    mAdapter = new JamaahAdapter(pojo, getContext());
+                    KomisiResponse jsonResponse = response.body();
+                    Toast.makeText(getContext(), jsonResponse.getKomisi().toString(), Toast.LENGTH_SHORT).show();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getKomisi()));
+                    mAdapter = new KomisiAdapter(pojo, getContext());
                     recyclerView.setAdapter(mAdapter);
                     pDialog.dismiss();
                 }else {
@@ -89,7 +83,7 @@ public class JSemuaFragment extends BaseFragment{
             }
 
             @Override
-            public void onFailure(Call<JamaahResponse> call, Throwable t) {
+            public void onFailure(Call<KomisiResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
             }

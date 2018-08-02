@@ -40,7 +40,7 @@
         <activity android:name=".HotelActivity" />
         <activity android:name=".GalleryActivity" />
         <activity android:name=".SubAgenActivity" />
-        <activity android:name=".KomisiActivity" />
+        <activity android:name=".PotkomActivity" />
         <activity android:name=".FaqActivity" />
         <activity android:name=".WizardActivity" />
         <activity android:name=".DetailHotelActivity" />
