@@ -160,7 +160,6 @@ public class TotalKalkulasiFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_total_kalkulasi, container, false);
         loadComponent();
-        Toast.makeText(getContext(), jml, Toast.LENGTH_SHORT).show();
         loadBundle();
         calculate();
 

@@ -65,13 +65,13 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-//        btnEdt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnEdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public static Intent createIntent(Context context) {

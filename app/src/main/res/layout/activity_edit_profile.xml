@@ -96,9 +96,10 @@
                         <TextView
                             android:layout_width="95dp"
                             android:layout_height="wrap_content"
-                            android:text="Id" />
+                            android:text="No Ktp" />
 
                         <EditText
+                            android:id="@+id/noktp"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
                             android:paddingLeft="@dimen/_10sdp"
@@ -119,26 +120,7 @@
                             android:text="Nama" />
 
                         <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:textColorHint="#bababa"
-                            android:textSize="@dimen/_12sdp"
-                            android:theme="@style/EditTextThemes" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="wrap_content"
-                            android:text="Password" />
-
-                        <EditText
+                            android:id="@+id/nama"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
                             android:paddingLeft="@dimen/_10sdp"
@@ -159,6 +141,7 @@
                             android:text="No Telepon" />
 
                         <EditText
+                            android:id="@+id/telp"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
                             android:paddingLeft="@dimen/_10sdp"
@@ -168,6 +151,27 @@
 
                     </LinearLayout>
 
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="95dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Email" />-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/email"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="@dimen/_35sdp"-->
+                            <!--android:paddingLeft="@dimen/_10sdp"-->
+                            <!--android:textColorHint="#bababa"-->
+                            <!--android:textSize="@dimen/_12sdp"-->
+                            <!--android:theme="@style/EditTextThemes" />-->
+
+                    <!--</LinearLayout>-->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -176,29 +180,10 @@
                         <TextView
                             android:layout_width="95dp"
                             android:layout_height="wrap_content"
-                            android:text="Email" />
+                            android:text="Domisili" />
 
                         <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:textColorHint="#bababa"
-                            android:textSize="@dimen/_12sdp"
-                            android:theme="@style/EditTextThemes" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="95dp"
-                            android:layout_height="wrap_content"
-                            android:text="Alamat" />
-
-                        <EditText
+                            android:id="@+id/alamat"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
                             android:paddingLeft="@dimen/_10sdp"
@@ -219,7 +204,133 @@
                             android:text="Jenis Kelamin" />
 
                         <EditText
-                            android:id="@+id/picName"
+                            android:id="@+id/jk"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Bank" />
+
+                        <EditText
+                            android:id="@+id/bank"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="No Rekening" />
+
+                        <EditText
+                            android:id="@+id/norek"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Rekening Beda" />
+
+                        <EditText
+                            android:id="@+id/narek"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Fee Reguler" />
+
+                        <EditText
+                            android:id="@+id/feereg"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Fee Promo" />
+
+                        <EditText
+                            android:id="@+id/feepromo"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColorHint="#bababa"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/EditTextThemes" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:text="Website" />
+
+                        <EditText
+                            android:id="@+id/website"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
                             android:paddingLeft="@dimen/_10sdp"

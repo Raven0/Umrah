@@ -74,6 +74,7 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
                                 editor.putInt("iduser", id);
                                 editor.putString("token", token);
+                                editor.putString("password", pass);
                                 editor.apply();
 
 //                            Intent to main
