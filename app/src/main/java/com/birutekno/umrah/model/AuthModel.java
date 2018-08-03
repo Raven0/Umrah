@@ -1,6 +1,6 @@
 package com.birutekno.umrah.model;
 
-public class LoginModel {
+public class AuthModel {
     private User user;
 
     private Response response;

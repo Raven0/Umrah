@@ -1,6 +1,7 @@
 package com.birutekno.umrah.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -18,6 +19,8 @@ import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 public class AiwaFragment extends Fragment implements BlockingStep {
+
+    public static final String PREFS_NAME = "WIZARD";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +46,10 @@ public class AiwaFragment extends Fragment implements BlockingStep {
         Intent intent = LoginActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
+
+        final SharedPreferences.Editor editor = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE).edit();
+        editor.putBoolean("wizard", true);
+        editor.apply();
     }
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {

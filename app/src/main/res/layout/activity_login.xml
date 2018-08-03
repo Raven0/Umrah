@@ -46,7 +46,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/drawable_username"
-                        android:hint="Email"
+                        android:hint="Username"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="#ffff"
                         android:textColorHint="#ffff"

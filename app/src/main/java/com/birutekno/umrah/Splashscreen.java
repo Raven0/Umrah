@@ -8,8 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class Splashscreen extends AppCompatActivity {
+
     private static int splashInterval = 2000;
-    private int intro = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,28 +21,11 @@ public class Splashscreen extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
 
         new Handler().postDelayed(new Runnable() {
-
-
             @Override
             public void run() {
-                if(intro == 1){
-                    Intent i = new Intent(Splashscreen.this, LoginActivity.class);
-                    startActivity(i);
-                    this.finish();
-                    intro = 1;
+                Intent i = new Intent(Splashscreen.this, WizardActivity.class);
+                startActivity(i);
 
-                }else {
-                    Intent i = new Intent(Splashscreen.this, WizardActivity.class);
-                    startActivity(i);
-                    this.finish();
-                    intro = 1;
-
-                }
-
-            }
-
-            private void finish() {
-                intro = 1;
             }
         }, splashInterval);
 

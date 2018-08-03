@@ -3,7 +3,7 @@ package com.birutekno.umrah.helper;
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.DashboardModel;
 import com.birutekno.umrah.model.JamaahObject;
-import com.birutekno.umrah.model.LoginModel;
+import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.ProspekObject;
 
 import java.util.HashMap;
@@ -74,12 +74,12 @@ public interface WEBInterface {
     //REGISTER AGEN
     @FormUrlEncoded
     @POST("register")
-    Call<ResponseBody> insertAgen(@FieldMap HashMap<String, String> params);
+    Call<AuthModel> insertAgen(@FieldMap HashMap<String, String> params);
 
     //LOGIN AGEN
     @FormUrlEncoded
     @POST("login")
-    Call<LoginModel> loginAgen(@FieldMap HashMap<String, String> params);
+    Call<AuthModel> loginAgen(@FieldMap HashMap<String, String> params);
 
     //EDIT AGEN
     @FormUrlEncoded

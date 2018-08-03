@@ -124,7 +124,7 @@
                         android:id="@+id/alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Alamat"
+                        android:hint="Domisili"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="#ffff"
                         android:textColorHint="#ffff"

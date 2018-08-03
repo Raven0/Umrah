@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.birutekno.umrah.helper.WebApi;
-import com.birutekno.umrah.model.LoginModel;
+import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.Response;
 import com.birutekno.umrah.model.User;
 import com.birutekno.umrah.ui.BaseActivity;
@@ -39,16 +42,17 @@ public class LoginActivity extends BaseActivity {
     public static final String PREFS_NAME = "AUTH";
 
     private ProgressDialog pDialog;
+    private boolean doubleBackToExitPressedOnce;
 
     @OnClick(R.id.login)
     void loginClicked() {
         user = username.getText().toString().trim();
         pass = password.getText().toString().trim();
         if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)){
-            Toast.makeText(mContext, "Mohon masukkan email dan password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Mohon masukkan username dan password", Toast.LENGTH_SHORT).show();
         }else {
             HashMap<String, String> params = new HashMap<>();
-            params.put("email", user);
+            params.put("username", user);
             params.put("password", pass);
 
             pDialog = new ProgressDialog(mContext);
@@ -56,10 +60,10 @@ public class LoginActivity extends BaseActivity {
             pDialog.setCancelable(false);
             pDialog.show();
 
-            Call<LoginModel> result = WebApi.getAPIService().loginAgen(params);
-            result.enqueue(new Callback<LoginModel>() {
+            Call<AuthModel> result = WebApi.getAPIService().loginAgen(params);
+            result.enqueue(new Callback<AuthModel>() {
                 @Override
-                public void onResponse(Call<LoginModel> call, retrofit2.Response<LoginModel> response) {
+                public void onResponse(Call<AuthModel> call, retrofit2.Response<AuthModel> response) {
                     pDialog.dismiss();
                     try {
                         if(response.body()!=null) {
@@ -84,7 +88,7 @@ public class LoginActivity extends BaseActivity {
                             }else if(status.equals("Anda belum terverifikasi oleh admin!")){
                                 Toast.makeText(mContext, "Akun Anda belum di Approve", Toast.LENGTH_SHORT).show();
                             }else if(status.equals("failed")){
-                                Toast.makeText(mContext, "Email atau Password salah", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "Username atau Password salah", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }catch (Exception e){
@@ -93,7 +97,7 @@ public class LoginActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onFailure(Call<LoginModel> call, Throwable t) {
+                public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
                     t.printStackTrace();
                 }
@@ -129,6 +133,37 @@ public class LoginActivity extends BaseActivity {
     protected void onViewReady(Bundle savedInstanceState) {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finish();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
     @Override

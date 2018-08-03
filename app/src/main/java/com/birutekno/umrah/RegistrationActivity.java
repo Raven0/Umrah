@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.birutekno.umrah.helper.AgenResponse;
 import com.birutekno.umrah.helper.WebApi;
+import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -26,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -143,25 +143,32 @@ public class RegistrationActivity extends BaseActivity {
             pDialog.setCancelable(false);
             pDialog.show();
 
-            Call<ResponseBody> result = WebApi.getAPIService().insertAgen(params);
-            result.enqueue(new Callback<ResponseBody>() {
+            Call<AuthModel> result = WebApi.getAPIService().insertAgen(params);
+            result.enqueue(new Callback<AuthModel>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(Call<AuthModel> call, Response<AuthModel> response) {
                     pDialog.dismiss();
                     try {
                         if(response.body()!=null){
-                            Toast.makeText(mContext, "Registrasi berhasil, Tunggu Approval", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(mContext, LoginActivity.class);
-                            startActivity(intent);
+                            com.birutekno.umrah.model.Response success = response.body().getResponses();
+                            String status = success.getStatus();
+                            if (status.equals("success")) {
+                                Toast.makeText(mContext, "Registrasi berhasil, Tunggu Approval", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(mContext, LoginActivity.class);
+                                startActivity(intent);
+                            }else if(status.equals("fail")){
+                                Toast.makeText(mContext, "Email sudah terdaftar!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }catch (Exception e){
                         e.printStackTrace();
-                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, String.valueOf(e.getMessage()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Error Response", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
                     t.printStackTrace();
                     Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
