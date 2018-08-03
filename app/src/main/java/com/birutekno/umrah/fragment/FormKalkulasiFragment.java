@@ -4,6 +4,7 @@ package com.birutekno.umrah.fragment;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -67,6 +68,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class FormKalkulasiFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
 
     public static final String PREFS_NAME = "AUTH";
+    Context mContext;
     List<Jadwal> objJadwal;
     List<Paket> objPaket;
     List<DataJadwal> alldata;
@@ -105,7 +107,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private CurrencyEditText diskonboy;
     private EditText keterangan;
 
-    private CheckBox cbVisa, cbDiskon;
+    public CheckBox cbVisa, cbDiskon;
     private CheckBox cbPassport;
     private Boolean passport = false;
     private String passportString = "false";
@@ -1219,4 +1221,5 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
     }
+
 }

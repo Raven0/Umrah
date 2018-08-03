@@ -18,6 +18,8 @@ public class InputKalkulasiActivity extends AppCompatActivity {
     public static int width = 0;
     public static int position = 0;
     public Toolbar mToolbar;
+    public Boolean isYes = false;
+    FormKalkulasiFragment formKalkulasiFragment = new FormKalkulasiFragment();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -46,7 +48,7 @@ public class InputKalkulasiActivity extends AppCompatActivity {
 
     private void loadFragment() {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_layout, new FormKalkulasiFragment())
+                .add(R.id.frame_layout, formKalkulasiFragment)
                 .commit();
     }
 
@@ -64,6 +66,9 @@ public class InputKalkulasiActivity extends AppCompatActivity {
             adb.setTitle("Data Prospek");
             adb.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
+                    isYes = true;
+                    View view = formKalkulasiFragment.buttonSimpan;
+                    formKalkulasiFragment.onClick(view);
                 }
             });
             adb.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
