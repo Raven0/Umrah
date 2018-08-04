@@ -217,6 +217,71 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="STANDAR"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/stdDouble"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Double"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/stdTriple"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Triple"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/stdQuard"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Quard"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/stdMadinah"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Madinah"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/stdMekah"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Mekkah"
+                android:textSize="14dp" />
+
+        </TableRow>
+
     </TableLayout>
 
     <LinearLayout

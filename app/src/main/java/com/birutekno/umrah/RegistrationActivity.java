@@ -91,7 +91,6 @@ public class RegistrationActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 koordinator = idAgen.get(position);
-                Toast.makeText(mContext, koordinator, Toast.LENGTH_SHORT).show();
             }
 
             @Override

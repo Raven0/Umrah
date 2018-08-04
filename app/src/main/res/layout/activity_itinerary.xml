@@ -37,43 +37,49 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:focusable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:gravity="center">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center">
 
-        <!--<EditText-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Periode Hijriah"/>
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/spinnerFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="15dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <!--<android.support.v7.widget.SearchView-->
+            <!--android:id="@+id/searchView"-->
             <!--android:layout_width="130dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:background="@drawable/outline_black"-->
-            <!--android:drawableRight="@drawable/drawable_filter"-->
-            <!--android:hint="Filter"-->
-            <!--android:textSize="15dp"/>-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:background="@drawable/button_outline_black"-->
+            <!--android:textSize="15dp"-->
+            <!--android:hint="Search"-->
+            <!--android:drawableRight="@drawable/drawable_search"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentRight="true">-->
 
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="30dp">-->
+            <!--</android.support.v7.widget.SearchView>-->
 
-            <!--<EditText-->
-                <!--android:layout_width="130dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:paddingLeft="20dp"-->
-                <!--android:layout_marginRight="10dp"-->
-                <!--android:background="@drawable/button_outline_black"-->
-                <!--android:textSize="15dp"-->
-                <!--android:hint="Search"-->
-                <!--android:drawableRight="@drawable/drawable_search"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentRight="true" />-->
+        </RelativeLayout>
 
-        <!--</RelativeLayout>-->
-
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
     <!--<com.birutekno.umrah.ui.view.BaseRecyclerView-->
         <!--android:id="@+id/recyclerView"-->

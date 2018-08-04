@@ -28,9 +28,6 @@ public class WizardActivity extends AppCompatActivity implements StepperLayout.S
             Intent i = new Intent(WizardActivity.this, LoginActivity.class);
             startActivity(i);
         }
-
-        Toast.makeText(this, String.valueOf(login), Toast.LENGTH_SHORT).show();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_wizard);
         mStepperLayout = (StepperLayout) findViewById(R.id.stepperLayout);

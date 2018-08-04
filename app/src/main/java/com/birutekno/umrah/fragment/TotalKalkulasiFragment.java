@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataKalkulasi;
@@ -111,7 +110,8 @@ public class TotalKalkulasiFragment extends Fragment {
     private int hargaLite = 0;
     private int diskonBalitaUhud = 0;
     private int diskonBalitaNur = 0;
-    private int diskonBalitaRahman = 0;
+    private int diskonBalitaRahmah = 0;
+    private int diskonBalitaStandar = 0;
 
     private int jmlDobel = 0;
     private int jmlTripel = 0;
@@ -247,7 +247,8 @@ public class TotalKalkulasiFragment extends Fragment {
         hargaLite = bundle.getInt("hargaLite");
         diskonBalitaUhud = bundle.getInt("diskonBalitaUhud");
         diskonBalitaNur = bundle.getInt("diskonBalitaNur");
-        diskonBalitaRahman = bundle.getInt("diskonBalitaRahman");
+        diskonBalitaRahmah = bundle.getInt("diskonBalitaRahmah");
+        diskonBalitaStandar = bundle.getInt("diskonBalitaStandar");
 
         berangkatTanggal.setText(bundle.getString("berangkatTgl"));
         maskapai.setText(bundle.getString("maskapai"));
@@ -309,9 +310,6 @@ public class TotalKalkulasiFragment extends Fragment {
         }else {
             akta = "tidak";
         }
-
-//        Toast.makeText(getContext(), jenisPerlengkapan, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(getContext(), jenisPaketBalita, Toast.LENGTH_SHORT).show();
     }
 
     private void calculate(){
@@ -475,8 +473,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaFull))+ " Dengan Perlengkapan");
                 int h = hargaQuard + hargaFull;
                 penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
-                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaRahman)));
-                int d = h - diskonBalitaRahman;
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaRahmah)));
+                int d = h - diskonBalitaRahmah;
                 penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
                 jmlBalitatext.setText("x "+String.valueOf(jmlBalita));
                 hitunganBalita = d * jmlBalita;
@@ -487,7 +485,7 @@ public class TotalKalkulasiFragment extends Fragment {
                         "Rp. "+numberFormat(String.valueOf(hargaFull))+" Dengan Perlengkapan\n" +
                         "______+\n" +
                         "Rp."+ numberFormat(String.valueOf(h)) +"\n" +
-                        "Rp."+ numberFormat(String.valueOf(diskonBalitaRahman)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaRahmah)) +"\n" +
                         "______-\n" +
                         "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
                         "______\n×"+ jmlBalita+" PAX\n" +
@@ -498,8 +496,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaLite))+ " Tanpa Perlengkapan");
                 int h = hargaQuard + hargaLite;
                 penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
-                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaRahman)));
-                int d = h - diskonBalitaRahman;
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaRahmah)));
+                int d = h - diskonBalitaRahmah;
                 penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
                 jmlBalitatext.setText("x "+numberFormat(String.valueOf(jmlBalita)));
                 hitunganBalita = d * jmlBalita;
@@ -510,7 +508,57 @@ public class TotalKalkulasiFragment extends Fragment {
                         "Rp. "+ numberFormat(String.valueOf(hargaLite))+" Tanpa Perlengkapan\n" +
                         "______+\n" +
                         "Rp."+ numberFormat(String.valueOf(h))+"\n" +
-                        "Rp."+ numberFormat(String.valueOf(diskonBalitaRahman)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaRahmah)) +"\n" +
+                        "______-\n" +
+                        "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
+                        "______\n×"+ jmlBalita+" PAX\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
+                        "\n\n";
+            }
+        }else if (jenisPaket.equals("Rahmah") && jmlBalita != 0){
+            balitaView.setVisibility(View.VISIBLE);
+            hargaNormal.setText("Rp. "+numberFormat(String.valueOf(hargaQuard)));
+            pakethotelBalita.setText(String.valueOf(jenisPaket));
+            if (jenisPerlengkapan.equals("FULL")){
+                perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaFull))+ " Dengan Perlengkapan");
+                int h = hargaQuard + hargaFull;
+                penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaRahmah)));
+                int d = h - diskonBalitaRahmah;
+                penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
+                jmlBalitatext.setText("x "+String.valueOf(jmlBalita));
+                hitunganBalita = d * jmlBalita;
+                hasilAkhirBalita.setText("Rp. "+numberFormat(String.valueOf(hitunganBalita)));
+
+                contentBalita ="*PERHITUNGAN BALITA RAHMAH*\n"+
+                        "Rp. "+ numberFormat(String.valueOf(hargaQuard)) + " " +jenisPaket+ " QUAD\n" +
+                        "Rp. "+numberFormat(String.valueOf(hargaFull))+" Dengan Perlengkapan\n" +
+                        "______+\n" +
+                        "Rp."+ numberFormat(String.valueOf(h)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaRahmah)) +"\n" +
+                        "______-\n" +
+                        "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
+                        "______\n×"+ jmlBalita+" PAX\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
+                        "\n\n";
+
+            }else if(jenisPerlengkapan.equals("LITE")){
+                perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaLite))+ " Tanpa Perlengkapan");
+                int h = hargaQuard + hargaLite;
+                penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaRahmah)));
+                int d = h - diskonBalitaRahmah;
+                penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
+                jmlBalitatext.setText("x "+numberFormat(String.valueOf(jmlBalita)));
+                hitunganBalita = d * jmlBalita;
+                hasilAkhirBalita.setText("Rp. "+numberFormat(String.valueOf(hitunganBalita)));
+
+                contentBalita ="*PERHITUNGAN BALITA RAHMAH*\n"+
+                        "Rp. "+ numberFormat(String.valueOf(hargaQuard)) + " " +jenisPaket+ " QUAD\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hargaLite))+" Tanpa Perlengkapan\n" +
+                        "______+\n" +
+                        "Rp."+ numberFormat(String.valueOf(h))+"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaRahmah)) +"\n" +
                         "______-\n" +
                         "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
                         "______\n×"+ jmlBalita+" PAX\n" +
@@ -518,6 +566,56 @@ public class TotalKalkulasiFragment extends Fragment {
                         "\n\n";
             }
         }else if(jenisPaket.equals("NUR") && jmlBalita != 0) {
+            balitaView.setVisibility(View.VISIBLE);
+            hargaNormal.setText("Rp. "+numberFormat(String.valueOf(hargaQuard)));
+            pakethotelBalita.setText(String.valueOf(jenisPaket));
+            if (jenisPerlengkapan.equals("FULL")){
+                perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaFull))+ " Dengan Perlengkapan");
+                int h = hargaQuard + hargaFull;
+                penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaNur)));
+                int d = h - diskonBalitaNur;
+                penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
+                jmlBalitatext.setText("x "+String.valueOf(jmlBalita));
+                hitunganBalita = d * jmlBalita;
+                hasilAkhirBalita.setText("Rp. "+numberFormat(String.valueOf(hitunganBalita)));
+
+                contentBalita ="*PERHITUNGAN BALITA NUR*\n"+
+                        "Rp. "+ numberFormat(String.valueOf(hargaQuard)) + " " +jenisPaket+ " QUAD\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hargaFull))+" Dengan Perlengkapan\n" +
+                        "______+\n" +
+                        "Rp."+ numberFormat(String.valueOf(h)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaNur)) +"\n" +
+                        "______-\n" +
+                        "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
+                        "______\n×"+ jmlBalita+" PAX\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
+                        "\n\n";
+
+            }else if(jenisPerlengkapan.equals("LITE")){
+                perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaLite))+ " Tanpa Perlengkapan");
+                int h = hargaQuard + hargaLite;
+                penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaNur)));
+                int d = h - diskonBalitaNur;
+                penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
+                jmlBalitatext.setText("x "+String.valueOf(jmlBalita));
+                hitunganBalita = d * jmlBalita;
+                hasilAkhirBalita.setText("Rp. "+numberFormat(String.valueOf(hitunganBalita)));
+
+                contentBalita ="*PERHITUNGAN BALITA NUR*\n"+
+                        "Rp. "+ numberFormat(String.valueOf(hargaQuard)) + " " +jenisPaket+ " QUAD\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hargaLite))+" Tanpa Perlengkapan\n" +
+                        "______+\n" +
+                        "Rp."+numberFormat(String.valueOf(h)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaNur)) +"\n" +
+                        "______-\n" +
+                        "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
+                        "______\n×"+ jmlBalita+" PAX\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
+                        "\n\n";
+            }
+        }else if(jenisPaket.equals("NUR ") && jmlBalita != 0) {
             balitaView.setVisibility(View.VISIBLE);
             hargaNormal.setText("Rp. "+numberFormat(String.valueOf(hargaQuard)));
             pakethotelBalita.setText(String.valueOf(jenisPaket));
@@ -611,6 +709,56 @@ public class TotalKalkulasiFragment extends Fragment {
                         "______+\n" +
                         "Rp."+ numberFormat(String.valueOf(h)) +"\n" +
                         "Rp."+ numberFormat(String.valueOf(diskonBalitaUhud)) +"\n" +
+                        "______-\n" +
+                        "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
+                        "______\n×"+ jmlBalita+" PAX\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
+                        "\n\n";
+            }
+        } if(jenisPaket.equals("Standard") && jmlBalita != 0) {
+            balitaView.setVisibility(View.VISIBLE);
+            hargaNormal.setText("Rp. "+numberFormat(String.valueOf(hargaQuard)));
+            pakethotelBalita.setText(String.valueOf(jenisPaket));
+            if (jenisPerlengkapan.equals("FULL")){
+                perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaFull))+ " Dengan Perlengkapan");
+                int h = hargaQuard + hargaFull;
+                penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaStandar)));
+                int d = h - diskonBalitaStandar;
+                penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
+                jmlBalitatext.setText("x "+String.valueOf(jmlBalita));
+                hitunganBalita = d * jmlBalita;
+                hasilAkhirBalita.setText("Rp. "+numberFormat(String.valueOf(hitunganBalita)));
+
+                contentBalita ="*PERHITUNGAN BALITA STANDAR*\n"+
+                        "Rp. "+ numberFormat(String.valueOf(hargaQuard)) + " " +jenisPaket+ " QUAD\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hargaFull))+" Dengan Perlengkapan\n" +
+                        "______+\n" +
+                        "Rp."+ numberFormat(String.valueOf(h)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaStandar)) +"\n" +
+                        "______-\n" +
+                        "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
+                        "______\n×"+ jmlBalita+" PAX\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
+                        "\n\n";
+
+            }else if(jenisPerlengkapan.equals("LITE")){
+                perlengkapanBalita.setText("Rp. "+numberFormat(String.valueOf(hargaLite))+ " Tanpa Perlengkapan");
+                int h = hargaQuard + hargaLite;
+                penambahanBalita.setText("Rp. "+numberFormat(String.valueOf(h)));
+                diskonBalita.setText("Rp. "+numberFormat(String.valueOf(diskonBalitaStandar)));
+                int d = h - diskonBalitaStandar;
+                penguranganBalita.setText("Rp. "+numberFormat(String.valueOf(d)));
+                jmlBalitatext.setText("x "+String.valueOf(jmlBalita));
+                hitunganBalita = d * jmlBalita;
+                hasilAkhirBalita.setText("Rp. "+numberFormat(String.valueOf(hitunganBalita)));
+
+                contentBalita ="*PERHITUNGAN BALITA STANDAR*\n"+
+                        "Rp. "+ numberFormat(String.valueOf(hargaQuard)) + " " +jenisPaket+ " QUAD\n" +
+                        "Rp. "+ numberFormat(String.valueOf(hargaLite))+" Tanpa Perlengkapan\n" +
+                        "______+\n" +
+                        "Rp."+ numberFormat(String.valueOf(h)) +"\n" +
+                        "Rp."+ numberFormat(String.valueOf(diskonBalitaStandar)) +"\n" +
                         "______-\n" +
                         "Rp."+ numberFormat(String.valueOf(d)) +"\n" +
                         "______\n×"+ jmlBalita+" PAX\n" +

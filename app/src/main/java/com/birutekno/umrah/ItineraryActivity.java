@@ -14,6 +14,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.birutekno.umrah.adapter.ItineraryAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAResponse;
@@ -23,6 +26,7 @@ import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -44,6 +48,10 @@ public class ItineraryActivity extends BaseActivity{
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @Bind(R.id.spinnerFilter)
+    Spinner spinnerFilter;
+
+    List<String> listPeriode = new ArrayList<String>();
     private ArrayList<DataJadwal> pojo;
     private ItineraryAiwaAdapter adapter;
 
@@ -71,6 +79,19 @@ public class ItineraryActivity extends BaseActivity{
         });
 
         initViews();
+
+        spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                loadJSON(selectedItem);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initViews(){
@@ -108,6 +129,16 @@ public class ItineraryActivity extends BaseActivity{
                 pDialog.dismiss();
             }
         });
+    }
+
+    public void initSpinnerPeriode() {
+        listPeriode.add("1440");
+        listPeriode.add("1439");
+
+        ArrayAdapter<String> adapterC= new ArrayAdapter<String>(getBaseContext(),
+                android.R.layout.simple_spinner_item, listPeriode);
+        adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilter.setAdapter(adapterC);
     }
 
     @Override

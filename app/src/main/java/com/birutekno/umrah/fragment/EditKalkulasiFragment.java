@@ -192,7 +192,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private int hargaLite = 0;
     private int diskonBalitaUhud = 0;
     private int diskonBalitaNur = 0;
-    private int diskonBalitaRahman = 0;
+    private int diskonBalitaRahmah = 0;
+    private int diskonBalitaStandar = 0;
 
     public EditKalkulasiFragment() {
         // Required empty public constructor
@@ -626,7 +627,18 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 jenisPaket = selectedItem;
-                if (selectedItem.equals("UHUD")){
+                if (selectedItem.equals("Standard")){
+                    dobel.setHint(map.get("harga_double_std"));
+                    tripel.setHint(map.get("harga_triple_std"));
+                    quard.setHint(map.get("harga_quard_std"));
+
+                    hargaDouble = Integer.parseInt(map.get("harga_double_std"));
+                    hargaTriple = Integer.parseInt(map.get("harga_triple_std"));
+                    hargaQuard = Integer.parseInt(map.get("harga_quard_std"));
+
+                    mekahSend = map.get("hotel_mekkah_std");
+                    madinahSend = map.get("hotel_madinah_std");
+                }else if (selectedItem.equals("UHUD")){
                     dobel.setHint(map.get("harga_double_uhud"));
                     tripel.setHint(map.get("harga_triple_uhud"));
                     quard.setHint(map.get("harga_quard_uhud"));
@@ -792,12 +804,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         int posHotel = adapterHotel.getPosition(dataProspek.getJenis());
                         hotel.setSelection(posHotel);
                     }
-
-//                    Toast.makeText(getContext(), String.valueOf(jmlVisas), Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(getContext(), dataProspek.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception ex){
-//                    nDialog.dismiss();
-//                    Toast.makeText(getContext(), "Exception " + ex.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("Exception" , ex.getMessage());
                 }
             }
@@ -891,7 +898,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         bundle.putString("keterangan", keterangan.getText().toString());
                         bundle.putString("perlengkapan", jenisPerlengkapan);
                         bundle.putString("perlengkapanDewasa", jenisPerlengkapanDewasa);
-//                        bundle.putString("paketHotelBalita", paketHotelBalita);
 
                         bundle.putString("jenisPaket", jenisPaket);
                         bundle.putInt("hargaDouble", hargaDouble);
@@ -923,7 +929,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         bundle.putInt("hargaLite", hargaLite);
                         bundle.putInt("diskonBalitaUhud", diskonBalitaUhud);
                         bundle.putInt("diskonBalitaNur", diskonBalitaNur);
-                        bundle.putInt("diskonBalitaRahman", diskonBalitaRahman);
+                        bundle.putInt("diskonBalitaRahmah", diskonBalitaRahmah);
+                        bundle.putInt("diskonBalitaStandar", diskonBalitaStandar);
 
                         step3Fragment.setArguments(bundle);
                         getFragmentManager().beginTransaction()
@@ -980,7 +987,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         bundle.putInt("hargaLite", hargaLite);
                         bundle.putInt("diskonBalitaUhud", diskonBalitaUhud);
                         bundle.putInt("diskonBalitaNur", diskonBalitaNur);
-                        bundle.putInt("diskonBalitaRahman", diskonBalitaRahman);
+                        bundle.putInt("diskonBalitaRahmah", diskonBalitaRahmah);
+                        bundle.putInt("diskonBalitaStandar", diskonBalitaStandar);
 
                         step3Fragment.setArguments(bundle);
                         getFragmentManager().beginTransaction()
@@ -1182,7 +1190,18 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             String hotelMadinah = objPaket.get(i).getHotel_madinah();
             String hotelMekah = objPaket.get(i).getHotel_mekkah();
 
-            if (Jenis.equals("UHUD")){
+            if (Jenis.equals("Standard")){
+                map.put("std",Jenis);
+                map.put("hotel_madinah_std", hotelMadinah);
+                map.put("hotel_mekkah_std", hotelMekah);
+                if (Kamar.equals("Double")){
+                    map.put("harga_double_std", harga);
+                }else if(Kamar.equals("Triple")){
+                    map.put("harga_triple_std", harga);
+                }else {
+                    map.put("harga_quard_std", harga);
+                }
+            }else if (Jenis.equals("UHUD")){
                 map.put("uhud",Jenis);
                 map.put("hotel_madinah_uhud", hotelMadinah);
                 map.put("hotel_mekkah_uhud", hotelMekah);
@@ -1255,6 +1274,11 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             mekah = map.get("hotel_mekkah_uhud");
             madinah = map.get("hotel_madinah_uhud");
         }
+        if (!TextUtils.isEmpty(map.get("std"))){
+            listPaket.add(map.get("std"));
+            mekah = map.get("hotel_mekkah_std");
+            madinah = map.get("hotel_madinah_std");
+        }
 
         adapterHotel = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, listPaket);
@@ -1304,7 +1328,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     hargaLite = Integer.parseInt(pojo.get(0).getHarga_lite());
                     diskonBalitaUhud = Integer.parseInt(pojo.get(0).getDiskon_balita_uhud());
                     diskonBalitaNur = Integer.parseInt(pojo.get(0).getDiskon_balita_nur());
-                    diskonBalitaRahman = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
+                    diskonBalitaRahmah = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
+                    diskonBalitaStandar = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
                 }

@@ -27,6 +27,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
     HashMap<String, String> uhud = new HashMap<String, String>();
     HashMap<String, String> nur = new HashMap<String, String>();
     HashMap<String, String> rahmah = new HashMap<String, String>();
+    HashMap<String, String> standar = new HashMap<String, String>();
     HashMap<String, String> map = new HashMap<String, String>();
 
     public PaketAiwaAdapter(ArrayList<Jadwal> jadwal, ArrayList<Paket> paket, Context context) {
@@ -54,7 +55,24 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
             String hotelMadinah = paket.get(a).getHotel_madinah();
             String hotelMekah = paket.get(a).getHotel_mekkah();
 
-            if (Jenis.equals("UHUD")){
+            if (Jenis.equals("Standard")){
+                standar.put("key",Jenis);
+                map.put("standard",Jenis);
+                standar.put("hotel_madinah", hotelMadinah);
+                map.put("hotel_madinah_standard", hotelMadinah);
+                standar.put("hotel_mekkah", hotelMekah);
+                map.put("hotel_mekkah_standard", hotelMekah);
+                if (Kamar.equals("Double")){
+                    map.put("harga_double_standard", harga);
+                    standar.put("harga_double", harga);
+                }else if(Kamar.equals("Triple")){
+                    map.put("harga_triple_standard", harga);
+                    standar.put("harga_triple", harga);
+                }else {
+                    map.put("harga_quard_standard", harga);
+                    standar.put("harga_quard", harga);
+                }
+            }else if (Jenis.equals("UHUD")){
                 uhud.put("key",Jenis);
                 map.put("uhud",Jenis);
                 uhud.put("hotel_madinah", hotelMadinah);
@@ -161,6 +179,12 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
         viewHolder.uhdMed.setText(map.get("hotel_madinah_uhud"));
         viewHolder.uhdMek.setText(map.get("hotel_mekkah_uhud"));
 
+        viewHolder.stdDouble.setText(map.get("harga_double_standard"));
+        viewHolder.stdTriple.setText(map.get("harga_triple_standard"));
+        viewHolder.stdQuard.setText(map.get("harga_quard_standard"));
+        viewHolder.stdMed.setText(map.get("hotel_madinah_standard"));
+        viewHolder.stdMek.setText(map.get("hotel_mekkah_standard"));
+
         final String berangkatDetail;
         final String pulangDetail;
         final String tglBerangkat;
@@ -209,8 +233,14 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                             "\tKamar Quard = "+map.get("harga_quard_uhud")+"\n" +
                             "\tHotel Madinah = "+map.get("hotel_madinah_uhud")+"\n" +
                             "\tHotel Mekkah = "+map.get("hotel_mekkah_uhud")+"\n" +
+                            "-Jenis STANDARD\n" +
+                            "\tKamar Double = "+map.get("harga_double_standard")+"\n" +
+                            "\tKamar Triple = "+map.get("harga_triple_standard")+"\n" +
+                            "\tKamar Quard = "+map.get("harga_quard_standard")+"\n" +
+                            "\tHotel Madinah = "+map.get("hotel_madinah_standard")+"\n" +
+                            "\tHotel Mekkah = "+map.get("hotel_mekkah_standard")+"\n" +
                             "\n" +
-                            "*Harga diatas hanya simulasi";
+                            "*Harga diatas bisa berubah sewaktu-waktu";
 
                     Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
@@ -240,6 +270,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
         private TextView rhmDouble, rhmTriple, rhmQuard, rhmMed, rhmMek;
         private TextView nurDouble, nurTriple, nurQuard, nurMed, nurMek, nurMan;
         private TextView uhdDouble, uhdTriple, uhdQuard, uhdMed, uhdMek;
+        private TextView stdDouble, stdTriple, stdQuard, stdMed, stdMek;
         private Button shareBtn, shareItinerary;
         public ViewHolder(View view) {
             super(view);
@@ -262,6 +293,12 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
             uhdQuard = (TextView)view.findViewById(R.id.uhdQuard);
             uhdMed = (TextView)view.findViewById(R.id.uhdMadinah);
             uhdMek = (TextView)view.findViewById(R.id.uhdMekah);
+
+            stdDouble = (TextView)view.findViewById(R.id.stdDouble);
+            stdTriple = (TextView)view.findViewById(R.id.stdTriple);
+            stdQuard = (TextView)view.findViewById(R.id.stdQuard);
+            stdMed = (TextView)view.findViewById(R.id.stdMadinah);
+            stdMek = (TextView)view.findViewById(R.id.stdMekah);
 
             shareBtn = (Button)view.findViewById(R.id.shareDetail);
             shareItinerary = (Button)view.findViewById(R.id.shareItinerary);
