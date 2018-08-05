@@ -49,7 +49,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
         viewHolder.judul.setText(mFilterData.get(i).getJudul());
         viewHolder.link = "http://"+mFilterData.get(i).getFile();
         try {
-            Picasso.get().load(viewHolder.link).into(viewHolder.imageView);
+            Picasso.get().load(viewHolder.link).fit().centerCrop().into(viewHolder.imageView);
         }catch (Exception ex){
             Log.d("ERROR_MSG", "onBindViewHolder: " + ex.getMessage());
         }

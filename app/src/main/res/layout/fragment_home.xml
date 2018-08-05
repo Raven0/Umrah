@@ -291,29 +291,29 @@
 
                 </LinearLayout>
 
-                <!--Brosur-->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Brosur Umrah" />
+                <!--&lt;!&ndash;Brosur&ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:text="Brosur Umrah" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/brosur"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/brosur"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
 
-                <!--Voucher-->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Voucher Umrah" />
+                <!--&lt;!&ndash;Voucher&ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:text="Voucher Umrah" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/voucher"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/voucher"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
 
             </LinearLayout>
 

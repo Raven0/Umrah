@@ -130,8 +130,6 @@ public interface WEBInterface {
     //DATA BROSUR
     @GET("brosur/")
     Call<BrosurResponse> getBrosur();
-//    @GET("gallery/video/")
-//    Call<GalleryResponse> getGalleryVideo();
 
 
 

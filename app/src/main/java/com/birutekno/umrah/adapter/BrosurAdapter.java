@@ -2,6 +2,10 @@ package com.birutekno.umrah.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +18,8 @@ import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataBrosur;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -54,6 +60,41 @@ public class BrosurAdapter extends RecyclerView.Adapter<BrosurAdapter.ViewHolder
         return mFilterData.size();
     }
 
+    static public void shareImage(String url, final Context context) {
+        Picasso.get().load(url).into(new com.squareup.picasso.Target() {
+            @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("image/*");
+                i.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap, context));
+                context.startActivity(Intent.createChooser(i, "Share Image"));
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
+    }
+
+    static public Uri getLocalBitmapUri(Bitmap bmp, Context context) {
+        Uri bmpUri = null;
+        try {
+            File file =  new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "share_image_" + System.currentTimeMillis() + ".png");
+            FileOutputStream out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.close();
+            bmpUri = Uri.fromFile(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bmpUri;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView judul;
         private ImageView imageView;
@@ -67,11 +108,17 @@ public class BrosurAdapter extends RecyclerView.Adapter<BrosurAdapter.ViewHolder
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String shareBody = link;
-                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                    context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+//                    String shareBody = link;
+//                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+//                    sharingIntent.setType("text/plain");
+//                    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+//                    context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+
+                    String url = link;
+//                    Intent i = new Intent(Intent.ACTION_VIEW);
+//                    i.setData(Uri.parse(url));
+//                    context.startActivity(i);
+                    shareImage(url, context);
                 }
             });
 

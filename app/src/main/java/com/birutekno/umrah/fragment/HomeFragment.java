@@ -7,9 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 
 import com.birutekno.umrah.GalleryActivity;
@@ -23,22 +20,16 @@ import com.birutekno.umrah.adapter.BannerAdapter;
 import com.birutekno.umrah.adapter.BannerPagerAdapter;
 import com.birutekno.umrah.adapter.BrosurAdapter;
 import com.birutekno.umrah.helper.AutoScrollViewPager;
-import com.birutekno.umrah.helper.BrosurResponse;
 import com.birutekno.umrah.helper.CirclePageIndicator;
-import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.Banner;
 import com.birutekno.umrah.model.DataBrosur;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -100,11 +91,11 @@ public class HomeFragment extends BaseFragment{
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
-    @Bind(R.id.brosur)
-    RecyclerView recyclerViewBrosur;
-
-    @Bind(R.id.voucher)
-    RecyclerView recyclerViewVoucher;
+//    @Bind(R.id.brosur)
+//    RecyclerView recyclerViewBrosur;
+//
+//    @Bind(R.id.voucher)
+//    RecyclerView recyclerViewVoucher;
 
     @Bind(R.id.pager)
     protected AutoScrollViewPager mPager;
@@ -130,20 +121,20 @@ public class HomeFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        setUpRecyclerView();
+//        setUpRecyclerView();
         initBanner();
-        loadJSON();
+//        loadJSON();
     }
 
-    private void setUpRecyclerView() {
-        recyclerViewBrosur.setHasFixedSize(true);
-        recyclerViewBrosur.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewBrosur.setAdapter(brosurAdapter);
-
-        recyclerViewVoucher.setHasFixedSize(true);
-        recyclerViewVoucher.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewVoucher.setAdapter(mStationaryAdapter);
-    }
+//    private void setUpRecyclerView() {
+//        recyclerViewBrosur.setHasFixedSize(true);
+//        recyclerViewBrosur.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//        recyclerViewBrosur.setAdapter(brosurAdapter);
+//
+//        recyclerViewVoucher.setHasFixedSize(true);
+//        recyclerViewVoucher.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//        recyclerViewVoucher.setAdapter(mStationaryAdapter);
+//    }
 
 //    @Override
 //    public void onClick(BannerItemView view) {
@@ -230,34 +221,34 @@ public class HomeFragment extends BaseFragment{
         }
     }
 
-    private void loadJSON(){
-        pDialog = new ProgressDialog(getContext());
-        pDialog.setMessage("Harap tunggu...");
-        pDialog.setCancelable(false);
-        pDialog.show();
-        Call<BrosurResponse> call = WebApi.getAPIService().getBrosur();
-        call.enqueue(new Callback<BrosurResponse>() {
-            @Override
-            public void onResponse(Call<BrosurResponse> call, Response<BrosurResponse> response) {
-                if(response.isSuccessful()){
-                    BrosurResponse jsonResponse = response.body();
-                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-                    brosurAdapter = new BrosurAdapter(pojo, getContext());
-                    recyclerViewBrosur.setAdapter(brosurAdapter);
-                    pDialog.dismiss();
-                }else {
-                    Log.d("ERROR CODE" , String.valueOf(response.code()));
-                    Log.d("ERROR BODY" , response.errorBody().toString());
-                    pDialog.dismiss();
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BrosurResponse> call, Throwable t) {
-                Log.d("Error",t.getMessage());
-                pDialog.dismiss();
-            }
-        });
-    }
+//    private void loadJSON(){
+//        pDialog = new ProgressDialog(getContext());
+//        pDialog.setMessage("Harap tunggu...");
+//        pDialog.setCancelable(false);
+//        pDialog.show();
+//        Call<BrosurResponse> call = WebApi.getAPIService().getBrosur();
+//        call.enqueue(new Callback<BrosurResponse>() {
+//            @Override
+//            public void onResponse(Call<BrosurResponse> call, Response<BrosurResponse> response) {
+//                if(response.isSuccessful()){
+//                    BrosurResponse jsonResponse = response.body();
+//                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+//                    brosurAdapter = new BrosurAdapter(pojo, getContext());
+//                    recyclerViewBrosur.setAdapter(brosurAdapter);
+//                    pDialog.dismiss();
+//                }else {
+//                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+//                    Log.d("ERROR BODY" , response.errorBody().toString());
+//                    pDialog.dismiss();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BrosurResponse> call, Throwable t) {
+//                Log.d("Error",t.getMessage());
+//                pDialog.dismiss();
+//            }
+//        });
+//    }
 }

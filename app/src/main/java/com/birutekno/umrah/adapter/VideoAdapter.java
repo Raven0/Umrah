@@ -45,7 +45,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
         String link = "http://"+mFilterData.get(i).getFile();
         viewHolder.yt = mFilterData.get(i).getDeskripsi();
         try {
-            Picasso.get().load(link).into(viewHolder.imageView);
+            Picasso.get().load(link).fit().centerCrop().into(viewHolder.imageView);
         }catch (Exception ex){
             Log.d("ERROR_MSG", "onBindViewHolder: " + ex.getMessage());
         }
