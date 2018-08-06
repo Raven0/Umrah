@@ -715,7 +715,7 @@ public class TotalKalkulasiFragment extends Fragment {
                         "Rp. "+ numberFormat(String.valueOf(hitunganBalita)) +"\n" +
                         "\n\n";
             }
-        } if(jenisPaket.equals("Standard") && jmlBalita != 0) {
+        }else if(jenisPaket.equals("Standard") && jmlBalita != 0) {
             balitaView.setVisibility(View.VISIBLE);
             hargaNormal.setText("Rp. "+numberFormat(String.valueOf(hargaQuard)));
             pakethotelBalita.setText(String.valueOf(jenisPaket));

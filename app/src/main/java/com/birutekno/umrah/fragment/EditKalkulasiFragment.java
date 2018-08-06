@@ -1342,7 +1342,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     diskonBalitaUhud = Integer.parseInt(pojo.get(0).getDiskon_balita_uhud());
                     diskonBalitaNur = Integer.parseInt(pojo.get(0).getDiskon_balita_nur());
                     diskonBalitaRahmah = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
-                    diskonBalitaStandar = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
+                    diskonBalitaStandar = Integer.parseInt(pojo.get(0).getDiskon_balita_standar());
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
                 }

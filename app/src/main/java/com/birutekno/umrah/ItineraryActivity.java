@@ -99,6 +99,8 @@ public class ItineraryActivity extends BaseActivity{
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         loadJSON("1440");
+
+        initSpinnerPeriode();
     }
 
     private void loadJSON(String periode){

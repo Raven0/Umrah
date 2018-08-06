@@ -93,12 +93,14 @@ public class LoginActivity extends BaseActivity {
                         }
                     }catch (Exception e){
                         e.printStackTrace();
+                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
+                    Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
             });

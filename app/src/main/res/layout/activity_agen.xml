@@ -8,304 +8,72 @@
     android:orientation="vertical"
     tools:context=".SubAgenActivity">
 
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:paddingLeft="10dp"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:layout_height="wrap_content">
 
-        <!--<TextView-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+            <!--<TextView-->
             <!--android:id="@+id/title"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_centerHorizontal="true"-->
             <!--android:layout_centerVertical="true"-->
-            <!--android:text="Agen"-->
+            <!--android:text="Jadwal"-->
             <!--android:textColor="@color/white"-->
             <!--android:textSize="16dp" />-->
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <EditText
-            android:layout_width="130dp"
-            android:layout_height="30dp"
-            android:paddingLeft="15dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/outline_black"
-            android:drawableRight="@drawable/drawable_filter"
-            android:hint="Filter"
-            android:textSize="15dp"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp">
-
-            <EditText
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/button_outline_black"
-                android:textSize="15dp"
-                android:hint="Search"
-                android:drawableRight="@drawable/drawable_search"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
-
         </RelativeLayout>
 
-    </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    <HorizontalScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone"/>
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+    <LinearLayout
+        android:id="@+id/loadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:gravity="center">
 
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Database Timeout
+atau Data belum terisi"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+        <Button
+            android:id="@+id/loadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_rounded_orange_1"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="Coba lagi"/>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="No"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Nama"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="No. Telp"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Total Caljam"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#999999"
-                            android:padding="18dip"
-                            android:text="Total Jamaah"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="1"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Andika Saputra"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="08236281"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="11"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="20"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#fff"/>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="2"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Bayu Dirga"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="088732"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="2"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="15"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#fff"/>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="3"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="Depras Nuryadi"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="0876321"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="5"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:background="#CCCCCC"
-                            android:padding="18dip"
-                            android:text="30"
-                            android:textColor="#fff"
-                            android:textSize="14dp" />
-
-                    </TableRow>
-
-                </LinearLayout>
-
-            </android.support.v4.widget.NestedScrollView>
-
-        </TableLayout>
-
-    </HorizontalScrollView>
+    </LinearLayout>
 
 </LinearLayout>

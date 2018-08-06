@@ -19,6 +19,8 @@ public class DataKalkulasi {
 
     private String diskon_balita_nur;
 
+    private String diskon_balita_standar;
+
     private String harga_infant;
 
     public String getDiskon_balita_rhm ()
@@ -117,5 +119,13 @@ public class DataKalkulasi {
 
     public void setHarga_lite(String harga_lite) {
         this.harga_lite = harga_lite;
+    }
+
+    public String getDiskon_balita_standar() {
+        return diskon_balita_standar;
+    }
+
+    public void setDiskon_balita_standar(String diskon_balita_standar) {
+        this.diskon_balita_standar = diskon_balita_standar;
     }
 }

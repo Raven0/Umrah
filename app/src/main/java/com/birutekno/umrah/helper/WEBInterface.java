@@ -71,6 +71,10 @@ public interface WEBInterface {
     @GET("agen/{id}/show")
     Call<AgenObject> showAgen(@Path("id") String id);
 
+    //GET SUB AGEN
+    @GET("agen/{id}/subagen")
+    Call<AgenResponse> getSubAgen(@Path("id") String id);
+
     //REGISTER AGEN
     @FormUrlEncoded
     @POST("register")
