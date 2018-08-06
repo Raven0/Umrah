@@ -7,30 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SubAgenActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:paddingLeft="10dp"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Agen"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-    </RelativeLayout>
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,17 +15,17 @@
         android:gravity="center_horizontal">
 
         <TextView
+            android:id="@+id/judul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Komisi Anda Saat ini"
             android:textSize="16dp"
             android:layout_marginTop="20dp"
             android:textAlignment="center"/>
 
         <TextView
+            android:id="@+id/nominal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rp. 250.000.000"
             android:textSize="32dp"
             android:textStyle="bold"
             android:textColor="#FF8800"

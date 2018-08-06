@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -18,9 +19,15 @@ import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
+import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.File;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +60,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     EditText feereg;
     EditText feeprom;
     EditText web;
+    CircleImageView imgView;
+
+    private Uri uri;
+    private Uri resultUri;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -75,6 +86,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         feereg = (EditText) findViewById(R.id.feereg);
         feeprom = (EditText) findViewById(R.id.feepromo);
         web = (EditText) findViewById(R.id.website);
+        imgView = (CircleImageView) findViewById(R.id.imgView);
 
         mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -85,30 +97,15 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
-//        img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                int PERMISSION_ALL = 1;
-//                String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA};
-//
-//                if (ContextCompat.checkSelfPermission(EditProfileActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
-//                    ActivityCompat.requestPermissions(EditProfileActivity.this, PERMISSIONS, PERMISSION_ALL);
-//                }
-//
-//                else {
-//                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-//                    StrictMode.setVmPolicy(builder.build());
-//                    Intent chooserIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    File f = new File(Environment.getExternalStorageDirectory(), "IMAGE " + new Date().getTime() + ".jpg");
-//                    chooserIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-//                    if (chooserIntent.resolveActivity(getPackageManager()) != null) {
-//                        startActivityForResult(chooserIntent, 1);
-//                    }
-////                startActivityForResult(chooserIntent, CAM_REQ_CODE);
-//                }
-//            }
-//        });
+        imgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, 1);
+            }
+        });
     }
 
     public static Intent createIntent(Context context) {
@@ -186,6 +183,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             String password = prefs.getString("password", "123");
 
             HashMap<String, String> params = new HashMap<>();
+
+            File file = new File(resultUri.toString());
+            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
+
             //anggota_id
             params.put("nama", nama.getText().toString());
             params.put("email", email);
@@ -234,6 +236,31 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     t.printStackTrace();
                 }
             });
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK){
+
+            uri = data.getData();
+
+            CropImage.activity(uri)
+                    .setGuidelines(com.theartofdev.edmodo.cropper.CropImageView.Guidelines.ON)
+                    .setAspectRatio(1,1)
+                    .start(this);
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                resultUri = result.getUri();
+                imgView.setImageURI(resultUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
         }
     }
 

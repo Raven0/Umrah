@@ -34,6 +34,8 @@
         <activity android:name=".DetailKalkulasiActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".JadwalActivity" />
         <activity android:name=".ItineraryActivity" />
@@ -42,6 +44,7 @@
         <activity android:name=".GalleryActivity" />
         <activity android:name=".SubAgenActivity" />
         <activity android:name=".PotkomActivity" />
+        <activity android:name=".PotkomKoordActivity" />
         <activity android:name=".FaqActivity" />
         <activity android:name=".WizardActivity" />
         <activity android:name=".DetailHotelActivity" />

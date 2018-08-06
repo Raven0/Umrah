@@ -265,7 +265,7 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataKomisi(id);
+                loadDataJamaah(id);
             }
         });
     }
@@ -295,7 +295,7 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataKomisi(id);
+                loadDataProspek(id);
             }
         });
     }

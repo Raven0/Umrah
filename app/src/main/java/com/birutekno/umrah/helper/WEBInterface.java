@@ -1,9 +1,9 @@
 package com.birutekno.umrah.helper;
 
 import com.birutekno.umrah.model.AgenObject;
+import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.DashboardModel;
 import com.birutekno.umrah.model.JamaahObject;
-import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.ProspekObject;
 
 import java.util.HashMap;
@@ -89,6 +89,7 @@ public interface WEBInterface {
     @FormUrlEncoded
     @PUT("agen/{id}/edit")
     Call<ResponseBody> editAgen(@Path("id") String id, @FieldMap HashMap<String, String> params);
+//    Call<ResponseBody> editAgen(@Path("id") String id, @Part MultipartBody.Part image, @FieldMap HashMap<String, String> params);
 
 
 
@@ -144,9 +145,17 @@ public interface WEBInterface {
     @GET("jamaah/{id}/agen/komisi")
     Call<PotkomResponse> getDataKomisi(@Path("id") String id);
 
-    //GET JAMAAG POTENSI
+    //GET JAMAAH POTENSI
     @GET("jamaah/{id}/agen/potensi")
     Call<PotkomResponse> getDataPotensi(@Path("id") String id);
+
+    //GET JAMAAG KOMISI KOORD
+    @GET("jamaah/{id}/koordinator/komisi")
+    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id);
+
+    //GET JAMAAH POTENSI KOORD
+    @GET("jamaah/{id}/koordinator/potensi")
+    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id);
 
     //GET UANG KOMISI
     @GET("jamaah/{id}/agenfee/komisi")
@@ -155,6 +164,14 @@ public interface WEBInterface {
     //GET UANG POTENSI
     @GET("jamaah/{id}/agenfee/potensi")
     Call<DashboardModel> getUangPotensi(@Path("id") String id);
+
+    //GET UANG KOMISI KOORD
+    @GET("jamaah/{id}/koordinatorfee/komisi")
+    Call<DashboardModel> getUangKoordKomisi(@Path("id") String id);
+
+    //GET UANG POTENSI KOORD
+    @GET("jamaah/{id}/koordinatorfee/potensi")
+    Call<DashboardModel> getUangKoordPotensi(@Path("id") String id);
 
     //GET TOTAL JAMAAH
     @GET("jamaah/{id}/agen/total")
