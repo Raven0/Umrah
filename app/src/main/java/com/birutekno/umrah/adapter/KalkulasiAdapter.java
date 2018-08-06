@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -187,7 +188,12 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, id.getText().toString(), Toast.LENGTH_SHORT).show();
+//                    String smsNumber="919426640584@s.whatsapp.net";
+                    Uri uri = Uri.parse("smsto:" + no_telp);
+                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+                    i.putExtra("sms_body", "Prakash Gajera");
+                    i.setPackage("com.whatsapp");
+                    context.startActivity(i);
                 }
             });
 

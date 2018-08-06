@@ -1,18 +1,15 @@
 package com.birutekno.umrah.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.birutekno.umrah.EditKalkulasiActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataJamaah;
 
@@ -36,7 +33,7 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
 
     @Override
     public JamaahAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_kalkulasi, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_jamaah, viewGroup, false);
         return new JamaahAdapter.ViewHolder(view);
     }
 
@@ -94,7 +91,6 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView id,nama,telp,alamat;
-        private LinearLayout detail, edit;
         public ViewHolder(final View view) {
             super(view);
 
@@ -103,32 +99,10 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
             telp = (TextView)view.findViewById(R.id.noTelp);
             alamat = (TextView)view.findViewById(R.id.alamatProspek);
 
-            detail = (LinearLayout)view.findViewById(R.id.view);
-            edit = (LinearLayout)view.findViewById(R.id.edit);
-
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, id.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "pay", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(context, InputKalkulasiActivity.class);
-//                    context.startActivity(intent);
-                }
-            });
-
-            edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, EditKalkulasiActivity.class);
-                    String sessionId = id.getText().toString();
-                    intent.putExtra("id", sessionId);
-                    context.startActivity(intent);
                 }
             });
 

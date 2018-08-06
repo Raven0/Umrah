@@ -1,11 +1,15 @@
 package com.birutekno.umrah.fragment;
 
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -218,6 +222,15 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 Toast.makeText(getContext(), "Load data : OK", Toast.LENGTH_SHORT).show();
             }
         }
+
+        telp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, 1);
+            }
+        });
+
         return view;
     }
 
@@ -1339,5 +1352,55 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 loadKalkulasi();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            Uri contactData = data.getData();
+            Cursor c =  getContext().getContentResolver().query(contactData, null, null, null, null);
+            if (c.moveToFirst()) {
+
+                String phoneNumber="",emailAddress="";
+                String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                String contactId = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
+                //http://stackoverflow.com/questions/866769/how-to-call-android-contacts-list   our upvoted answer
+
+                String hasPhone = c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+
+                if ( hasPhone.equalsIgnoreCase("1"))
+                    hasPhone = "true";
+                else
+                    hasPhone = "false" ;
+
+                if (Boolean.parseBoolean(hasPhone))
+                {
+                    Cursor phones = getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+                    while (phones.moveToNext())
+                    {
+                        phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    }
+                    phones.close();
+                }
+
+                // Find Email Addresses
+                Cursor emails = getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,null,ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId,null, null);
+                while (emails.moveToNext())
+                {
+                    emailAddress = emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                }
+                emails.close();
+
+                //mainActivity.onBackPressed();
+                // Toast.makeText(mainactivity, "go go go", Toast.LENGTH_SHORT).show();
+
+//                tvname.setText("Name: "+name);
+                pic.setText(name);
+                telp.setText(phoneNumber);
+//                tvmail.setText("Email: "+emailAddress);
+//                Log.d("curs", name + " num" + phoneNumber + " " + "mail" + emailAddress);
+            }
+            c.close();
+        }
     }
 }

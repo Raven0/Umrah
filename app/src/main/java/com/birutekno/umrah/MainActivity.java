@@ -1,8 +1,11 @@
 package com.birutekno.umrah;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -93,6 +96,7 @@ public class MainActivity extends BaseActivity {
         mDImage.setBackgroundResource(R.drawable.ic_dashboard_yellow);
 
         initPager();
+        checkPermission();
     }
 
     private void initPager(){
@@ -172,6 +176,15 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void checkPermission(){
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.WRITE_CONTACTS, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_SMS, android.Manifest.permission.CAMERA};
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS, PERMISSION_ALL);
+        }
     }
 
     @Override
