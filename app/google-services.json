@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "217349213187",
-    "firebase_url": "https://ischool-9555b.firebaseio.com",
-    "project_id": "ischool-9555b",
-    "storage_bucket": "ischool-9555b.appspot.com"
+    "project_number": "996409152675",
+    "firebase_url": "https://aiwaapps-birutekno.firebaseio.com",
+    "project_id": "aiwaapps-birutekno",
+    "storage_bucket": "aiwaapps-birutekno.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:217349213187:android:52ccbf2b749a020b",
+        "mobilesdk_app_id": "1:996409152675:android:da5f978883033219",
         "android_client_info": {
-          "package_name": "com.birutekno.aiwa"
+          "package_name": "com.birutekno.umrah"
         }
       },
       "oauth_client": [
         {
-          "client_id": "217349213187-ctdru22qijlr4be926tmhk3a4g0fo4u7.apps.googleusercontent.com",
+          "client_id": "996409152675-043e28qkgbbdlpaf3ls8liejsdr139ep.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.birutekno.aiwa",
-            "certificate_hash": "691bc2f7a323488c9bfdf689be4218913c4c7486"
+            "package_name": "com.birutekno.umrah",
+            "certificate_hash": "355e76b96471a407770d0f128d2b3177068ff402"
           }
         },
         {
-          "client_id": "217349213187-loem64goj3a18t615rci65t62s2fslfj.apps.googleusercontent.com",
+          "client_id": "996409152675-mil0fbd7nics0uac8o2b1u2f7dl09qft.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDo0tbwGuRxXQ-0EJ8fpbIaq-Gn3yWNndI"
+          "current_key": "AIzaSyCEbAcaXMGj1-rpnsFbmKT1EG8zukJ6jbg"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "217349213187-loem64goj3a18t615rci65t62s2fslfj.apps.googleusercontent.com",
+              "client_id": "996409152675-mil0fbd7nics0uac8o2b1u2f7dl09qft.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

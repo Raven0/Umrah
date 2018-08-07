@@ -132,6 +132,8 @@ public class ProfileActivity extends BaseActivity {
                 }catch (Exception ex){
                     pDialog.dismiss();
                     Log.d("Exception" , ex.getMessage());
+                    loadData(id);
+
                 }
             }
             @Override

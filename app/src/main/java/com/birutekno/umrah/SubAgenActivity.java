@@ -130,6 +130,7 @@ public class SubAgenActivity extends BaseActivity {
                 Log.d("Error",t.getMessage());
                 Toast.makeText(SubAgenActivity.this, "Server Error, Coba Lagi : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
+                loadJSON();
             }
         });
     }

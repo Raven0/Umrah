@@ -1,11 +1,13 @@
 package com.birutekno.umrah;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,7 +17,10 @@ import com.birutekno.umrah.adapter.BannerPagerAdapter;
 import com.birutekno.umrah.adapter.HotelPagerAdapter;
 import com.birutekno.umrah.helper.AutoScrollViewPager;
 import com.birutekno.umrah.helper.CirclePageIndicator;
+import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.Banner;
+import com.birutekno.umrah.model.DataHotel;
+import com.birutekno.umrah.model.HotelObject;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
@@ -23,6 +28,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class DetailHotelActivity extends BaseActivity {
@@ -98,6 +106,12 @@ public class DetailHotelActivity extends BaseActivity {
     private HotelPagerAdapter mAdapter;
     private BannerPagerAdapter mBannerAdapter;
 
+    String id;
+    String nama;
+
+    private DataHotel pojo;
+    private ProgressDialog pDialog;
+
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, DetailHotelActivity.class);
         return intent;
@@ -111,13 +125,15 @@ public class DetailHotelActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
-        setTitle("");
+        id= getIntent().getStringExtra("id");
+        nama= getIntent().getStringExtra("nama");
+        setTitle(nama);
+        loadJSON(id);
         initBanner();
-        setupPager();
     }
 
-    private void setupPager() {
-        mAdapter = new HotelPagerAdapter(getSupportFragmentManager());
+    private void setupPager(DataHotel obj) {
+        mAdapter = new HotelPagerAdapter(getSupportFragmentManager(), obj);
         mPager.setAdapter(mAdapter);
         mPager.setOffscreenPageLimit(2);
         final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources()
@@ -200,6 +216,37 @@ public class DetailHotelActivity extends BaseActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    private void loadJSON(final String id){
+        pDialog = new ProgressDialog(mContext);
+        pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        Call<HotelObject> call = WebApi.getAPIService().getHotelDetail(Integer.valueOf(id));
+        call.enqueue(new Callback<HotelObject>() {
+            @Override
+            public void onResponse(Call<HotelObject> call, Response<HotelObject> response) {
+                if(response.isSuccessful()){
+                    HotelObject jsonResponse = response.body();
+                    pojo = jsonResponse.getDataHotel();
+                    setupPager(pojo);
+                    pDialog.dismiss();
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotelObject> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
+                loadJSON(id);
+            }
+        });
+    }
+
     private void initBanner(){
         final List<Banner> data = new ArrayList<>();
 
@@ -220,12 +267,6 @@ public class DetailHotelActivity extends BaseActivity {
         bPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                int pos = mPager.getCurrentItem();
-//                int size = data.size();
-//
-//                if(pos == size){
-//                    mPager.setCurrentItem(1);
-//                }
 
             }
 
@@ -236,7 +277,6 @@ public class DetailHotelActivity extends BaseActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-//                Toast.makeText(mContext, state , Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -20,372 +20,336 @@
             android:paddingLeft="10dp"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Hotel"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
     </RelativeLayout>
 
-    <LinearLayout
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="10dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/hotel"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="170dp">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/orchid"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:src="@drawable/hotel_al_safwah"/>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="80dp"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:background="#80c62828"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:layout_alignParentBottom="true">-->
+
+                        <!--<RelativeLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content">-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/judul1"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="15dp"-->
+                                <!--android:paddingTop="5dp"-->
+                                <!--android:textSize="20dp"-->
+                                <!--android:text="Al Safwah Royale Orchid"-->
+                                <!--android:textColor="#fff"/>-->
+
+                            <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="70dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="40dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_alignParentRight="true">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/dirImg"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/petunjuk_arah"/>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:text="Petunjuk Arah"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="11dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_below="@id/dirImg"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textAlignment="center"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textColor="#fff"/>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
+
+                        <!--</RelativeLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="15dp"-->
+                                <!--android:paddingTop="3dp"-->
+                                <!--android:paddingBottom="3dp"-->
+                                <!--android:textSize="11dp"-->
+                                <!--android:text="4.2"-->
+                                <!--android:textColor="#fff"/>-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_marginLeft="5dp"-->
+                                <!--android:paddingTop="3dp"-->
+                                <!--android:paddingBottom="3dp"-->
+                                <!--android:layout_height="match_parent"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/bintang2"/>-->
+
+                            <!--</LinearLayout>-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="15dp"-->
+                                <!--android:paddingTop="3dp"-->
+                                <!--android:paddingBottom="3dp"-->
+                                <!--android:textSize="11dp"-->
+                                <!--android:text="627 Review"-->
+                                <!--android:textColor="#fff"/>-->
+
+                        <!--</LinearLayout>-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:paddingRight="10dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="40dp"-->
+                            <!--android:layout_height="40dp"-->
+                            <!--android:src="@drawable/icon_share_1"-->
+                            <!--android:layout_gravity="right"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="40dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Share"-->
+                            <!--android:textSize="12dp"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:layout_gravity="right"-->
+                            <!--android:textColor="#fff"/>-->
+
+                    <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="170dp">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/oulayan"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:src="@drawable/hotel_oulayan"/>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="80dp"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:background="#80c62828"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical">-->
+
+                        <!--<RelativeLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content">-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/judul"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="15dp"-->
+                                <!--android:paddingTop="5dp"-->
+                                <!--android:textSize="20dp"-->
+                                <!--android:text="Oulayan Ajyad Hotel"-->
+                                <!--android:textColor="#fff"/>-->
+
+                            <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="70dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="40dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_alignParentRight="true">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/dirImg1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/petunjuk_arah"/>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:text="Petunjuk Arah"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="11dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_below="@id/dirImg1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textAlignment="center"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textColor="#fff"/>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
+
+                        <!--</RelativeLayout>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="15dp"-->
+                                <!--android:paddingTop="3dp"-->
+                                <!--android:paddingBottom="3dp"-->
+                                <!--android:textSize="11dp"-->
+                                <!--android:text="3.9"-->
+                                <!--android:textColor="#fff"/>-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_marginLeft="5dp"-->
+                                <!--android:paddingTop="3dp"-->
+                                <!--android:paddingBottom="3dp"-->
+                                <!--android:layout_height="match_parent"-->
+                                <!--android:orientation="horizontal">-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/icon_bintang"/>-->
+
+                                <!--<ImageView-->
+                                    <!--android:layout_width="15dp"-->
+                                    <!--android:layout_height="15dp"-->
+                                    <!--android:src="@drawable/bintang2"/>-->
+
+                            <!--</LinearLayout>-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:paddingLeft="15dp"-->
+                                <!--android:paddingTop="3dp"-->
+                                <!--android:paddingBottom="3dp"-->
+                                <!--android:textSize="11dp"-->
+                                <!--android:text="496 Review"-->
+                                <!--android:textColor="#fff"/>-->
+
+                        <!--</LinearLayout>-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:paddingRight="10dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="40dp"-->
+                            <!--android:layout_height="40dp"-->
+                            <!--android:src="@drawable/icon_share_1"-->
+                            <!--android:layout_gravity="right"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="40dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Share"-->
+                            <!--android:textSize="12dp"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:layout_gravity="right"-->
+                            <!--android:textColor="#fff"/>-->
+
+                    <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</RelativeLayout>-->
+
+        <!--</LinearLayout>-->
+        <!---->
+    <!--</LinearLayout>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:paddingLeft="15dp"
-                android:background="@drawable/outline_black"
-                android:drawableRight="@drawable/drawable_filter"
-                android:hint="Filter"
-                android:textSize="15dp"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp">
-
-                <EditText
-                    android:layout_width="130dp"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="20dp"
-                    android:background="@drawable/button_outline_black"
-                    android:textSize="15dp"
-                    android:hint="Search"
-                    android:drawableRight="@drawable/drawable_search"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/hotel"
-                android:layout_width="match_parent"
-                android:layout_height="170dp">
-
-                <ImageView
-                    android:id="@+id/orchid"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/hotel_al_safwah"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#80c62828"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_alignParentBottom="true">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/judul1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="5dp"
-                                android:textSize="20dp"
-                                android:text="Al Safwah Royale Orchid"
-                                android:textColor="#fff"/>
-
-                            <!--<RelativeLayout-->
-                            <!--android:layout_width="70dp"-->
-                            <!--android:layout_height="40dp"-->
-                            <!--android:layout_alignParentRight="true">-->
-
-                            <!--<ImageView-->
-                            <!--android:id="@+id/dirImg"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="20dp"-->
-                            <!--android:src="@drawable/petunjuk_arah"/>-->
-
-                            <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="Petunjuk Arah"-->
-                            <!--android:textSize="11dp"-->
-                            <!--android:layout_below="@id/dirImg"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:textColor="#fff"/>-->
-
-                            <!--</RelativeLayout>-->
-
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:textSize="11dp"
-                                android:text="4.2"
-                                android:textColor="#fff"/>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/bintang2"/>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:textSize="11dp"
-                                android:text="627 Review"
-                                android:textColor="#fff"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/icon_share_1"
-                            android:layout_gravity="right"/>
-
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:text="Share"
-                            android:textSize="12dp"
-                            android:textStyle="bold"
-                            android:textAlignment="center"
-                            android:layout_gravity="right"
-                            android:textColor="#fff"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="170dp">
-
-                <ImageView
-                    android:id="@+id/oulayan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/hotel_oulayan"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#80c62828"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/judul"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="5dp"
-                                android:textSize="20dp"
-                                android:text="Oulayan Ajyad Hotel"
-                                android:textColor="#fff"/>
-
-                            <!--<RelativeLayout-->
-                            <!--android:layout_width="70dp"-->
-                            <!--android:layout_height="40dp"-->
-                            <!--android:layout_alignParentRight="true">-->
-
-                            <!--<ImageView-->
-                            <!--android:id="@+id/dirImg1"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="20dp"-->
-                            <!--android:src="@drawable/petunjuk_arah"/>-->
-
-                            <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="Petunjuk Arah"-->
-                            <!--android:textSize="11dp"-->
-                            <!--android:layout_below="@id/dirImg1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:textColor="#fff"/>-->
-
-                            <!--</RelativeLayout>-->
-
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:textSize="11dp"
-                                android:text="3.9"
-                                android:textColor="#fff"/>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/icon_bintang"/>
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:src="@drawable/bintang2"/>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:textSize="11dp"
-                                android:text="496 Review"
-                                android:textColor="#fff"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/icon_share_1"
-                            android:layout_gravity="right"/>
-
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:text="Share"
-                            android:textSize="12dp"
-                            android:textStyle="bold"
-                            android:textAlignment="center"
-                            android:layout_gravity="right"
-                            android:textColor="#fff"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-        
-    </LinearLayout>
+        android:layout_weight="1"/>
 
 </LinearLayout>

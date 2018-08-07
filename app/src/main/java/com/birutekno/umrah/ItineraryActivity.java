@@ -32,8 +32,6 @@ import butterknife.Bind;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -103,23 +101,16 @@ public class ItineraryActivity extends BaseActivity{
         initSpinnerPeriode();
     }
 
-    private void loadJSON(String periode){
+    private void loadJSON(final String periode){
         pDialog = new ProgressDialog(ItineraryActivity.this);
-        pDialog.setMessage("Please wait...");
+        pDialog.setMessage("Harap tunggu...");
         pDialog.show();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://115.124.86.218")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON(periode);
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
-
                 AIWAResponse jsonResponse = response.body();
                 pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-//                Toast.makeText(ItineraryActivity.this, String.valueOf(pojo.size()), Toast.LENGTH_SHORT).show();
                 adapter = new ItineraryAiwaAdapter(pojo, getBaseContext());
                 recyclerView.setAdapter(adapter);
                 pDialog.dismiss();
@@ -129,6 +120,7 @@ public class ItineraryActivity extends BaseActivity{
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
+                loadJSON(periode);
             }
         });
     }

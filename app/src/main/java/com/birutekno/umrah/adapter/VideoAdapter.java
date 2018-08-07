@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataGallery;
@@ -72,7 +73,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
                     String url = yt;
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
-                    context.startActivity(i);
+                    try {
+                        context.startActivity(i);
+                    }catch (Exception ex){
+                        Toast.makeText(context, "Link youtube tidak valid! silahkan hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 

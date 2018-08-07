@@ -3,6 +3,7 @@ package com.birutekno.umrah.helper;
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.DashboardModel;
+import com.birutekno.umrah.model.HotelObject;
 import com.birutekno.umrah.model.JamaahObject;
 import com.birutekno.umrah.model.ProspekObject;
 
@@ -187,4 +188,25 @@ public interface WEBInterface {
     //GET TOTAL PROSPEK
     @GET("prospek/{id}/agen/total")
     Call<DashboardModel> getTotalProspek(@Path("id") String id);
+
+
+
+
+
+    //DATA GALLERY
+    //GET ALL GALLERY
+    @GET("hotel/{kota}/")
+    Call<HotelResponse> getHotel(@Path("kota") String kota);
+
+    @GET("hotel/{id}/show")
+    Call<HotelObject> getHotelDetail(@Path("id") int id);
+
+    @GET("hotel/{id}/foto")
+    Call<GalleryResponse> getHotelFoto(@Path("id") int id);
+
+    @GET("hotel/{id}/video")
+    Call<GalleryResponse> getHotelVideo(@Path("id") int id);
+//    @GET("gallery/video/")
+//    Call<GalleryResponse> getGalleryVideo();
+
 }

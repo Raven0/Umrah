@@ -97,7 +97,7 @@ public class JadwalActivity extends BaseActivity {
         initSpinnerPeriode();
     }
 
-    private void loadJSON(String periode){
+    private void loadJSON(final String periode){
         pDialog = new ProgressDialog(JadwalActivity.this);
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
@@ -123,6 +123,7 @@ public class JadwalActivity extends BaseActivity {
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
+                loadJSON(periode);
             }
         });
     }

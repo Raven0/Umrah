@@ -21,6 +21,42 @@ public class LokasiActivity extends BaseActivity {
     @OnClick(R.id.mekah)
     void mekahClicked() {
         Intent intent = new Intent(this, HotelActivity.class);
+        intent.putExtra("kota", "Mekkah");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.madinah)
+    void madinahClicked() {
+        Intent intent = new Intent(this, HotelActivity.class);
+        intent.putExtra("kota", "Madinah");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.palestina)
+    void palestinaClicked() {
+        Intent intent = new Intent(this, HotelActivity.class);
+        intent.putExtra("kota", "Palestina");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.turki)
+    void turkiClicked() {
+        Intent intent = new Intent(this, HotelActivity.class);
+        intent.putExtra("kota", "Turki");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.dubai)
+    void dubaiClicked() {
+        Intent intent = new Intent(this, HotelActivity.class);
+        intent.putExtra("kota", "Dubai");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.cairo)
+    void cairoClicked() {
+        Intent intent = new Intent(this, HotelActivity.class);
+        intent.putExtra("kota", "Cairo");
         startActivity(intent);
     }
 

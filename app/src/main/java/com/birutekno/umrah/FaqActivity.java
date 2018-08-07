@@ -118,6 +118,7 @@ public class FaqActivity extends BaseActivity {
                 Log.d("Error",t.getMessage());
                 Toast.makeText(FaqActivity.this, "Server Error, Coba Lagi : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
+                loadJSON();
             }
         });
     }

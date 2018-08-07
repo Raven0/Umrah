@@ -28,7 +28,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textColor="#000"
-                android:text="Akses Wifi Gratis : YA"/>
+                android:text="Akses Wifi Gratis :"/>
+
+            <TextView
+                android:id="@+id/wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000"
+                android:text="YA"/>
 
         </LinearLayout>
 
@@ -48,7 +56,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textColor="#000"
-                android:text="Parkir Pribadi : TIDAK"/>
+                android:text="Parkir Pribadi :"/>
+
+            <TextView
+                android:id="@+id/park"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000"
+                android:text="YA"/>
 
         </LinearLayout>
 
@@ -68,7 +84,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textColor="#000"
-                android:text="Kamar Bebas Rokok : YA"/>
+                android:text="Kamar Bebas Rokok :"/>
+
+            <TextView
+                android:id="@+id/roko"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000"
+                android:text="YA"/>
 
         </LinearLayout>
 
@@ -88,7 +112,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textColor="#000"
-                android:text="Kamar ber-AC : YA"/>
+                android:text="Kamar ber-AC :"/>
+
+            <TextView
+                android:id="@+id/ac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000"
+                android:text="YA"/>
 
         </LinearLayout>
 
@@ -108,7 +140,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textColor="#000"
-                android:text="Kamar Keluarga : YA"/>
+                android:text="Kamar Keluarga :"/>
+
+            <TextView
+                android:id="@+id/keluarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000"
+                android:text="YA"/>
 
         </LinearLayout>
 
@@ -128,7 +168,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textColor="#000"
-                android:text="Makanan enak : YA"/>
+                android:text="Makanan enak :"/>
+
+            <TextView
+                android:id="@+id/makanan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000"
+                android:text="YA"/>
 
         </LinearLayout>
 

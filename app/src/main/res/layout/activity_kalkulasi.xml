@@ -59,8 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Database Timeout
-atau Data belum terisi"/>
+            android:text="Data masih kosong"/>
 
         <Button
             android:id="@+id/loadBtn"

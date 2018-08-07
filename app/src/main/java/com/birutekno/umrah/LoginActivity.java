@@ -19,6 +19,8 @@ import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.Response;
 import com.birutekno.umrah.model.User;
 import com.birutekno.umrah.ui.BaseActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import java.util.HashMap;
 
@@ -43,6 +45,8 @@ public class LoginActivity extends BaseActivity {
 
     private ProgressDialog pDialog;
     private boolean doubleBackToExitPressedOnce;
+
+    FirebaseInstanceIdService firebaseInstanceId = new FirebaseInstanceIdService();
 
     @OnClick(R.id.login)
     void loginClicked() {
@@ -81,7 +85,9 @@ public class LoginActivity extends BaseActivity {
                                 editor.putString("password", pass);
                                 editor.apply();
 
-//                            Intent to main
+                                String tokenDevice = FirebaseInstanceId.getInstance().getToken();
+
+                                Log.d("DEVICE TOKEN", "onResponse: " + tokenDevice);
                                 Intent intentReward = MainActivity.createIntent(mContext);
                                 ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
                                 ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());

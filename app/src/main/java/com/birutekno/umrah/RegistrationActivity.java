@@ -216,6 +216,7 @@ public class RegistrationActivity extends BaseActivity {
                 } else {
                     loading.dismiss();
                     Toast.makeText(mContext, "Gagal mengambil data Koordinator", Toast.LENGTH_SHORT).show();
+                    initSpinnerAgen();
                 }
             }
 

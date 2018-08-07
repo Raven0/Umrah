@@ -133,7 +133,7 @@ public class KalkulasiActivity extends BaseActivity {
                     Log.d("ERROR CODE" , String.valueOf(response.code()));
                     Log.d("ERROR BODY" , response.errorBody().toString());
                     pDialog.dismiss();
-
+                    loadJSON();
                 }
             }
 
