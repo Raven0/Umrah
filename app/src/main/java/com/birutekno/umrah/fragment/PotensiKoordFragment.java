@@ -91,7 +91,6 @@ public class PotensiKoordFragment extends BaseFragment{
             public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
                 if(response.isSuccessful()){
                     PotkomResponse jsonResponse = response.body();
-                    Toast.makeText(getContext(), jsonResponse.getKomisi().toString(), Toast.LENGTH_SHORT).show();
                     pojo = new ArrayList<>(Arrays.asList(jsonResponse.getKomisi()));
                     mAdapter = new PotkomAdapter(pojo, getContext());
                     recyclerView.setAdapter(mAdapter);
@@ -127,7 +126,7 @@ public class PotensiKoordFragment extends BaseFragment{
                         Log.d("RESP", "onResponse: " +response.message());
                         Log.d("RESP", "onBody: " +response.body());
                     }
-                    judul.setText("Komisi Anda Saat ini");
+                    judul.setText("Potensi dari Agen Anda Saat ini");
                     nominal.setText("Rp. " + numberFormat(response.body().getResponse().getTotal()));
 //                    komisi.setText(numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
 

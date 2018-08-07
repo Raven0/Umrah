@@ -18,7 +18,9 @@ import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
+import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +43,7 @@ public class ProfileActivity extends BaseActivity {
     TextView email;
     TextView domisili;
     TextView jk;
+    CircleImageView imgView;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -56,6 +59,7 @@ public class ProfileActivity extends BaseActivity {
         email = (TextView) findViewById(R.id.emailAgen);
         domisili = (TextView) findViewById(R.id.domisiliAgen);
         jk = (TextView) findViewById(R.id.jkAgen);
+        imgView = (CircleImageView) findViewById(R.id.imgView);
 
         mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -103,7 +107,6 @@ public class ProfileActivity extends BaseActivity {
         call.enqueue(new Callback<AgenObject>() {
             @Override
             public void onResponse(Call<AgenObject> call, Response<AgenObject> response) {
-                pDialog.dismiss();
                 try{
                     if (response.isSuccessful()){
                         Log.d("MSGASD", "SUCCESS");
@@ -115,6 +118,9 @@ public class ProfileActivity extends BaseActivity {
                         Log.d("RESP", "onBody: " +response.body());
                     }
                     DataAgen dataAgen = response.body().getData();
+
+                    String link = dataAgen.getFoto();
+                    Picasso.get().load(link).fit().centerCrop().into(imgView);
                     ktp.setText(dataAgen.getNo_ktp());
                     nama.setText(dataAgen.getNama());
                     notelp.setText(dataAgen.getNo_telp());
@@ -122,7 +128,9 @@ public class ProfileActivity extends BaseActivity {
                     domisili.setText(dataAgen.getAlamat());
                     jk.setText(dataAgen.getJenis_kelamin());
 
+                    pDialog.dismiss();
                 }catch (Exception ex){
+                    pDialog.dismiss();
                     Log.d("Exception" , ex.getMessage());
                 }
             }

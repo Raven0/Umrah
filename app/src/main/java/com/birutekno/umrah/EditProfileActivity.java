@@ -10,15 +10,18 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.AgenObject;
 import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
@@ -53,7 +56,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     String status;
     String koordinator;
     EditText domisili;
-    EditText jk;
     EditText bank;
     EditText norek;
     EditText narek;
@@ -61,6 +63,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     EditText feeprom;
     EditText web;
     CircleImageView imgView;
+    RadioButton rb1, rb2;
+
+    private String jenis_kelamin;
+    private Boolean jk;
 
     private Uri uri;
     private Uri resultUri;
@@ -79,7 +85,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         notelp = (EditText) findViewById(R.id.telp);
 //        email = (EditText) findViewById(R.id.email);
         domisili = (EditText) findViewById(R.id.alamat);
-        jk = (EditText) findViewById(R.id.jk);
         bank = (EditText) findViewById(R.id.bank);
         norek = (EditText) findViewById(R.id.norek);
         narek = (EditText) findViewById(R.id.narek);
@@ -87,13 +92,15 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         feeprom = (EditText) findViewById(R.id.feepromo);
         web = (EditText) findViewById(R.id.website);
         imgView = (CircleImageView) findViewById(R.id.imgView);
+        rb1 = (RadioButton) findViewById(R.id.pria);
+        rb2 = (RadioButton) findViewById(R.id.wanita);
 
         mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //What to do on back clicked
-                EditProfileActivity.super.onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -136,7 +143,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         call.enqueue(new Callback<AgenObject>() {
             @Override
             public void onResponse(Call<AgenObject> call, Response<AgenObject> response) {
-                pDialog.dismiss();
                 try{
                     if (response.isSuccessful()){
                         Log.d("MSGASD", "SUCCESS");
@@ -148,6 +154,9 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         Log.d("RESP", "onBody: " +response.body());
                     }
                     DataAgen dataAgen = response.body().getData();
+
+                    String link = dataAgen.getFoto();
+                    Picasso.get().load(link).fit().centerCrop().into(imgView);
                     ktp.setText(dataAgen.getNo_ktp());
                     nama.setText(dataAgen.getNama());
                     notelp.setText(dataAgen.getNo_telp());
@@ -156,15 +165,23 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     status = dataAgen.getStatus();
                     koordinator = dataAgen.getKoordinator();
                     domisili.setText(dataAgen.getAlamat());
-                    jk.setText(dataAgen.getJenis_kelamin());
+                    jenis_kelamin = dataAgen.getJenis_kelamin();
+                    if (jenis_kelamin.equals("L")){
+                        rb1.setChecked(true);
+                        rb2.setChecked(false);
+                    }else {
+                        rb1.setChecked(false);
+                        rb2.setChecked(true);
+                    }
                     bank.setText(dataAgen.getBank());
                     norek.setText(dataAgen.getNo_rekening());
                     narek.setText(dataAgen.getNama_rek_beda());
                     feereg.setText(dataAgen.getFee_reguler());
                     feeprom.setText(dataAgen.getFee_promo());
                     web.setText(dataAgen.getWebsite());
-
+                    pDialog.dismiss();
                 }catch (Exception ex){
+                    pDialog.dismiss();
                     Log.d("Exception" , ex.getMessage());
                 }
             }
@@ -184,58 +201,68 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
             HashMap<String, String> params = new HashMap<>();
 
-            File file = new File(resultUri.toString());
-            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
+            if(rb1.isChecked()){
+                jenis_kelamin = "L";
+                jk = true;
+            }else if(rb2.isChecked()){
+                jenis_kelamin = "P";
+                jk = true;
+            }else {
+                jk = false;
+            }
 
             //anggota_id
-            params.put("nama", nama.getText().toString());
-            params.put("email", email);
-            params.put("username", username);
-            params.put("password", password);
-            params.put("jenis_kelamin", jk.getText().toString());
-            params.put("no_ktp", ktp.getText().toString());
-            params.put("alamat", domisili.getText().toString());
-            params.put("no_telp", notelp.getText().toString());
-            params.put("bank", bank.getText().toString());
-            params.put("status", status);
-            params.put("koordinator", koordinator);
-            params.put("no_rekening", norek.getText().toString());
-            params.put("fee_reguler", feereg.getText().toString());
-            params.put("fee_promo", feeprom.getText().toString());
-            params.put("nama_rek_beda", narek.getText().toString());
-            params.put("website", web.getText().toString());
+            if (jk){
+                params.put("nama", nama.getText().toString());
+                params.put("email", email);
+                params.put("username", username);
+                params.put("password", password);
+                params.put("jenis_kelamin", jenis_kelamin);
+                params.put("no_ktp", ktp.getText().toString());
+                params.put("alamat", domisili.getText().toString());
+                params.put("no_telp", notelp.getText().toString());
+                params.put("bank", bank.getText().toString());
+                params.put("status", status);
+                params.put("koordinator", koordinator);
+                params.put("no_rekening", norek.getText().toString());
+                params.put("fee_reguler", feereg.getText().toString());
+                params.put("fee_promo", feeprom.getText().toString());
+                params.put("nama_rek_beda", narek.getText().toString());
+                params.put("website", web.getText().toString());
 
-            pDialog = new ProgressDialog(mContext);
-            pDialog.setMessage("Harap tunggu...");
-            pDialog.setCancelable(false);
-            pDialog.show();
+                pDialog = new ProgressDialog(mContext);
+                pDialog.setMessage("Harap tunggu...");
+                pDialog.setCancelable(false);
+                pDialog.show();
 
-            Call<ResponseBody> result = WebApi.getAPIService().editAgen(String.valueOf(id_agen), params);
-            result.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    pDialog.dismiss();
-                    try {
-                        if(response.body()!=null){
-                            Intent intent = new Intent(mContext, ProfileActivity.class);
-                            startActivity(intent);
+                Call<ResponseBody> result = WebApi.getAPIService().editAgen(String.valueOf(id_agen), params);
+                result.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        pDialog.dismiss();
+                        try {
+                            if(response.body()!=null){
+                                Intent intent = new Intent(mContext, ProfileActivity.class);
+                                startActivity(intent);
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(mContext, String.valueOf(e.getMessage()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "Error Response", Toast.LENGTH_SHORT).show();
                         }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                        Toast.makeText(mContext, String.valueOf(e.getMessage()), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(mContext, "Error Response", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    pDialog.dismiss();
-                    Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(mContext, "On Failure", Toast.LENGTH_SHORT).show();
-                    t.printStackTrace();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        pDialog.dismiss();
+                        Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "On Failure", Toast.LENGTH_SHORT).show();
+                        t.printStackTrace();
+                    }
+                });
+            }else {
+                Toast.makeText(mContext, "Pilih Jenis Kelamin", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -254,14 +281,64 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            final CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
+                SharedPreferences prefs = mContext.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                int id_agen = prefs.getInt("iduser", 0);
+
                 resultUri = result.getUri();
-                imgView.setImageURI(resultUri);
+                File file = new File(resultUri.getPath());
+                RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+                MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
+                RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
+
+                pDialog = new ProgressDialog(mContext);
+                pDialog.setMessage("Harap tunggu...");
+                pDialog.setCancelable(false);
+                pDialog.show();
+
+                retrofit2.Call<okhttp3.ResponseBody> req = WebApi.getAPIService().photoAgen(id_agen, body, name);
+                req.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        // Do Something
+                        imgView.setImageURI(resultUri);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        t.printStackTrace();
+                        Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("ERROR", "onFailure: " + t.getMessage());
+                    }
+                });
+
+                pDialog.dismiss();
+
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.birutekno.umrah.model;
 
 public class DataAgen {
+    private String foto;
+
     private String koordinator;
 
     private String nama_rek_beda;
@@ -34,6 +36,14 @@ public class DataAgen {
     private String nama;
 
     private String no_rekening;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public String getKoordinator() {
         return koordinator;

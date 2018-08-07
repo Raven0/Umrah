@@ -94,7 +94,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="No Ktp" />
 
@@ -115,7 +115,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Nama" />
 
@@ -136,7 +136,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="No Telepon" />
 
@@ -178,7 +178,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Domisili" />
 
@@ -199,18 +199,32 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Jenis Kelamin" />
 
-                        <EditText
-                            android:id="@+id/jk"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:textColorHint="#bababa"
-                            android:textSize="@dimen/_12sdp"
-                            android:theme="@style/EditTextThemes" />
+                        <RadioGroup
+                            android:id="@+id/groupJk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/pria"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:buttonTint="#000"
+                                android:text="Pria"/>
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/wanita"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:buttonTint="#000"
+                                android:text="Wanita"/>
+
+                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -220,7 +234,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Bank" />
 
@@ -241,7 +255,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="No Rekening" />
 
@@ -262,9 +276,9 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Nama Rekening Beda" />
+                            android:text="Nama Rek Beda" />
 
                         <EditText
                             android:id="@+id/narek"
@@ -280,10 +294,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Fee Reguler" />
 
@@ -301,10 +316,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Fee Promo" />
 
@@ -325,7 +341,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="95dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Website" />
 
@@ -343,7 +359,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="80dp">
+                        android:layout_marginTop="20dp">
 
                         <Button
                             android:id="@+id/btnEdit"
