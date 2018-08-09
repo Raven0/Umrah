@@ -169,6 +169,12 @@ public class LoginActivity extends BaseActivity {
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             finish();
+            SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+            editor.putInt("iduser", 0);
+            editor.putString("token", "null");
+            editor.putString("status", "out");
+            editor.putString("password", "null");
+            editor.apply();
             moveTaskToBack(true);
             return;
         }

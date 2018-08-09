@@ -622,7 +622,11 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 tgl_berangkat = tglJadwal.get(position);
                 objJadwal = Arrays.asList(alldata.get(position).getJadwal());
                 objPaket = Arrays.asList(objJadwal.get(0).getPaket());
-                initSpinnerPaket(objPaket);
+                try{
+                    initSpinnerPaket(objPaket);
+                }catch (Exception ex){
+                    initSpinnerPaket(objPaket);
+                }
                 namaJadwal.setText(detailJadwal);
 
                 sendTgl = objJadwal.get(0).getTgl_berangkat();

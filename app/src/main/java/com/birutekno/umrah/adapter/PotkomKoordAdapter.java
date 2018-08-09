@@ -20,7 +20,7 @@ import java.util.List;
  * Created by No Name on 7/31/2017.
  */
 
-public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PotkomKoordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private static final int ITEM = 0;
     private static final int LOADING = 1;
@@ -30,7 +30,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private boolean isLoadingAdded = false;
 
-    public PotkomAdapter(Context context) {
+    public PotkomKoordAdapter(Context context) {
         this.context = context;
         dataPotkomList = new ArrayList<>();
     }
@@ -46,7 +46,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 break;
             case LOADING:
                 View v2 = inflater.inflate(R.layout.item_progress, parent, false);
-                viewHolder = new LoadingViewHolder(v2);
+                viewHolder = new PotkomKoordAdapter.LoadingViewHolder(v2);
                 break;
         }
         return viewHolder;
@@ -71,7 +71,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 potkomViewHolder.namaPotkom.setText(result.getNama());
                 potkomViewHolder.noTelp.setText(result.getNo_telp());
 //                potkomViewHolder.alamatPotkom.setText(result.getTgl_daftar());
-                potkomViewHolder.fee.setText("Fee : " + numberFormat(result.getMarketing_fee()));
+                potkomViewHolder.fee.setText("Fee : " + numberFormat(result.getKoordinator_fee()));
             case LOADING:
 //                Do nothing
                 break;

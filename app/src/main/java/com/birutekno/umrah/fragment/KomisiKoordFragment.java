@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.adapter.PotkomAdapter;
+import com.birutekno.umrah.adapter.PotkomKoordAdapter;
 import com.birutekno.umrah.helper.PotkomResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DashboardModel;
@@ -50,7 +50,7 @@ public class KomisiKoordFragment extends BaseFragment{
     @Bind(R.id.nominal)
     TextView nominal;
 
-    PotkomAdapter adapter;
+    PotkomKoordAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
     private static final int PAGE_START = 1;
@@ -71,7 +71,7 @@ public class KomisiKoordFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        adapter = new PotkomAdapter(getContext());
+        adapter = new PotkomKoordAdapter(getContext());
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());

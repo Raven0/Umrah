@@ -69,7 +69,7 @@ public class JPulangFragment extends BaseFragment{
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         int id = prefs.getInt("iduser", 0);
 
-        Call<JamaahResponse> call = WebApi.getAPIService().getJamaahAgen(String.valueOf(id));
+        Call<JamaahResponse> call = WebApi.getAPIService().getJamaahPulangAgen(String.valueOf(id));
         call.enqueue(new Callback<JamaahResponse>() {
             @Override
             public void onResponse(Call<JamaahResponse> call, Response<JamaahResponse> response) {

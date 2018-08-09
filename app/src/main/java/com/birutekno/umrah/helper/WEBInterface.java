@@ -120,6 +120,14 @@ public interface WEBInterface {
     @GET("jamaah/{id}/agen")
     Call<JamaahResponse> getJamaahAgen(@Path("id") String id);
 
+    //GET PROSPEK BERANGKAT BY AGEN
+    @GET("jamaah/{id}/agen/berangkat")
+    Call<JamaahResponse> getJamaahBerangkatAgen(@Path("id") String id);
+
+    //GET PROSPEK PULANG BY AGEN
+    @GET("jamaah/{id}/agen/pulang")
+    Call<JamaahResponse> getJamaahPulangAgen(@Path("id") String id);
+
     //GET SHOW JAMAAH
     @GET("jamaah/{id}/show")
     Call<JamaahObject> showJamaah(@Path("id") String id);
