@@ -83,6 +83,7 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
                                 editor.putInt("iduser", id);
                                 editor.putString("token", token);
+                                editor.putString("status", "in");
                                 editor.putString("password", pass);
                                 editor.apply();
 
@@ -141,6 +142,14 @@ public class LoginActivity extends BaseActivity {
     protected void onViewReady(Bundle savedInstanceState) {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String status = prefs.getString("status", "out");
+        if (status.equals("in")){
+            Intent intentReward = MainActivity.createIntent(mContext);
+            ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
+            ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
+        }
     }
 
     @Override

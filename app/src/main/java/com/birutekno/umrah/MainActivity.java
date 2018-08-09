@@ -3,9 +3,11 @@ package com.birutekno.umrah;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.birutekno.umrah.adapter.MainPagerAdapter;
+import com.birutekno.umrah.fragment.NotificationFragment;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import butterknife.Bind;
@@ -20,6 +23,9 @@ import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends BaseActivity {
+
+    public static final String PREFS_NAME = "AUTH";
+    NotificationFragment fragment = NotificationFragment.newInstance();
 
     @Bind(R.id.pager)
     protected ViewPager mPager;
@@ -50,6 +56,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.notificationTab)
     void notificationTabClicked() {
+//        fragment.loadJSON();
         mPager.setCurrentItem(2);
     }
 
@@ -103,6 +110,14 @@ public class MainActivity extends BaseActivity {
         if(extras != null) {
             position = extras.getInt("viewpager_position");
             mPager.setCurrentItem(position);
+        }
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String status = prefs.getString("status", "out");
+        if (status.equals("out")){
+            Intent intentReward = LoginActivity.createIntent(mContext);
+            ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
+            ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
         }
     }
 

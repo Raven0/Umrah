@@ -46,35 +46,35 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
         int skors = Integer.parseInt(mFilterData.get(i).getSkor());
         if (skors == 1){
-            viewHolder.star1.setVisibility(View.VISIBLE);
-            viewHolder.star2.setVisibility(View.GONE);
-            viewHolder.star3.setVisibility(View.GONE);
-            viewHolder.star4.setVisibility(View.GONE);
-            viewHolder.star5.setVisibility(View.GONE);
+            viewHolder.star1.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star2.setImageResource(R.drawable.bintang2);
+            viewHolder.star3.setImageResource(R.drawable.bintang2);
+            viewHolder.star4.setImageResource(R.drawable.bintang2);
+            viewHolder.star5.setImageResource(R.drawable.bintang2);
         }else if (skors == 2){
-            viewHolder.star1.setVisibility(View.VISIBLE);
-            viewHolder.star2.setVisibility(View.VISIBLE);
-            viewHolder.star3.setVisibility(View.GONE);
-            viewHolder.star4.setVisibility(View.GONE);
-            viewHolder.star5.setVisibility(View.GONE);
+            viewHolder.star1.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star2.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star3.setImageResource(R.drawable.bintang2);
+            viewHolder.star4.setImageResource(R.drawable.bintang2);
+            viewHolder.star5.setImageResource(R.drawable.bintang2);
         }else if (skors == 3){
-            viewHolder.star1.setVisibility(View.VISIBLE);
-            viewHolder.star2.setVisibility(View.VISIBLE);
-            viewHolder.star3.setVisibility(View.VISIBLE);
-            viewHolder.star4.setVisibility(View.GONE);
-            viewHolder.star5.setVisibility(View.GONE);
+            viewHolder.star1.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star2.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star3.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star4.setImageResource(R.drawable.bintang2);
+            viewHolder.star5.setImageResource(R.drawable.bintang2);
         }else if (skors == 4){
-            viewHolder.star1.setVisibility(View.VISIBLE);
-            viewHolder.star2.setVisibility(View.VISIBLE);
-            viewHolder.star3.setVisibility(View.VISIBLE);
-            viewHolder.star4.setVisibility(View.VISIBLE);
-            viewHolder.star5.setVisibility(View.GONE);
+            viewHolder.star1.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star2.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star3.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star4.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star5.setImageResource(R.drawable.bintang2);
         }else if (skors == 5){
-            viewHolder.star1.setVisibility(View.VISIBLE);
-            viewHolder.star2.setVisibility(View.VISIBLE);
-            viewHolder.star3.setVisibility(View.VISIBLE);
-            viewHolder.star4.setVisibility(View.VISIBLE);
-            viewHolder.star5.setVisibility(View.VISIBLE);
+            viewHolder.star1.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star2.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star3.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star4.setImageResource(R.drawable.icon_bintang);
+            viewHolder.star5.setImageResource(R.drawable.icon_bintang);
         }else{
 //            star1.setBackgroundResource(R.drawable.bintang2);
 //            star2.setBackgroundResource(R.drawable.bintang2);

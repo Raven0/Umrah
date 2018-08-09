@@ -1,19 +1,29 @@
 package com.birutekno.umrah.fragment;
 
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.adapter.NotificationAdapter;
-import com.birutekno.umrah.model.Notification;
+import com.birutekno.umrah.helper.NotifResponse;
+import com.birutekno.umrah.helper.WebApi;
+import com.birutekno.umrah.model.DataNotification;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
-import com.birutekno.umrah.ui.view.BaseRecyclerView;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import butterknife.Bind;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -21,10 +31,17 @@ import butterknife.Bind;
 
 public class NotificationFragment extends BaseFragment{
 
+    public static final String PREFS_NAME = "AUTH";
+    
     @Bind(R.id.recyclerView)
-    BaseRecyclerView mRecyclerView;
+    RecyclerView recyclerView;
 
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
+
+    private ArrayList<DataNotification> pojo;
     private NotificationAdapter mAdapter;
+    private ProgressDialog pDialog;
 
     public static NotificationFragment newInstance() {
         NotificationFragment fragment = new NotificationFragment();
@@ -38,44 +55,40 @@ public class NotificationFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        setUpAdapter();
-        setUpRecyclerView();
-        setData();
+        initViews();
+        loadJSON();
     }
 
-    private void setData() {
-        List<Notification> data = new ArrayList<>();
-
-        for (int i = 0; i < 2; i++){
-            data.add(new Notification(i));
-        }
-
-        mAdapter.addAll(data);
-        mAdapter.notifyDataSetChanged();
-        if (mRecyclerView != null) {
-            mRecyclerView.loadMoreComplete();
-            mRecyclerView.refreshComplete();
-        }
+    private void initViews(){
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void setUpAdapter() {
-        mAdapter = new NotificationAdapter(mContext);
-    }
+    public void loadJSON(){
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+        int id = prefs.getInt("iduser", 0);
 
-    private void setUpRecyclerView() {
-        mRecyclerView.setUpAsList();
-        mRecyclerView.setAdapter(mAdapter);
-
-        mRecyclerView.setPullRefreshEnabled(true);
-        mRecyclerView.setLoadingMoreEnabled(true);
-        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+        Call<NotifResponse> call = WebApi.getAPIService().getNotification(String.valueOf(id));
+        call.enqueue(new Callback<NotifResponse>() {
             @Override
-            public void onRefresh() {
-                setData();
+            public void onResponse(Call<NotifResponse> call, Response<NotifResponse> response) {
+                if(response.isSuccessful()){
+                    NotifResponse jsonResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    mAdapter = new NotificationAdapter(pojo, getContext());
+                    recyclerView.setAdapter(mAdapter);
+                    progressBar.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                }
             }
 
             @Override
-            public void onLoadMore() {
+            public void onFailure(Call<NotifResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
             }
         });
     }

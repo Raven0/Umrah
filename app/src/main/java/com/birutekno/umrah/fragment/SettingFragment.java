@@ -1,6 +1,7 @@
 package com.birutekno.umrah.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +23,8 @@ import butterknife.OnClick;
  */
 
 public class SettingFragment extends BaseFragment{
+
+    public static final String PREFS_NAME = "AUTH";
 
     @OnClick(R.id.profilCard)
     void profilCardClicked() {
@@ -60,6 +63,13 @@ public class SettingFragment extends BaseFragment{
 
     @OnClick(R.id.btnLogout)
     void btnLogoutClicked() {
+        SharedPreferences.Editor editor = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE).edit();
+        editor.putInt("iduser", 0);
+        editor.putString("token", "null");
+        editor.putString("status", "out");
+        editor.putString("password", "null");
+        editor.apply();
+
         Intent intent = LoginActivity.createIntent(getActivity());
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());

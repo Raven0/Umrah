@@ -16,6 +16,7 @@ import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -93,8 +94,9 @@ public interface WEBInterface {
 
     //FORGOT AGEN
     @FormUrlEncoded
+    @Headers("Accept: application/json")
     @POST("password/email")
-    Call<AuthModel> forgotAgen(@FieldMap HashMap<String, String> params);
+    Call<ResponseBody> passwordAgen(@FieldMap HashMap<String, String> params);
 
     //EDIT AGEN
     @FormUrlEncoded
@@ -214,5 +216,20 @@ public interface WEBInterface {
     Call<GalleryResponse> getHotelVideo(@Path("id") int id);
 //    @GET("gallery/video/")
 //    Call<GalleryResponse> getGalleryVideo();
+
+
+
+
+
+
+
+    //GET NOTIF BY AGEN
+    @GET("notif/{id}/delivered")
+    Call<NotifResponse> getNotification(@Path("id") String id);
+
+    //PUT JAMAAH
+    @FormUrlEncoded
+    @PUT("notif/{id}/edit")
+    Call<ResponseBody> readNotif(@Path("id") int id, @FieldMap HashMap<String, String> params);
 
 }
