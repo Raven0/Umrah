@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +35,15 @@ import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class DetailHotelActivity extends BaseActivity {
+
+    private HotelPagerAdapter mAdapter;
+    private BannerPagerAdapter mBannerAdapter;
+
+    String id;
+    String nama;
+
+    private DataHotel pojo;
+    private ProgressDialog pDialog;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -77,6 +87,9 @@ public class DetailHotelActivity extends BaseActivity {
     @Bind(R.id.pagerAnj)
     ViewPager mPager;
 
+    @Bind(R.id.fab)
+    ImageView fab;
+
     @Bind(R.id.pager)
     protected AutoScrollViewPager bPager;
 
@@ -103,14 +116,10 @@ public class DetailHotelActivity extends BaseActivity {
         mPager.setCurrentItem(3);
     }
 
-    private HotelPagerAdapter mAdapter;
-    private BannerPagerAdapter mBannerAdapter;
-
-    String id;
-    String nama;
-
-    private DataHotel pojo;
-    private ProgressDialog pDialog;
+    @OnClick(R.id.fab)
+    void fabClicked(){
+        shareDataHotel(id);
+    }
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, DetailHotelActivity.class);
@@ -288,5 +297,51 @@ public class DetailHotelActivity extends BaseActivity {
         }else if(data.size() == 1){
             bPager.stopAutoScroll();
         }
+    }
+
+    private void shareDataHotel(final String id){
+        pDialog = new ProgressDialog(mContext);
+        pDialog.setMessage("Mengambil data hotel...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        Call<HotelObject> call = WebApi.getAPIService().getHotelDetail(Integer.valueOf(id));
+        call.enqueue(new Callback<HotelObject>() {
+            @Override
+            public void onResponse(Call<HotelObject> call, Response<HotelObject> response) {
+                if(response.isSuccessful()){
+                    HotelObject jsonResponse = response.body();
+                    pojo = jsonResponse.getDataHotel();
+
+                    String whatsapp =
+                            "Info Hotel :\n" + pojo.getInfo() +
+                            "\n\nFasilitas Hotel :" +
+                            "\nAkses Wifi : " + pojo.getWifi() +
+                            "\nParkir Pribadi : " + pojo.getPark() +
+                            "\nKamar Bebas Rokok : " + pojo.getKamar_rokok() +
+                            "\nKamar ber-AC : " + pojo.getKamar_ac() +
+                            "\nKamar Keluarga : " + pojo.getKamar_keluarga() +
+                            "\nMakanan Enak : " + pojo.getMakanan_enak();
+
+                    Intent shareIntent = new Intent();
+                    shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);
+                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(Intent.createChooser(shareIntent,"Share with"));
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotelObject> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
+                loadJSON(id);
+            }
+        });
     }
 }

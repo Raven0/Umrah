@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.AuthModel;
 import com.birutekno.umrah.model.DataAgen;
 import com.birutekno.umrah.ui.BaseActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
@@ -101,6 +103,8 @@ public class RegistrationActivity extends BaseActivity {
 
     @OnClick(R.id.kirim)
     void kirimClicked() {
+        String tokenDevice = FirebaseInstanceId.getInstance().getToken();
+        Log.d("DEVICE TOKEN", "onResponse: " + tokenDevice);
 
         no_telp = notelp.getText().toString().trim();
         username = usrnm.getText().toString().trim();
@@ -122,6 +126,7 @@ public class RegistrationActivity extends BaseActivity {
 
         if (jk){
             HashMap<String, String> params = new HashMap<>();
+            params.put("device_token", tokenDevice);
             params.put("nama", nama);
             params.put("email", email);
             params.put("username", username);
@@ -223,7 +228,8 @@ public class RegistrationActivity extends BaseActivity {
             @Override
             public void onFailure(Call<AgenResponse> call, Throwable t) {
                 loading.dismiss();
-                Toast.makeText(mContext, "Server bermasalah", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Server bermasalah! harap tunggu...", Toast.LENGTH_SHORT).show();
+                initSpinnerAgen();
             }
         });
     }

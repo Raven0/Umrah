@@ -2,23 +2,17 @@ package com.birutekno.umrah.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.birutekno.umrah.DetailHotelActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataHotel;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -49,6 +43,45 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
         viewHolder.namaHotel = mFilterData.get(i).getNama_hotel();
         viewHolder.judul.setText(mFilterData.get(i).getNama_hotel());
         viewHolder.rating.setText(mFilterData.get(i).getSkor());
+
+        int skors = Integer.parseInt(mFilterData.get(i).getSkor());
+        if (skors == 1){
+            viewHolder.star1.setVisibility(View.VISIBLE);
+            viewHolder.star2.setVisibility(View.GONE);
+            viewHolder.star3.setVisibility(View.GONE);
+            viewHolder.star4.setVisibility(View.GONE);
+            viewHolder.star5.setVisibility(View.GONE);
+        }else if (skors == 2){
+            viewHolder.star1.setVisibility(View.VISIBLE);
+            viewHolder.star2.setVisibility(View.VISIBLE);
+            viewHolder.star3.setVisibility(View.GONE);
+            viewHolder.star4.setVisibility(View.GONE);
+            viewHolder.star5.setVisibility(View.GONE);
+        }else if (skors == 3){
+            viewHolder.star1.setVisibility(View.VISIBLE);
+            viewHolder.star2.setVisibility(View.VISIBLE);
+            viewHolder.star3.setVisibility(View.VISIBLE);
+            viewHolder.star4.setVisibility(View.GONE);
+            viewHolder.star5.setVisibility(View.GONE);
+        }else if (skors == 4){
+            viewHolder.star1.setVisibility(View.VISIBLE);
+            viewHolder.star2.setVisibility(View.VISIBLE);
+            viewHolder.star3.setVisibility(View.VISIBLE);
+            viewHolder.star4.setVisibility(View.VISIBLE);
+            viewHolder.star5.setVisibility(View.GONE);
+        }else if (skors == 5){
+            viewHolder.star1.setVisibility(View.VISIBLE);
+            viewHolder.star2.setVisibility(View.VISIBLE);
+            viewHolder.star3.setVisibility(View.VISIBLE);
+            viewHolder.star4.setVisibility(View.VISIBLE);
+            viewHolder.star5.setVisibility(View.VISIBLE);
+        }else{
+//            star1.setBackgroundResource(R.drawable.bintang2);
+//            star2.setBackgroundResource(R.drawable.bintang2);
+//            star3.setBackgroundResource(R.drawable.bintang2);
+//            star4.setBackgroundResource(R.drawable.bintang2);
+//            star5.setBackgroundResource(R.drawable.bintang2);
+        }
 //        viewHolder.link = "http://"+mFilterData.get(i);
 //        try {
 //            Picasso.get().load(viewHolder.link).fit().centerCrop().into(viewHolder.imageView);
@@ -62,44 +95,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
         return mFilterData.size();
     }
 
-    static public void shareImage(String url, final Context context) {
-        Picasso.get().load(url).into(new com.squareup.picasso.Target() {
-            @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("image/*");
-                i.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap, context));
-                context.startActivity(Intent.createChooser(i, "Share Image"));
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        });
-    }
-
-    static public Uri getLocalBitmapUri(Bitmap bmp, Context context) {
-        Uri bmpUri = null;
-        try {
-            File file =  new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "share_image_" + System.currentTimeMillis() + ".png");
-            FileOutputStream out = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
-            out.close();
-            bmpUri = Uri.fromFile(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bmpUri;
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView judul, rating;
-//        private ImageView imageView;
+        private ImageView star1,star2,star3,star4,star5;
 //        String link;
         String idhotel;
         String namaHotel;
@@ -108,6 +106,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
             judul = (TextView)view.findViewById(R.id.judul);
             rating = (TextView)view.findViewById(R.id.rating);
+            star1 = (ImageView)view.findViewById(R.id.star1);
+            star2 = (ImageView)view.findViewById(R.id.star2);
+            star3 = (ImageView)view.findViewById(R.id.star3);
+            star4 = (ImageView)view.findViewById(R.id.star4);
+            star5 = (ImageView)view.findViewById(R.id.star5);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

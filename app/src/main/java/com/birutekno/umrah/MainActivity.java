@@ -70,6 +70,8 @@ public class MainActivity extends BaseActivity {
 
     private MainPagerAdapter mAdapter;
 
+    private int position;
+
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
@@ -97,6 +99,11 @@ public class MainActivity extends BaseActivity {
 
         initPager();
         checkPermission();
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            position = extras.getInt("viewpager_position");
+            mPager.setCurrentItem(position);
+        }
     }
 
     private void initPager(){

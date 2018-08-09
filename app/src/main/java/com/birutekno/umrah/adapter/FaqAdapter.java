@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
@@ -54,11 +55,14 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView judul, jawaban;
         private ExpandableLayout expandableLayout;
+        private ImageView plus, minus;
         public ViewHolder(final View view) {
             super(view);
 
             judul = (TextView)view.findViewById(R.id.judul);
             jawaban = (TextView)view.findViewById(R.id.jawaban);
+            plus = (ImageView)view.findViewById(R.id.plus);
+            minus = (ImageView)view.findViewById(R.id.minus);
             expandableLayout = (ExpandableLayout)view.findViewById(R.id.expandable_layout);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +70,12 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> {
                 public void onClick(View v) {
                     if (expandableLayout.isExpanded()) {
                         expandableLayout.collapse();
+                        plus.setVisibility(View.VISIBLE);
+                        minus.setVisibility(View.GONE);
                     } else {
                         expandableLayout.expand();
+                        plus.setVisibility(View.GONE);
+                        minus.setVisibility(View.VISIBLE);
                     }
                 }
             });

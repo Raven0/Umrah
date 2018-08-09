@@ -84,6 +84,7 @@ public class FotoFragment extends BaseFragment{
             public void onFailure(Call<GalleryResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
+                loadJSON();
             }
         });
     }

@@ -20,7 +20,6 @@ import com.birutekno.umrah.model.Response;
 import com.birutekno.umrah.model.User;
 import com.birutekno.umrah.ui.BaseActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import java.util.HashMap;
 
@@ -46,10 +45,11 @@ public class LoginActivity extends BaseActivity {
     private ProgressDialog pDialog;
     private boolean doubleBackToExitPressedOnce;
 
-    FirebaseInstanceIdService firebaseInstanceId = new FirebaseInstanceIdService();
-
     @OnClick(R.id.login)
     void loginClicked() {
+        String tokenDevice = FirebaseInstanceId.getInstance().getToken();
+        Log.d("DEVICE TOKEN", "onResponse: " + tokenDevice);
+
         user = username.getText().toString().trim();
         pass = password.getText().toString().trim();
         if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)){
@@ -58,6 +58,7 @@ public class LoginActivity extends BaseActivity {
             HashMap<String, String> params = new HashMap<>();
             params.put("username", user);
             params.put("password", pass);
+            params.put("device_token", tokenDevice);
 
             pDialog = new ProgressDialog(mContext);
             pDialog.setMessage("Harap tunggu...");
@@ -85,9 +86,6 @@ public class LoginActivity extends BaseActivity {
                                 editor.putString("password", pass);
                                 editor.apply();
 
-                                String tokenDevice = FirebaseInstanceId.getInstance().getToken();
-
-                                Log.d("DEVICE TOKEN", "onResponse: " + tokenDevice);
                                 Intent intentReward = MainActivity.createIntent(mContext);
                                 ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
                                 ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
@@ -106,8 +104,10 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
-                    Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
+                    if (t.getMessage().equals("timeout")){
+                        Toast.makeText(mContext, "Database timeout, silahkan coba lagi!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -160,6 +160,7 @@ public class LoginActivity extends BaseActivity {
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             finish();
+            moveTaskToBack(true);
             return;
         }
 

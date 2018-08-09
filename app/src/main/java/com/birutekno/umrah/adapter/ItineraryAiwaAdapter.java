@@ -128,6 +128,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
                 public void onClick(View v) {
                     String url = itinerary;
                     Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.setData(Uri.parse(url));
                     context.startActivity(i);
                 }

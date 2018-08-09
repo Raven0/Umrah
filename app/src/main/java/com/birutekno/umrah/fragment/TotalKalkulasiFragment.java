@@ -170,6 +170,7 @@ public class TotalKalkulasiFragment extends Fragment {
                 shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);
+                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(Intent.createChooser(shareIntent,"Share with"));
             }
         });

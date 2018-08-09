@@ -21,6 +21,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface WEBInterface {
     //DATA PROSPEK
@@ -90,6 +91,11 @@ public interface WEBInterface {
     @POST("login")
     Call<AuthModel> loginAgen(@FieldMap HashMap<String, String> params);
 
+    //FORGOT AGEN
+    @FormUrlEncoded
+    @POST("password/email")
+    Call<AuthModel> forgotAgen(@FieldMap HashMap<String, String> params);
+
     //EDIT AGEN
     @FormUrlEncoded
     @PUT("agen/{id}/edit")
@@ -151,19 +157,19 @@ public interface WEBInterface {
     //DATA KOMISI
     //GET JAMAAG KOMISI
     @GET("jamaah/{id}/agen/komisi")
-    Call<PotkomResponse> getDataKomisi(@Path("id") String id);
+    Call<PotkomResponse> getDataKomisi(@Path("id") String id, @Query("page") int page);
 
     //GET JAMAAH POTENSI
     @GET("jamaah/{id}/agen/potensi")
-    Call<PotkomResponse> getDataPotensi(@Path("id") String id);
+    Call<PotkomResponse> getDataPotensi(@Path("id") String id, @Query("page") int page);
 
     //GET JAMAAG KOMISI KOORD
     @GET("jamaah/{id}/koordinator/komisi")
-    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id);
+    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id, @Query("page") int page);
 
     //GET JAMAAH POTENSI KOORD
     @GET("jamaah/{id}/koordinator/potensi")
-    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id);
+    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id, @Query("page") int page);
 
     //GET UANG KOMISI
     @GET("jamaah/{id}/agenfee/komisi")

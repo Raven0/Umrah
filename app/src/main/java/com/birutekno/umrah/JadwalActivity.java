@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.birutekno.umrah.adapter.JadwalAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAResponse;
@@ -78,7 +79,12 @@ public class JadwalActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                loadJSON(selectedItem);
+                try {
+                    loadJSON(selectedItem);
+                }catch (Exception ex){
+                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    loadJSON(selectedItem);
+                }
             }
 
             @Override
@@ -106,16 +112,15 @@ public class JadwalActivity extends BaseActivity {
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
+                pDialog.dismiss();
                 if(response.isSuccessful()){
                     AIWAResponse jsonResponse = response.body();
                     pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
                     adapterB = new JadwalAiwaAdapter(pojo, getBaseContext());
                     recyclerView.setAdapter(adapterB);
-                    pDialog.dismiss();
                 }else {
                     Log.d("ERROR CODE" , String.valueOf(response.code()));
                     Log.d("ERROR BODY" , response.errorBody().toString());
-                    pDialog.dismiss();
                 }
             }
 

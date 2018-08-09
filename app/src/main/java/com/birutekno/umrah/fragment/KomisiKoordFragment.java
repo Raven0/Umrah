@@ -1,12 +1,14 @@
 package com.birutekno.umrah.fragment;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +19,11 @@ import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DashboardModel;
 import com.birutekno.umrah.model.DataPotkom;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
+import com.birutekno.umrah.view.PaginationScrollListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -39,15 +41,23 @@ public class KomisiKoordFragment extends BaseFragment{
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @Bind(R.id.main_progress)
+    ProgressBar progressBar;
+
     @Bind(R.id.judul)
     TextView judul;
 
     @Bind(R.id.nominal)
     TextView nominal;
 
-    private ArrayList<DataPotkom> pojo;
-    private PotkomAdapter mAdapter;
-    private ProgressDialog pDialog;
+    PotkomAdapter adapter;
+    LinearLayoutManager linearLayoutManager;
+
+    private static final int PAGE_START = 1;
+    private boolean isLoading = false;
+    private boolean isLastPage = false;
+    private int TOTAL_PAGES = 1;
+    private int currentPage = PAGE_START;
 
     public static KomisiKoordFragment newInstance() {
         KomisiKoordFragment fragment = new KomisiKoordFragment();
@@ -61,54 +71,129 @@ public class KomisiKoordFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        initViews();
-        loadJSON();
+        adapter = new PotkomAdapter(getContext());
+        linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
+            @Override
+            protected void loadMoreItems() {
+                isLoading = true;
+                currentPage += 1;
 
+                // mocking network delay for API call
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadNextPage();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public int getTotalPageCount() {
+                return TOTAL_PAGES;
+            }
+
+            @Override
+            public boolean isLastPage() {
+                return isLastPage;
+            }
+
+            @Override
+            public boolean isLoading() {
+                return isLoading;
+            }
+        });
+
+        //init service and load data
+        loadFirstPage();
+
+        //Load nominal diatas
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         int id = prefs.getInt("iduser", 0);
-
         loadDataKomisi(String.valueOf(id));
     }
 
-    private void initViews(){
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-    }
-
-    private void loadJSON(){
-        pDialog = new ProgressDialog(getContext());
-        pDialog.setMessage("Harap tunggu...");
-        pDialog.setCancelable(false);
-        pDialog.show();
-
-        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
-
-        Call<PotkomResponse> call = WebApi.getAPIService().getDataKomisiKoord(String.valueOf(id));
-        call.enqueue(new Callback<PotkomResponse>() {
+    private void loadFirstPage() {
+        callTopRatedMoviesApi().enqueue(new Callback<PotkomResponse>() {
             @Override
             public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
-                if(response.isSuccessful()){
-                    PotkomResponse jsonResponse = response.body();
-                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getKomisi()));
-                    mAdapter = new PotkomAdapter(pojo, getContext());
-                    recyclerView.setAdapter(mAdapter);
-                    pDialog.dismiss();
-                }else {
-                    Log.d("ERROR CODE" , String.valueOf(response.code()));
-                    Log.d("ERROR BODY" , response.errorBody().toString());
-                    pDialog.dismiss();
+                // Got data. Send it to adapter
 
-                }
+                List<DataPotkom> results = fetchResults(response);
+                TOTAL_PAGES = fetchTotal(response);
+
+                progressBar.setVisibility(View.GONE);
+                adapter.addAll(results);
+                if (currentPage <= TOTAL_PAGES) adapter.addLoadingFooter();
+                else isLastPage = true;
             }
 
             @Override
             public void onFailure(Call<PotkomResponse> call, Throwable t) {
-                Log.d("Error",t.getMessage());
-                pDialog.dismiss();
+                t.printStackTrace();
+                if (t.getMessage().equals("timeout")){
+                    Toast.makeText(getContext(), "Server Timeout, mencoba lagi", Toast.LENGTH_SHORT).show();
+                    loadFirstPage();
+                }
+                // TODO: 08/11/16 handle failure
             }
         });
+
+    }
+
+    /**
+     * @param response extracts List<{@link DataPotkom>} from response
+     * @return
+     */
+    private List<DataPotkom> fetchResults(Response<PotkomResponse> response) {
+        PotkomResponse potkomResponse= response.body();
+        return potkomResponse.getData();
+    }
+
+    private int fetchTotal(Response<PotkomResponse> response) {
+        PotkomResponse totalPage = response.body();
+        return Integer.parseInt(totalPage.getMeta().getLast_page());
+    }
+
+    private void loadNextPage() {
+        callTopRatedMoviesApi().enqueue(new Callback<PotkomResponse>() {
+            @Override
+            public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
+                adapter.removeLoadingFooter();
+                isLoading = false;
+                List<DataPotkom> results = fetchResults(response);
+                adapter.addAll(results);
+                if (currentPage != TOTAL_PAGES) adapter.addLoadingFooter();
+                else isLastPage = true;
+            }
+
+            @Override
+            public void onFailure(Call<PotkomResponse> call, Throwable t) {
+                t.printStackTrace();
+                // TODO: 08/11/16 handle failure
+//                if (t.getMessage().equals("timeout")){
+//                    Toast.makeText(MainActivity.this, "Server Timeout, mencoba lagi", Toast.LENGTH_SHORT).show();
+//                    loadNextPage();
+//                }
+            }
+        });
+    }
+
+
+    /**
+     * Performs a Retrofit call to the top rated movies API.
+     * Same API call for Pagination.
+     * As {@link #currentPage} will be incremented automatically
+     * by @{@link PaginationScrollListener} to load next page.
+     */
+    private Call<PotkomResponse> callTopRatedMoviesApi() {
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+        int id = prefs.getInt("iduser", 0);
+
+        return WebApi.getAPIService().getDataKomisiKoord(String.valueOf(id), currentPage);
     }
 
     private void loadDataKomisi(final String id){

@@ -192,6 +192,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                     Uri uri = Uri.parse("smsto:" + no_telp);
                     Intent i = new Intent(Intent.ACTION_SENDTO, uri);
                     i.putExtra("sms_body", "Prakash Gajera");
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.setPackage("com.whatsapp");
                     context.startActivity(i);
                 }
@@ -254,6 +255,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                                             Log.d("RES", "onResponse: " + response.body());
                                             Toast.makeText((Activity) v.getContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(context, KalkulasiActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             context.startActivity(intent);
                                         }
                                     }catch (Exception e){

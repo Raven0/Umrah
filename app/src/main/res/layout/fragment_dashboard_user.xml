@@ -92,7 +92,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textColor="#000"
-                                        android:textSize="38dp"/>
+                                        android:textSize="38dp"
+                                        android:visibility="gone"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/progressProspek"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:visibility="visible"/>
 
                                 </LinearLayout>
 
@@ -143,7 +150,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textColor="#000"
-                                        android:textSize="38dp"/>
+                                        android:textSize="38dp"
+                                        android:visibility="gone"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/progressJamaah"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:visibility="visible"/>
 
                                 </LinearLayout>
 
@@ -202,7 +216,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textColor="#000"
-                                        android:textSize="18dp"/>
+                                        android:textSize="18dp"
+                                        android:visibility="gone"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/progressPotensi"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:visibility="visible"/>
 
                                 </LinearLayout>
 
@@ -261,8 +282,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textColor="#000"
-                                        android:textSize="18dp"/>
+                                        android:textSize="18dp"
+                                        android:visibility="gone"/>
 
+                                    <ProgressBar
+                                        android:id="@+id/progressKomisi"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:visibility="visible"/>
                                     <!--android:text="Rp.150K"-->
 
                                 </LinearLayout>

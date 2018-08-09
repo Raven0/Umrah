@@ -245,7 +245,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_TEXT, whatsAppMessage);
-                    context.startActivity(Intent.createChooser(shareIntent,"Share with"));
+                    context.startActivity(Intent.createChooser(shareIntent,"Share with").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 }
         });
 
@@ -254,6 +254,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
             public void onClick(View v) {
                 String url = linkItinerary;
                 Intent i = new Intent(Intent.ACTION_VIEW);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.setData(Uri.parse(url));
                 context.startActivity(i);
             }

@@ -25,7 +25,7 @@ public class EditKalkulasiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_input_kalkulasi);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        mToolbar.setTitle("Kalkulasi");
         mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,14 +58,26 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
     @Bind(R.id.potensi)
     TextView potensi;
 
+    @Bind(R.id.progressPotensi)
+    ProgressBar progressPotensi;
+
     @Bind(R.id.komisi)
     TextView komisi;
+
+    @Bind(R.id.progressKomisi)
+    ProgressBar progressKomisi;
 
     @Bind(R.id.prospek)
     TextView prospek;
 
+    @Bind(R.id.progressProspek)
+    ProgressBar progressProspek;
+
     @Bind(R.id.jamaah)
     TextView jamaah;
+
+    @Bind(R.id.progressJamaah)
+    ProgressBar progressJamaah;
 
     public static DashboardUserFragment newInstance(int type) {
         DashboardUserFragment fragment = new DashboardUserFragment();
@@ -193,6 +206,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
                         Log.d("RESP", "onResponse: " +response.message());
                         Log.d("RESP", "onBody: " +response.body());
                     }
+                    progressPotensi.setVisibility(View.GONE);
+                    potensi.setVisibility(View.VISIBLE);
                     potensi.setText("Rp. " + numberFormat(response.body().getResponse().getTotal()));
 //                    potensi.setText("Rp. " + numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
 
@@ -224,6 +239,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
                         Log.d("RESP", "onResponse: " +response.message());
                         Log.d("RESP", "onBody: " +response.body());
                     }
+                    progressKomisi.setVisibility(View.GONE);
+                    komisi.setVisibility(View.VISIBLE);
                     komisi.setText("Rp. " + numberFormat(response.body().getResponse().getTotal()));
 //                    komisi.setText(numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
 
@@ -255,6 +272,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
                         Log.d("RESP", "onResponse: " +response.message());
                         Log.d("RESP", "onBody: " +response.body());
                     }
+                    progressJamaah.setVisibility(View.GONE);
+                    jamaah.setVisibility(View.VISIBLE);
                     jamaah.setText(response.body().getResponse().getTotal());
 
                 }catch (Exception ex){
@@ -285,6 +304,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
                         Log.d("RESP", "onResponse: " +response.message());
                         Log.d("RESP", "onBody: " +response.body());
                     }
+                    progressProspek.setVisibility(View.GONE);
+                    prospek.setVisibility(View.VISIBLE);
                     prospek.setText(response.body().getResponse().getTotal());
 
                 }catch (Exception ex){

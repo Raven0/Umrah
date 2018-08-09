@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.birutekno.umrah.adapter.ItineraryAiwaAdapter;
 import com.birutekno.umrah.helper.AIWAResponse;
@@ -82,7 +83,12 @@ public class ItineraryActivity extends BaseActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                loadJSON(selectedItem);
+                try {
+                    loadJSON(selectedItem);
+                }catch (Exception ex){
+                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    loadJSON(selectedItem);
+                }
             }
 
             @Override
@@ -96,7 +102,6 @@ public class ItineraryActivity extends BaseActivity{
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        loadJSON("1440");
 
         initSpinnerPeriode();
     }
@@ -104,21 +109,27 @@ public class ItineraryActivity extends BaseActivity{
     private void loadJSON(final String periode){
         pDialog = new ProgressDialog(ItineraryActivity.this);
         pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
         pDialog.show();
         Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON(periode);
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
-                AIWAResponse jsonResponse = response.body();
-                pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-                adapter = new ItineraryAiwaAdapter(pojo, getBaseContext());
-                recyclerView.setAdapter(adapter);
                 pDialog.dismiss();
+                if(response.isSuccessful()){
+                    AIWAResponse jsonResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    adapter = new ItineraryAiwaAdapter(pojo, getBaseContext());
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                }
             }
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-                Log.d("Error",t.getMessage());
+                Log.d("Error",String.valueOf(t.getMessage()));
                 pDialog.dismiss();
                 loadJSON(periode);
             }

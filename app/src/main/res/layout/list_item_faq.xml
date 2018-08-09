@@ -19,12 +19,23 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/expand"
+                android:id="@+id/plus"
                 android:src="@drawable/icon_plus"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="8dp"
+                android:visibility="visible"
+                />
+
+            <ImageView
+                android:id="@+id/minus"
+                android:src="@drawable/icon_min"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="8dp"
+                android:visibility="gone"
                 />
 
             <TextView

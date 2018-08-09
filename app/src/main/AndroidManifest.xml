@@ -23,31 +23,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".WhatsapActivity" />
-        <activity android:name=".JamaahActivity" />
-        <activity android:name=".InputActivity" />
-        <activity android:name=".KalkulasiActivity" />
-        <activity android:name=".InputKalkulasiActivity" />
-        <activity android:name=".EditKalkulasiActivity" />
-        <activity android:name=".DetailKalkulasiActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ForgotPasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".WhatsapActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".JamaahActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".InputActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".KalkulasiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".InputKalkulasiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".EditKalkulasiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DetailKalkulasiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegistrationActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ProfileActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".JadwalActivity" />
-        <activity android:name=".ItineraryActivity" />
-        <activity android:name=".LokasiActivity" />
-        <activity android:name=".HotelActivity" />
-        <activity android:name=".GalleryActivity" />
-        <activity android:name=".SubAgenActivity" />
-        <activity android:name=".PotkomActivity" />
-        <activity android:name=".PotkomKoordActivity" />
-        <activity android:name=".FaqActivity" />
-        <activity android:name=".WizardActivity" />
-        <activity android:name=".DetailHotelActivity" />
+        <activity android:name=".EditProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".JadwalActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ItineraryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LokasiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".HotelActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".GalleryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SubAgenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PotkomActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PotkomKoordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".FaqActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".WizardActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DetailHotelActivity" android:screenOrientation="portrait"/>
 
         <service android:name=".helper.MyFirebaseMessagingService">
             <intent-filter>

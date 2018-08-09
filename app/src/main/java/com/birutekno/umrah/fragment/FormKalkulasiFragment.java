@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.birutekno.umrah.InputKalkulasiActivity;
-import com.birutekno.umrah.LoginActivity;
+import com.birutekno.umrah.KalkulasiActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.helper.AIWAInterface;
 import com.birutekno.umrah.helper.AIWAResponse;
@@ -97,6 +97,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
 
     private EditText pic;
     private EditText telp;
+    private Button telpBtn;
     private EditText dewasa;
     private EditText infant;
     private EditText balitaKasur;
@@ -205,7 +206,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
         loadKalkulasi();
         setupAdapter();
 
-        telp.setOnClickListener(new View.OnClickListener() {
+        telpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
@@ -220,6 +221,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private void loadComponent() {
         pic = (EditText) view.findViewById(R.id.picName);
         telp = (EditText) view.findViewById(R.id.telp);
+        telpBtn = (Button) view.findViewById(R.id.telpBtn);
         dewasa = (EditText) view.findViewById(R.id.etDewasa);
         infant = (EditText) view.findViewById(R.id.etInfant);
         balita = (EditText) view.findViewById(R.id.etBalita);
@@ -1023,7 +1025,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                         try {
                             if(response.body()!=null){
 //                                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
                                 startActivity(intent);
                             }
                         }catch (Exception e){
@@ -1086,6 +1088,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 } else {
                     loading.dismiss();
                     Toast.makeText(getContext(), "Gagal mengambil data jadwal", Toast.LENGTH_SHORT).show();
+                    initSpinnerJadwal();
                 }
             }
 
@@ -1093,6 +1096,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(getContext(), "Server Jadwal bermasalah", Toast.LENGTH_SHORT).show();
+                initSpinnerJadwal();
             }
         });
     }

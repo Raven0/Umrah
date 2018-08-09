@@ -1,7 +1,6 @@
 package com.birutekno.umrah.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -70,7 +69,8 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         viewHolder.pulang.setText(convertDate(jadwal.get(0).getTgl_pulang()));
         viewHolder.detailBerangkat.setText(jadwal.get(0).getRute_berangkat());
         viewHolder.detailPulang.setText(jadwal.get(0).getRute_pulang());
-        viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.");
+        viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.\n"+"Sisa Seat : " + jadwal.get(0).getSisa());
+
 
         if (jadwal.get(0).getStatus().equals("SOLD OUT")){
             viewHolder.paketHari.setText("SOLD OUT");

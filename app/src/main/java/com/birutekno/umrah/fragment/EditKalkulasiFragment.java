@@ -103,6 +103,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
     private EditText pic;
     private EditText telp;
+    private Button telpBtn;
     private EditText dewasa;
     private EditText infant;
     private EditText balita;
@@ -223,7 +224,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         }
 
-        telp.setOnClickListener(new View.OnClickListener() {
+        telpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
@@ -237,6 +238,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private void loadComponent() {
         pic = (EditText) view.findViewById(R.id.picName);
         telp = (EditText) view.findViewById(R.id.telp);
+        telpBtn = (Button) view.findViewById(R.id.telpBtn);
         dewasa = (EditText) view.findViewById(R.id.etDewasa);
         infant = (EditText) view.findViewById(R.id.etInfant);
         balita = (EditText) view.findViewById(R.id.etBalita);
@@ -1182,6 +1184,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 } else {
                     loading.dismiss();
                     Toast.makeText(getContext(), "Gagal mengambil data jadwal", Toast.LENGTH_SHORT).show();
+                    initSpinnerJadwal();
                 }
             }
 
@@ -1189,6 +1192,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(getContext(), "Server Jadwal bermasalah", Toast.LENGTH_SHORT).show();
+                initSpinnerJadwal();
             }
         });
     }
