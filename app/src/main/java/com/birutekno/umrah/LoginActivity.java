@@ -9,8 +9,12 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,6 +43,9 @@ public class LoginActivity extends BaseActivity {
 
     EditText username;
     EditText password;
+    CheckBox show;
+
+    boolean isChecked;
 
     public static final String PREFS_NAME = "AUTH";
 
@@ -142,6 +149,7 @@ public class LoginActivity extends BaseActivity {
     protected void onViewReady(Bundle savedInstanceState) {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        show = (CheckBox) findViewById(R.id.show);
 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String status = prefs.getString("status", "out");
@@ -150,6 +158,19 @@ public class LoginActivity extends BaseActivity {
             ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
             ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
         }
+
+        show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (!isChecked) {
+                    // show password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    // hide password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
     }
 
     @Override

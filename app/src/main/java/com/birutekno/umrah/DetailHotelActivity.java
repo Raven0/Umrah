@@ -18,14 +18,15 @@ import com.birutekno.umrah.adapter.BannerPagerAdapter;
 import com.birutekno.umrah.adapter.HotelPagerAdapter;
 import com.birutekno.umrah.helper.AutoScrollViewPager;
 import com.birutekno.umrah.helper.CirclePageIndicator;
+import com.birutekno.umrah.helper.GalleryResponse;
 import com.birutekno.umrah.helper.WebApi;
-import com.birutekno.umrah.model.Banner;
+import com.birutekno.umrah.model.DataGallery;
 import com.birutekno.umrah.model.DataHotel;
 import com.birutekno.umrah.model.HotelObject;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -43,6 +44,7 @@ public class DetailHotelActivity extends BaseActivity {
     String nama;
 
     private DataHotel pojo;
+    private ArrayList<DataGallery> data;
     private ProgressDialog pDialog;
 
     @Bind(R.id.toolbar)
@@ -257,46 +259,44 @@ public class DetailHotelActivity extends BaseActivity {
     }
 
     private void initBanner(){
-        final List<Banner> data = new ArrayList<>();
-
-        data.add(new Banner(1, R.drawable.image));
-        data.add(new Banner(2, R.drawable.image1));
-        data.add(new Banner(3, R.drawable.image2));
-
-        mBannerAdapter = new BannerPagerAdapter(getSupportFragmentManager(), data);
-
-        int gap = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
-        bPager.setPageMargin(gap);
-
-        mBannerAdapter.setData(data);
-        bPager.setClipToPadding(false);
-        bPager.setAdapter(mBannerAdapter);
-        mIndicator.setViewPager(bPager);
-
-        bPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        Call<GalleryResponse> call = WebApi.getAPIService().getGalleryFoto();
+        call.enqueue(new Callback<GalleryResponse>() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onResponse(Call<GalleryResponse> call, Response<GalleryResponse> response) {
+                if(response.isSuccessful()){
+                    GalleryResponse jsonResponse = response.body();
+                    data = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    mBannerAdapter = new BannerPagerAdapter(getSupportFragmentManager(), data);
 
+                    int gap = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
+                    mPager.setPageMargin(gap);
+
+                    mBannerAdapter.setData(data);
+                    bPager.setClipToPadding(false);
+                    bPager.setAdapter(mBannerAdapter);
+                    mIndicator.setViewPager(bPager);
+
+                    if(data.size() > 1){
+                        bPager.setInterval(3000);
+                        bPager.setAutoScrollDurationFactor(10);
+                        bPager.startAutoScroll();
+                    }else if(data.size() == 1){
+                        bPager.stopAutoScroll();
+                    }
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
+
+                }
             }
 
             @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public void onFailure(Call<GalleryResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                initBanner();
             }
         });
-
-        if(data.size() > 1){
-            bPager.setInterval(3000);
-            bPager.setAutoScrollDurationFactor(10);
-            bPager.startAutoScroll();
-        }else if(data.size() == 1){
-            bPager.stopAutoScroll();
-        }
     }
 
     private void shareDataHotel(final String id){
@@ -308,6 +308,7 @@ public class DetailHotelActivity extends BaseActivity {
         call.enqueue(new Callback<HotelObject>() {
             @Override
             public void onResponse(Call<HotelObject> call, Response<HotelObject> response) {
+                pDialog.dismiss();
                 if(response.isSuccessful()){
                     HotelObject jsonResponse = response.body();
                     pojo = jsonResponse.getDataHotel();
@@ -331,8 +332,6 @@ public class DetailHotelActivity extends BaseActivity {
                 }else {
                     Log.d("ERROR CODE" , String.valueOf(response.code()));
                     Log.d("ERROR BODY" , response.errorBody().toString());
-                    pDialog.dismiss();
-
                 }
             }
 

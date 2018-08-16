@@ -45,11 +45,22 @@ public class FasilitasFragment extends BaseFragment{
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         Bundle bundle = getArguments();
-        wifi.setText(bundle.getString("wifi"));
-        park.setText(bundle.getString("park"));
-        roko.setText(bundle.getString("roko"));
-        ac.setText(bundle.getString("ac"));
-        keluarga.setText(bundle.getString("keluarga"));
-        makanan.setText(bundle.getString("makanan"));
+        wifi.setText(boolProcessor(bundle.getString("wifi")));
+        park.setText(boolProcessor(bundle.getString("park")));
+        roko.setText(boolProcessor(bundle.getString("roko")));
+        ac.setText(boolProcessor(bundle.getString("ac")));
+        keluarga.setText(boolProcessor(bundle.getString("keluarga")));
+        makanan.setText(boolProcessor(bundle.getString("makanan")));
+    }
+
+    public String boolProcessor(String args){
+        String val = "tidak";
+        if (args.equals("true")){
+            val = "ya";
+        }else {
+            val = "tidak";
+        }
+
+        return val;
     }
 }

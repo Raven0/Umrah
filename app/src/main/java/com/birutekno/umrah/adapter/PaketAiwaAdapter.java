@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.Jadwal;
@@ -206,6 +207,8 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
         viewHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
+
                     String whatsAppMessage = "Keberangkatan = "+tglBerangkat+" "+ berangkatDetail + "\n" +
                             "Kepulangan = "+tglPulang+" "+ pulangDetail + "\n" +
                             "Maskapai = "+maskapai+"\n" +

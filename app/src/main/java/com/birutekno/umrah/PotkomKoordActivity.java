@@ -140,6 +140,8 @@ public class PotkomKoordActivity extends BaseActivity {
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         Intent intent = new Intent(PotkomKoordActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("viewpager_position", 3);
         startActivity(intent);
     }
 

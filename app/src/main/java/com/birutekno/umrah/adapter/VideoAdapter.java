@@ -70,6 +70,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
+
                     String url = yt;
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));

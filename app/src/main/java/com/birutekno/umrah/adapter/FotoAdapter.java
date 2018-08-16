@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataGallery;
@@ -108,6 +109,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
 //                    String shareBody = link;
 //                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 //                    sharingIntent.setType("text/plain");

@@ -3,7 +3,7 @@ package com.birutekno.umrah.adapter;
 import android.support.v4.app.FragmentManager;
 
 import com.birutekno.umrah.fragment.child.BannerFragment;
-import com.birutekno.umrah.model.Banner;
+import com.birutekno.umrah.model.DataGallery;
 import com.birutekno.umrah.ui.adapter.BasePagerAdapter;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
@@ -17,19 +17,19 @@ import java.util.List;
 public class BannerPagerAdapter extends BasePagerAdapter {
 
     private List<BannerFragment> mFragments;
-    private List<Banner> imageData;
+    private ArrayList<DataGallery> imageData;
 
-    public BannerPagerAdapter(FragmentManager fm, List<Banner> list) {
+    public BannerPagerAdapter(FragmentManager fm, ArrayList<DataGallery> list) {
         super(fm, list);
         imageData = new ArrayList<>();
     }
 
-    public void setData(List<Banner> data){
+    public void setData(ArrayList<DataGallery> data){
         this.imageData = data;
         notifyDataSetChanged();
     }
 
-    public List<Banner> getImageData(){
+    public List<DataGallery> getImageData(){
         return imageData;
     }
 

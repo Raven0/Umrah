@@ -44,7 +44,7 @@ public class PotkomActivity extends BaseActivity {
     LinearLayout potensiIndicator;
 
     @Bind(R.id.pager)
-    ViewPager mPager;
+    public ViewPager mPager;
 
     @OnClick(R.id.komisiTab)
     void komisiClicked(){
@@ -57,6 +57,8 @@ public class PotkomActivity extends BaseActivity {
     }
 
     private PotkomPagerAdapter mAdapter;
+
+    int position;
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, PotkomActivity.class);
@@ -78,8 +80,13 @@ public class PotkomActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-
         setupPager();
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            position = extras.getInt("viewpager_position");
+            mPager.setCurrentItem(Integer.parseInt(String.valueOf(position)));
+        }else {
+        }
     }
 
     private void setupPager() {
@@ -140,6 +147,8 @@ public class PotkomActivity extends BaseActivity {
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         Intent intent = new Intent(PotkomActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("viewpager_position", 3);
         startActivity(intent);
     }
 

@@ -50,6 +50,7 @@
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/prospekCard"
                             android:layout_width="@dimen/_140sdp"
                             android:layout_height="@dimen/_120sdp"
                             android:background="@color/white"
@@ -108,6 +109,7 @@
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/jamaahCard"
                             android:layout_width="@dimen/_140sdp"
                             android:layout_height="@dimen/_120sdp"
                             android:background="@color/white"
@@ -175,6 +177,7 @@
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/potensiCard"
                             android:layout_width="@dimen/_280sdp"
                             android:layout_height="@dimen/_120sdp"
                             android:background="@color/white"
@@ -241,6 +244,7 @@
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/komisiCard"
                             android:layout_width="@dimen/_280sdp"
                             android:layout_height="@dimen/_120sdp"
                             android:background="@color/white"

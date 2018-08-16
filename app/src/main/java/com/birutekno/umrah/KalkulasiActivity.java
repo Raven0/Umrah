@@ -196,6 +196,8 @@ public class KalkulasiActivity extends BaseActivity {
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         Intent intent = new Intent(KalkulasiActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("viewpager_position", 1);
         startActivity(intent);
     }
 

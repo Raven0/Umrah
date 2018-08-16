@@ -54,7 +54,7 @@ public class FaqActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
-        setTitle("FAQ");
+        setTitle("Catatan");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +140,8 @@ public class FaqActivity extends BaseActivity {
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         Intent intent = new Intent(FaqActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("viewpager_position", 3);
         startActivity(intent);
     }
 

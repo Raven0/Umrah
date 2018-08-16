@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.birutekno.umrah.R;
-import com.birutekno.umrah.model.Banner;
+import com.birutekno.umrah.model.DataGallery;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 
@@ -21,9 +24,12 @@ public class BannerFragment extends BaseFragment {
     @Bind(R.id.image)
     ImageView mImage;
 
-    private Banner mBanner = new Banner();
+    @Bind(R.id.progress)
+    ProgressBar progressBar;
 
-    public static Fragment newInstance(Banner Banner) {
+    private DataGallery mBanner = new DataGallery();
+
+    public static Fragment newInstance(DataGallery Banner) {
         BannerFragment fragment = new BannerFragment();
         fragment.mBanner = Banner;
         return fragment;
@@ -36,10 +42,20 @@ public class BannerFragment extends BaseFragment {
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
+        String link = "http://"+mBanner.getFile();
         if (mBanner != null) {
-            mImage.setImageResource(mBanner.getImage());
-            Log.e("BANNER", "not" + mBanner.getImage());
+            mImage.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+            try {
+                Picasso.get().load(link).fit().centerCrop().into(mImage);
+            }catch (Exception ex){
+                Log.d("ERROR_MSG", "onBindViewHolder: " + ex.getMessage());
+            }
+//            mImage.setImageResource(mBanner.getFile());
+//            Log.e("BANNER", "not" + mBanner.getImage());
         }else{
+            mImage.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             Log.e("BANNER", "null");
         }
     }

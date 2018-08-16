@@ -56,7 +56,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                     pDialog.dismiss();
                     try {
                         if (response.isSuccessful()){
-                            Toast.makeText(mContext, "Berhasil", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "Silahkan cek email anda!", Toast.LENGTH_SHORT).show();
                             Intent intentReward = LoginActivity.createIntent(mContext);
                             ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
                             ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());

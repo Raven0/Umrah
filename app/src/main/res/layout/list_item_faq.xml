@@ -23,8 +23,8 @@
                 android:src="@drawable/icon_plus"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:visibility="visible"
                 />
 
@@ -33,8 +33,8 @@
                 android:src="@drawable/icon_min"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:visibility="gone"
                 />
 
@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="Who is AIWA?"
+                android:textStyle="bold"
                 android:textColor="#000"/>
 
         </LinearLayout>
@@ -56,25 +57,24 @@
         android:layout_height="wrap_content"
         app:el_duration="300"
         app:el_expanded="false"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/jawaban"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:padding="15dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             android:layout_gravity="center_vertical|right"
+            android:background="@drawable/bg_rounded_greyish"
             android:textColor="#262626"/>
 
     </net.cachapa.expandablelayout.ExpandableLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginLeft="65dp"
-        android:background="#999"/>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:layout_marginLeft="65dp"-->
+        <!--android:background="#999"/>-->
 
 </LinearLayout>

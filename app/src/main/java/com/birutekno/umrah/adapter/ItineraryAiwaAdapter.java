@@ -11,6 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataJadwal;
@@ -60,7 +61,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
 
         berangkatDetail = jadwal.get(0).getRute_berangkat() + " , " + jadwal.get(0).getPesawat_berangkat() + "(" + jadwal.get(0).getJam_berangkat() + ")" ;
         pulangDetail = jadwal.get(0).getRute_pulang() + " , " + jadwal.get(0).getPesawat_pulang() + "(" + jadwal.get(0).getJam_pulang() + ")" ;
-        itinerary = jadwal.get(0).getItinerary();
+        viewHolder.itineraryVH = jadwal.get(0).getItinerary();
 
         viewHolder.berangkat.setText(convertDate(jadwal.get(0).getTgl_berangkat()));
         viewHolder.pulang.setText(convertDate(jadwal.get(0).getTgl_pulang()));
@@ -113,6 +114,7 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView berangkat,pulang,detailBerangkat,detailPulang;
+        String itineraryVH;
         public ViewHolder(View view) {
             super(view);
 
@@ -126,7 +128,9 @@ public class ItineraryAiwaAdapter extends RecyclerView.Adapter<ItineraryAiwaAdap
             download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String url = itinerary;
+                    Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
+
+                    String url = itineraryVH;
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.setData(Uri.parse(url));

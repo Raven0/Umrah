@@ -2,10 +2,12 @@ package com.birutekno.umrah.fragment;
 
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.birutekno.umrah.JamaahActivity;
+import com.birutekno.umrah.KalkulasiActivity;
+import com.birutekno.umrah.PotkomActivity;
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DashboardModel;
@@ -55,11 +60,17 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
     @Bind(R.id.periode)
     Button periode;
 
+    @Bind(R.id.potensiCard)
+    CardView potensiCard;
+
     @Bind(R.id.potensi)
     TextView potensi;
 
     @Bind(R.id.progressPotensi)
     ProgressBar progressPotensi;
+
+    @Bind(R.id.komisiCard)
+    CardView komisiCard;
 
     @Bind(R.id.komisi)
     TextView komisi;
@@ -67,11 +78,17 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
     @Bind(R.id.progressKomisi)
     ProgressBar progressKomisi;
 
+    @Bind(R.id.prospekCard)
+    CardView prospekCard;
+
     @Bind(R.id.prospek)
     TextView prospek;
 
     @Bind(R.id.progressProspek)
     ProgressBar progressProspek;
+
+    @Bind(R.id.jamaahCard)
+    CardView jamaahCard;
 
     @Bind(R.id.jamaah)
     TextView jamaah;
@@ -113,6 +130,40 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
                         now.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.setTitle("Pilih Periode");
                 datePickerDialog.show(fm,"Date");
+            }
+        });
+
+        prospekCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, KalkulasiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        jamaahCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, JamaahActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        potensiCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PotkomActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("viewpager_position", 1);
+                startActivity(intent);
+            }
+        });
+
+        komisiCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PotkomActivity.class);
+                startActivity(intent);
             }
         });
 

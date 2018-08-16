@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 
 import com.birutekno.umrah.GalleryActivity;
@@ -21,15 +22,20 @@ import com.birutekno.umrah.adapter.BannerPagerAdapter;
 import com.birutekno.umrah.adapter.BrosurAdapter;
 import com.birutekno.umrah.helper.AutoScrollViewPager;
 import com.birutekno.umrah.helper.CirclePageIndicator;
-import com.birutekno.umrah.model.Banner;
+import com.birutekno.umrah.helper.GalleryResponse;
+import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataBrosur;
+import com.birutekno.umrah.model.DataGallery;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -38,6 +44,7 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFragment{
 
 //    implements BannerItemView.OnActionListener
+    private ArrayList<DataGallery> data;
 
     @OnClick(R.id.jamaah)
     void jamaahClicked() {
@@ -172,25 +179,30 @@ public class HomeFragment extends BaseFragment{
 //    }
 
     private void initBanner(){
-        final List<Banner> data = new ArrayList<>();
-
-        data.add(new Banner(1, R.drawable.banners));
-        data.add(new Banner(2, R.drawable.image1));
-        data.add(new Banner(3, R.drawable.image2));
-
-        mBannerAdapter = new BannerPagerAdapter(getChildFragmentManager(), data);
-
-        int gap = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
-        mPager.setPageMargin(gap);
-
-        mBannerAdapter.setData(data);
-        mPager.setClipToPadding(false);
-        mPager.setAdapter(mBannerAdapter);
-        mIndicator.setViewPager(mPager);
-
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        Call<GalleryResponse> call = WebApi.getAPIService().getGalleryFoto();
+        call.enqueue(new Callback<GalleryResponse>() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onResponse(Call<GalleryResponse> call, Response<GalleryResponse> response) {
+                if(response.isSuccessful()){
+                    GalleryResponse jsonResponse = response.body();
+                    data = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    mBannerAdapter = new BannerPagerAdapter(getChildFragmentManager(), data);
+
+                    int gap = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
+                    mPager.setPageMargin(gap);
+
+                    mBannerAdapter.setData(data);
+                    mPager.setClipToPadding(false);
+                    mPager.setAdapter(mBannerAdapter);
+                    mIndicator.setViewPager(mPager);
+
+                    mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+                        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 //                int pos = mPager.getCurrentItem();
 //                int size = data.size();
 //
@@ -198,27 +210,90 @@ public class HomeFragment extends BaseFragment{
 //                    mPager.setCurrentItem(1);
 //                }
 
-            }
+                        }
 
-            @Override
-            public void onPageSelected(int position) {
+                        @Override
+                        public void onPageSelected(int position) {
 
-            }
+                        }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
+                        @Override
+                        public void onPageScrollStateChanged(int state) {
 //                Toast.makeText(mContext, state , Toast.LENGTH_SHORT).show();
 
+                        }
+                    });
+
+                    if(data.size() > 1){
+                        mPager.setInterval(3000);
+                        mPager.setAutoScrollDurationFactor(10);
+                        mPager.startAutoScroll();
+                    }else if(data.size() == 1){
+                        mPager.stopAutoScroll();
+                    }
+                    pDialog.dismiss();
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GalleryResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
+                initBanner();
             }
         });
-
-        if(data.size() > 1){
-            mPager.setInterval(3000);
-            mPager.setAutoScrollDurationFactor(10);
-            mPager.startAutoScroll();
-        }else if(data.size() == 1){
-            mPager.stopAutoScroll();
-        }
+//        final List<Banner> data = new ArrayList<>();
+//
+//        data.add(new Banner(1, R.drawable.banners));
+//        data.add(new Banner(2, R.drawable.image1));
+//        data.add(new Banner(3, R.drawable.image2));
+//
+//        mBannerAdapter = new BannerPagerAdapter(getChildFragmentManager(), data);
+//
+//        int gap = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
+//        mPager.setPageMargin(gap);
+//
+//        mBannerAdapter.setData(data);
+//        mPager.setClipToPadding(false);
+//        mPager.setAdapter(mBannerAdapter);
+//        mIndicator.setViewPager(mPager);
+//
+//        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+////                int pos = mPager.getCurrentItem();
+////                int size = data.size();
+////
+////                if(pos == size){
+////                    mPager.setCurrentItem(1);
+////                }
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+////                Toast.makeText(mContext, state , Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//
+//        if(data.size() > 1){
+//            mPager.setInterval(3000);
+//            mPager.setAutoScrollDurationFactor(10);
+//            mPager.startAutoScroll();
+//        }else if(data.size() == 1){
+//            mPager.stopAutoScroll();
+//        }
     }
 
 //    private void loadJSON(){

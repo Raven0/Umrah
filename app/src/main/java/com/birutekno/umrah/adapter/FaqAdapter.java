@@ -2,12 +2,14 @@ package com.birutekno.umrah.adapter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataFaq;
@@ -54,6 +56,7 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView judul, jawaban;
+        String question, answer, whatsapp;
         private ExpandableLayout expandableLayout;
         private ImageView plus, minus;
         public ViewHolder(final View view) {
@@ -77,6 +80,24 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> {
                         plus.setVisibility(View.GONE);
                         minus.setVisibility(View.VISIBLE);
                     }
+                }
+            });
+
+            expandableLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
+
+                    question = String.valueOf(judul.getText());
+                    answer = String.valueOf(jawaban.getText());
+
+                    whatsapp = "*"+question+"*\n"+answer;
+                    Intent shareIntent = new Intent();
+                    shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);
+                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(Intent.createChooser(shareIntent,"Share with"));
                 }
             });
 
