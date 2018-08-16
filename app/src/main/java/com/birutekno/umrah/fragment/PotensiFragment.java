@@ -112,7 +112,7 @@ public class PotensiFragment extends BaseFragment{
 
         //Load nominal diatas
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
         loadDataPotensi(String.valueOf(id));
     }
 
@@ -191,7 +191,7 @@ public class PotensiFragment extends BaseFragment{
      */
     private Call<PotkomResponse> callTopRatedMoviesApi() {
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
 
         return WebApi.getAPIService().getDataPotensi(String.valueOf(id), currentPage);
     }

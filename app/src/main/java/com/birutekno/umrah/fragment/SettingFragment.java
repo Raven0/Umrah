@@ -64,7 +64,7 @@ public class SettingFragment extends BaseFragment{
     @OnClick(R.id.btnLogout)
     void btnLogoutClicked() {
         SharedPreferences.Editor editor = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE).edit();
-        editor.putInt("iduser", 0);
+        editor.putString("iduser", "0");
         editor.putString("token", "null");
         editor.putString("status", "out");
         editor.putString("password", "null");

@@ -83,12 +83,12 @@ public class LoginActivity extends BaseActivity {
                             String status = success.getStatus();
                             if (status.equals("success")) {
                                 User user = response.body().getUser();
-                                int id = Integer.parseInt(user.getId());
+                                String id = user.getId();
                                 String token = success.getToken();
                                 Toast.makeText(mContext, "Login Berhasil", Toast.LENGTH_LONG).show();
 
                                 SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-                                editor.putInt("iduser", id);
+                                editor.putString("iduser", id);
                                 editor.putString("token", token);
                                 editor.putString("status", "in");
                                 editor.putString("password", pass);
@@ -191,7 +191,7 @@ public class LoginActivity extends BaseActivity {
         if (doubleBackToExitPressedOnce) {
             finish();
             SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-            editor.putInt("iduser", 0);
+            editor.putString("iduser", "0");
             editor.putString("token", "null");
             editor.putString("status", "out");
             editor.putString("password", "null");

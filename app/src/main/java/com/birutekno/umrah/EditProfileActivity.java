@@ -128,7 +128,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
         loadData(String.valueOf(id));
     }
 
@@ -196,7 +196,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == btnEdt){
             SharedPreferences prefs = mContext.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-            int id_agen = prefs.getInt("iduser", 0);
+            String id_agen = prefs.getString("iduser", "0");
             String password = prefs.getString("password", "123");
 
             HashMap<String, String> params = new HashMap<>();
@@ -284,7 +284,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             final CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 SharedPreferences prefs = mContext.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                int id_agen = prefs.getInt("iduser", 0);
+                String id_agen = prefs.getString("iduser", "0");
 
                 resultUri = result.getUri();
                 File file = new File(resultUri.getPath());

@@ -92,7 +92,7 @@ public class ProfileActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
         loadData(String.valueOf(id));
     }
 

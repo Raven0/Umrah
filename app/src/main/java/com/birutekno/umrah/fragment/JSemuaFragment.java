@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.adapter.JamaahAdapter;
@@ -68,7 +67,7 @@ public class JSemuaFragment extends BaseFragment{
         pDialog.show();
 
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
 
         Call<JamaahResponse> call = WebApi.getAPIService().getJamaahAgen(String.valueOf(id));
         call.enqueue(new Callback<JamaahResponse>() {

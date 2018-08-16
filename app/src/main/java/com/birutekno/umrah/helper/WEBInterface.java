@@ -105,7 +105,7 @@ public interface WEBInterface {
 
     @Multipart
     @POST("agen/{id}/updatephoto")
-    Call<ResponseBody> photoAgen(@Path("id") int id, @Part MultipartBody.Part image, @Part("upload") RequestBody name);
+    Call<ResponseBody> photoAgen(@Path("id") String id, @Part MultipartBody.Part image, @Part("upload") RequestBody name);
 
 
 
@@ -238,6 +238,6 @@ public interface WEBInterface {
     //PUT JAMAAH
     @FormUrlEncoded
     @PUT("notif/{id}/edit")
-    Call<ResponseBody> readNotif(@Path("id") int id, @FieldMap HashMap<String, String> params);
+    Call<ResponseBody> readNotif(@Path("id") String id, @FieldMap HashMap<String, String> params);
 
 }

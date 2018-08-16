@@ -67,7 +67,7 @@ public class JPulangFragment extends BaseFragment{
         pDialog.show();
 
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
 
         Call<JamaahResponse> call = WebApi.getAPIService().getJamaahPulangAgen(String.valueOf(id));
         call.enqueue(new Callback<JamaahResponse>() {

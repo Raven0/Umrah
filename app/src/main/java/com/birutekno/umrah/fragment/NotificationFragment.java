@@ -67,7 +67,7 @@ public class NotificationFragment extends BaseFragment{
 
     public void loadJSON(){
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
 
         Call<NotifResponse> call = WebApi.getAPIService().getNotification(String.valueOf(id));
         call.enqueue(new Callback<NotifResponse>() {

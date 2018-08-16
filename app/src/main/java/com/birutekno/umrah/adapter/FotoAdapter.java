@@ -121,7 +121,11 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
 //                    Intent i = new Intent(Intent.ACTION_VIEW);
 //                    i.setData(Uri.parse(url));
 //                    context.startActivity(i);
-                    shareImage(url, context);
+                    try {
+                        shareImage(url, context);
+                    }catch (Exception ex){
+                        Log.d("SHARE_IMG", "onClick: " + ex.getMessage());
+                    }
                 }
             });
 

@@ -211,7 +211,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
 //                            Toast.makeText(context,"PAY : " + sessionId, Toast.LENGTH_SHORT).show();
 
                             SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                            int id_agen = prefs.getInt("iduser", 0);
+                            String id_agen = prefs.getString("iduser", "0");
                             HashMap<String, String> params = new HashMap<>();
                             //anggota_id
                             params.put("anggota_id", String.valueOf(id_agen));

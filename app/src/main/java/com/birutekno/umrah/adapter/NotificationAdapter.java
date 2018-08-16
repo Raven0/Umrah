@@ -84,7 +84,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     //anggota_id
                     params.put("status", "READ");
 
-                    Call<ResponseBody> result = WebApi.getAPIService().readNotif(id, params);
+                    Call<ResponseBody> result = WebApi.getAPIService().readNotif(String.valueOf(id), params);
                     result.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

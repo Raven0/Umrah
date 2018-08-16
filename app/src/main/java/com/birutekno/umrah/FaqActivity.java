@@ -17,7 +17,6 @@ import com.birutekno.umrah.helper.FaqResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataFaq;
 import com.birutekno.umrah.ui.BaseActivity;
-import com.birutekno.umrah.ui.view.BaseRecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class FaqActivity extends BaseActivity {
     Toolbar mToolbar;
 
     @Bind(R.id.recyclerView)
-    BaseRecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
 
     private ArrayList<DataFaq> pojo;
     private FaqAdapter mAdapter;

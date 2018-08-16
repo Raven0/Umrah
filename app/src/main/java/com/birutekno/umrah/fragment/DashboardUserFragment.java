@@ -208,7 +208,7 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
 
         nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int id_agen = prefs.getInt("iduser", 0);
+        String id_agen = prefs.getString("iduser", "0");
         nDialog.show();
         try {
             loadDataPotensi(String.valueOf(id_agen));

@@ -111,7 +111,7 @@ public class KalkulasiActivity extends BaseActivity {
         pDialog.show();
 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int id = prefs.getInt("iduser", 0);
+        String id = prefs.getString("iduser", "0");
         Call<ProspekResponse> call = WebApi.getAPIService().getProspekAgen(String.valueOf(id));
         call.enqueue(new Callback<ProspekResponse>() {
             @Override

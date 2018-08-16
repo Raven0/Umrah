@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.birutekno.umrah.R;
@@ -20,7 +22,7 @@ import java.util.List;
  * Created by No Name on 7/31/2017.
  */
 
-public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private static final int ITEM = 0;
     private static final int LOADING = 1;
@@ -89,42 +91,42 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return (position == dataPotkomList.size() - 1 && isLoadingAdded) ? LOADING : ITEM;
     }
 
-//    @Override
-//    public Filter getFilter() {
-//        return new Filter() {
-//            @Override
-//            protected FilterResults performFiltering(CharSequence charSequence) {
-//
-//                String charString = charSequence.toString();
-//
-//                if (charString.isEmpty()) {
-//                    mFilterData = data;
-//                } else {
-//
-//                    ArrayList<DataPotkom> filterData = new ArrayList<>();
-//
-//                    for (DataPotkom data: data) {
-//
-//                        if (data.getNama().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString)) {
-//                            filterData.add(data);
-//                        }
-//                    }
-//
-//                    mFilterData = filterData;
-//                }
-//
-//                FilterResults filterResults = new FilterResults();
-//                filterResults.values = mFilterData;
-//                return filterResults;
-//            }
-//
-//            @Override
-//            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-//                mFilterData = (ArrayList<DataPotkom>) filterResults.values;
-//                notifyDataSetChanged();
-//            }
-//        };
-//    }
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+
+                } else {
+
+                    ArrayList<DataPotkom> filterData = new ArrayList<>();
+
+                    for (DataPotkom data: dataPotkomList) {
+
+                        if (data.getNama().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString)) {
+                            filterData.add(data);
+                        }
+                    }
+
+                    dataPotkomList = filterData;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = dataPotkomList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                dataPotkomList = (ArrayList<DataPotkom>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
     public void add(DataPotkom r) {
         dataPotkomList.add(r);
