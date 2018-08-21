@@ -34,7 +34,7 @@ public class InputKalkulasiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //What to do on back clicked
-                InputKalkulasiActivity.super.onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -59,7 +59,6 @@ public class InputKalkulasiActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        position--;
-        final String pos = String.valueOf(position);
         if (String.valueOf(position).equals("0")){
             AlertDialog.Builder adb = new AlertDialog.Builder(InputKalkulasiActivity.this);
             adb.setMessage("Apakah data ini akan disimpan?");

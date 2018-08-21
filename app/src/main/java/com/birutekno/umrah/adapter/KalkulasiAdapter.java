@@ -204,12 +204,9 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                     AlertDialog.Builder adb = new AlertDialog.Builder((Activity) v.getContext());
                     adb.setTitle("Pembayaran DP/Lunas");
                     adb.setMessage("Segera hubungi Koordinator anda untuk konfirmasi!");
-//                    adb.setIcon(android.R.drawable.ic_dialog_alert);
                     adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             String sessionId = id.getText().toString();
-//                            Toast.makeText(context,"PAY : " + sessionId, Toast.LENGTH_SHORT).show();
-
                             SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                             String id_agen = prefs.getString("iduser", "0");
                             HashMap<String, String> params = new HashMap<>();
@@ -234,7 +231,11 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                             params.put("fc_akta", fc_akta);
                             params.put("visa_progresif", visa_progresif);
                             params.put("diskon", diskon);
-                            params.put("keterangan", keterangan);
+                            if (keterangan == null){
+                                params.put("keterangan", "");
+                            }else {
+                                params.put("keterangan", keterangan);
+                            }
                             params.put("tanggal_followup", tanggal_followup);
                             params.put("pembayaran", "SUDAH");
                             params.put("perlengkapan_balita", perlengkapan_balita);
@@ -257,12 +258,38 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(intent);
 
-                                        Uri uri = Uri.parse("smsto:" + no_telp);
-                                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                                        i.putExtra(Intent.EXTRA_TEXT,"Terimakasih atas pembayarannya");
-                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        i.setPackage("com.whatsapp");
-                                        context.startActivity(i);
+//                                        AlertDialog.Builder wa = new AlertDialog.Builder((Activity) v.getContext());
+//                                        wa.setTitle("Apakah anda ");
+//                                        wa.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                Intent shareIntent = new Intent();
+//                                                shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                                                shareIntent.setType("text/plain");
+//                                                shareIntent.putExtra(Intent.EXTRA_TEXT,  "Terimakasih " +pic);
+//                                                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                                context.startActivity(Intent.createChooser(shareIntent,"Share with"));
+//                                            }
+//                                        });
+//                                        wa.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                Toast.makeText((Activity) v.getContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show();
+//                                                Intent intent = new Intent(context, KalkulasiActivity.class);
+//                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                                context.startActivity(intent);
+//                                            }
+//                                        });
+//                                        wa.show();
+
+//                                        Uri uri = Uri.parse("smsto:" + no_telp);
+//                                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//                                        i.putExtra(Intent.EXTRA_TEXT,"Terimakasih atas pembayarannya");
+//                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                        i.setPackage("com.whatsapp");
+//                                        context.startActivity(i);
+//
+//                                        Intent sendIntent = new Intent(Intent.ACTION_SENDTO,Uri.parse("smsto:" + no_telp +  "/*" + "?body=" + ""));
+//                                        sendIntent.setPackage("com.whatsapp");
+//                                        context.startActivity(sendIntent);
                                     }catch (Exception e){
                                         e.printStackTrace();
                                         Log.d("EXC", "onResponse: " + e.getMessage());

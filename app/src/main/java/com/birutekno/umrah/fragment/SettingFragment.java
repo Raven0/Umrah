@@ -43,6 +43,8 @@ public class SettingFragment extends BaseFragment{
     @OnClick(R.id.komisiCard)
     void komisiCardClicked() {
         Intent intent = PotkomActivity.createIntent(getActivity());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("pos", 3);
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }

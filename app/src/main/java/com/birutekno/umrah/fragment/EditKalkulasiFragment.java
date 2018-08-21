@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,6 +173,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private String no_telp;
     private String tgl_berangkat;
     private String jenisPaket;
+    private int selectedPaket = 0;
     private String sendTgl;
     private String maskapai;
     private String landing;
@@ -200,6 +202,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private int diskonBalitaRahmah = 0;
     private int diskonBalitaStandar = 0;
 
+    private Boolean jadwalLoaded = false;
+    private Boolean kalkulasiLoaded = false;
+
     public EditKalkulasiFragment() {
         // Required empty public constructor
     }
@@ -210,9 +215,31 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_form_kalkulasi, container, false);
         id = getArguments().getString("id");
+        if(!kalkulasiLoaded){
+            loadKalkulasi();
+        }else {
+            String jml = pojo.get(0).getHarga_visa();
+            progresif.setText(jml);
+
+            hargaDefault = Integer.parseInt(pojo.get(0).getHarga_default());
+            hargaPromo = Integer.parseInt(pojo.get(0).getHarga_promo());
+            hargaInfant = Integer.parseInt(pojo.get(0).getHarga_infant());
+            hargaFull = Integer.parseInt(pojo.get(0).getHarga_full());
+            hargaLite = Integer.parseInt(pojo.get(0).getHarga_lite());
+            diskonBalitaUhud = Integer.parseInt(pojo.get(0).getDiskon_balita_uhud());
+            diskonBalitaNur = Integer.parseInt(pojo.get(0).getDiskon_balita_nur());
+            diskonBalitaRahmah = Integer.parseInt(pojo.get(0).getDiskon_balita_rhm());
+            diskonBalitaStandar = Integer.parseInt(pojo.get(0).getDiskon_balita_standar());
+        }
         loadComponent();
-        loadKalkulasi();
-        setupAdapter();
+        if(!jadwalLoaded){
+            setupAdapter();
+        }else {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                    android.R.layout.simple_spinner_item, listJadwal);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            jadwal.setAdapter(adapter);
+        }
         nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
         for (int i = 1 ; i < 4 ; i++){
             nDialog.show();
@@ -559,6 +586,21 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        diskonboy.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspace
+                    String leng = String.valueOf((int) (long)diskonboy.getRawValue());
+                    if (leng.length() == 1){
+                        diskonboy.setText("0");
+                    }
+                }
+                return false;
+            }
+        });
+
         progresif.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -616,6 +658,25 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
 //                tgl_berangkat = parent.getItemAtPosition(position).toString();
 
+//                listPaket.clear();
+//                map.clear();
+//                String detailJadwal = ketJadwal.get(position);
+//                tgl_berangkat = tglJadwal.get(position);
+//                objJadwal = Arrays.asList(alldata.get(position).getJadwal());
+//                objPaket = Arrays.asList(objJadwal.get(0).getPaket());
+//                try{
+//                    initSpinnerPaket(objPaket);
+//                }catch (Exception ex){
+//                    initSpinnerPaket(objPaket);
+//                }
+//                namaJadwal.setText(detailJadwal);
+//
+//                sendTgl = objJadwal.get(0).getTgl_berangkat();
+//                maskapai = objJadwal.get(0).getMaskapai();
+//                landing = objJadwal.get(0).getRute_berangkat();
+//                pesawat = objJadwal.get(0).getPesawat_berangkat();
+//                pukul = objJadwal.get(0).getJam_berangkat();
+
                 listPaket.clear();
                 map.clear();
                 String detailJadwal = ketJadwal.get(position);
@@ -624,12 +685,15 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 objPaket = Arrays.asList(objJadwal.get(0).getPaket());
                 try{
                     initSpinnerPaket(objPaket);
+                    hotel.setSelection(selectedPaket);
                 }catch (Exception ex){
                     initSpinnerPaket(objPaket);
+                    hotel.setSelection(selectedPaket);
                 }
                 namaJadwal.setText(detailJadwal);
 
                 sendTgl = objJadwal.get(0).getTgl_berangkat();
+
                 maskapai = objJadwal.get(0).getMaskapai();
                 landing = objJadwal.get(0).getRute_berangkat();
                 pesawat = objJadwal.get(0).getPesawat_berangkat();
@@ -638,6 +702,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                hotel.setSelection(selectedPaket);
             }
         });
 
@@ -646,6 +711,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 jenisPaket = selectedItem;
+                selectedPaket = position;
                 if (selectedItem.equals("Standard")){
                     dobel.setHint(map.get("harga_double_std"));
                     tripel.setHint(map.get("harga_triple_std"));
@@ -817,7 +883,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         viewDiskon.setVisibility(View.GONE);
                     }
 
-                    int posJadwal = adapterJadwal.getPosition(dataProspek.getTgl_keberangkatan());
+//                    int posJadwal = adapterJadwal.getPosition(dataProspek.getTgl_keberangkatan());
+                    int posJadwal = tglJadwal.indexOf(dataProspek.getTgl_keberangkatan());
                     jadwal.setSelection(posJadwal);
                     if(adapterHotel != null){
                         int posHotel = adapterHotel.getPosition(dataProspek.getJenis());
@@ -1024,8 +1091,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         } else if (view == buttonSimpan){
 
-            if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim()) || TextUtils.isEmpty(keterangan.getText().toString().trim()) || TextUtils.isEmpty(tglFollowup)){
-                Toast.makeText(getContext(), "Pastikan nama PIC, Nomor Telepon, Keterangan, dan Tanggal FollowUp Terisi", Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim()) || TextUtils.isEmpty(tglFollowup)){
+                Toast.makeText(getContext(), "Pastikan nama PIC, Nomor Telepon, dan Tanggal FollowUp Terisi", Toast.LENGTH_SHORT).show();
             }else {
                 picName = pic.getText().toString().trim();
                 no_telp = telp.getText().toString().trim();
@@ -1159,6 +1226,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
         apiservice = UtilsApi.getAPIService();
         initSpinnerJadwal();
+        jadwalLoaded = true;
 //        initSpinnerPembayaran();
     }
 
@@ -1178,6 +1246,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 //                        listJadwal.add(convertDate(jadwal .get(0).getTgl_berangkat()) + "\nBerangkat : " + jadwal .get(0).getRute_berangkat() + "\nMaskapai : " + jadwal.get(0).getMaskapai() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                         tglJadwal.add(jadwal.get(0).getTgl_berangkat());
+//                        tglJadwal.add(jadwal.get(0).getId());
 //                        ketJadwal.add(jadwal .get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                     }
 
@@ -1361,6 +1430,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 loadKalkulasi();
             }
         });
+
+        kalkulasiLoaded = true;
     }
 
     @Override

@@ -137,6 +137,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, KalkulasiActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("pos", 0);
                 startActivity(intent);
             }
         });
@@ -145,6 +147,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, JamaahActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("pos", 0);
                 startActivity(intent);
             }
         });
@@ -155,6 +159,7 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
                 Intent intent = new Intent(mContext, PotkomActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("viewpager_position", 1);
+                intent.putExtra("pos", 0);
                 startActivity(intent);
             }
         });
@@ -163,6 +168,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PotkomActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("pos", 0);
                 startActivity(intent);
             }
         });

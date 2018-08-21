@@ -206,7 +206,7 @@ public class RegistrationActivity extends BaseActivity {
                     loading.dismiss();
                     alldata = Arrays.asList(response.body().getAgen());
                     for (int i = 0; i < alldata.size(); i++){
-                        int id = Integer.parseInt(alldata.get(i).getId());
+                        String id = alldata.get(i).getId();
                         String nama = alldata.get(i).getNama();
 
                         idAgen.add(String.valueOf(id));

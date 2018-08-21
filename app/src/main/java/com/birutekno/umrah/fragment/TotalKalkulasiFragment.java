@@ -151,6 +151,8 @@ public class TotalKalkulasiFragment extends Fragment {
     String nikah = null;
     String akta = null;
 
+    ArrayList<String> surat = new ArrayList<String>();
+
     public TotalKalkulasiFragment() {
         // Required empty public constructor
     }
@@ -287,30 +289,35 @@ public class TotalKalkulasiFragment extends Fragment {
 
         if (bundle.getBoolean("passport")){
             passport = "ya";
+            surat.add("passport");
         }else {
             passport = "tidak";
         }
 
         if (bundle.getBoolean("meningitis")){
             meningitis = "ya";
+            surat.add("meningitis");
         }else {
             meningitis = "tidak";
         }
 
         if (bundle.getBoolean("foto")){
             foto = "ya";
+            surat.add("pas foto");
         }else {
             foto = "tidak";
         }
 
         if (bundle.getBoolean("nikah")){
             nikah = "ya";
+            surat.add("buku nikah");
         }else {
             nikah = "tidak";
         }
 
         if (bundle.getBoolean("akta")){
             akta = "ya";
+            surat.add("akta kelahiran");
         }else {
             akta = "tidak";
         }
@@ -797,45 +804,57 @@ public class TotalKalkulasiFragment extends Fragment {
         total.setText(numberFormat(String.valueOf(hitunganFinal)));
 
         //SHARE
-//        head =  "Tanggal Keberangkatan " + berangkatTanggal.getText().toString() + "\n" +
-//                "Pesawat " + maskapai.getText().toString() + "\n" +
-//                "Landing "+ landing.getText().toString() +"\n" +
-//                "No Pesawat : "+ nopesawat.getText().toString()+"\n" +
-//                "Pukul : "+ pukul.getText().toString()+"\n" +
-//                "Hotel di Mekah : "+ mekah.getText().toString() +"\n" +
-//                "Hotel di Madinah : "+ madinah.getText().toString() +"\n" +
-//                "\n\n";
+        head =  "Tanggal Keberangkatan " + berangkatTanggal.getText().toString() + "\n" +
+                "Pesawat " + maskapai.getText().toString() + "\n" +
+                "Landing "+ landing.getText().toString() +"\n" +
+                "No Pesawat : "+ nopesawat.getText().toString()+"\n" +
+                "Pukul : "+ pukul.getText().toString()+"\n" +
+                "Hotel di Mekah : "+ mekah.getText().toString() +"\n" +
+                "Hotel di Madinah : "+ madinah.getText().toString() +"\n" +
+                "\n\n";
 
-        head =  "*Rincian Kalkulasi Simulasi untuk tanggal "+ berangkatTanggal.getText().toString() +" Paket "+ jenisPaket +"*\n\n";
+//        head =  "*Rincian Kalkulasi Simulasi untuk tanggal "+ berangkatTanggal.getText().toString() +" Paket "+ jenisPaket +"*\n\n";
 
         if(jmlDiskon == 0){
             diskonView.setVisibility(View.GONE);
+//            footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
+//                    "\n" +
+//                    "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
+//                    "Mohon Untuk Melengkapi Dokumen Ini : \n"+ surat +
+//                    "Passport       : " + passport + ".\n"+
+//                    "Meningitis     : " + meningitis + ".\n"+
+//                    "Pas Foto       : " + foto + ".\n"+
+//                    "Buku Nikah     : " + nikah + ".\n"+
+//                    "FC Akta Lahir  : " + akta + ".\n"+
+//                    "\n\n";
+
             footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
                     "\n" +
                     "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
-                    "Mohon Untuk Melengkapi Dokumen Ini : \n"+
-                    "Passport       : " + passport + ".\n"+
-                    "Meningitis     : " + meningitis + ".\n"+
-                    "Pas Foto       : " + foto + ".\n"+
-                    "Buku Nikah     : " + nikah + ".\n"+
-                    "FC Akta Lahir  : " + akta + ".\n"+
-                    "\n\n";
+                    "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
         }else {
             diskonView.setVisibility(View.VISIBLE);
             diskon.setText("Rp. "+ numberFormat(String.valueOf(jmlDiskon)));
+
+//            footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
+//                    "Total = Rp. "+ numberFormat(String.valueOf(hitunganKotor)) +"(sebelum diskon)\n" +
+//                    "Diskon = Rp. "+ numberFormat(String.valueOf(jmlDiskon)) +"\n" +
+//                    "\n" +
+//                    "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
+//                    "Mohon Untuk Melengkapi Dokumen Ini : \n"+ surat +
+//                    "Passport       : " + passport + ".\n"+
+//                    "Meningitis     : " + meningitis + ".\n"+
+//                    "Pas Foto       : " + foto + ".\n"+
+//                    "Buku Nikah     : " + nikah + ".\n"+
+//                    "FC Akta Lahir  : " + akta + ".\n"+
+//                    "\n\n";
 
             footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
                     "Total = Rp. "+ numberFormat(String.valueOf(hitunganKotor)) +"(sebelum diskon)\n" +
                     "Diskon = Rp. "+ numberFormat(String.valueOf(jmlDiskon)) +"\n" +
                     "\n" +
                     "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
-                    "Mohon Untuk Melengkapi Dokumen Ini : \n"+
-                    "Passport       : " + passport + ".\n"+
-                    "Meningitis     : " + meningitis + ".\n"+
-                    "Pas Foto       : " + foto + ".\n"+
-                    "Buku Nikah     : " + nikah + ".\n"+
-                    "FC Akta Lahir  : " + akta + ".\n"+
-                    "\n\n";
+                    "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
         }
 
         keterangan = "Keterangan Tambahan: \n"+ keterangan;

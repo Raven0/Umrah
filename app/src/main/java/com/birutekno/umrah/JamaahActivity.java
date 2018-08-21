@@ -1,6 +1,8 @@
 package com.birutekno.umrah;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -74,6 +76,8 @@ public class JamaahActivity extends BaseActivity {
     private JamaahPagerAdapter mAdapter;
     private String mDate = "";
 
+    int pos;
+
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, JamaahActivity.class);
         return intent;
@@ -96,6 +100,11 @@ public class JamaahActivity extends BaseActivity {
         });
 
         setupPager();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            pos = extras.getInt("pos");
+        }
     }
 
     private void setupPager() {
@@ -171,10 +180,22 @@ public class JamaahActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
-        Intent intent = new Intent(JamaahActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("viewpager_position", 1);
-        startActivity(intent);
+        AlertDialog.Builder ask = new AlertDialog.Builder(JamaahActivity.this);
+        ask.setTitle("Apakah Anda Akan Keluar?");
+        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
+        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(JamaahActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("viewpager_position", pos);
+                startActivity(intent);
+            }
+        });
+        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        ask.show();
     }
 
     @Override

@@ -49,14 +49,17 @@ public class HomeFragment extends BaseFragment{
     @OnClick(R.id.jamaah)
     void jamaahClicked() {
         Intent intent = JamaahActivity.createIntent(getActivity());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("pos", 1);
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
     @OnClick(R.id.kalkulasi)
     void kalkulasiClicked() {
-
         Intent intent = KalkulasiActivity.createIntent(getActivity());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("pos", 1);
         ActivityOptionsCompat optionsProfile = ActivityOptionsCompat.makeCustomAnimation(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }

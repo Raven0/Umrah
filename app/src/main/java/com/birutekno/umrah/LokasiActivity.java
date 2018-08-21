@@ -1,6 +1,8 @@
 package com.birutekno.umrah;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -98,9 +100,21 @@ public class LokasiActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
-        Intent intent = new Intent(LokasiActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("viewpager_position", 1);
-        startActivity(intent);
+        AlertDialog.Builder ask = new AlertDialog.Builder(LokasiActivity.this);
+        ask.setTitle("Apakah Anda Akan Keluar?");
+        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
+        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(LokasiActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("viewpager_position", 1);
+                startActivity(intent);
+            }
+        });
+        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        ask.show();
     }
 }
