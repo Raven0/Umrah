@@ -7,17 +7,24 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.adapter.JamaahAdapter;
 import com.birutekno.umrah.helper.JamaahResponse;
+import com.birutekno.umrah.helper.PeriodeResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DataJamaah;
+import com.birutekno.umrah.model.DataPeriode;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -38,9 +45,15 @@ public class JPulangFragment extends BaseFragment{
     @Bind(R.id.searchField)
     android.support.v7.widget.SearchView sae;
 
+    @Bind(R.id.spinnerFilter)
+    Spinner periode;
+
     private ArrayList<DataJamaah> pojo;
+    private ArrayList<DataPeriode> pojd;
     private JamaahAdapter mAdapter;
     private ProgressDialog pDialog;
+
+    List<String> listPeriode = new ArrayList<String>();
 
     public static JPulangFragment newInstance() {
         JPulangFragment fragment = new JPulangFragment();
@@ -55,7 +68,20 @@ public class JPulangFragment extends BaseFragment{
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         initViews();
-        loadJSON();
+
+        loadPeriode();
+        periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                loadJSON(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                loadJSON("1440");
+            }
+        });
 
         try {
             search(sae);
@@ -71,7 +97,42 @@ public class JPulangFragment extends BaseFragment{
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void loadJSON(){
+    private void loadPeriode(){
+        Call<PeriodeResponse> call = WebApi.getAPIService().getPeriode();
+        call.enqueue(new Callback<PeriodeResponse>() {
+            @Override
+            public void onResponse(Call<PeriodeResponse> call, Response<PeriodeResponse> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    PeriodeResponse PeriodeResponse = response.body();
+                    pojd = new ArrayList<>(Arrays.asList(PeriodeResponse.getData()));
+                    for (int i = 0; i < pojd.size() ; i++ ){
+                        listPeriode.add(pojd.get(i).getJudul());
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                            android.R.layout.simple_spinner_item, listPeriode);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    periode.setAdapter(adapter);
+                }catch (Exception ex){
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<PeriodeResponse> call, Throwable t) {
+                loadPeriode();
+            }
+        });
+    }
+
+    private void loadJSON(String periode){
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
@@ -80,7 +141,7 @@ public class JPulangFragment extends BaseFragment{
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         String id = prefs.getString("iduser", "0");
 
-        Call<JamaahResponse> call = WebApi.getAPIService().getJamaahPulangAgen(String.valueOf(id));
+        Call<JamaahResponse> call = WebApi.getAPIService().getJamaahPulangAgen(String.valueOf(id),periode);
         call.enqueue(new Callback<JamaahResponse>() {
             @Override
             public void onResponse(Call<JamaahResponse> call, Response<JamaahResponse> response) {

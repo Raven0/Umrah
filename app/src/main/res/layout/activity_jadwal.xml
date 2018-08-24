@@ -25,16 +25,6 @@
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-            <!--<TextView-->
-            <!--android:id="@+id/title"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:text="Jadwal"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="16dp" />-->
-
         </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>

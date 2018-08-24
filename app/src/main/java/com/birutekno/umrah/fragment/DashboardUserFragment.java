@@ -174,6 +174,8 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
         });
 
+        //Grafik Total Jamaah
+        //Value
         ArrayList<Integer> dataList = new ArrayList<>();
         dataList.add(100);
         dataList.add(80);
@@ -188,30 +190,51 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
         dataList.add(420);
         dataList.add(500);
 
+        //Assign to Array
         ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
         dataLists.add(dataList);
 
+        //Set data to graph
         line.setDataList(dataLists);
 
-        ArrayList<Float> dataListF = new ArrayList<>();
-        float randomF = (float) (Math.random() * 9 + 1);
-        for (int i = 0; i < randomint; i++) {
-            dataListF.add((float) (Math.random() * randomF));
-        }
+        //Grafik Total PotKom
+        //Value Komisi
+        ArrayList<Integer> dataListF = new ArrayList<>();
+        dataListF.add(100);
+        dataListF.add(80);
+        dataListF.add(210);
+        dataListF.add(200);
+        dataListF.add(220);
+        dataListF.add(220);
+        dataListF.add(240);
+        dataListF.add(350);
+        dataListF.add(400);
+        dataListF.add(340);
+        dataListF.add(420);
+        dataListF.add(500);
 
-        ArrayList<Float> dataListF2 = new ArrayList<>();
-        randomF = (int) (Math.random() * 9 + 1);
-        for (int i = 0; i < randomint; i++) {
-            dataListF2.add((float) (Math.random() * randomF));
-        }
+        //Value Potensi
+        ArrayList<Integer> dataListF2 = new ArrayList<>();
+        dataListF2.add(100);
+        dataListF2.add(80);
+        dataListF2.add(210);
+        dataListF2.add(200);
+        dataListF2.add(220);
+        dataListF2.add(220);
+        dataListF2.add(240);
+        dataListF2.add(350);
+        dataListF2.add(400);
+        dataListF2.add(340);
+        dataListF2.add(420);
+        dataListF2.add(500);
 
-        ArrayList<ArrayList<Float>> dataListFs = new ArrayList<>();
+        //Assign To Array
+        ArrayList<ArrayList<Integer>> dataListFs = new ArrayList<>();
         dataListFs.add(dataListF);
         dataListFs.add(dataListF2);
 
-        line_two.setFloatDataList(dataListFs);
-
-//        randomSet(line,line_two);
+        //Set Data to graph
+        line_two.setDataList(dataListFs);
 
         nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);

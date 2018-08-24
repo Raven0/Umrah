@@ -61,6 +61,11 @@ public interface WEBInterface {
     @GET("kalkulasi/")
     Call<KalkulasiResponse> getKalkulasi();
 
+    //DATA PERIODE
+    //GET ALL PERIODE
+    @GET("periode/")
+    Call<PeriodeResponse> getPeriode();
+
 
 
 
@@ -117,16 +122,16 @@ public interface WEBInterface {
     Call<JamaahResponse> getJamaah();
 
     //GET PROSPEK BY AGEN
-    @GET("jamaah/{id}/agen")
-    Call<JamaahResponse> getJamaahAgen(@Path("id") String id);
+    @GET("jamaah/{id}/agen/{tahun}/periode")
+    Call<JamaahResponse> getJamaahAgen(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET PROSPEK BERANGKAT BY AGEN
-    @GET("jamaah/{id}/agen/berangkat")
-    Call<JamaahResponse> getJamaahBerangkatAgen(@Path("id") String id);
+    @GET("jamaah/{id}/agen/berangkat/{tahun}/periode")
+    Call<JamaahResponse> getJamaahBerangkatAgen(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET PROSPEK PULANG BY AGEN
-    @GET("jamaah/{id}/agen/pulang")
-    Call<JamaahResponse> getJamaahPulangAgen(@Path("id") String id);
+    @GET("jamaah/{id}/agen/pulang/{tahun}/periode")
+    Call<JamaahResponse> getJamaahPulangAgen(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET SHOW JAMAAH
     @GET("jamaah/{id}/show")
