@@ -1,8 +1,6 @@
 package com.birutekno.umrah;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -148,23 +146,28 @@ public class PotkomActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Log.d("CDA", "onBackPressed Called");
-        AlertDialog.Builder ask = new AlertDialog.Builder(PotkomActivity.this);
-        ask.setTitle("Apakah Anda Akan Keluar?");
-        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
-        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(PotkomActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("viewpager_position", pos);
-                startActivity(intent);
-            }
-        });
-        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        ask.show();
+        Intent intent = new Intent(PotkomActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("viewpager_position", pos);
+        startActivity(intent);
+
+//        Log.d("CDA", "onBackPressed Called");
+//        AlertDialog.Builder ask = new AlertDialog.Builder(PotkomActivity.this);
+//        ask.setTitle("Apakah Anda Akan Keluar?");
+//        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
+//        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = new Intent(PotkomActivity.this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.putExtra("viewpager_position", pos);
+//                startActivity(intent);
+//            }
+//        });
+//        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//            }
+//        });
+//        ask.show();
     }
 
     @Override

@@ -1,16 +1,18 @@
 package com.birutekno.umrah;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -124,6 +126,39 @@ public class FaqActivity extends BaseActivity {
         });
     }
 
+    //SEARCH
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        search(searchView);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void search(SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
@@ -139,23 +174,28 @@ public class FaqActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Log.d("CDA", "onBackPressed Called");
-        AlertDialog.Builder ask = new AlertDialog.Builder(FaqActivity.this);
-        ask.setTitle("Apakah Anda Akan Keluar?");
-        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
-        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(FaqActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("viewpager_position", 2);
-                startActivity(intent);
-            }
-        });
-        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        ask.show();
+        Intent intent = new Intent(FaqActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("viewpager_position", 3);
+        startActivity(intent);
+
+//        Log.d("CDA", "onBackPressed Called");
+//        AlertDialog.Builder ask = new AlertDialog.Builder(FaqActivity.this);
+//        ask.setTitle("Apakah Anda Akan Keluar?");
+//        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
+//        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = new Intent(FaqActivity.this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.putExtra("viewpager_position", 2);
+//                startActivity(intent);
+//            }
+//        });
+//        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//            }
+//        });
+//        ask.show();
     }
 
     @Override

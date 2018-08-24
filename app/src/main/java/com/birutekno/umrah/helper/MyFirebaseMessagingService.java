@@ -28,12 +28,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //On click of notification it redirect to this Activity
         Intent intent = new Intent(MyFirebaseMessagingService.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("viewpager_position", 2);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_aiwas)
+                .setSmallIcon(R.mipmap.ic_aiwas_new)
                 .setContentTitle("Pesan Baru!")
                 .setContentText(message)
                 .setAutoCancel(true)
@@ -44,9 +45,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
-    }
-
-    private void sendRegistrationToServer(String token) {
-        // TODO: Implement this method to send token to your app server.
     }
 }

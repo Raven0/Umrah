@@ -42,8 +42,8 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
 
         viewHolder.id.setText(mFilterData.get(i).getId());
         viewHolder.nama.setText(mFilterData.get(i).getNama());
-        viewHolder.telp.setText(mFilterData.get(i).getNo_telp());
-        viewHolder.alamat.setText(mFilterData.get(i).getTgl_berangkat());
+        viewHolder.telp.setText("Tanggal Berangkat : " + mFilterData.get(i).getTgl_berangkat());
+        viewHolder.alamat.setText("Tanggal Pulang : " + mFilterData.get(i).getTgl_pulang());
 
     }
 
@@ -58,7 +58,7 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
 
-                String charString = charSequence.toString();
+                String charString = charSequence.toString().toLowerCase();
 
                 if (charString.isEmpty()) {
                     mFilterData = data;
@@ -68,7 +68,7 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
 
                     for (DataJamaah data: data) {
 
-                        if (data.getNama().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString)) {
+                        if (data.getNama().toLowerCase().contains(charString)) {
                             filterData.add(data);
                         }
                     }

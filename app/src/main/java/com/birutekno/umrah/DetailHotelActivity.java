@@ -259,7 +259,7 @@ public class DetailHotelActivity extends BaseActivity {
     }
 
     private void initBanner(){
-        Call<GalleryResponse> call = WebApi.getAPIService().getGalleryFoto();
+        Call<GalleryResponse> call = WebApi.getAPIService().getHotelFoto(Integer.valueOf(id));
         call.enqueue(new Callback<GalleryResponse>() {
             @Override
             public void onResponse(Call<GalleryResponse> call, Response<GalleryResponse> response) {
@@ -316,12 +316,13 @@ public class DetailHotelActivity extends BaseActivity {
                     String whatsapp =
                             "Info Hotel :\n" + pojo.getInfo() +
                             "\n\nFasilitas Hotel :" +
-                            "\nAkses Wifi : " + pojo.getWifi() +
-                            "\nParkir Pribadi : " + pojo.getPark() +
-                            "\nKamar Bebas Rokok : " + pojo.getKamar_rokok() +
-                            "\nKamar ber-AC : " + pojo.getKamar_ac() +
-                            "\nKamar Keluarga : " + pojo.getKamar_keluarga() +
-                            "\nMakanan Enak : " + pojo.getMakanan_enak();
+                            "\nAkses Wifi : " + boolProcessor(pojo.getWifi()) +
+                            "\nParkir Pribadi : " + boolProcessor(pojo.getPark()) +
+                            "\nKamar Bebas Rokok : " + boolProcessor(pojo.getKamar_rokok()) +
+                            "\nKamar ber-AC : " + boolProcessor(pojo.getKamar_ac()) +
+                            "\nKamar Keluarga : " + boolProcessor(pojo.getKamar_keluarga()) +
+                            "\nMakanan Enak : " + boolProcessor(pojo.getMakanan_enak()) +
+                            "\n\nLink Peta: \n" + pojo.getLink_map();
 
                     Intent shareIntent = new Intent();
                     shareIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -342,5 +343,16 @@ public class DetailHotelActivity extends BaseActivity {
                 loadJSON(id);
             }
         });
+    }
+
+    public String boolProcessor(String args){
+        String val = "tidak";
+        if (args.equals("true")){
+            val = "ya";
+        }else {
+            val = "tidak";
+        }
+
+        return val;
     }
 }

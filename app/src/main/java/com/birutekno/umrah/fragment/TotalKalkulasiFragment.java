@@ -817,21 +817,16 @@ public class TotalKalkulasiFragment extends Fragment {
 
         if(jmlDiskon == 0){
             diskonView.setVisibility(View.GONE);
-//            footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
-//                    "\n" +
-//                    "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
-//                    "Mohon Untuk Melengkapi Dokumen Ini : \n"+ surat +
-//                    "Passport       : " + passport + ".\n"+
-//                    "Meningitis     : " + meningitis + ".\n"+
-//                    "Pas Foto       : " + foto + ".\n"+
-//                    "Buku Nikah     : " + nikah + ".\n"+
-//                    "FC Akta Lahir  : " + akta + ".\n"+
-//                    "\n\n";
 
-            footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
-                    "\n" +
-                    "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
-                    "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
+            if (hitunganVisa == 0){
+                footer ="*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
+                        "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
+            }else {
+                footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
+                        "\n" +
+                        "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
+                        "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
+            }
         }else {
             diskonView.setVisibility(View.VISIBLE);
             diskon.setText("Rp. "+ numberFormat(String.valueOf(jmlDiskon)));
@@ -848,13 +843,20 @@ public class TotalKalkulasiFragment extends Fragment {
 //                    "Buku Nikah     : " + nikah + ".\n"+
 //                    "FC Akta Lahir  : " + akta + ".\n"+
 //                    "\n\n";
-
-            footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
-                    "Total = Rp. "+ numberFormat(String.valueOf(hitunganKotor)) +"(sebelum diskon)\n" +
-                    "Diskon = Rp. "+ numberFormat(String.valueOf(jmlDiskon)) +"\n" +
-                    "\n" +
-                    "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
-                    "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
+            if (hitunganVisa == 0){
+                footer ="Total = Rp. "+ numberFormat(String.valueOf(hitunganKotor)) +"(sebelum diskon)\n" +
+                        "Diskon = Rp. "+ numberFormat(String.valueOf(jmlDiskon)) +"\n" +
+                        "\n" +
+                        "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
+                        "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
+            }else {
+                footer ="Total Visa Progresif = Rp. "+ numberFormat(String.valueOf(hitunganVisa)) +"\n" +
+                        "Total = Rp. "+ numberFormat(String.valueOf(hitunganKotor)) +"(sebelum diskon)\n" +
+                        "Diskon = Rp. "+ numberFormat(String.valueOf(jmlDiskon)) +"\n" +
+                        "\n" +
+                        "*TOTAL BIAYA UMROH  = Rp. "+ numberFormat(String.valueOf(hitunganFinal))+"*\n"+
+                        "Mohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n";
+            }
         }
 
         keterangan = "Keterangan Tambahan: \n"+ keterangan;

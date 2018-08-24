@@ -50,6 +50,9 @@ public class KomisiFragment extends BaseFragment{
     @Bind(R.id.nominal)
     TextView nominal;
 
+    @Bind(R.id.searchField)
+    android.support.v7.widget.SearchView sae;
+
     PotkomAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
@@ -114,6 +117,8 @@ public class KomisiFragment extends BaseFragment{
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         String id = prefs.getString("iduser", "0");
         loadDataKomisi(String.valueOf(id));
+
+        search(sae);
     }
 
     private void loadFirstPage() {
@@ -121,14 +126,26 @@ public class KomisiFragment extends BaseFragment{
             @Override
             public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
                 // Got data. Send it to adapter
-
                 List<DataPotkom> results = fetchResults(response);
                 TOTAL_PAGES = fetchTotal(response);
-
                 progressBar.setVisibility(View.GONE);
                 adapter.addAll(results);
-                if (currentPage <= TOTAL_PAGES) adapter.addLoadingFooter();
-                else isLastPage = true;
+                if (currentPage <= TOTAL_PAGES){
+                    adapter.addLoadingFooter();
+                    isLoading = true;
+                    currentPage += 1;
+
+                    // mocking network delay for API call
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadNextPage();
+                        }
+                    }, 1000);
+                }
+                else{
+                    isLastPage = true;
+                }
             }
 
             @Override
@@ -162,7 +179,11 @@ public class KomisiFragment extends BaseFragment{
         callTopRatedMoviesApi().enqueue(new Callback<PotkomResponse>() {
             @Override
             public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
-                adapter.removeLoadingFooter();
+                try {
+                    adapter.removeLoadingFooter();
+                }catch (Exception ex){
+                    Log.d("TAG", "onResponse: " + ex.getMessage());
+                }
                 isLoading = false;
                 List<DataPotkom> results = fetchResults(response);
                 adapter.addAll(results);
@@ -213,7 +234,7 @@ public class KomisiFragment extends BaseFragment{
                     }
                     judul.setText("Komisi Anda Saat ini");
                     nominal.setText("Rp. " + numberFormat(response.body().getResponse().getTotal()));
-//                    komisi.setText(numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
+//                    Komisi.setText("Rp. " + numberFormat(getFirstFour(response.body().getResponse().getTotal()))+" K");
 
                 }catch (Exception ex){
 //                    nDialog.dismiss();
@@ -224,6 +245,22 @@ public class KomisiFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
                 loadDataKomisi(id);
+            }
+        });
+    }
+
+    private void search(android.support.v7.widget.SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
             }
         });
     }

@@ -81,6 +81,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private List<String> ketJadwal = new ArrayList<String>();
     List<String> tglJadwal = new ArrayList<String>();
     private List<String> listPaket = new ArrayList<String>();
+    List<String> hotelPaket = new ArrayList<String>();
 
     HashMap<String, String> map = new HashMap<String, String>();
 
@@ -204,6 +205,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
     private Boolean jadwalLoaded = false;
     private Boolean kalkulasiLoaded = false;
+    private Boolean dataLoaded = false;
 
     public EditKalkulasiFragment() {
         // Required empty public constructor
@@ -240,14 +242,17 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             jadwal.setAdapter(adapter);
         }
-        nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
-        for (int i = 1 ; i < 4 ; i++){
-            nDialog.show();
-            loadData(id);
-            Toast.makeText(getContext(), "Load data tahap : " + i + "/3", Toast.LENGTH_SHORT).show();
-            if (i == 3){
-                nDialog.dismiss();
-                Toast.makeText(getContext(), "Load data : OK", Toast.LENGTH_SHORT).show();
+
+        if (!dataLoaded){
+            nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
+            for (int i = 1 ; i < 4 ; i++){
+                nDialog.show();
+                loadData(id);
+                Toast.makeText(getContext(), "Load data tahap : " + i + "/3", Toast.LENGTH_SHORT).show();
+                if (i == 3){
+                    nDialog.dismiss();
+                    Toast.makeText(getContext(), "Load data : OK", Toast.LENGTH_SHORT).show();
+                }
             }
         }
 
@@ -656,27 +661,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-//                tgl_berangkat = parent.getItemAtPosition(position).toString();
-
-//                listPaket.clear();
-//                map.clear();
-//                String detailJadwal = ketJadwal.get(position);
-//                tgl_berangkat = tglJadwal.get(position);
-//                objJadwal = Arrays.asList(alldata.get(position).getJadwal());
-//                objPaket = Arrays.asList(objJadwal.get(0).getPaket());
-//                try{
-//                    initSpinnerPaket(objPaket);
-//                }catch (Exception ex){
-//                    initSpinnerPaket(objPaket);
-//                }
-//                namaJadwal.setText(detailJadwal);
-//
-//                sendTgl = objJadwal.get(0).getTgl_berangkat();
-//                maskapai = objJadwal.get(0).getMaskapai();
-//                landing = objJadwal.get(0).getRute_berangkat();
-//                pesawat = objJadwal.get(0).getPesawat_berangkat();
-//                pukul = objJadwal.get(0).getJam_berangkat();
-
                 listPaket.clear();
                 map.clear();
                 String detailJadwal = ketJadwal.get(position);
@@ -883,13 +867,13 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         viewDiskon.setVisibility(View.GONE);
                     }
 
-//                    int posJadwal = adapterJadwal.getPosition(dataProspek.getTgl_keberangkatan());
                     int posJadwal = tglJadwal.indexOf(dataProspek.getTgl_keberangkatan());
                     jadwal.setSelection(posJadwal);
-                    if(adapterHotel != null){
-                        int posHotel = adapterHotel.getPosition(dataProspek.getJenis());
-                        hotel.setSelection(posHotel);
-                    }
+                    String paket = dataProspek.getJenis();
+                    int posHotel = Integer.parseInt(paket.substring(paket.length() - 1));
+                    hotel.setSelection(posHotel);
+                    Toast.makeText(getContext(), String.valueOf(posHotel), Toast.LENGTH_SHORT).show();
+                    dataLoaded = true;
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
                 }
@@ -1164,7 +1148,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 params.put("jml_visa", String.valueOf(jmlvisa));
                 params.put("jml_balita_kasur", String.valueOf(jmlBalitaKasur));
                 params.put("tgl_keberangkatan", tgl_berangkat);
-                params.put("jenis", jenisPaket);
+                params.put("jenis", jenisPaket+selectedPaket);
                 params.put("dobel", String.valueOf(jmlDobel));
                 params.put("triple", String.valueOf(jmlTripel));
                 params.put("quard", String.valueOf(jmlQuard));
@@ -1223,11 +1207,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     }
 
     public void setupAdapter(){
-
         apiservice = UtilsApi.getAPIService();
         initSpinnerJadwal();
         jadwalLoaded = true;
-//        initSpinnerPembayaran();
     }
 
     public void initSpinnerJadwal(){
@@ -1241,13 +1223,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     alldata = Arrays.asList(response.body().getData());
                     for (int i = 0; i < alldata.size(); i++){
                         List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
-//                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
                         listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari());
-//                        listJadwal.add(convertDate(jadwal .get(0).getTgl_berangkat()) + "\nBerangkat : " + jadwal .get(0).getRute_berangkat() + "\nMaskapai : " + jadwal.get(0).getMaskapai() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat());
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                         tglJadwal.add(jadwal.get(0).getTgl_berangkat());
-//                        tglJadwal.add(jadwal.get(0).getId());
-//                        ketJadwal.add(jadwal .get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + " Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                     }
 
                     adapterJadwal = new ArrayAdapter<String>(getContext(),
@@ -1280,6 +1258,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             String harga = objPaket.get(i).getHarga();
             String hotelMadinah = objPaket.get(i).getHotel_madinah();
             String hotelMekah = objPaket.get(i).getHotel_mekkah();
+            hotelPaket.add(objPaket.get(i).getNama_paket());
 
             if (Jenis.equals("Standard")){
                 map.put("std",Jenis);

@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
  * Created by No Name on 7/31/2017.
  */
 
-public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> {
+public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> implements Filterable {
 
     public ArrayList<DataFaq> dataFaqs;
     public ArrayList<DataFaq> mFilterData;
@@ -52,6 +54,43 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mFilterData.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString().toLowerCase();
+
+                if (charString.isEmpty()) {
+                    mFilterData = dataFaqs;
+                } else {
+
+                    ArrayList<DataFaq> filterData = new ArrayList<>();
+
+                    for (DataFaq data: dataFaqs) {
+
+                        if (data.getJudul().toLowerCase().contains(charString)) {
+                            filterData.add(data);
+                        }
+                    }
+
+                    mFilterData = filterData;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilterData;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilterData = (ArrayList<DataFaq>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

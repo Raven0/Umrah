@@ -110,7 +110,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
 
-                String charString = charSequence.toString();
+                String charString = charSequence.toString().toLowerCase();
 
                 if (charString.isEmpty()) {
                     mFilterData = dataProspeks;

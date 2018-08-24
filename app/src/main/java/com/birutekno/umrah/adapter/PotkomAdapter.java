@@ -27,6 +27,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int ITEM = 0;
     private static final int LOADING = 1;
 
+    private List<DataPotkom> dataPotkom;
     private List<DataPotkom> dataPotkomList;
     private Context context;
 
@@ -34,6 +35,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public PotkomAdapter(Context context) {
         this.context = context;
+        dataPotkom = new ArrayList<>();
         dataPotkomList = new ArrayList<>();
     }
 
@@ -72,7 +74,6 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 final PotkomViewHolder potkomViewHolder = (PotkomViewHolder) holder;
                 potkomViewHolder.namaPotkom.setText(result.getNama());
                 potkomViewHolder.noTelp.setText(result.getNo_telp());
-//                potkomViewHolder.alamatPotkom.setText(result.getTgl_daftar());
                 potkomViewHolder.fee.setText("Fee : " + numberFormat(result.getMarketing_fee()));
             case LOADING:
 //                Do nothing
@@ -97,17 +98,17 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
 
-                String charString = charSequence.toString();
+                String charString = charSequence.toString().toLowerCase();
 
                 if (charString.isEmpty()) {
-
+                    dataPotkomList = dataPotkom;
                 } else {
 
                     ArrayList<DataPotkom> filterData = new ArrayList<>();
 
-                    for (DataPotkom data: dataPotkomList) {
-
-                        if (data.getNama().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString)) {
+                    for (DataPotkom data: dataPotkom) {
+                        boolean query = data.getNama().toLowerCase().contains(charString);
+                        if (query) {
                             filterData.add(data);
                         }
                     }
@@ -129,7 +130,9 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public void add(DataPotkom r) {
-        dataPotkomList.add(r);
+//        dataPotkomList.add(r);
+        dataPotkom.add(r);
+        dataPotkomList = dataPotkom;
         notifyItemInserted(dataPotkomList.size() - 1);
     }
 
@@ -192,7 +195,6 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     protected class PotkomViewHolder extends RecyclerView.ViewHolder {
         private TextView namaPotkom;
         private TextView noTelp;
-        private TextView alamatPotkom;
         private TextView fee;
 
         public PotkomViewHolder(View itemView) {
@@ -200,7 +202,6 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             namaPotkom = (TextView) itemView.findViewById(R.id.namaProspek);
             noTelp = (TextView) itemView.findViewById(R.id.noTelp);
-            alamatPotkom = (TextView) itemView.findViewById(R.id.alamat);
             fee = (TextView) itemView.findViewById(R.id.fee);
         }
     }
@@ -215,7 +216,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public String numberFormat(String args){
         NumberFormat formatter = new DecimalFormat("#,###");
-        double myNumber = Double.parseDouble(args);
+        int myNumber = Integer.parseInt(args);
         String formattedNumber = formatter.format(myNumber);
         return formattedNumber;
     }

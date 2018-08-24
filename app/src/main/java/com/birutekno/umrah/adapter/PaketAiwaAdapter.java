@@ -15,6 +15,8 @@ import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.Jadwal;
 import com.birutekno.umrah.model.Paket;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +32,8 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
     HashMap<String, String> rahmah = new HashMap<String, String>();
     HashMap<String, String> standar = new HashMap<String, String>();
     HashMap<String, String> map = new HashMap<String, String>();
+
+    Boolean rhm = false, nr = false, uhd = false, std = false;
 
     public PaketAiwaAdapter(ArrayList<Jadwal> jadwal, ArrayList<Paket> paket, Context context) {
         this.jadwal = jadwal;
@@ -57,6 +61,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
             String hotelMekah = paket.get(a).getHotel_mekkah();
 
             if (Jenis.equals("Standard")){
+                std = true;
                 standar.put("key",Jenis);
                 map.put("standard",Jenis);
                 standar.put("hotel_madinah", hotelMadinah);
@@ -74,6 +79,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     standar.put("harga_quard", harga);
                 }
             }else if (Jenis.equals("UHUD")){
+                uhd = true;
                 uhud.put("key",Jenis);
                 map.put("uhud",Jenis);
                 uhud.put("hotel_madinah", hotelMadinah);
@@ -91,6 +97,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     uhud.put("harga_quard", harga);
                 }
             }else if(Jenis.equals("NUR ")){
+                nr = true;
                 nur.put("key",Jenis);
                 map.put("nur",Jenis);
                 nur.put("hotel_madinah", hotelMadinah);
@@ -108,6 +115,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     nur.put("harga_quard", harga);
                 }
             }else if (Jenis.equals("NUR")){
+                nr = true;
                 nur.put("key",Jenis);
                 map.put("nur",Jenis);
                 nur.put("hotel_madinah", hotelMadinah);
@@ -125,6 +133,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     nur.put("harga_quard", harga);
                 }
             }else if (Jenis.equals("Rahmah")){
+                rhm = true;
                 rahmah.put("key",Jenis);
                 map.put("rhm",Jenis);
                 rahmah.put("hotel_madinah", hotelMadinah);
@@ -142,6 +151,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     rahmah.put("harga_quard", harga);
                 }
             }else if (Jenis.equals("RAHMAH")){
+                rhm = true;
                 rahmah.put("key",Jenis);
                 map.put("rhm",Jenis);
                 rahmah.put("hotel_madinah", hotelMadinah);
@@ -195,8 +205,8 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
         final String manasikShare;
         final String linkItinerary;
 
-        berangkatDetail = jadwal.get(0).getRute_berangkat() + " , " + jadwal.get(0).getPesawat_berangkat() + "(Pukul " + jadwal.get(0).getJam_berangkat() + ")" ;
-        pulangDetail = jadwal.get(0).getRute_pulang() + " , " + jadwal.get(0).getPesawat_pulang() + "(Pukul" + jadwal.get(0).getJam_pulang() + ")" ;
+        berangkatDetail = "Rute = " + jadwal.get(0).getRute_berangkat() + " \nPesawat Berangkat = " + jadwal.get(0).getPesawat_berangkat() + "\nPukul = " + jadwal.get(0).getJam_berangkat();
+        pulangDetail = "Rute = " + jadwal.get(0).getRute_pulang() + " \nPesawat Pulang = " + jadwal.get(0).getPesawat_pulang() + "\nPukul = " + jadwal.get(0).getJam_pulang();
         tglBerangkat = jadwal.get(0).getTgl_berangkat();
         tglPulang = jadwal.get(0).getTgl_pulang();
         maskapai = jadwal.get(0).getMaskapai();
@@ -208,46 +218,61 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
-
-                    String whatsAppMessage = "Keberangkatan = "+tglBerangkat+" "+ berangkatDetail + "\n" +
-                            "Kepulangan = "+tglPulang+" "+ pulangDetail + "\n" +
+                    String whatsapp = "";
+                    String header = "Keberangkatan = "+tglBerangkat+" \nDetail Keberangkatan :\n"+ berangkatDetail + "\n" +
+                            "\nKepulangan = "+tglPulang+" \nDetail Keberangkatan :\n"+ pulangDetail + "\n\n" +
                             "Maskapai = "+maskapai+"\n" +
                             "Paket = "+paketHari+"\n" +
                             "Manasik = "+manasikShare+"\n" +
-                            "Link Itinerary = "+ Uri.parse(linkItinerary) +"\n" +
                             "\n" +
-                            "=============================\n" +
-                            "Harga : \n" +
-                            "-Jenis Rahmah\n" +
-                            "\tKamar Double = "+map.get("harga_double_rhm")+"\n" +
-                            "\tKamar Triple = "+map.get("harga_triple_rhm")+"\n" +
-                            "\tKamar Quard = "+map.get("harga_quard_rhm")+"\n" +
-                            "\tHotel Madinah = "+map.get("hotel_madinah_rhm")+"\n" +
-                            "\tHotel Mekkah = "+map.get("hotel_mekkah_rhm")+"\n" +
-                            "-Jenis NUR\n" +
-                            "\tKamar Double = "+map.get("harga_double_nur")+"\n" +
-                            "\tKamar Triple = "+map.get("harga_triple_nur")+"\n" +
-                            "\tKamar Quard = "+map.get("harga_quard_nur")+"\n" +
-                            "\tHotel Madinah = "+map.get("hotel_madinah_nur")+"\n" +
-                            "\tHotel Mekkah = "+map.get("hotel_mekkah_nur")+"\n" +
-                            "-Jenis UHUD\n" +
-                            "\tKamar Double = "+map.get("harga_double_uhud")+"\n" +
-                            "\tKamar Triple = "+map.get("harga_triple_uhud")+"\n" +
-                            "\tKamar Quard = "+map.get("harga_quard_uhud")+"\n" +
-                            "\tHotel Madinah = "+map.get("hotel_madinah_uhud")+"\n" +
-                            "\tHotel Mekkah = "+map.get("hotel_mekkah_uhud")+"\n" +
-                            "-Jenis STANDARD\n" +
-                            "\tKamar Double = "+map.get("harga_double_standard")+"\n" +
-                            "\tKamar Triple = "+map.get("harga_triple_standard")+"\n" +
-                            "\tKamar Quard = "+map.get("harga_quard_standard")+"\n" +
-                            "\tHotel Madinah = "+map.get("hotel_madinah_standard")+"\n" +
-                            "\tHotel Mekkah = "+map.get("hotel_mekkah_standard")+"\n" +
-                            "\n" +
-                            "*Harga diatas bisa berubah sewaktu-waktu";
+                            "========\n" +
+                            "Harga : \n";
 
+                    String rahmah = "";
+                    String nur = "";
+                    String uhud = "";
+                    String standard = "";
+                    if (rhm){
+                        rahmah = "\n*-Jenis Rahmah*\n" +
+                                "Kamar Double = Rp."+numberFormat(map.get("harga_double_rhm"))+"\n" +
+                                "Kamar Triple = Rp."+numberFormat(map.get("harga_triple_rhm"))+"\n" +
+                                "Kamar Quard = Rp."+numberFormat(map.get("harga_quard_rhm"))+"\n\n" +
+                                "Hotel Madinah :\n"+map.get("hotel_madinah_rhm")+"\n" +
+                                "Hotel Mekkah :\n"+map.get("hotel_mekkah_rhm")+"\n";
+                    }
+
+                    if (nr){
+                        nur = "\n*-Jenis NUR*\n" +
+                                "Kamar Double = Rp."+numberFormat(map.get("harga_double_nur"))+"\n" +
+                                "Kamar Triple = Rp."+numberFormat(map.get("harga_triple_nur"))+"\n" +
+                                "Kamar Quard = Rp."+numberFormat(map.get("harga_quard_nur"))+"\n\n" +
+                                "Hotel Madinah :\n"+map.get("hotel_madinah_nur")+"\n" +
+                                "Hotel Mekkah :\n"+map.get("hotel_mekkah_nur")+"\n";
+                    }
+
+                    if (uhd){
+                        uhud = "\n*-Jenis UHUD*\n" +
+                                "Kamar Double = Rp."+numberFormat(map.get("harga_double_uhud"))+"\n" +
+                                "Kamar Triple = Rp."+numberFormat(map.get("harga_triple_uhud"))+"\n" +
+                                "Kamar Quard = Rp."+numberFormat(map.get("harga_quard_uhud"))+"\n\n" +
+                                "Hotel Madinah :\n"+map.get("hotel_madinah_uhud")+"\n" +
+                                "Hotel Mekkah :\n"+map.get("hotel_mekkah_uhud")+"\n";
+                    }
+
+                    if (std){
+                        standard = "\n*-Jenis STANDARD*\n" +
+                                "Kamar Double = Rp."+numberFormat(map.get("harga_double_standard"))+"\n" +
+                                "Kamar Triple = Rp."+numberFormat(map.get("harga_triple_standard"))+"\n" +
+                                "Kamar Quard = Rp."+numberFormat(map.get("harga_quard_standard"))+"\n\n" +
+                                "Hotel Madinah :\n"+map.get("hotel_madinah_standard")+"\n" +
+                                "Hotel Mekkah :\n"+map.get("hotel_mekkah_standard")+"\n";
+                    }
+
+                    whatsapp = header + rahmah + nur + uhud + standard + "\n" +
+                            "**Harga diatas bisa berubah sewaktu-waktu*";
                     Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, whatsAppMessage);
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);
                     context.startActivity(Intent.createChooser(shareIntent,"Share with").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 }
         });
@@ -263,6 +288,13 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
             }
         });
 
+    }
+
+    public String numberFormat(String args){
+        NumberFormat formatter = new DecimalFormat("#,###");
+        int myNumber = Integer.parseInt(args);
+        String formattedNumber = formatter.format(myNumber);
+        return formattedNumber;
     }
 
     @Override

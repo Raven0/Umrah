@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.adapter.JamaahAdapter;
@@ -34,6 +35,9 @@ public class JPulangFragment extends BaseFragment{
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @Bind(R.id.searchField)
+    android.support.v7.widget.SearchView sae;
+
     private ArrayList<DataJamaah> pojo;
     private JamaahAdapter mAdapter;
     private ProgressDialog pDialog;
@@ -45,13 +49,20 @@ public class JPulangFragment extends BaseFragment{
 
     @Override
     protected int getResourceLayout() {
-        return R.layout.fragment_jpulang;
+        return R.layout.fragment_jsemua;
     }
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         initViews();
         loadJSON();
+
+        try {
+            search(sae);
+        }catch (Exception ex){
+            sae.setQuery("",false);
+            Toast.makeText(mContext, "Mohon tunggu, data sedang dimuat...", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initViews(){
@@ -91,6 +102,22 @@ public class JPulangFragment extends BaseFragment{
             public void onFailure(Call<JamaahResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
+            }
+        });
+    }
+
+    private void search(android.support.v7.widget.SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
             }
         });
     }

@@ -1,8 +1,13 @@
 package com.birutekno.umrah.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
@@ -18,8 +23,8 @@ public class InfoFragment extends BaseFragment{
     @Bind(R.id.infotv)
     TextView info;
 
-//    @Bind(R.id.maps)
-//    LinearLayout mapsv;
+    @Bind(R.id.maps)
+    LinearLayout mapsv;
 //
 //    @Bind(R.id.whatsapp)
 //    LinearLayout whatsapp;
@@ -41,18 +46,18 @@ public class InfoFragment extends BaseFragment{
         final String maps = bundle.getString("maps");
         info.setText(String.valueOf(text));
 
-//        mapsv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(Intent.ACTION_VIEW);
-//                i.setData(Uri.parse(maps));
-//                try {
-//                    getContext().startActivity(i);
-//                }catch (Exception ex){
-//                    Toast.makeText(getContext(), "Link Maps tidak valid! silahkan hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        mapsv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(maps));
+                try {
+                    getContext().startActivity(i);
+                }catch (Exception ex){
+                    Toast.makeText(getContext(), "Link Maps tidak valid! silahkan hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 //
 //        whatsapp.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -50,6 +50,9 @@ public class PotensiFragment extends BaseFragment{
     @Bind(R.id.nominal)
     TextView nominal;
 
+    @Bind(R.id.searchField)
+    android.support.v7.widget.SearchView searchView;
+
     PotkomAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
@@ -114,6 +117,8 @@ public class PotensiFragment extends BaseFragment{
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         String id = prefs.getString("iduser", "0");
         loadDataPotensi(String.valueOf(id));
+
+        search(searchView);
     }
 
     private void loadFirstPage() {
@@ -121,14 +126,26 @@ public class PotensiFragment extends BaseFragment{
             @Override
             public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
                 // Got data. Send it to adapter
-
                 List<DataPotkom> results = fetchResults(response);
                 TOTAL_PAGES = fetchTotal(response);
-
                 progressBar.setVisibility(View.GONE);
                 adapter.addAll(results);
-                if (currentPage <= TOTAL_PAGES) adapter.addLoadingFooter();
-                else isLastPage = true;
+                if (currentPage <= TOTAL_PAGES){
+                    adapter.addLoadingFooter();
+                    isLoading = true;
+                    currentPage += 1;
+
+                    // mocking network delay for API call
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadNextPage();
+                        }
+                    }, 1000);
+                }
+                else{
+                    isLastPage = true;
+                }
             }
 
             @Override
@@ -224,6 +241,22 @@ public class PotensiFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
                 loadDataPotensi(id);
+            }
+        });
+    }
+
+    private void search(android.support.v7.widget.SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
             }
         });
     }

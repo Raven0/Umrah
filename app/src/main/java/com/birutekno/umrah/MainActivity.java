@@ -1,7 +1,9 @@
 package com.birutekno.umrah;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -10,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -206,6 +209,33 @@ public class MainActivity extends BaseActivity {
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS, PERMISSION_ALL);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        AlertDialog.Builder ask = new AlertDialog.Builder(MainActivity.this);
+        ask.setTitle("Apakah Anda yakin akan keluar?");
+        ask.setMessage("Tekan tombol Ya jika anda ingin logout dari aplikasi ini");
+        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putString("iduser", "0");
+                editor.putString("token", "null");
+                editor.putString("status", "out");
+                editor.putString("password", "null");
+                editor.apply();
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        ask.show();
     }
 
     @Override

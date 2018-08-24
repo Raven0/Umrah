@@ -1049,7 +1049,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 params.put("jml_visa", String.valueOf(jmlvisa));
                 params.put("jml_balita_kasur", String.valueOf(jmlBalitaKasur));
                 params.put("tgl_keberangkatan", tgl_berangkat);
-                params.put("jenis", jenisPaket);
+                params.put("jenis", jenisPaket+selectedPaket);
                 params.put("dobel", String.valueOf(jmlDobel));
                 params.put("triple", String.valueOf(jmlTripel));
                 params.put("quard", String.valueOf(jmlQuard));
