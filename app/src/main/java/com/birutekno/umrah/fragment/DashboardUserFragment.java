@@ -1,6 +1,5 @@
 package com.birutekno.umrah.fragment;
 
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,26 +9,30 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.birutekno.umrah.JamaahActivity;
 import com.birutekno.umrah.KalkulasiActivity;
 import com.birutekno.umrah.PotkomActivity;
 import com.birutekno.umrah.R;
+import com.birutekno.umrah.helper.PeriodeResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DashboardModel;
+import com.birutekno.umrah.model.DataPeriode;
 import com.birutekno.umrah.ui.chart.LineView;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -42,7 +45,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by No Name on 7/29/2017.
  */
 
-public class DashboardUserFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener{
+public class DashboardUserFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
     private static final String TYPE = "type";
@@ -58,7 +61,7 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
     LineView line_two;
 
     @Bind(R.id.periode)
-    Button periode;
+    Spinner periode;
 
     @Bind(R.id.potensiCard)
     CardView potensiCard;
@@ -96,6 +99,9 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
     @Bind(R.id.progressJamaah)
     ProgressBar progressJamaah;
 
+    private ArrayList<DataPeriode> pojd;
+    List<String> listPeriode = new ArrayList<String>();
+
     public static DashboardUserFragment newInstance(int type) {
         DashboardUserFragment fragment = new DashboardUserFragment();
         Bundle bundle = new Bundle();
@@ -116,20 +122,42 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        final String id_agen = prefs.getString("iduser", "0");
+        final String token = prefs.getString("token", "0");
+
+        loadPeriode();
         initLineView(line);
         initLineView(line_two);
 
-        periode.setOnClickListener(new View.OnClickListener() {
+        loadDataProspek(String.valueOf(id_agen));
+
+        periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                FragmentManager fm = getActivity().getFragmentManager();
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance((DatePickerDialog.OnDateSetListener) DashboardUserFragment.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.setTitle("Pilih Periode");
-                datePickerDialog.show(fm,"Date");
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
+                nDialog.show();
+                try {
+                    loadDataPotensi(String.valueOf(id_agen), item);
+                    loadDataKomisi(String.valueOf(id_agen), item);
+                    loadDataJamaah(String.valueOf(id_agen), item);
+                    nDialog.dismiss();
+                }catch (Exception ex){
+                    nDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                try {
+                    loadDataPotensi(String.valueOf(id_agen), token);
+                    loadDataKomisi(String.valueOf(id_agen), token);
+                    loadDataJamaah(String.valueOf(id_agen), token);
+                    nDialog.dismiss();
+                }catch (Exception ex){
+                    nDialog.dismiss();
+                }
             }
         });
 
@@ -174,6 +202,26 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
         });
 
+        setDataTotalJamaahView();
+        setDataTotalPotkomView();
+    }
+
+    private void initLineView(LineView lineView) {
+        ArrayList<String> test = new ArrayList<String>();
+        Calendar calendar = Calendar.getInstance();
+        for (int i = 0; i < randomint; i++) {
+            SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+            calendar.set(Calendar.MONTH, i);
+            String month_name = month_date.format(calendar.getTime());
+            test.add(month_name);
+        }
+        lineView.setBottomTextList(test);
+        lineView.setColorArray(new int[]{Color.BLUE,Color.RED});
+        lineView.setDrawDotLine(true);
+        lineView.setShowPopup(LineView.SHOW_POPUPS_NONE);
+    }
+
+    private void setDataTotalJamaahView(){
         //Grafik Total Jamaah
         //Value
         ArrayList<Integer> dataList = new ArrayList<>();
@@ -196,7 +244,9 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
 
         //Set data to graph
         line.setDataList(dataLists);
+    }
 
+    private void setDataTotalPotkomView(){
         //Grafik Total PotKom
         //Value Komisi
         ArrayList<Integer> dataListF = new ArrayList<>();
@@ -235,45 +285,12 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
 
         //Set Data to graph
         line_two.setDataList(dataListFs);
-
-        nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
-        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String id_agen = prefs.getString("iduser", "0");
-        nDialog.show();
-        try {
-            loadDataPotensi(String.valueOf(id_agen));
-            loadDataKomisi(String.valueOf(id_agen));
-            loadDataJamaah(String.valueOf(id_agen));
-            loadDataProspek(String.valueOf(id_agen));
-            nDialog.dismiss();
-        }catch (Exception ex){
-            nDialog.dismiss();
-        }
     }
 
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int month, int day){
-        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", day,month,year), Toast.LENGTH_LONG).show();
-        periode.setText(String.format("%d/%d/%d", day,month,year));
-    }
-
-    private void initLineView(LineView lineView) {
-        ArrayList<String> test = new ArrayList<String>();
-        Calendar calendar = Calendar.getInstance();
-        for (int i = 0; i < randomint; i++) {
-            SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
-            calendar.set(Calendar.MONTH, i);
-            String month_name = month_date.format(calendar.getTime());
-            test.add(month_name);
-        }
-        lineView.setBottomTextList(test);
-        lineView.setColorArray(new int[]{Color.BLUE,Color.RED});
-        lineView.setDrawDotLine(true);
-        lineView.setShowPopup(LineView.SHOW_POPUPS_NONE);
-    }
-
-    private void loadDataPotensi(final String id){
-        Call<DashboardModel> call = WebApi.getAPIService().getUangPotensi(id);
+    private void loadDataPotensi(final String id, final String tahun){
+        progressPotensi.setVisibility(View.VISIBLE);
+        potensi.setVisibility(View.GONE);
+        Call<DashboardModel> call = WebApi.getAPIService().getUangPotensi(id, tahun);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
             public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
@@ -300,13 +317,15 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataPotensi(id);
+                loadDataPotensi(id, tahun);
             }
         });
     }
 
-    private void loadDataKomisi(final String id){
-        Call<DashboardModel> call = WebApi.getAPIService().getUangKomisi(id);
+    private void loadDataKomisi(final String id, final String tahun){
+        progressKomisi.setVisibility(View.VISIBLE);
+        komisi.setVisibility(View.GONE);
+        Call<DashboardModel> call = WebApi.getAPIService().getUangKomisi(id, tahun);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
             public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
@@ -333,13 +352,15 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataKomisi(id);
+                loadDataKomisi(id, tahun);
             }
         });
     }
 
-    private void loadDataJamaah(final String id){
-        Call<DashboardModel> call = WebApi.getAPIService().getTotalJamaah(id);
+    private void loadDataJamaah(final String id, final String tahun){
+        progressJamaah.setVisibility(View.VISIBLE);
+        jamaah.setVisibility(View.GONE);
+        Call<DashboardModel> call = WebApi.getAPIService().getTotalJamaah(id, tahun);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
             public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
@@ -365,12 +386,14 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataJamaah(id);
+                loadDataJamaah(id, tahun);
             }
         });
     }
 
     private void loadDataProspek(final String id){
+        progressProspek.setVisibility(View.VISIBLE);
+        prospek.setVisibility(View.GONE);
         Call<DashboardModel> call = WebApi.getAPIService().getTotalProspek(id);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
@@ -409,57 +432,44 @@ public class DashboardUserFragment extends BaseFragment implements DatePickerDia
         return formattedNumber;
     }
 
-    public String getFirstFour(String args){
+    private void loadPeriode(){
+        Call<PeriodeResponse> call = WebApi.getAPIService().getPeriode();
+        call.enqueue(new Callback<PeriodeResponse>() {
+            @Override
+            public void onResponse(Call<PeriodeResponse> call, Response<PeriodeResponse> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    PeriodeResponse PeriodeResponse = response.body();
+                    pojd = new ArrayList<>(Arrays.asList(PeriodeResponse.getData()));
+                    for (int i = 0; i < pojd.size() ; i++ ){
+                        listPeriode.add(pojd.get(i).getJudul());
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                            android.R.layout.simple_spinner_item, listPeriode);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    periode.setAdapter(adapter);
+                }catch (Exception ex){
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<PeriodeResponse> call, Throwable t) {
+                loadPeriode();
+            }
+        });
+    }
+
+    public String getFirstFour(String args) {
         String temp = args;
-        String output = temp.substring(temp.length()+4);
+        String output = temp.substring(temp.length() + 4);
         return output;
     }
-//    private void randomSet(LineView lineView, LineView lineViewTwo) {
-//        ArrayList<Integer> dataList = new ArrayList<>();
-//        float random = (float) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataList.add((int) (Math.random() * random));
-//        }
-//
-//        ArrayList<Integer> dataList2 = new ArrayList<>();
-//        random = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataList2.add((int) (Math.random() * random));
-//        }
-//
-//        ArrayList<Integer> dataList3 = new ArrayList<>();
-//        random = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataList3.add((int) (Math.random() * random));
-//        }
-//
-//        ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
-//        dataLists.add(dataList);
-//
-//        lineView.setDataList(dataLists);
-//
-//        ArrayList<Float> dataListF = new ArrayList<>();
-//        float randomF = (float) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataListF.add((float) (Math.random() * randomF));
-//        }
-//
-//        ArrayList<Float> dataListF2 = new ArrayList<>();
-//        randomF = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataListF2.add((float) (Math.random() * randomF));
-//        }
-//
-//        ArrayList<Float> dataListF3 = new ArrayList<>();
-//        randomF = (int) (Math.random() * 9 + 1);
-//        for (int i = 0; i < randomint; i++) {
-//            dataListF3.add((float) (Math.random() * randomF));
-//        }
-//
-//        ArrayList<ArrayList<Float>> dataListFs = new ArrayList<>();
-//        dataListFs.add(dataListF);
-//        dataListFs.add(dataListF2);
-//
-//        lineViewTwo.setFloatDataList(dataListFs);
-//    }
 }

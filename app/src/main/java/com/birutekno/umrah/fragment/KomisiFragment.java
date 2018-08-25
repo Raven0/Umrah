@@ -218,7 +218,8 @@ public class KomisiFragment extends BaseFragment{
     }
 
     private void loadDataKomisi(final String id){
-        Call<DashboardModel> call = WebApi.getAPIService().getUangKomisi(id);
+        // TODO: Filter Periode
+        Call<DashboardModel> call = WebApi.getAPIService().getUangKomisi(id, "1440");
         call.enqueue(new Callback<DashboardModel>() {
             @Override
             public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {

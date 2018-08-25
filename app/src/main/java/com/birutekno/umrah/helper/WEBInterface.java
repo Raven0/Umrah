@@ -187,12 +187,12 @@ public interface WEBInterface {
     Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id, @Query("page") int page);
 
     //GET UANG KOMISI
-    @GET("jamaah/{id}/agenfee/komisi")
-    Call<DashboardModel> getUangKomisi(@Path("id") String id);
+    @GET("jamaah/{id}/agenfee/komisi/{tahun}/periode")
+    Call<DashboardModel> getUangKomisi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET UANG POTENSI
-    @GET("jamaah/{id}/agenfee/potensi")
-    Call<DashboardModel> getUangPotensi(@Path("id") String id);
+    @GET("jamaah/{id}/agenfee/potensi/{tahun}/periode")
+    Call<DashboardModel> getUangPotensi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET UANG KOMISI KOORD
     @GET("jamaah/{id}/koordinatorfee/komisi")
@@ -203,8 +203,8 @@ public interface WEBInterface {
     Call<DashboardModel> getUangKoordPotensi(@Path("id") String id);
 
     //GET TOTAL JAMAAH
-    @GET("jamaah/{id}/agen/total")
-    Call<DashboardModel> getTotalJamaah(@Path("id") String id);
+    @GET("jamaah/{id}/agen/total/{tahun}/periode")
+    Call<DashboardModel> getTotalJamaah(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET TOTAL PROSPEK
     @GET("prospek/{id}/agen/total")

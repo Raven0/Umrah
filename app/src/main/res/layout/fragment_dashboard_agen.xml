@@ -29,12 +29,11 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp">
 
-                    <Button
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/periode"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginBottom="10dp"
-                        android:text="pilih periode"
                         android:background="@color/white"/>
 
                     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -42,6 +41,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/agenAlert"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:text="Anda belum memiliki Sub Agen!"
+                        android:background="@color/white"
+                        android:gravity="center"/>
 
                 </LinearLayout>
 
@@ -112,237 +120,381 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-30dp"
+                android:layout_marginTop="-35dp"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp">
 
-                <HorizontalScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <TableLayout
+                    <!--Row 1-->
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <android.support.v4.widget.NestedScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/prospekCard"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="@dimen/_120sdp"
+                            android:background="@color/white"
+                            android:clickable="false"
+                            app:cardCornerRadius="2dp"
+                            app:cardUseCompatPadding="true"
+                            card_view:cardElevation="@dimen/_3sdp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tabel Prospek"
-                                    android:padding="18dp"
-                                    android:textColor="#fff"
-                                    android:textSize="16dp"
-                                    android:textStyle="bold"
-                                    android:background="#848484"/>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dp"
-                                        android:text="Bulan"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Jumlah"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Januari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="150"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
+                                <ImageView
+                                    android:layout_width="35dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_height="55dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/icon_caljam" />
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="2dp"
-                                    android:background="#fff"/>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
 
                                     <TextView
-                                        android:layout_width="200dp"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Februari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
+                                        android:lines="2"
+                                        android:text="Prospek \n Follow Up"
+                                        android:textAlignment="center"
+                                        android:textColor="#000"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:layout_width="200dp"
+                                        android:id="@+id/prospek"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="100"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
+                                        android:textColor="#000"
+                                        android:textSize="38dp"
+                                        android:visibility="gone"/>
 
-                                </TableRow>
+                                    <ProgressBar
+                                        android:id="@+id/progressProspek"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:visibility="visible"/>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
-                        </android.support.v4.widget.NestedScrollView>
+                        </android.support.v7.widget.CardView>
 
-                    </TableLayout>
-
-                </HorizontalScrollView>
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
-
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <android.support.v4.widget.NestedScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/jamaahCard"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="@dimen/_120sdp"
+                            android:background="@color/white"
+                            android:clickable="false"
+                            app:cardCornerRadius="2dp"
+                            app:cardUseCompatPadding="true"
+                            card_view:cardElevation="@dimen/_3sdp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tabel Jamaah"
-                                    android:padding="18dp"
-                                    android:textColor="#fff"
-                                    android:textSize="16dp"
-                                    android:textStyle="bold"
-                                    android:background="#848484"/>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Bulan"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#999999"
-                                        android:padding="18dip"
-                                        android:text="Jumlah"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Januari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="150"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
-
-                                </TableRow>
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_height="55dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/icon_jamaah" />
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="2dp"
-                                    android:background="#fff"/>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
 
                                     <TextView
-                                        android:layout_width="200dp"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="Februari"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
+                                        android:lines="2"
+                                        android:text="Total \n Jamaah"
+                                        android:textAlignment="center"
+                                        android:textStyle="bold"
+                                        android:textColor="#000"
+                                        android:textSize="15dp"/>
 
                                     <TextView
-                                        android:layout_width="200dp"
+                                        android:id="@+id/jamaah"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="#CCCCCC"
-                                        android:padding="18dip"
-                                        android:text="100"
-                                        android:textColor="#fff"
-                                        android:textSize="14dp" />
+                                        android:textColor="#000"
+                                        android:textSize="38dp"
+                                        android:visibility="visible"/>
 
-                                </TableRow>
+                                    <ProgressBar
+                                        android:id="@+id/progressJamaah"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:visibility="gone"/>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
-                        </android.support.v4.widget.NestedScrollView>
+                        </android.support.v7.widget.CardView>
 
-                    </TableLayout>
+                    </LinearLayout>
 
-                </HorizontalScrollView>
+                </LinearLayout>
 
             </LinearLayout>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="-30dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:padding="@dimen/_10sdp">-->
+
+                <!--<HorizontalScrollView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginTop="20dp">-->
+
+                    <!--<TableLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent">-->
+
+                        <!--<android.support.v4.widget.NestedScrollView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content">-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent"-->
+                                <!--android:orientation="vertical">-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Tabel Prospek"-->
+                                    <!--android:padding="18dp"-->
+                                    <!--android:textColor="#fff"-->
+                                    <!--android:textSize="16dp"-->
+                                    <!--android:textStyle="bold"-->
+                                    <!--android:background="#848484"/>-->
+
+                                <!--<TableRow-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#999999"-->
+                                        <!--android:padding="18dp"-->
+                                        <!--android:text="Bulan"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#999999"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Jumlah"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                <!--</TableRow>-->
+
+                                <!--<TableRow-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Januari"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="150"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                <!--</TableRow>-->
+
+                                <!--<LinearLayout-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="2dp"-->
+                                    <!--android:background="#fff"/>-->
+
+                                <!--<TableRow-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Februari"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="100"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                <!--</TableRow>-->
+
+                            <!--</LinearLayout>-->
+
+                        <!--</android.support.v4.widget.NestedScrollView>-->
+
+                    <!--</TableLayout>-->
+
+                <!--</HorizontalScrollView>-->
+
+                <!--<HorizontalScrollView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginTop="20dp">-->
+
+                    <!--<TableLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent">-->
+
+                        <!--<android.support.v4.widget.NestedScrollView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content">-->
+
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent"-->
+                                <!--android:orientation="vertical">-->
+
+                                <!--<TextView-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Tabel Jamaah"-->
+                                    <!--android:padding="18dp"-->
+                                    <!--android:textColor="#fff"-->
+                                    <!--android:textSize="16dp"-->
+                                    <!--android:textStyle="bold"-->
+                                    <!--android:background="#848484"/>-->
+
+                                <!--<TableRow-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#999999"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Bulan"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#999999"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Jumlah"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                <!--</TableRow>-->
+
+                                <!--<TableRow-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Januari"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="150"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                <!--</TableRow>-->
+
+                                <!--<LinearLayout-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="2dp"-->
+                                    <!--android:background="#fff"/>-->
+
+                                <!--<TableRow-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="Februari"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                    <!--<TextView-->
+                                        <!--android:layout_width="200dp"-->
+                                        <!--android:layout_height="wrap_content"-->
+                                        <!--android:background="#CCCCCC"-->
+                                        <!--android:padding="18dip"-->
+                                        <!--android:text="100"-->
+                                        <!--android:textColor="#fff"-->
+                                        <!--android:textSize="14dp" />-->
+
+                                <!--</TableRow>-->
+
+                            <!--</LinearLayout>-->
+
+                        <!--</android.support.v4.widget.NestedScrollView>-->
+
+                    <!--</TableLayout>-->
+
+                <!--</HorizontalScrollView>-->
+
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 

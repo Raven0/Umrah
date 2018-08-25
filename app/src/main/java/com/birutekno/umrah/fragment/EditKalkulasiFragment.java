@@ -207,6 +207,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private Boolean kalkulasiLoaded = false;
     private Boolean dataLoaded = false;
 
+    String id_agen,token;
+
     public EditKalkulasiFragment() {
         // Required empty public constructor
     }
@@ -214,6 +216,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        id_agen = prefs.getString("iduser", "0");
+        token = prefs.getString("token", "0");
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_form_kalkulasi, container, false);
         id = getArguments().getString("id");
@@ -1135,8 +1140,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     aktaString = "false";
                 }
 
-                SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                String id_agen = prefs.getString("iduser", "0");
                 HashMap<String, String> params = new HashMap<>();
                 //anggota_id
                 params.put("anggota_id", String.valueOf(id_agen));
@@ -1215,7 +1218,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     public void initSpinnerJadwal(){
         loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, false);
 
-        apiservice.getJSON("1440").enqueue(new Callback<AIWAResponse>() {
+        apiservice.getJSON(token).enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
                 if (response.isSuccessful()) {

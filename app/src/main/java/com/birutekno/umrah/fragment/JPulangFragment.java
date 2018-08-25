@@ -54,6 +54,7 @@ public class JPulangFragment extends BaseFragment{
     private ProgressDialog pDialog;
 
     List<String> listPeriode = new ArrayList<String>();
+    String id, token;
 
     public static JPulangFragment newInstance() {
         JPulangFragment fragment = new JPulangFragment();
@@ -67,9 +68,13 @@ public class JPulangFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
-        initViews();
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+        id = prefs.getString("iduser", "0");
+        token = prefs.getString("token", "0");
 
+        initViews();
         loadPeriode();
+
         periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -79,7 +84,7 @@ public class JPulangFragment extends BaseFragment{
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                loadJSON("1440");
+                loadJSON(token);
             }
         });
 
@@ -137,9 +142,6 @@ public class JPulangFragment extends BaseFragment{
         pDialog.setMessage("Harap tunggu...");
         pDialog.setCancelable(false);
         pDialog.show();
-
-        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        String id = prefs.getString("iduser", "0");
 
         Call<JamaahResponse> call = WebApi.getAPIService().getJamaahPulangAgen(String.valueOf(id),periode);
         call.enqueue(new Callback<JamaahResponse>() {

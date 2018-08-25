@@ -3,6 +3,7 @@ package com.birutekno.umrah;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +42,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ItineraryActivity extends BaseActivity{
 
+    public static final String PREFS_NAME = "AUTH";
+    String id_agen,token;
+
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -68,6 +72,10 @@ public class ItineraryActivity extends BaseActivity{
 
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        id_agen = prefs.getString("iduser", "0");
+        token = prefs.getString("token", "0");
+
         setupToolbar(mToolbar, true);
         setTitle("Itinerary");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -79,6 +87,8 @@ public class ItineraryActivity extends BaseActivity{
 
         initViews();
 
+        int pos = listPeriode.indexOf(token);
+        spinnerFilter.setSelection(pos);
         spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -117,10 +127,16 @@ public class ItineraryActivity extends BaseActivity{
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
                 pDialog.dismiss();
                 if(response.isSuccessful()){
-                    AIWAResponse jsonResponse = response.body();
-                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
-                    adapter = new ItineraryAiwaAdapter(pojo, getBaseContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        AIWAResponse jsonResponse = response.body();
+                        pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                        adapter = new ItineraryAiwaAdapter(pojo, getBaseContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch (Exception ex){
+                        if (ex.getMessage() == null){
+                            Toast.makeText(ItineraryActivity.this, "Data jadwal masih kosong, silahkan hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }else {
                     Log.d("ERROR CODE" , String.valueOf(response.code()));
                     Log.d("ERROR BODY" , response.errorBody().toString());
@@ -137,8 +153,27 @@ public class ItineraryActivity extends BaseActivity{
     }
 
     public void initSpinnerPeriode() {
+        listPeriode.add("1450");
+        listPeriode.add("1449");
+        listPeriode.add("1448");
+        listPeriode.add("1447");
+        listPeriode.add("1446");
+        listPeriode.add("1445");
+        listPeriode.add("1444");
+        listPeriode.add("1443");
+        listPeriode.add("1442");
+        listPeriode.add("1441");
         listPeriode.add("1440");
         listPeriode.add("1439");
+        listPeriode.add("1438");
+        listPeriode.add("1437");
+        listPeriode.add("1436");
+        listPeriode.add("1435");
+        listPeriode.add("1434");
+        listPeriode.add("1433");
+        listPeriode.add("1432");
+        listPeriode.add("1431");
+        listPeriode.add("1430");
 
         ArrayAdapter<String> adapterC= new ArrayAdapter<String>(getBaseContext(),
                 android.R.layout.simple_spinner_item, listPeriode);
