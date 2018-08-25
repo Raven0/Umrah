@@ -31,10 +31,32 @@
             android:textColor="#FF8800"
             android:textAlignment="center"/>
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/searchField"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Periode Hijriah"/>
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinnerFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -42,13 +64,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/searchField"
             android:id="@+id/recyclerView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <ProgressBar
+            android:layout_below="@id/searchField"
             android:id="@+id/main_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

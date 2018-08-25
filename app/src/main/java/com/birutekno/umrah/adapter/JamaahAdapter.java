@@ -1,6 +1,7 @@
 package com.birutekno.umrah.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.birutekno.umrah.R;
+import com.birutekno.umrah.SapaanActivity;
 import com.birutekno.umrah.model.DataJamaah;
 
 import java.util.ArrayList;
@@ -91,6 +92,7 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView id,nama,telp,alamat;
+//        private Spinner spinner;
         public ViewHolder(final View view) {
             super(view);
 
@@ -98,11 +100,14 @@ public class JamaahAdapter extends RecyclerView.Adapter<JamaahAdapter.ViewHolder
             nama = (TextView)view.findViewById(R.id.namaProspek);
             telp = (TextView)view.findViewById(R.id.noTelp);
             alamat = (TextView)view.findViewById(R.id.alamatProspek);
+//            spinner = (SearchableSpinner)view.findViewById(R.id.searchSapaan);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, id.getText().toString(), Toast.LENGTH_SHORT).show();
+//                    spinner.performClick();
+                    Intent intent = new Intent(context, SapaanActivity.class);
+                    context.startActivity(intent);
                 }
             });
 

@@ -154,6 +154,11 @@ public interface WEBInterface {
     @GET("faq/")
     Call<FaqResponse> getFaq();
 
+    //DATA Sapa
+    //GET ALL FAQ
+    @GET("sapaan/")
+    Call<SapaResponse> getSapa();
+
     //DATA GALLERY
     //GET ALL GALLERY
     @GET("gallery/foto/")
@@ -171,20 +176,20 @@ public interface WEBInterface {
 
     //DATA KOMISI
     //GET JAMAAG KOMISI
-    @GET("jamaah/{id}/agen/komisi")
-    Call<PotkomResponse> getDataKomisi(@Path("id") String id, @Query("page") int page);
+    @GET("jamaah/{id}/agen/komisi/{tahun}/periode")
+    Call<PotkomResponse> getDataKomisi(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
 
     //GET JAMAAH POTENSI
-    @GET("jamaah/{id}/agen/potensi")
-    Call<PotkomResponse> getDataPotensi(@Path("id") String id, @Query("page") int page);
+    @GET("jamaah/{id}/agen/potensi/{tahun}/periode")
+    Call<PotkomResponse> getDataPotensi(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
 
     //GET JAMAAG KOMISI KOORD
-    @GET("jamaah/{id}/koordinator/komisi")
-    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id, @Query("page") int page);
+    @GET("jamaah/{id}/koordinator/komisi/{tahun}/periode")
+    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
 
     //GET JAMAAH POTENSI KOORD
-    @GET("jamaah/{id}/koordinator/potensi")
-    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id, @Query("page") int page);
+    @GET("jamaah/{id}/koordinator/potensi/{tahun}/periode")
+    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
 
     //GET UANG KOMISI
     @GET("jamaah/{id}/agenfee/komisi/{tahun}/periode")
@@ -209,6 +214,18 @@ public interface WEBInterface {
     //GET TOTAL PROSPEK
     @GET("prospek/{id}/agen/total")
     Call<DashboardModel> getTotalProspek(@Path("id") String id);
+
+    //GET JAMAAH MONTHLY
+    @GET("jamaah/{id}/agen/bulan/{tahun}/periode")
+    Call<ChartResponse> getJamaahPerbulan(@Path("id") String id, @Path("tahun") String tahun);
+
+    //GET KOMISI MONTHLY
+    @GET("jamaah/{id}/agenfee/bulan/{tahun}/periode")
+    Call<ChartResponse> getKomisiPerbulan(@Path("id") String id, @Path("tahun") String tahun);
+
+    //GET KOMISI DARI AGEN MONTHLY
+    @GET("jamaah/{id}/koordinatorfee/bulan/{tahun}/periode")
+    Call<ChartResponse> getKomisiAgenPerbulan(@Path("id") String id, @Path("tahun") String tahun);
 
 
 

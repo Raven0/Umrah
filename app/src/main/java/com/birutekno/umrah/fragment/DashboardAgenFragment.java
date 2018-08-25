@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.helper.AgenResponse;
+import com.birutekno.umrah.helper.ChartResponse;
 import com.birutekno.umrah.helper.PeriodeResponse;
 import com.birutekno.umrah.helper.WebApi;
 import com.birutekno.umrah.model.DashboardModel;
@@ -132,6 +133,7 @@ public class DashboardAgenFragment extends BaseFragment{
                 selectedid = idAgen.get(position);
                 loadDataJamaah(selectedid,selectedperiode);
                 loadDataProspek(selectedid);
+                setDataKomisiView(selectedid,selectedperiode);
                 selected = true;
             }
 
@@ -139,12 +141,10 @@ public class DashboardAgenFragment extends BaseFragment{
             public void onNothingSelected(AdapterView<?> parent) {
                 loadDataJamaah(idAgen.get(0),token);
                 loadDataProspek(idAgen.get(0));
-                Toast.makeText(mContext, idAgen.get(0), Toast.LENGTH_SHORT).show();
+                setDataKomisiView(idAgen.get(0),token);
                 spinner.setSelection(0);
             }
         });
-
-        setDataKomisiView();
     }
 
     private void initLineView(LineView lineView) {
@@ -162,24 +162,53 @@ public class DashboardAgenFragment extends BaseFragment{
         lineView.setShowPopup(LineView.SHOW_POPUPS_NONE);
     }
 
-    private void setDataKomisiView(){
-        ArrayList<Float> dataListF = new ArrayList<>();
-        float randomF = (float) (Math.random() * 9 + 1);
-        for (int i = 0; i < randomint; i++) {
-            dataListF.add((float) (Math.random() * randomF));
-        }
+    private void setDataKomisiView(final String id, final String tahun){
+        Call<ChartResponse> call = WebApi.getAPIService().getKomisiAgenPerbulan(id, tahun);
+        call.enqueue(new Callback<ChartResponse>() {
+            @Override
+            public void onResponse(Call<ChartResponse> call, Response<ChartResponse> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }
+                    //Grafik Total Jamaah
+                    //Value
+                    ArrayList<Integer> dataList = new ArrayList<>();
+                    dataList.add(Integer.parseInt(response.body().getResponse().getJanuary()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getFebruary()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getMarch()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getApril()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getMei()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getJune()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getJuly()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getAugust()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getSeptember()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getOctober()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getNovember()));
+                    dataList.add(Integer.parseInt(response.body().getResponse().getDecember()));
 
-        ArrayList<Float> dataListF2 = new ArrayList<>();
-        randomF = (int) (Math.random() * 9 + 1);
-        for (int i = 0; i < randomint; i++) {
-            dataListF2.add((float) (Math.random() * randomF));
-        }
+                    //Assign to Array
+                    ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
+                    dataLists.add(dataList);
 
-        ArrayList<ArrayList<Float>> dataListFs = new ArrayList<>();
-        dataListFs.add(dataListF);
-        dataListFs.add(dataListF2);
+                    //Set data to graph
+                    line_two.setDataList(dataLists);
 
-        line_two.setFloatDataList(dataListFs);
+                }catch (Exception ex){
+                    Log.d("Exception" , ex.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<ChartResponse> call, Throwable t) {
+                setDataKomisiView(id, tahun);
+            }
+        });
     }
 
     private void loadDataJamaah(final String id, final String tahun){

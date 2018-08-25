@@ -142,6 +142,11 @@ public class PotkomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    public void removeAll(){
+        dataPotkom.clear();
+        dataPotkomList.clear();
+    }
+
     public void remove(DataPotkom r) {
         int position = dataPotkomList.indexOf(r);
         if (position > -1) {

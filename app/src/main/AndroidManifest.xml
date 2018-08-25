@@ -46,6 +46,7 @@
         <activity android:name=".PotkomActivity" android:screenOrientation="portrait"/>
         <activity android:name=".PotkomKoordActivity" android:screenOrientation="portrait"/>
         <activity android:name=".FaqActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SapaanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".WizardActivity" android:screenOrientation="portrait"/>
         <activity android:name=".DetailHotelActivity" android:screenOrientation="portrait"/>
 
