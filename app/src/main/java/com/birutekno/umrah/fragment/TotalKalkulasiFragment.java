@@ -42,6 +42,7 @@ public class TotalKalkulasiFragment extends Fragment {
     private Boolean doubleBool;
 
     private TextView berangkatTanggal;
+    private TextView hariJadwal;
     private TextView maskapai;
     private TextView landing;
     private TextView nopesawat;
@@ -193,6 +194,7 @@ public class TotalKalkulasiFragment extends Fragment {
         diskonView = (LinearLayout) view.findViewById(R.id.viewDiskon);
 
         berangkatTanggal = (TextView) view.findViewById(R.id.berangkatTanggal);
+        hariJadwal = (TextView) view.findViewById(R.id.paketHari);
         maskapai = (TextView) view.findViewById(R.id.maskapai);
         landing = (TextView) view.findViewById(R.id.landing);
         nopesawat = (TextView) view.findViewById(R.id.pesawatBerangkat);
@@ -257,6 +259,7 @@ public class TotalKalkulasiFragment extends Fragment {
         diskonBalitaStandar = bundle.getInt("diskonBalitaStandar");
 
         berangkatTanggal.setText(bundle.getString("berangkatTgl"));
+        hariJadwal.setText(bundle.getString("jml_hari"));
         maskapai.setText(bundle.getString("maskapai"));
         landing.setText(bundle.getString("landing"));
         nopesawat.setText(bundle.getString("pesawat"));
@@ -805,6 +808,7 @@ public class TotalKalkulasiFragment extends Fragment {
 
         //SHARE
         head =  "Tanggal Keberangkatan " + berangkatTanggal.getText().toString() + "\n" +
+                "Paket " + hariJadwal.getText().toString() + "Orang\n" +
                 "Pesawat " + maskapai.getText().toString() + "\n" +
                 "Landing "+ landing.getText().toString() +"\n" +
                 "No Pesawat : "+ nopesawat.getText().toString()+"\n" +

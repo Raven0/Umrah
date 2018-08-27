@@ -7,18 +7,18 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.birutekno.umrah.helper.WebApi;
+import com.birutekno.umrah.model.AuthModel;
+import com.birutekno.umrah.model.Response;
 import com.birutekno.umrah.ui.BaseActivity;
 
 import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -49,47 +49,37 @@ public class ForgotPasswordActivity extends BaseActivity {
             pDialog.setCancelable(false);
             pDialog.show();
 
-            Call<ResponseBody> result = WebApi.getAPIService().passwordAgen(params);
-            result.enqueue(new Callback<ResponseBody>() {
+            Call<AuthModel> result = WebApi.getAPIService().passwordAgen(params);
+            result.enqueue(new Callback<AuthModel>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                public void onResponse(Call<AuthModel> call, retrofit2.Response<AuthModel> response) {
                     pDialog.dismiss();
                     try {
-                        if (response.isSuccessful()){
-                            Toast.makeText(mContext, "Silahkan cek email anda!", Toast.LENGTH_SHORT).show();
-                            Intent intentReward = LoginActivity.createIntent(mContext);
-                            ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
-                            ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
+                        if(response.body()!=null) {
+                            Response success = response.body().getResponses();
+                            String status = success.getStatus();
+                            if (status.equals("success")) {
+                                Toast.makeText(mContext, "Silahkan cek email anda!", Toast.LENGTH_SHORT).show();
+                                Intent intentReward = LoginActivity.createIntent(mContext);
+                                ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
+                                ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
+                            }else if(status.equals("Email tidak di temukan.")){
+                                Toast.makeText(mContext, "Email tidak terdaftar", Toast.LENGTH_SHORT).show();
+                            }
                         }
-//                        if(response.body()!=null) {
-//                            Response success = response.body().getResponses();
-//                            String status = success.getStatus();
-//                            if (status.equals("success")) {
-//                                Toast.makeText(mContext, "Berhasil", Toast.LENGTH_SHORT).show();
-//                                Intent intentReward = LoginActivity.createIntent(mContext);
-//                                ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
-//                                ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
-//                            }else if(status.equals("Anda belum terverifikasi oleh admin!")){
-//                                Toast.makeText(mContext, "Akun Anda belum di Approve", Toast.LENGTH_SHORT).show();
-//                            }else if(status.equals("failed")){
-//                                Toast.makeText(mContext, "Username atau Password salah", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
                     }catch (Exception e){
                         e.printStackTrace();
-                        Log.d("CATCH", "onResponse: " + e.getMessage());
                         Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
-                    t.printStackTrace();
-                    Log.d("ERROR MSG", "onFailure: " + t.getMessage());
-                    if (t.getMessage().equals("timeout")){
-                        Toast.makeText(mContext, "Database timeout, silahkan coba lagi!", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(mContext, "Silahkan cek email anda!", Toast.LENGTH_SHORT).show();
+                    Intent intentReward = LoginActivity.createIntent(mContext);
+                    ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
+                    ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
                 }
             });
         }

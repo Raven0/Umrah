@@ -101,7 +101,7 @@ public interface WEBInterface {
     @FormUrlEncoded
     @Headers("Accept: application/json")
     @POST("password/email")
-    Call<ResponseBody> passwordAgen(@FieldMap HashMap<String, String> params);
+    Call<AuthModel> passwordAgen(@FieldMap HashMap<String, String> params);
 
     //EDIT AGEN
     @FormUrlEncoded
@@ -256,6 +256,10 @@ public interface WEBInterface {
     //GET NOTIF BY AGEN
     @GET("notif/{id}/delivered")
     Call<NotifResponse> getNotification(@Path("id") String id);
+
+    //GET NOTIF BY AGEN
+    @PUT("notif/{id}/clear")
+    Call<ResponseBody> clearNotification(@Path("id") String id);
 
     //PUT JAMAAH
     @FormUrlEncoded

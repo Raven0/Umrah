@@ -52,6 +52,8 @@ public class DashboardUserFragment extends BaseFragment{
     private static final String TYPE = "type";
 
     private ProgressDialog nDialog;
+    private ProgressDialog aDialog;
+    private ProgressDialog bDialog;
 
     int randomint = 12;
 
@@ -224,20 +226,13 @@ public class DashboardUserFragment extends BaseFragment{
     }
 
     private void setDataTotalJamaahView(final String id, final String tahun){
+        aDialog = ProgressDialog.show(getContext(), null, "Memuat Data Grafik...", true, false);
+        aDialog.show();
         Call<ChartResponse> call = WebApi.getAPIService().getJamaahPerbulan(id, tahun);
         call.enqueue(new Callback<ChartResponse>() {
             @Override
             public void onResponse(Call<ChartResponse> call, Response<ChartResponse> response) {
                 try{
-                    if (response.isSuccessful()){
-                        Log.d("MSGASD", "SUCCESS");
-                        Log.d("RESP", "onResponse: " +response.message());
-                        Log.d("RESP", "onBody: " +response.body());
-                    }else {
-                        Log.d("MSGASD", "FAIL");
-                        Log.d("RESP", "onResponse: " +response.message());
-                        Log.d("RESP", "onBody: " +response.body());
-                    }
                     //Grafik Total Jamaah
                     //Value
                     ArrayList<Integer> dataList = new ArrayList<>();
@@ -264,6 +259,7 @@ public class DashboardUserFragment extends BaseFragment{
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
                 }
+                aDialog.dismiss();
             }
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
@@ -273,6 +269,8 @@ public class DashboardUserFragment extends BaseFragment{
     }
 
     private void setDataTotalPotkomView(final String id, final String tahun){
+        bDialog = ProgressDialog.show(getContext(), null, "Memuat Data Grafik...", true, false);
+        bDialog.show();
         Call<ChartResponse> call = WebApi.getAPIService().getKomisiPerbulan(id, tahun);
         call.enqueue(new Callback<ChartResponse>() {
             @Override
@@ -313,6 +311,7 @@ public class DashboardUserFragment extends BaseFragment{
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
                 }
+                bDialog.dismiss();
             }
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {

@@ -67,6 +67,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("image/*");
                 i.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap, context));
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(Intent.createChooser(i, "Share Image"));
             }
 
@@ -110,21 +111,14 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
-//                    String shareBody = link;
-//                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                    sharingIntent.setType("text/plain");
-//                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-//                    context.startActivity(Intent.createChooser(sharingIntent, "Share"));
-
                     //WEB
                     String url = link;
-//                    Intent i = new Intent(Intent.ACTION_VIEW);
-//                    i.setData(Uri.parse(url));
-//                    context.startActivity(i);
                     try {
                         shareImage(url, context);
                     }catch (Exception ex){
                         Log.d("SHARE_IMG", "onClick: " + ex.getMessage());
+                        Toast.makeText(context, "Gambar gagal dimuat, silhakan coba lagi...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Developer msg" + ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });

@@ -122,28 +122,29 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical">
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:text="P"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="#fff"-->
-                <!--android:gravity="center"-->
-                <!--android:background="@drawable/red_circle_promotion"-->
-                <!--android:layout_centerVertical="true"/>-->
-
-            <ImageView
-                android:id="@+id/imgDrop"
-                android:layout_width="12dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/dropdown"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+            <TextView
+                android:id="@+id/promot"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:rotation="90"/>
+                android:text="P"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:background="@drawable/green_circle_promotion"
+                android:layout_toLeftOf="@id/paket"
+                android:layout_centerVertical="true"/>
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imgDrop"-->
+                <!--android:layout_width="12dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:src="@drawable/dropdown"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:rotation="90"/>-->
 
             <TextView
                 android:id="@+id/paket"
@@ -151,9 +152,10 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="10 Hari"
-                android:layout_marginRight="20dp"
-                android:textColor="#000"
-                android:layout_toLeftOf="@id/imgDrop"/>
+                android:layout_marginRight="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#000"/>
 
         </RelativeLayout>
 

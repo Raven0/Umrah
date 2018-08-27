@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.birutekno.umrah.R;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.Bind;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,6 +40,9 @@ public class NotificationFragment extends BaseFragment{
 
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
+
+    @Bind(R.id.queryButton)
+    Button clearBtn;
 
     private ArrayList<DataNotification> pojo;
     private NotificationAdapter mAdapter;
@@ -57,6 +62,12 @@ public class NotificationFragment extends BaseFragment{
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         initViews();
         loadJSON();
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearNotif();
+            }
+        });
     }
 
     private void initViews(){
@@ -88,6 +99,30 @@ public class NotificationFragment extends BaseFragment{
 
             @Override
             public void onFailure(Call<NotifResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+            }
+        });
+    }
+
+    public void clearNotif(){
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+        String id = prefs.getString("iduser", "0");
+
+        Call<ResponseBody> call = WebApi.getAPIService().clearNotification(String.valueOf(id));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                   mAdapter.clearData();
+                   recyclerView.setAdapter(mAdapter);
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("Error",t.getMessage());
             }
         });

@@ -142,24 +142,6 @@ public class PotkomKoordActivity extends BaseActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("viewpager_position", 3);
         startActivity(intent);
-
-//        Log.d("CDA", "onBackPressed Called");
-//        AlertDialog.Builder ask = new AlertDialog.Builder(PotkomKoordActivity.this);
-//        ask.setTitle("Apakah Anda Akan Keluar?");
-//        ask.setMessage("Tekan tombol Ya jika anda benar benar ingin keluar dari menu ini");
-//        ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//                Intent intent = new Intent(PotkomKoordActivity.this, MainActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.putExtra("viewpager_position", 3);
-//                startActivity(intent);
-//            }
-//        });
-//        ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//            }
-//        });
-//        ask.show();
     }
 
     @Override

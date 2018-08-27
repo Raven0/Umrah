@@ -269,7 +269,7 @@ public class PaketAiwaAdapter extends RecyclerView.Adapter<PaketAiwaAdapter.View
                     }
 
                     whatsapp = header + rahmah + nur + uhud + standard + "\n" +
-                            "**Harga diatas bisa berubah sewaktu-waktu*";
+                            "**Harga diatas bisa berubah sewaktu-waktu*\n**Konfirmasi Ulang Untuk Biaya Perlengkapan, Handling & Asuransi kepada Kami*";
                     Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);

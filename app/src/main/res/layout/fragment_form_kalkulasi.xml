@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -386,7 +388,8 @@
                                     android:theme="@style/EditTextThemes" />
 
                                 <TextView
-                                    android:layout_width="50dp"
+                                    android:id="@+id/orangDua"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="30dp"
                                     android:text="Orang" />
 
@@ -423,7 +426,8 @@
                                     android:theme="@style/EditTextThemes" />
 
                                 <TextView
-                                    android:layout_width="50dp"
+                                    android:id="@+id/orangTiga"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="30dp"
                                     android:text="Orang" />
 
@@ -460,7 +464,8 @@
                                     android:theme="@style/EditTextThemes" />
 
                                 <TextView
-                                    android:layout_width="50dp"
+                                    android:id="@+id/orangEmpat"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="30dp"
                                     android:text="Orang" />
 

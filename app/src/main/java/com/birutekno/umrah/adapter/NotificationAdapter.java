@@ -65,6 +65,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return mFilterData.size();
     }
 
+    public void clearData(){
+        data.clear();
+        mFilterData.clear();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         private int id;
         private CardView cardView;

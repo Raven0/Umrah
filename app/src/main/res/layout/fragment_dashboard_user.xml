@@ -367,9 +367,11 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Grafik Total Komisi &amp; Potensi Perbulan"
+                                android:text="Grafik Total Komisi Perbulan"
                                 android:layout_marginLeft="10dp"
                                 android:textStyle="bold"/>
+
+                            <!--Grafik Total Komisi &amp; Potensi Perbulan-->
 
                             <view
                                 class="com.birutekno.umrah.ui.chart.LineView"
@@ -379,31 +381,31 @@
                                 android:layout_margin="10dp"
                                 />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="5dp">
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:orientation="horizontal"-->
+                                <!--android:padding="5dp">-->
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Keterangan : " />
+                                <!--<TextView-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Keterangan : " />-->
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Komisi"
-                                    android:textColor="@color/blue"/>
+                                <!--<TextView-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Komisi"-->
+                                    <!--android:textColor="@color/blue"/>-->
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Potensi"
-                                    android:layout_marginLeft="5dp"
-                                    android:textColor="@color/red"/>
+                                <!--<TextView-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:text="Potensi"-->
+                                    <!--android:layout_marginLeft="5dp"-->
+                                    <!--android:textColor="@color/red"/>-->
 
-                            </LinearLayout>
+                            <!--</LinearLayout>-->
 
                         </LinearLayout>
 

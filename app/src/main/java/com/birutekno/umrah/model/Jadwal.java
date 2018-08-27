@@ -7,6 +7,8 @@ public class Jadwal {
 
     private String passpor;
 
+    private int promo;
+
     private String seat_total;
 
     private String status;
@@ -69,6 +71,14 @@ public class Jadwal {
     public void setPasspor (String passpor)
     {
         this.passpor = passpor;
+    }
+
+    public int getPromo() {
+        return promo;
+    }
+
+    public void setPromo(int promo) {
+        this.promo = promo;
     }
 
     public String getSeat_total ()

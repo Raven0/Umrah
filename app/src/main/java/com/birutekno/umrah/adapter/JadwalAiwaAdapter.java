@@ -71,6 +71,13 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         viewHolder.detailPulang.setText(jadwal.get(0).getRute_pulang());
         viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.\n"+"Sisa Seat : " + jadwal.get(0).getSisa());
 
+        if(jadwal.get(0).getPromo() == 0){
+            viewHolder.promot.setVisibility(View.GONE);
+        }else if(jadwal.get(0).getPromo() == 1){
+            viewHolder.promot.setVisibility(View.VISIBLE);
+        }else {
+            viewHolder.promot.setVisibility(View.GONE);
+        }
 
         if (jadwal.get(0).getStatus().equals("SOLD OUT")){
             viewHolder.paketHari.setText("SOLD OUT");
@@ -136,7 +143,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView berangkat,pulang,detailBerangkat,detailPulang,paketHari,emptyData;
+        private TextView berangkat,pulang,detailBerangkat,detailPulang,paketHari,emptyData, promot;
         private RecyclerView paketList;
         private LinearLayout jadwal;
         private ExpandableLayout expandableLayout;
@@ -150,6 +157,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
             detailPulang = (TextView)view.findViewById(R.id.detailPulang);
             paketHari = (TextView)view.findViewById(R.id.paket);
             emptyData = (TextView)view.findViewById(R.id.emptyData);
+            promot = (TextView)view.findViewById(R.id.promot);
             paketList = (RecyclerView)view.findViewById(R.id.listPaket);
             expandableLayout = (ExpandableLayout) view.findViewById(R.id.expandable_layout);
 
