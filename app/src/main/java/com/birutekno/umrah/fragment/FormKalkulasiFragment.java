@@ -82,6 +82,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     private List<String> listJadwal = new ArrayList<String>();
     private List<String> ketJadwal = new ArrayList<String>();
     private List<String> tglJadwal = new ArrayList<String>();
+    private List<String> idJadwal = new ArrayList<String>();
     private List<String> paketJadwal = new ArrayList<String>();
     private List<String> listPaket = new ArrayList<String>();
 
@@ -681,7 +682,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 map.clear();
                 String detailJadwal = ketJadwal.get(position);
                 tgl_berangkat = tglJadwal.get(position);
-                indexJadwal = String.valueOf(position);
+                indexJadwal = idJadwal.get(position);
                 harijadwal = paketJadwal.get(position);
                 objJadwal = Arrays.asList(alldata.get(position).getJadwal());
                 objPaket = Arrays.asList(objJadwal.get(0).getPaket());
@@ -1153,6 +1154,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                         listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari());
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                         tglJadwal.add(jadwal.get(0).getTgl_berangkat());
+                        idJadwal.add(jadwal.get(0).getId());
                         paketJadwal.add(jadwal.get(0).getJml_hari());
                     }
 

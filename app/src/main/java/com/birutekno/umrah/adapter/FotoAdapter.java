@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,11 +65,20 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
     static public void shareImage(String url, final Context context) {
         Picasso.get().load(url).into(new com.squareup.picasso.Target() {
             @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("image/*");
-                i.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap, context));
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(Intent.createChooser(i, "Share Image"));
+                try {
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("image/*");
+                    i.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap, context));
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(Intent.createChooser(i, "Share Image"));
+                }catch (Exception ex){
+                    Log.d("AHA", "onBitmapLoaded: " + ex.getMessage());
+                    Toast.makeText(context, "Mendownload file gambar gagal!, silahkan coba lagi!", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

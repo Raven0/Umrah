@@ -65,6 +65,7 @@ public class PotensiFragment extends BaseFragment{
 
     List<String> listPeriode = new ArrayList<String>();
     String id, token;
+    String idpot;
 
     private ArrayList<DataPeriode> pojd;
 
@@ -94,9 +95,16 @@ public class PotensiFragment extends BaseFragment{
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         id = prefs.getString("iduser", "0");
+        idpot = prefs.getString("iduser", "0");
         token = prefs.getString("token", "0");
 
         tahunSelected = token;
+
+        loadPeriode();
+        //init service and load data
+        loadFirstPage(tahunSelected);
+        //Load nominal diatas
+        loadDataPotensi(String.valueOf(id), tahunSelected);
 
         periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -106,10 +114,13 @@ public class PotensiFragment extends BaseFragment{
                     adapter.removeAll();
                     tahunSelected = parent.getItemAtPosition(position).toString();
                     loadFirstPage(tahunSelected);
-                    Toast.makeText(getContext(), String.valueOf(currentPage), Toast.LENGTH_SHORT).show();
+                    loadDataPotensi(idpot, tahunSelected);
                     recyclerView.setAdapter(adapter);
                 }else {
                     tahunSelected = parent.getItemAtPosition(position).toString();
+                    loadFirstPage(tahunSelected);
+                    //Load nominal diatas
+                    loadDataPotensi(idpot, tahunSelected);
                     isInitialized = true;
                 }
             }
@@ -120,11 +131,6 @@ public class PotensiFragment extends BaseFragment{
             }
         });
 
-        loadPeriode();
-        //init service and load data
-        loadFirstPage(tahunSelected);
-        //Load nominal diatas
-        loadDataPotensi(String.valueOf(id));
         search(searchView);
 
         adapter = new PotkomAdapter(getContext());
@@ -194,6 +200,7 @@ public class PotensiFragment extends BaseFragment{
             @Override
             public void onFailure(Call<PotkomResponse> call, Throwable t) {
                 t.printStackTrace();
+                Toast.makeText(mContext, "Server bermasalah ,coba lagi" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 if (t.getMessage().equals("timeout")){
                     Toast.makeText(getContext(), "Server Timeout, mencoba lagi", Toast.LENGTH_SHORT).show();
                     loadFirstPage(tahun);
@@ -261,12 +268,12 @@ public class PotensiFragment extends BaseFragment{
         String id = prefs.getString("iduser", "0");
 
         currentPage = 1;
-        return WebApi.getAPIService().getDataKomisi(String.valueOf(id), tahun, 1);
+        return WebApi.getAPIService().getDataPotensi(String.valueOf(id), tahun, 1);
     }
 
-    private void loadDataPotensi(final String id){
+    private void loadDataPotensi(final String id, final String tahunSelected){
         // TODO: Filter Periode
-        Call<DashboardModel> call = WebApi.getAPIService().getUangPotensi(id, "1440");
+        Call<DashboardModel> call = WebApi.getAPIService().getUangPotensi(id, tahunSelected);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
             public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
@@ -292,7 +299,7 @@ public class PotensiFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataPotensi(id);
+                loadDataPotensi(id, tahunSelected);
             }
         });
     }
@@ -337,6 +344,7 @@ public class PotensiFragment extends BaseFragment{
                             android.R.layout.simple_spinner_item, listPeriode);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     periode.setAdapter(adapter);
+                    Toast.makeText(mContext, "Silahkan pilih periode terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
                 }

@@ -321,6 +321,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                     Intent intent = new Intent(context, EditKalkulasiActivity.class);
                     String sessionId = id.getText().toString();
                     intent.putExtra("id", sessionId);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
             });

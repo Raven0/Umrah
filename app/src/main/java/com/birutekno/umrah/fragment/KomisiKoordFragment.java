@@ -106,7 +106,6 @@ public class KomisiKoordFragment extends BaseFragment{
                     adapter.removeAll();
                     tahunSelected = parent.getItemAtPosition(position).toString();
                     loadFirstPage(tahunSelected);
-                    Toast.makeText(getContext(), String.valueOf(currentPage), Toast.LENGTH_SHORT).show();
                     recyclerView.setAdapter(adapter);
                 }else {
                     tahunSelected = parent.getItemAtPosition(position).toString();
@@ -261,7 +260,7 @@ public class KomisiKoordFragment extends BaseFragment{
         String id = prefs.getString("iduser", "0");
 
         currentPage = 1;
-        return WebApi.getAPIService().getDataKomisi(String.valueOf(id), tahun, 1);
+        return WebApi.getAPIService().getDataKomisiKoord(String.valueOf(id), tahun, 1);
     }
 
     private void loadDataKomisi(final String id){

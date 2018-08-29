@@ -77,11 +77,12 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private List<DataJadwal> alldata;
     private ArrayList<DataKalkulasi> pojo;
 
-    private String indexJadwal, indexPaket;
+    private String indexJadwal;
 
     private List<String> listJadwal = new ArrayList<String>();
     private List<String> ketJadwal = new ArrayList<String>();
     private List<String> tglJadwal = new ArrayList<String>();
+    private List<String> idJadwal = new ArrayList<String>();
     private List<String> paketJadwal = new ArrayList<String>();
     private List<String> listPaket = new ArrayList<String>();
     private List<String> hotelPaket = new ArrayList<String>();
@@ -691,7 +692,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 map.clear();
                 String detailJadwal = ketJadwal.get(position);
                 tgl_berangkat = tglJadwal.get(position);
-                indexJadwal = String.valueOf(position);
+                indexJadwal = idJadwal.get(position);
                 harijadwal = paketJadwal.get(position);
                 objJadwal = Arrays.asList(alldata.get(position).getJadwal());
                 objPaket = Arrays.asList(objJadwal.get(0).getPaket());
@@ -860,7 +861,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     selectedPaket = Integer.parseInt(dataProspek.getIndex_paket());
 
                     if (jadwalLoaded){
-                        jadwal.setSelection(Integer.parseInt(dataProspek.getIndex_jadwal()));
+                        int posjadwal = idJadwal.indexOf(dataProspek.getIndex_jadwal());
+                        jadwal.setSelection(posjadwal);
                     }
 
                     String perlengkapan = dataProspek.getPerlengkapan_balita();
@@ -1253,6 +1255,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari());
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                         tglJadwal.add(jadwal.get(0).getTgl_berangkat());
+                        idJadwal.add(jadwal.get(0).getId());
                         paketJadwal.add(jadwal.get(0).getJml_hari());
                     }
 
