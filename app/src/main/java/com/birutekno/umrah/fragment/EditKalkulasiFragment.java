@@ -77,6 +77,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private List<DataJadwal> alldata;
     private ArrayList<DataKalkulasi> pojo;
 
+    private String indexJadwal, indexPaket;
+
     private List<String> listJadwal = new ArrayList<String>();
     private List<String> ketJadwal = new ArrayList<String>();
     private List<String> tglJadwal = new ArrayList<String>();
@@ -210,10 +212,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
     private Boolean jadwalLoaded = false;
     private Boolean kalkulasiLoaded = false;
-    private Boolean dataLoaded = false;
+    private Boolean jadwalSelected = false;
 
     String id_agen,token;
-    int posJadwal, posHotel;
 
     public EditKalkulasiFragment() {
         // Required empty public constructor
@@ -690,6 +691,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 map.clear();
                 String detailJadwal = ketJadwal.get(position);
                 tgl_berangkat = tglJadwal.get(position);
+                indexJadwal = String.valueOf(position);
                 harijadwal = paketJadwal.get(position);
                 objJadwal = Arrays.asList(alldata.get(position).getJadwal());
                 objPaket = Arrays.asList(objJadwal.get(0).getPaket());
@@ -855,22 +857,11 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     int jmlDiskons = Integer.parseInt(dataProspek.getDiskon());
                     int jmlBalita = Integer.parseInt(dataProspek.getJml_balita());
                     int jmlDewasa = Integer.parseInt(dataProspek.getJml_dewasa());
+                    selectedPaket = Integer.parseInt(dataProspek.getIndex_paket());
 
-                    posJadwal = tglJadwal.indexOf(dataProspek.getTgl_keberangkatan());
-                    if(jadwalLoaded){
-                        try {
-                            jadwal.setSelection(posJadwal);
-                        }catch (Exception ex){
-                            Log.d("TAG", "onResponse: " + ex.getMessage());
-                            jadwal.setSelection(posJadwal);
-                        }
-                    }else {
-                        initSpinnerJadwal();
-                        jadwal.setSelection(posJadwal);
+                    if (jadwalLoaded){
+                        jadwal.setSelection(Integer.parseInt(dataProspek.getIndex_jadwal()));
                     }
-                    String paket = dataProspek.getJenis();
-                    posHotel = Integer.parseInt(paket.substring(paket.length() - 1));
-                    hotel.setSelection(posHotel);
 
                     String perlengkapan = dataProspek.getPerlengkapan_balita();
                     String perlengkapanDewasa = dataProspek.getPerlengkapan_dewasa();
@@ -1183,7 +1174,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 params.put("jml_visa", String.valueOf(jmlvisa));
                 params.put("jml_balita_kasur", String.valueOf(jmlBalitaKasur));
                 params.put("tgl_keberangkatan", tgl_berangkat);
-                params.put("jenis", jenisPaket+selectedPaket);
+                params.put("jenis", jenisPaket);
+                params.put("index_jadwal", indexJadwal);
+                params.put("index_paket", String.valueOf(selectedPaket));
                 params.put("dobel", String.valueOf(jmlDobel));
                 params.put("triple", String.valueOf(jmlTripel));
                 params.put("quard", String.valueOf(jmlQuard));
@@ -1244,7 +1237,6 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     public void setupAdapter(){
         apiservice = UtilsApi.getAPIService();
         initSpinnerJadwal();
-        jadwalLoaded = true;
     }
 
     public void initSpinnerJadwal(){
@@ -1268,7 +1260,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                             android.R.layout.simple_spinner_item, listJadwal);
                     adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     jadwal.setAdapter(adapterJadwal);
-
+                    jadwalLoaded = true;
                     loadData(id);
                 } else {
                     loading.dismiss();

@@ -1,6 +1,10 @@
 package com.birutekno.umrah.model;
 
 public class DataProspek {
+    private String index_paket;
+
+    private String index_jadwal;
+
     private String pas_foto;
 
     private String perlengkapan_dewasa;
@@ -54,6 +58,22 @@ public class DataProspek {
     private String passport;
 
     private String buku_nikah;
+
+    public String getIndex_paket() {
+        return index_paket;
+    }
+
+    public void setIndex_paket(String index_paket) {
+        this.index_paket = index_paket;
+    }
+
+    public String getIndex_jadwal() {
+        return index_jadwal;
+    }
+
+    public void setIndex_jadwal(String index_jadwal) {
+        this.index_jadwal = index_jadwal;
+    }
 
     public String getPas_foto ()
     {

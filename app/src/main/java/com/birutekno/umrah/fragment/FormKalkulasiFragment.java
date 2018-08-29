@@ -77,6 +77,8 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     List<DataJadwal> alldata;
     ArrayList<DataKalkulasi> pojo;
 
+    private String indexJadwal;
+
     private List<String> listJadwal = new ArrayList<String>();
     private List<String> ketJadwal = new ArrayList<String>();
     private List<String> tglJadwal = new ArrayList<String>();
@@ -679,6 +681,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 map.clear();
                 String detailJadwal = ketJadwal.get(position);
                 tgl_berangkat = tglJadwal.get(position);
+                indexJadwal = String.valueOf(position);
                 harijadwal = paketJadwal.get(position);
                 objJadwal = Arrays.asList(alldata.get(position).getJadwal());
                 objPaket = Arrays.asList(objJadwal.get(0).getPaket());
@@ -1069,7 +1072,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 params.put("jml_visa", String.valueOf(jmlvisa));
                 params.put("jml_balita_kasur", String.valueOf(jmlBalitaKasur));
                 params.put("tgl_keberangkatan", tgl_berangkat);
-                params.put("jenis", jenisPaket+selectedPaket);
+                params.put("jenis", jenisPaket);
+                params.put("index_jadwal", indexJadwal);
+                params.put("index_paket", String.valueOf(selectedPaket));
                 params.put("dobel", String.valueOf(jmlDobel));
                 params.put("triple", String.valueOf(jmlTripel));
                 params.put("quard", String.valueOf(jmlQuard));
