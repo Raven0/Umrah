@@ -102,8 +102,16 @@ public class DashboardUserFragment extends BaseFragment{
     @Bind(R.id.progressJamaah)
     ProgressBar progressJamaah;
 
+    @Bind(R.id.cardJamaah)
+    CardView cardjam;
+
+    @Bind(R.id.cardKomisi)
+    CardView cardkom;
+
     private ArrayList<DataPeriode> pojd;
     List<String> listPeriode = new ArrayList<String>();
+
+    String selectedPeriode;
 
     public static DashboardUserFragment newInstance(int type) {
         DashboardUserFragment fragment = new DashboardUserFragment();
@@ -139,14 +147,15 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
+                selectedPeriode = item;
                 nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
                 nDialog.show();
                 try {
                     loadDataPotensi(String.valueOf(id_agen), item);
                     loadDataKomisi(String.valueOf(id_agen), item);
                     loadDataJamaah(String.valueOf(id_agen), item);
-                    setDataTotalJamaahView(id_agen, item);
-                    setDataTotalPotkomView(id_agen, item);
+//                    setDataTotalJamaahView(id_agen, item);
+//                    setDataTotalPotkomView(id_agen, item);
                     nDialog.dismiss();
                 }catch (Exception ex){
                     nDialog.dismiss();
@@ -155,16 +164,31 @@ public class DashboardUserFragment extends BaseFragment{
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                selectedPeriode = token;
                 try {
                     loadDataPotensi(String.valueOf(id_agen), token);
                     loadDataKomisi(String.valueOf(id_agen), token);
                     loadDataJamaah(String.valueOf(id_agen), token);
-                    setDataTotalJamaahView(id_agen, token);
-                    setDataTotalPotkomView(id_agen, token);
+//                    setDataTotalJamaahView(id_agen, token);
+//                    setDataTotalPotkomView(id_agen, token);
                     nDialog.dismiss();
                 }catch (Exception ex){
                     nDialog.dismiss();
                 }
+            }
+        });
+
+        cardjam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDataTotalJamaahView(id_agen, selectedPeriode);
+            }
+        });
+
+        cardkom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDataTotalPotkomView(id_agen, selectedPeriode);
             }
         });
 
@@ -288,25 +312,29 @@ public class DashboardUserFragment extends BaseFragment{
                     //Grafik Total Jamaah
                     //Value
                     ArrayList<Integer> dataList = new ArrayList<>();
-                    dataList.add(Integer.parseInt(response.body().getResponse().getJanuary()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getFebruary()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getMarch()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getApril()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getMei()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getJune()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getJuly()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getAugust()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getSeptember()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getOctober()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getNovember()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getDecember()));
+                    dataList.add(removeLastThree(response.body().getResponse().getJanuary()));
+                    dataList.add(removeLastThree(response.body().getResponse().getFebruary()));
+                    dataList.add(removeLastThree(response.body().getResponse().getMarch()));
+                    dataList.add(removeLastThree(response.body().getResponse().getApril()));
+                    dataList.add(removeLastThree(response.body().getResponse().getMei()));
+                    dataList.add(removeLastThree(response.body().getResponse().getJune()));
+                    dataList.add(removeLastThree(response.body().getResponse().getJuly()));
+                    dataList.add(removeLastThree(response.body().getResponse().getAugust()));
+                    dataList.add(removeLastThree(response.body().getResponse().getSeptember()));
+                    dataList.add(removeLastThree(response.body().getResponse().getOctober()));
+                    dataList.add(removeLastThree(response.body().getResponse().getNovember()));
+                    dataList.add(removeLastThree(response.body().getResponse().getDecember()));
 
                     //Assign to Array
                     ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
                     dataLists.add(dataList);
 
                     //Set data to graph
-                    line_two.setDataList(dataLists);
+                    try {
+                        line_two.setDataList(dataLists);
+                    }catch (Exception ex){
+                        Log.d("LIMITER", "onResponse: " + ex.getMessage());
+                    }
 
                 }catch (Exception ex){
                     Log.d("Exception" , ex.getMessage());
@@ -318,44 +346,6 @@ public class DashboardUserFragment extends BaseFragment{
                 setDataTotalJamaahView(id, tahun);
             }
         });
-        //Grafik Total PotKom
-        //Value Komisi
-//        ArrayList<Integer> dataListF = new ArrayList<>();
-//        dataListF.add(100);
-//        dataListF.add(80);
-//        dataListF.add(210);
-//        dataListF.add(200);
-//        dataListF.add(220);
-//        dataListF.add(220);
-//        dataListF.add(240);
-//        dataListF.add(350);
-//        dataListF.add(400);
-//        dataListF.add(340);
-//        dataListF.add(420);
-//        dataListF.add(500);
-//
-//        //Value Potensi
-//        ArrayList<Integer> dataListF2 = new ArrayList<>();
-//        dataListF2.add(100);
-//        dataListF2.add(80);
-//        dataListF2.add(210);
-//        dataListF2.add(200);
-//        dataListF2.add(220);
-//        dataListF2.add(220);
-//        dataListF2.add(240);
-//        dataListF2.add(350);
-//        dataListF2.add(400);
-//        dataListF2.add(340);
-//        dataListF2.add(420);
-//        dataListF2.add(500);
-//
-//        //Assign To Array
-//        ArrayList<ArrayList<Integer>> dataListFs = new ArrayList<>();
-//        dataListFs.add(dataListF);
-//        dataListFs.add(dataListF2);
-//
-//        //Set Data to graph
-//        line_two.setDataList(dataListFs);
     }
 
     private void loadDataPotensi(final String id, final String tahun){
@@ -538,9 +528,13 @@ public class DashboardUserFragment extends BaseFragment{
         });
     }
 
-    public String getFirstFour(String args) {
-        String temp = args;
-        String output = temp.substring(temp.length() + 4);
+    public int removeLastThree(String args) {
+        int output = 0;
+        if (args.length() > 3){
+            output = Integer.parseInt(args.substring(0, args.length() - 3));
+        }else {
+            output = Integer.parseInt(args);
+        }
         return output;
     }
 }

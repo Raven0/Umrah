@@ -58,6 +58,8 @@ public class InputKalkulasiActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        final Intent intent = new Intent(InputKalkulasiActivity.this, KalkulasiActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        position--;
         if (String.valueOf(position).equals("0")){
             AlertDialog.Builder adb = new AlertDialog.Builder(InputKalkulasiActivity.this);
@@ -73,13 +75,15 @@ public class InputKalkulasiActivity extends AppCompatActivity {
             adb.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     position--;
-                    InputKalkulasiActivity.super.onBackPressed();
+//                    InputKalkulasiActivity.super.onBackPressed();
+                    startActivity(intent);
                 }
             });
             adb.show();
         }else {
             position--;
-            super.onBackPressed();
+            startActivity(intent);
+//            super.onBackPressed();
         }
     }
 }

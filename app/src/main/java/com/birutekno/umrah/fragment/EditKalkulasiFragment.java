@@ -1208,6 +1208,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         try {
                             if(response.body()!=null){
                                 Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
                         }catch (Exception e){

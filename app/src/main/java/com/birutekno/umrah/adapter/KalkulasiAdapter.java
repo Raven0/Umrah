@@ -256,6 +256,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                                         Toast.makeText((Activity) v.getContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(context, KalkulasiActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         context.startActivity(intent);
 
 //                                        AlertDialog.Builder wa = new AlertDialog.Builder((Activity) v.getContext());

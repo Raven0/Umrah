@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -24,9 +25,14 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     public static final String PREFS_NAME = "AUTH";
+
+    private int position;
+
+    @Bind(R.id.swipe_main)
+    protected SwipeRefreshLayout swipeRefreshLayout;
 
     @Bind(R.id.pager)
     protected ViewPager mPager;
@@ -59,26 +65,28 @@ public class MainActivity extends BaseActivity {
     void notificationTabClicked() {
 //        fragment.loadJSON();
         mPager.setCurrentItem(2);
+        position = 2;
     }
 
     @OnClick(R.id.homeTab)
     void homeTabClicked() {
         mPager.setCurrentItem(1);
+        position = 1;
     }
 
     @OnClick(R.id.profileTab)
     void profileTabClicked() {
         mPager.setCurrentItem(3);
+        position = 3;
     }
 
     @OnClick(R.id.dashboardTab)
     void dashboardTabClicked() {
         mPager.setCurrentItem(0);
+        position = 0;
     }
 
     private MainPagerAdapter mAdapter;
-
-    private int position;
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -121,6 +129,8 @@ public class MainActivity extends BaseActivity {
             position = extras.getInt("viewpager_position");
             mPager.setCurrentItem(position);
         }
+
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     private void initPager(){
@@ -200,6 +210,16 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+//        android.os.Process.killProcess(android.os.Process.myPid());
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("viewpager_position", position);
+        startActivity(intent);
     }
 
     private void checkPermission(){

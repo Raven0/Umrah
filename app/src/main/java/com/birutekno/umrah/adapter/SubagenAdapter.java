@@ -71,7 +71,7 @@ public class SubagenAdapter extends RecyclerView.Adapter<SubagenAdapter.ViewHold
                     ArrayList<DataAgen> filterData = new ArrayList<>();
 
                     for (DataAgen data: dataAgens) {
-                        if (data.getNama().toLowerCase().contains(charString) || data.getNo_telp().toLowerCase().contains(charString)) {
+                        if (data.getNama().toLowerCase().contains(charString)){
                             filterData.add(data);
                         }
                     }

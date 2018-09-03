@@ -1,135 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/swipe_main"
     tools:context="com.birutekno.umrah.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/colorPrimary" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary">
-
-        <LinearLayout
-            android:id="@+id/dashboardTab"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageView
-                android:id="@+id/dashboardImage"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp" />
-
-            <TextView
-                android:id="@+id/dashboardText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="DASHBOARD"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp" />
-
-        </LinearLayout>
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:id="@+id/homeTab"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageView
-                android:id="@+id/homeImage"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp" />
-
-            <TextView
-                android:id="@+id/homeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="HOME"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp" />
-
-        </LinearLayout>
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorPrimary" />
 
         <LinearLayout
-            android:id="@+id/notificationTab"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
 
-            <ImageView
-                android:id="@+id/notificationImage"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp" />
+            <LinearLayout
+                android:id="@+id/dashboardTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
 
-            <TextView
-                android:id="@+id/notificationText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="PESAN"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp" />
+                <ImageView
+                    android:id="@+id/dashboardImage"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/dashboardText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="DASHBOARD"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
-        <LinearLayout
-            android:id="@+id/profileTab"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp" />
+            <LinearLayout
+                android:id="@+id/homeTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
 
-            <TextView
-                android:id="@+id/profileText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="AKUN"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp" />
+                <ImageView
+                    android:id="@+id/homeImage"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/homeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="HOME"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/notificationTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/notificationImage"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/notificationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="PESAN"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profileTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/profileText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="AKUN"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

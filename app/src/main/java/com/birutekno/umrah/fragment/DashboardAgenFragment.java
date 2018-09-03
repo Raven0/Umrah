@@ -180,18 +180,18 @@ public class DashboardAgenFragment extends BaseFragment{
                     //Grafik Total Jamaah
                     //Value
                     ArrayList<Integer> dataList = new ArrayList<>();
-                    dataList.add(Integer.parseInt(response.body().getResponse().getJanuary()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getFebruary()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getMarch()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getApril()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getMei()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getJune()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getJuly()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getAugust()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getSeptember()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getOctober()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getNovember()));
-                    dataList.add(Integer.parseInt(response.body().getResponse().getDecember()));
+                    dataList.add(removeLastThree(response.body().getResponse().getJanuary()));
+                    dataList.add(removeLastThree(response.body().getResponse().getFebruary()));
+                    dataList.add(removeLastThree(response.body().getResponse().getMarch()));
+                    dataList.add(removeLastThree(response.body().getResponse().getApril()));
+                    dataList.add(removeLastThree(response.body().getResponse().getMei()));
+                    dataList.add(removeLastThree(response.body().getResponse().getJune()));
+                    dataList.add(removeLastThree(response.body().getResponse().getJuly()));
+                    dataList.add(removeLastThree(response.body().getResponse().getAugust()));
+                    dataList.add(removeLastThree(response.body().getResponse().getSeptember()));
+                    dataList.add(removeLastThree(response.body().getResponse().getOctober()));
+                    dataList.add(removeLastThree(response.body().getResponse().getNovember()));
+                    dataList.add(removeLastThree(response.body().getResponse().getDecember()));
 
                     //Assign to Array
                     ArrayList<ArrayList<Integer>> dataLists = new ArrayList<>();
@@ -355,5 +355,15 @@ public class DashboardAgenFragment extends BaseFragment{
                 loadPeriode();
             }
         });
+    }
+
+    public int removeLastThree(String args) {
+        int output = 0;
+        if (args.length() > 3){
+            output = Integer.parseInt(args.substring(0, args.length() - 3));
+        }else {
+            output = Integer.parseInt(args);
+        }
+        return output;
     }
 }

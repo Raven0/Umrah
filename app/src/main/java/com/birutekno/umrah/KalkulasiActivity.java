@@ -192,7 +192,8 @@ public class KalkulasiActivity extends BaseActivity {
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
             Log.d("CDA", "onKeyDown Called");
-            onBackPressed();
+//            onBackPressed();
+            super.onBackPressed();
             return true;
         }
         return super.onKeyDown(keyCode, event);

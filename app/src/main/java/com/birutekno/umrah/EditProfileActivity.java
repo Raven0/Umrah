@@ -243,6 +243,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         try {
                             if(response.body()!=null){
                                 Intent intent = new Intent(mContext, ProfileActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
                         }catch (Exception e){
@@ -338,6 +339,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
