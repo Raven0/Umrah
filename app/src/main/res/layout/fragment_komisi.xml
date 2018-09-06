@@ -74,14 +74,7 @@
             android:id="@+id/recyclerView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <ProgressBar
-            android:layout_below="@id/searchField"
-            android:id="@+id/main_progress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_height="match_parent"/>
 
     </RelativeLayout>
 

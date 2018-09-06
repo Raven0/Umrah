@@ -108,6 +108,12 @@ public class DashboardUserFragment extends BaseFragment{
     @Bind(R.id.cardKomisi)
     CardView cardkom;
 
+    @Bind(R.id.judulCardJamaah)
+    TextView jcardjam;
+
+    @Bind(R.id.judulCardKomisi)
+    TextView jcardkom;
+
     private ArrayList<DataPeriode> pojd;
     List<String> listPeriode = new ArrayList<String>();
 
@@ -178,14 +184,14 @@ public class DashboardUserFragment extends BaseFragment{
             }
         });
 
-        cardjam.setOnClickListener(new View.OnClickListener() {
+        jcardjam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDataTotalJamaahView(id_agen, selectedPeriode);
             }
         });
 
-        cardkom.setOnClickListener(new View.OnClickListener() {
+        jcardkom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDataTotalPotkomView(id_agen, selectedPeriode);

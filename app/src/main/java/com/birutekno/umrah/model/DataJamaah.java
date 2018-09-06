@@ -5,7 +5,7 @@ public class DataJamaah {
 
     private String status;
 
-    private Anggota marketing;
+    private String marketing;
 
     private String id_umrah;
 
@@ -51,12 +51,12 @@ public class DataJamaah {
         this.status = status;
     }
 
-    public Anggota getMarketing ()
+    public String getMarketing ()
     {
         return marketing;
     }
 
-    public void setMarketing (Anggota marketing)
+    public void setMarketing (String marketing)
     {
         this.marketing = marketing;
     }

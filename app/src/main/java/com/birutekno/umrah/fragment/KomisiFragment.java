@@ -1,8 +1,8 @@
 package com.birutekno.umrah.fragment;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import com.birutekno.umrah.model.DashboardModel;
 import com.birutekno.umrah.model.DataPeriode;
 import com.birutekno.umrah.model.DataPotkom;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
-import com.birutekno.umrah.view.PaginationScrollListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -48,9 +46,6 @@ public class KomisiFragment extends BaseFragment{
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    @Bind(R.id.main_progress)
-    ProgressBar progressBar;
-
     @Bind(R.id.judul)
     TextView judul;
 
@@ -58,28 +53,18 @@ public class KomisiFragment extends BaseFragment{
     TextView nominal;
 
     @Bind(R.id.searchField)
-    android.support.v7.widget.SearchView sae;
+    android.support.v7.widget.SearchView searchView;
 
     @Bind(R.id.spinnerFilter)
     Spinner periode;
 
     List<String> listPeriode = new ArrayList<String>();
-    String id, token;
-    String idpot;
+    String idAgen, token;
 
+    private ArrayList<DataPotkom> pojo;
     private ArrayList<DataPeriode> pojd;
-
-    PotkomAdapter adapter;
-    LinearLayoutManager linearLayoutManager;
-
-    private static final int PAGE_START = 1;
-    private boolean isLoading = false;
-    private boolean isLastPage = false;
-    private int TOTAL_PAGES = 1;
-    private int currentPage = PAGE_START;
-
-    String tahunSelected;
-    boolean isInitialized = false;
+    private PotkomAdapter mAdapter;
+    private ProgressDialog pDialog;
 
     public static KomisiFragment newInstance() {
         KomisiFragment fragment = new KomisiFragment();
@@ -94,185 +79,106 @@ public class KomisiFragment extends BaseFragment{
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        id = prefs.getString("iduser", "0");
-        idpot = prefs.getString("iduser", "0");
+        idAgen = prefs.getString("iduser", "0");
         token = prefs.getString("token", "0");
 
-        tahunSelected = token;
-
+        initViews();
         loadPeriode();
-        //init service and load data
-        loadFirstPage(tahunSelected);
-        //Load nominal diatas
-        loadDataKomisi(String.valueOf(id), tahunSelected);
 
         periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (isInitialized){
-                    adapter = new PotkomAdapter(getContext());
-                    adapter.removeAll();
-                    tahunSelected = parent.getItemAtPosition(position).toString();
-                    loadFirstPage(tahunSelected);
-                    loadDataKomisi(idpot, tahunSelected);
-                    recyclerView.setAdapter(adapter);
-                }else {
-                    tahunSelected = parent.getItemAtPosition(position).toString();
-                    loadFirstPage(tahunSelected);
-                    //Load nominal diatas
-                    loadDataKomisi(idpot, tahunSelected);
-                    isInitialized = true;
-                }
+                String item = parent.getItemAtPosition(position).toString();
+                loadJSON(item);
+                loadDataKomisi(String.valueOf(idAgen),item);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                loadJSON(token);
+                loadDataKomisi(String.valueOf(idAgen),token);
             }
         });
 
-        search(sae);
+        try {
+            search(searchView);
+        }catch (Exception ex){
+            searchView.setQuery("",false);
+            Toast.makeText(mContext, "Mohon tunggu, data sedang dimuat...", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        adapter = new PotkomAdapter(getContext());
-        linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+    private void initViews(){
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+    }
 
-        recyclerView.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
+    private void loadPeriode(){
+        Call<PeriodeResponse> call = WebApi.getAPIService().getPeriode();
+        call.enqueue(new Callback<PeriodeResponse>() {
             @Override
-            protected void loadMoreItems() {
-                isLoading = true;
-                currentPage += 1;
-
-                // mocking network delay for API call
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadNextPage(tahunSelected);
+            public void onResponse(Call<PeriodeResponse> call, Response<PeriodeResponse> response) {
+                try{
+                    if (response.isSuccessful()){
+                        Log.d("MSGASD", "SUCCESS");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
+                    }else {
+                        Log.d("MSGASD", "FAIL");
+                        Log.d("RESP", "onResponse: " +response.message());
+                        Log.d("RESP", "onBody: " +response.body());
                     }
-                }, 1000);
-            }
-
-            @Override
-            public int getTotalPageCount() {
-                return TOTAL_PAGES;
-            }
-
-            @Override
-            public boolean isLastPage() {
-                return isLastPage;
-            }
-
-            @Override
-            public boolean isLoading() {
-                return isLoading;
-            }
-        });
-    }
-
-    private void loadFirstPage(final String tahun) {
-        firstCallTopRatedMoviesApi(tahun).enqueue(new Callback<PotkomResponse>() {
-            @Override
-            public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
-                // Got data. Send it to adapter
-                List<DataPotkom> results = fetchResults(response);
-                TOTAL_PAGES = fetchTotal(response);
-                progressBar.setVisibility(View.GONE);
-                adapter.addAll(results);
-                if (currentPage <= TOTAL_PAGES){
-                    adapter.addLoadingFooter();
-                    isLoading = true;
-                    currentPage += 1;
-
-                    // mocking network delay for API call
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            loadNextPage(tahun);
-                        }
-                    }, 1000);
-                }
-                else{
-                    isLastPage = true;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PotkomResponse> call, Throwable t) {
-                t.printStackTrace();
-                Toast.makeText(mContext, "Server bermasalah ,coba lagi" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                if (t.getMessage().equals("timeout")){
-                    Toast.makeText(getContext(), "Server Timeout, mencoba lagi", Toast.LENGTH_SHORT).show();
-                    loadFirstPage(tahun);
-                }
-                // TODO: 08/11/16 handle failure
-            }
-        });
-
-    }
-
-    /**
-     * @param response extracts List<{@link DataPotkom>} from response
-     * @return
-     */
-    private List<DataPotkom> fetchResults(Response<PotkomResponse> response) {
-        PotkomResponse potkomResponse= response.body();
-        return potkomResponse.getData();
-    }
-
-    private int fetchTotal(Response<PotkomResponse> response) {
-        PotkomResponse totalPage = response.body();
-        return Integer.parseInt(totalPage.getMeta().getLast_page());
-    }
-
-    private void loadNextPage(String tahun) {
-        callTopRatedMoviesApi(tahun).enqueue(new Callback<PotkomResponse>() {
-            @Override
-            public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
-                try {
-                    adapter.removeLoadingFooter();
+                    PeriodeResponse PeriodeResponse = response.body();
+                    pojd = new ArrayList<>(Arrays.asList(PeriodeResponse.getData()));
+                    for (int i = 0; i < pojd.size() ; i++ ){
+                        listPeriode.add(pojd.get(i).getJudul());
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                            android.R.layout.simple_spinner_item, listPeriode);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    periode.setAdapter(adapter);
                 }catch (Exception ex){
-                    Log.d("TAG", "onResponse: " + ex.getMessage());
+                    Log.d("Exception" , ex.getMessage());
                 }
-                isLoading = false;
-                List<DataPotkom> results = fetchResults(response);
-                adapter.addAll(results);
-                if (currentPage != TOTAL_PAGES) adapter.addLoadingFooter();
-                else isLastPage = true;
             }
-
             @Override
-            public void onFailure(Call<PotkomResponse> call, Throwable t) {
-                t.printStackTrace();
-                // TODO: 08/11/16 handle failure
-//                if (t.getMessage().equals("timeout")){
-//                    Toast.makeText(MainActivity.this, "Server Timeout, mencoba lagi", Toast.LENGTH_SHORT).show();
-//                    loadNextPage();
-//                }
+            public void onFailure(Call<PeriodeResponse> call, Throwable t) {
+                loadPeriode();
             }
         });
     }
 
+    private void loadJSON(String periode){
+        pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Harap tunggu...");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
-    /**
-     * Performs a Retrofit call to the top rated movies API.
-     * Same API call for Pagination.
-     * As {@link #currentPage} will be incremented automatically
-     * by @{@link PaginationScrollListener} to load next page.
-     */
-    private Call<PotkomResponse> callTopRatedMoviesApi(String tahun) {
-        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        String id = prefs.getString("iduser", "0");
+        Call<PotkomResponse> call = WebApi.getAPIService().getDataKomisi(String.valueOf(idAgen), periode);
+        call.enqueue(new Callback<PotkomResponse>() {
+            @Override
+            public void onResponse(Call<PotkomResponse> call, Response<PotkomResponse> response) {
+                if(response.isSuccessful()){
+                    PotkomResponse jsonResponse = response.body();
+                    pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+                    mAdapter = new PotkomAdapter(pojo, getContext(),"agen");
+                    recyclerView.setAdapter(mAdapter);
+                    pDialog.dismiss();
+                }else {
+                    Log.d("ERROR CODE" , String.valueOf(response.code()));
+                    Log.d("ERROR BODY" , response.errorBody().toString());
+                    pDialog.dismiss();
 
-        return WebApi.getAPIService().getDataKomisi(String.valueOf(id), tahun, currentPage);
-    }
+                }
+            }
 
-    private Call<PotkomResponse> firstCallTopRatedMoviesApi(String tahun) {
-        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
-        String id = prefs.getString("iduser", "0");
-
-        currentPage = 1;
-        return WebApi.getAPIService().getDataKomisi(String.valueOf(id), tahun, 1);
+            @Override
+            public void onFailure(Call<PotkomResponse> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                pDialog.dismiss();
+            }
+        });
     }
 
     private void loadDataKomisi(final String id, final String tahunSelected){
@@ -303,7 +209,7 @@ public class KomisiFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataKomisi(id,tahunSelected);
+                loadDataKomisi(id, tahunSelected);
             }
         });
     }
@@ -318,44 +224,8 @@ public class KomisiFragment extends BaseFragment{
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                mAdapter.getFilter().filter(newText);
                 return true;
-            }
-        });
-    }
-
-    private void loadPeriode(){
-        Call<PeriodeResponse> call = WebApi.getAPIService().getPeriode();
-        call.enqueue(new Callback<PeriodeResponse>() {
-            @Override
-            public void onResponse(Call<PeriodeResponse> call, Response<PeriodeResponse> response) {
-                try{
-                    if (response.isSuccessful()){
-                        Log.d("MSGASD", "SUCCESS");
-                        Log.d("RESP", "onResponse: " +response.message());
-                        Log.d("RESP", "onBody: " +response.body());
-                    }else {
-                        Log.d("MSGASD", "FAIL");
-                        Log.d("RESP", "onResponse: " +response.message());
-                        Log.d("RESP", "onBody: " +response.body());
-                    }
-                    PeriodeResponse PeriodeResponse = response.body();
-                    pojd = new ArrayList<>(Arrays.asList(PeriodeResponse.getData()));
-                    for (int i = 0; i < pojd.size() ; i++ ){
-                        listPeriode.add(pojd.get(i).getJudul());
-                    }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
-                            android.R.layout.simple_spinner_item, listPeriode);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    periode.setAdapter(adapter);
-                    Toast.makeText(mContext, "Silahkan pilih periode terlebih dahulu", Toast.LENGTH_SHORT).show();
-                }catch (Exception ex){
-                    Log.d("Exception" , ex.getMessage());
-                }
-            }
-            @Override
-            public void onFailure(Call<PeriodeResponse> call, Throwable t) {
-                loadPeriode();
             }
         });
     }

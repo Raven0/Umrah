@@ -330,10 +330,14 @@
                             android:padding="5dp">
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:id="@+id/judulCardJamaah"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Grafik Total Jamaah Perbulan"
-                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/white"
+                                android:layout_margin="10dp"
+                                android:padding="10dp"
+                                android:background="@drawable/bg_rounded_reddish"
                                 android:textStyle="bold"/>
 
                             <view
@@ -367,10 +371,14 @@
                             android:padding="5dp">
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:id="@+id/judulCardKomisi"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Grafik Total Komisi Perbulan"
-                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/white"
+                                android:layout_margin="10dp"
+                                android:padding="10dp"
+                                android:background="@drawable/bg_rounded_reddish"
                                 android:textStyle="bold"/>
 
                             <!--Grafik Total Komisi &amp; Potensi Perbulan-->

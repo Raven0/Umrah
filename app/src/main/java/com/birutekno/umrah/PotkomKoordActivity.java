@@ -71,7 +71,7 @@ public class PotkomKoordActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
-        setTitle("Komisi dari Agen");
+        setTitle("Komisi Agen");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

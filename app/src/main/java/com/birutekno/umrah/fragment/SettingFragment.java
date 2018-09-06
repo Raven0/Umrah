@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.widget.CardView;
+import android.view.View;
 
 import com.birutekno.umrah.FaqActivity;
 import com.birutekno.umrah.LoginActivity;
@@ -16,6 +18,7 @@ import com.birutekno.umrah.R;
 import com.birutekno.umrah.SubAgenActivity;
 import com.birutekno.umrah.ui.fragment.BaseFragment;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -25,6 +28,9 @@ import butterknife.OnClick;
 public class SettingFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
+
+    @Bind(R.id.komisiKoordCard)
+    CardView komisiKoord;
 
     @OnClick(R.id.profilCard)
     void profilCardClicked() {
@@ -89,6 +95,15 @@ public class SettingFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+        String idmarketing = prefs.getString("iduser", "0");
 
+        if (idmarketing.equals("SM140")){
+            komisiKoord.setVisibility(View.VISIBLE);
+        }else if(idmarketing.equals("BR001")){
+            komisiKoord.setVisibility(View.VISIBLE);
+        }else {
+            komisiKoord.setVisibility(View.GONE);
+        }
     }
 }

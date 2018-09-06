@@ -288,7 +288,6 @@ public class TotalKalkulasiFragment extends Fragment {
         jmlBalita = bundle.getInt("jmlBalita");
         jmlBalitaKasur = bundle.getInt("jmlBalitaKasur");
         keterangan = bundle.getString("keterangan");
-        textKet.setText(keterangan);
 
         if (bundle.getBoolean("passport")){
             passport = "ya";
@@ -324,6 +323,9 @@ public class TotalKalkulasiFragment extends Fragment {
         }else {
             akta = "tidak";
         }
+
+        textKet.setText(keterangan+"\nMohon Untuk Melengkapi Dokumen Ini : \n-"+ surat.toString().substring(1).replaceFirst("]","").replace(", ", "\n-") +"\n");
+
     }
 
     private void calculate(){

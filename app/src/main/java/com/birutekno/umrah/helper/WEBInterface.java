@@ -22,7 +22,6 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface WEBInterface {
     //DATA PROSPEK
@@ -177,19 +176,19 @@ public interface WEBInterface {
     //DATA KOMISI
     //GET JAMAAG KOMISI
     @GET("jamaah/{id}/agen/komisi/{tahun}/periode")
-    Call<PotkomResponse> getDataKomisi(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
+    Call<PotkomResponse> getDataKomisi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET JAMAAH POTENSI
     @GET("jamaah/{id}/agen/potensi/{tahun}/periode")
-    Call<PotkomResponse> getDataPotensi(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
+    Call<PotkomResponse> getDataPotensi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET JAMAAG KOMISI KOORD
     @GET("jamaah/{id}/koordinator/komisi/{tahun}/periode")
-    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
+    Call<PotkomResponse> getDataKomisiKoord(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET JAMAAH POTENSI KOORD
     @GET("jamaah/{id}/koordinator/potensi/{tahun}/periode")
-    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id, @Path("tahun") String tahun, @Query("page") int page);
+    Call<PotkomResponse> getDataPotensiKoord(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET UANG KOMISI
     @GET("jamaah/{id}/agenfee/komisi/{tahun}/periode")
@@ -200,12 +199,12 @@ public interface WEBInterface {
     Call<DashboardModel> getUangPotensi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET UANG KOMISI KOORD
-    @GET("jamaah/{id}/koordinatorfee/komisi")
-    Call<DashboardModel> getUangKoordKomisi(@Path("id") String id);
+    @GET("jamaah/{id}/koordinatorfee/komisi/{tahun}/periode")
+    Call<DashboardModel> getUangKoordKomisi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET UANG POTENSI KOORD
-    @GET("jamaah/{id}/koordinatorfee/potensi")
-    Call<DashboardModel> getUangKoordPotensi(@Path("id") String id);
+    @GET("jamaah/{id}/koordinatorfee/potensi/{tahun}/periode")
+    Call<DashboardModel> getUangKoordPotensi(@Path("id") String id, @Path("tahun") String tahun);
 
     //GET TOTAL JAMAAH
     @GET("jamaah/{id}/agen/total/{tahun}/periode")

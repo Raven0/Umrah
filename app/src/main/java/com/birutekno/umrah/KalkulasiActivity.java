@@ -88,6 +88,7 @@ public class KalkulasiActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KalkulasiActivity.this, InputKalkulasiActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

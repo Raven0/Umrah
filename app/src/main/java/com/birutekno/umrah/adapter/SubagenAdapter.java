@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.umrah.R;
 import com.birutekno.umrah.model.DataAgen;
@@ -47,6 +49,7 @@ public class SubagenAdapter extends RecyclerView.Adapter<SubagenAdapter.ViewHold
         viewHolder.id.setText(mFilterData.get(i).getId());
         viewHolder.nama.setText(mFilterData.get(i).getNama());
         viewHolder.telp.setText(mFilterData.get(i).getNo_telp());
+        viewHolder.alamat.setText(mFilterData.get(i).getWebsite());
 
         viewHolder.no_telp = mFilterData.get(i).getNo_telp();
     }
@@ -107,11 +110,15 @@ public class SubagenAdapter extends RecyclerView.Adapter<SubagenAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
 //                    String smsNumber="919426640584@s.whatsapp.net";
-                    Uri uri = Uri.parse("smsto:" + no_telp);
-                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                    i.putExtra("sms_body", "Prakash Gajera");
-                    i.setPackage("com.whatsapp");
-                    context.startActivity(i);
+                    if (TextUtils.isEmpty(no_telp)){
+                        Toast.makeText(context, "Agen yang bersangkutan belum melengkapi Nomor Telefon", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Uri uri = Uri.parse("smsto:" + no_telp);
+                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+                        i.putExtra("sms_body", "Prakash Gajera");
+                        i.setPackage("com.whatsapp");
+                        context.startActivity(i);
+                    }
                 }
             });
         }

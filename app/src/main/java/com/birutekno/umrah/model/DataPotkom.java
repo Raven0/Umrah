@@ -15,11 +15,11 @@ public class DataPotkom {
         this.id = id;
     }
 
-    public DataAgen getMarketing() {
+    public String getMarketing() {
         return marketing;
     }
 
-    public void setMarketing(DataAgen marketing) {
+    public void setMarketing(String marketing) {
         this.marketing = marketing;
     }
 
@@ -35,7 +35,7 @@ public class DataPotkom {
 
     private String status;
 
-    private DataAgen marketing;
+    private String marketing;
 
     private String id_umrah;
 
@@ -105,12 +105,12 @@ public class DataPotkom {
         this.status = status;
     }
 
-    public DataAgen getDataAgen ()
+    public String getString ()
     {
         return marketing;
     }
 
-    public void setDataAgen (DataAgen marketing)
+    public void setString (String marketing)
     {
         this.marketing = marketing;
     }
@@ -155,12 +155,12 @@ public class DataPotkom {
         this.koordinator_fee = koordinator_fee;
     }
 
-    public String getDataAgen_fee ()
+    public String getString_fee ()
     {
         return marketing_fee;
     }
 
-    public void setDataAgen_fee (String marketing_fee)
+    public void setString_fee (String marketing_fee)
     {
         this.marketing_fee = marketing_fee;
     }

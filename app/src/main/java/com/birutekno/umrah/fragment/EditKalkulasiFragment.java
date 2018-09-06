@@ -1253,7 +1253,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                     alldata = Arrays.asList(response.body().getData());
                     for (int i = 0; i < alldata.size(); i++){
                         List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
-                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari());
+                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari() + "\nPromo :" + isPromo(jadwal.get(0).getPromo()));
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                         tglJadwal.add(jadwal.get(0).getTgl_berangkat());
                         idJadwal.add(jadwal.get(0).getId());
@@ -1280,6 +1280,17 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 initSpinnerJadwal();
             }
         });
+    }
+
+    String isPromo(int a){
+        String promo;
+        if (a == 1){
+            promo = "Ya";
+        }else {
+            promo = "Tidak";
+        }
+
+        return promo;
     }
 
     public void initSpinnerPaket(List<Paket> objPaket) {

@@ -82,8 +82,8 @@ public class InputKalkulasiActivity extends AppCompatActivity {
             adb.show();
         }else {
             position--;
-            startActivity(intent);
-//            super.onBackPressed();
+//            startActivity(intent);
+            super.onBackPressed();
         }
     }
 }

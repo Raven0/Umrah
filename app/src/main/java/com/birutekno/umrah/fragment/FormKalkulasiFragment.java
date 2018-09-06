@@ -359,7 +359,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dewasa.getText())){
-//                    dewasa.setText("0");
+                    dewasa.setText("0");
                     jmlDewasa = 0;
                     viewPerlengkapanDewasa.setVisibility(View.GONE);
                 }else {
@@ -393,6 +393,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(infant.getText())){
+                    infant.setText("0");
                     jmlInfant = 0;
                 }else {
                     try {
@@ -419,7 +420,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balita.getText())){
-//                    balita.setText("0");
+                    balita.setText("0");
                     jmlBalita = 0;
                     viewPerlengkapan.setVisibility(View.GONE);
                 }else {
@@ -454,7 +455,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balitaKasur.getText())){
-//                    balitaKasur.setText("0");
+                    balitaKasur.setText("0");
                     jmlBalitaKasur = 0;
                 }else {
                     try {
@@ -481,6 +482,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dobel.getText())){
+                    dobel.setText("0");
                     jmlDobel = 0;
                     doubleBool = false;
                 }else {
@@ -518,6 +520,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(tripel.getText())){
+                    tripel.setText("0");
                     jmlTripel = 0;
                     tripleBool = false;
                 }else {
@@ -555,7 +558,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(quard.getText())){
-//                    quard.setText("0");
+                    quard.setText("0");
                     jmlQuard = 0;
                     quardBool = false;
                 }else {
@@ -1152,7 +1155,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                     alldata = Arrays.asList(response.body().getData());
                     for (int i = 0; i < alldata.size(); i++){
                         List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
-                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari());
+                        listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari() + "\nPromo :" + isPromo(jadwal.get(0).getPromo()));
                         ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
                         tglJadwal.add(jadwal.get(0).getTgl_berangkat());
                         idJadwal.add(jadwal.get(0).getId());
@@ -1178,6 +1181,17 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                 initSpinnerJadwal();
             }
         });
+    }
+
+    String isPromo(int a){
+        String promo;
+        if (a == 1){
+            promo = "Ya";
+        }else {
+            promo = "Tidak";
+        }
+
+        return promo;
     }
 
     public void initSpinnerPaket(List<Paket> objPaket) {
