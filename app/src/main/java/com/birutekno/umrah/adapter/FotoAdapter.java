@@ -49,6 +49,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(FotoAdapter.ViewHolder viewHolder, int i) {
         viewHolder.judul.setText(mFilterData.get(i).getJudul());
+        viewHolder.deskripsi = "*"+mFilterData.get(i).getJudul()+"*\n" + mFilterData.get(i).getDeskripsi();
         viewHolder.link = "http://"+mFilterData.get(i).getFile();
         try {
             Picasso.get().load(viewHolder.link).fit().centerCrop().into(viewHolder.imageView);
@@ -62,7 +63,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
         return mFilterData.size();
     }
 
-    static public void shareImage(String url, final Context context) {
+    static public void shareImage(String url, final String deskripsi, final Context context) {
         Picasso.get().load(url).into(new com.squareup.picasso.Target() {
             @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 try {
@@ -72,6 +73,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("image/*");
                     i.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap, context));
+                    i.putExtra(Intent.EXTRA_TEXT, deskripsi);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(Intent.createChooser(i, "Share Image"));
                 }catch (Exception ex){
@@ -110,7 +112,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView judul;
         private ImageView imageView;
-        String link;
+        String link , deskripsi;
         public ViewHolder(final View view) {
             super(view);
 
@@ -124,7 +126,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.ViewHolder>{
                     //WEB
                     String url = link;
                     try {
-                        shareImage(url, context);
+                        shareImage(url, deskripsi, context);
                     }catch (Exception ex){
                         Log.d("SHARE_IMG", "onClick: " + ex.getMessage());
                         Toast.makeText(context, "Gambar gagal dimuat, silhakan coba lagi...", Toast.LENGTH_SHORT).show();

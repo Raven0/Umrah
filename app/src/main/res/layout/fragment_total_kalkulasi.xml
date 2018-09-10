@@ -200,6 +200,7 @@
                         android:visibility="visible">
 
                         <TextView
+                            android:id="@+id/quardJudul"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PERHITUNGAN QUARD"/>
@@ -309,6 +310,7 @@
                         android:visibility="visible">
 
                         <TextView
+                            android:id="@+id/tripleJudul"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PERHITUNGAN TRIPLE"/>
@@ -419,6 +421,7 @@
                         android:layout_marginBottom="40dp">
 
                         <TextView
+                            android:id="@+id/dobelJudul"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PERHITUNGAN DOUBLE"/>
@@ -529,7 +532,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PERHITUNGAN BALITA"/>
+                            android:text="PERHITUNGAN (BALITA TANPA BED)"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
