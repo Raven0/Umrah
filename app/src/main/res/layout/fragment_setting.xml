@@ -160,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Sub Agen"
+                android:text="Agen Saya"
                 android:textStyle="bold"
                 android:textSize="18dp"
                 android:layout_toRightOf="@id/agen"

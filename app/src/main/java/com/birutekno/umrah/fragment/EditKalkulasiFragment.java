@@ -143,7 +143,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private String bukuNikahString = "Tidak";
 
     private Button buttonNext;
-    private Button buttonSimpan;
+    public Button buttonSimpan;
     private Button followUp;
     private Spinner hotel, jadwal;
 //    pembayaran
@@ -197,7 +197,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private String jenisPerlengkapan;
     private String jenisPerlengkapanDewasa;
 
-    private ProgressDialog pDialog;
+//    private ProgressDialog pDialog;
     private ProgressDialog nDialog;
 
     //LOAD MASTER KALKULASI
@@ -358,6 +358,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        dewasa.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (dewasa.getText().toString().equals("0")){
+                    dewasa.setText("");
+                }
+            }
+        });
         dewasa.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -370,8 +378,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dewasa.getText())){
-//                    dewasa.setText("0");
                     jmlDewasa = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                     viewPerlengkapanDewasa.setVisibility(View.GONE);
                 }else {
                     try {
@@ -392,6 +401,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        infant.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (infant.getText().toString().equals("0")){
+                    infant.setText("");
+                }
+            }
+        });
         infant.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -405,6 +422,8 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(infant.getText())){
                     jmlInfant = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                 }else {
                     try {
                         jmlInfant = Integer.parseInt(infant.getText().toString().trim());
@@ -418,6 +437,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        balita.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (balita.getText().toString().equals("0")){
+                    balita.setText("");
+                }
+            }
+        });
         balita.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -430,8 +457,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balita.getText())){
-//                    balita.setText("0");
                     jmlBalita = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                     viewPerlengkapan.setVisibility(View.GONE);
                 }else {
                     try{
@@ -451,6 +479,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        balitaKasur.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (balitaKasur.getText().toString().equals("0")){
+                    balitaKasur.setText("");
+                }
+            }
+        });
         balitaKasur.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -465,8 +501,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balitaKasur.getText())){
-//                    balitaKasur.setText("0");
                     jmlBalitaKasur = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                 }else {
                     try {
                         jmlBalitaKasur = Integer.parseInt(balitaKasur.getText().toString().trim());
@@ -480,6 +517,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        dobel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (dobel.getText().toString().equals("0")){
+                    dobel.setText("");
+                }
+            }
+        });
         dobel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -494,6 +539,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 if (TextUtils.isEmpty(dobel.getText())){
                     jmlDobel = 0;
                     doubleBool = false;
+                    orangDua.setText("Orang");
                 }else {
                     try {
                         jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
@@ -517,6 +563,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        tripel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (tripel.getText().toString().equals("0")){
+                    tripel.setText("");
+                }
+            }
+        });
         tripel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -531,6 +585,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 if (TextUtils.isEmpty(tripel.getText())){
                     jmlTripel = 0;
                     tripleBool = false;
+                    orangTiga.setText("Orang");
                 }else {
                     try {
                         jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
@@ -554,6 +609,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        quard.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (quard.getText().toString().equals("0")){
+                    quard.setText("");
+                }
+            }
+        });
         quard.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -566,9 +629,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(quard.getText())){
-//                    quard.setText("0");
                     jmlQuard = 0;
                     quardBool = false;
+                    orangEmpat.setText("Orang");
                 }else {
                     try {
                         jmlQuard = Integer.parseInt(quard.getText().toString().trim());
@@ -658,6 +721,14 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        progresifJml.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (progresifJml.getText().toString().equals("0")){
+                    progresifJml.setText("");
+                }
+            }
+        });
         progresifJml.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1104,10 +1175,24 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 Toast.makeText(getContext(), "Pastikan Jumlah Dewasa dan Balita (Dengan Kasur) terisi sesuai dengan Jumlah Kamar", Toast.LENGTH_SHORT).show();
             }
         } else if (view == buttonSimpan){
+            saveData("No");
+        }
+    }
 
-            if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim()) || TextUtils.isEmpty(tglFollowup)){
-                Toast.makeText(getContext(), "Pastikan nama PIC, Nomor Telepon, dan Tanggal FollowUp Terisi", Toast.LENGTH_SHORT).show();
-            }else {
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+//        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear+1,year), Toast.LENGTH_LONG).show();
+        followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year));
+        tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year);
+    }
+
+    public void saveData(final String command){
+        if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim()) || TextUtils.isEmpty(tglFollowup)){
+            Toast.makeText(getContext(), "Pastikan nama PIC, Nomor Telepon, dan Tanggal FollowUp Terisi", Toast.LENGTH_SHORT).show();
+        }else {
+            if (jmlDewasa + jmlBalitaKasur == jmlKamar){
+                Toast.makeText(getContext(), "Menyimpan data...", Toast.LENGTH_SHORT).show();
+
                 picName = pic.getText().toString().trim();
                 no_telp = telp.getText().toString().trim();
 
@@ -1195,21 +1280,24 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 params.put("perlengkapan_balita", jenisPerlengkapan);
                 params.put("perlengkapan_dewasa", jenisPerlengkapanDewasa);
 
-                pDialog = new ProgressDialog(getContext());
-                pDialog.setMessage("Harap tunggu...");
-                pDialog.setCancelable(false);
-                pDialog.show();
+//                pDialog = new ProgressDialog(getContext());
+//                pDialog.setMessage("Harap tunggu...");
+//                pDialog.setCancelable(false);
+//                pDialog.show();
 
                 Call<ResponseBody> result = WebApi.getAPIService().editProspek(id, params);
                 result.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        pDialog.dismiss();
+                        Toast.makeText(getContext(), "Berhasil di simpan", Toast.LENGTH_SHORT).show();
+//                        pDialog.dismiss();
                         try {
                             if(response.body()!=null){
-                                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                if (command.equals("Yes")){
+                                    Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
                             }
                         }catch (Exception e){
                             e.printStackTrace();
@@ -1220,21 +1308,15 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        pDialog.dismiss();
                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getContext(), "On Failure", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();
                     }
                 });
+            }else {
+                Toast.makeText(getContext(), "Pastikan Jumlah Dewasa dan Balita (Dengan Kasur) terisi sesuai dengan Jumlah Kamar", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-//        Toast.makeText(getContext(), String.format("You Selected : %d/%d/%d", dayOfMonth,monthOfYear+1,year), Toast.LENGTH_LONG).show();
-        followUp.setText(String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year));
-        tglFollowup = String.format("%d/%d/%d", dayOfMonth,monthOfYear+1,year);
     }
 
     public void setupAdapter(){

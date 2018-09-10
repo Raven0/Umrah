@@ -359,8 +359,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dewasa.getText())){
-                    dewasa.setText("0");
                     jmlDewasa = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                     viewPerlengkapanDewasa.setVisibility(View.GONE);
                 }else {
                     try {
@@ -393,8 +394,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(infant.getText())){
-                    infant.setText("0");
                     jmlInfant = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                 }else {
                     try {
                         jmlInfant = Integer.parseInt(infant.getText().toString().trim());
@@ -420,8 +422,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balita.getText())){
-                    balita.setText("0");
                     jmlBalita = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                     viewPerlengkapan.setVisibility(View.GONE);
                 }else {
                     try{
@@ -455,8 +458,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(balitaKasur.getText())){
-                    balitaKasur.setText("0");
                     jmlBalitaKasur = 0;
+                    jmlTotal = jmlDewasa + jmlInfant + jmlBalita + jmlBalitaKasur;
+                    totalIndicator.setText("Total : " + String.valueOf(jmlTotal)+ " PAX");
                 }else {
                     try {
                         jmlBalitaKasur = Integer.parseInt(balitaKasur.getText().toString().trim());
@@ -482,9 +486,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(dobel.getText())){
-                    dobel.setText("0");
                     jmlDobel = 0;
                     doubleBool = false;
+                    orangDua.setText("Orang");
                 }else {
                     try {
                         jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
@@ -520,9 +524,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(tripel.getText())){
-                    tripel.setText("0");
                     jmlTripel = 0;
                     tripleBool = false;
+                    orangTiga.setText("Orang");
                 }else {
                     try {
                         jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
@@ -558,9 +562,9 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(quard.getText())){
-                    quard.setText("0");
                     jmlQuard = 0;
                     quardBool = false;
+                    orangEmpat.setText("Orang");
                 }else {
                     try {
                         jmlQuard = Integer.parseInt(quard.getText().toString().trim());
@@ -1003,130 +1007,134 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             if(TextUtils.isEmpty(pic.getText().toString().trim())|| TextUtils.isEmpty(telp.getText().toString().trim()) || TextUtils.isEmpty(tglFollowup)){
                 Toast.makeText(getContext(), "Pastikan nama PIC, Nomor Telepon, dan Tanggal FollowUp Terisi", Toast.LENGTH_SHORT).show();
             }else {
-                picName = pic.getText().toString().trim();
-                no_telp = telp.getText().toString().trim();
-                try {
-                    ket = keterangan.getText().toString().trim();
-                }catch (Exception ex){
-                    ket = "";
-                }
+                if (jmlDewasa + jmlBalitaKasur == jmlKamar){
+                    picName = pic.getText().toString().trim();
+                    no_telp = telp.getText().toString().trim();
+                    try {
+                        ket = keterangan.getText().toString().trim();
+                    }catch (Exception ex){
+                        ket = "";
+                    }
 
-                if(rb1.isChecked()){
-                    perlengkapanFull = true;
-                    jenisPerlengkapan = "FULL";
-                }else if(rb2.isChecked()){
-                    perlengkapanLite = true;
-                    jenisPerlengkapan = "LITE";
-                }else {
-                    perlengkapanLite = false;
-                    perlengkapanFull = false;
-                    jenisPerlengkapan = "NULL";
-                }
+                    if(rb1.isChecked()){
+                        perlengkapanFull = true;
+                        jenisPerlengkapan = "FULL";
+                    }else if(rb2.isChecked()){
+                        perlengkapanLite = true;
+                        jenisPerlengkapan = "LITE";
+                    }else {
+                        perlengkapanLite = false;
+                        perlengkapanFull = false;
+                        jenisPerlengkapan = "NULL";
+                    }
 
-                if(rbDefault.isChecked()){
-                    perlengkapanDefault = true;
-                    jenisPerlengkapanDewasa = "DEFAULT";
-                }else if(rbPromo.isChecked()){
-                    perlengkapanPromo = true;
-                    jenisPerlengkapanDewasa = "PROMO";
-                }else {
-                    perlengkapanDefault = false;
-                    perlengkapanPromo = false;
-                    jenisPerlengkapanDewasa = "NULL";
-                }
+                    if(rbDefault.isChecked()){
+                        perlengkapanDefault = true;
+                        jenisPerlengkapanDewasa = "DEFAULT";
+                    }else if(rbPromo.isChecked()){
+                        perlengkapanPromo = true;
+                        jenisPerlengkapanDewasa = "PROMO";
+                    }else {
+                        perlengkapanDefault = false;
+                        perlengkapanPromo = false;
+                        jenisPerlengkapanDewasa = "NULL";
+                    }
 
-                if(cbPassport.isChecked()){
-                    passportString = "true";
-                }else {
-                    passportString = "false";
-                }
+                    if(cbPassport.isChecked()){
+                        passportString = "true";
+                    }else {
+                        passportString = "false";
+                    }
 
-                if(cbMeningitis.isChecked()){
-                    meningitisString = "true";
-                }else {
-                    meningitisString = "false";
-                }
+                    if(cbMeningitis.isChecked()){
+                        meningitisString = "true";
+                    }else {
+                        meningitisString = "false";
+                    }
 
-                if(cbFoto.isChecked()){
-                    fotoString = "true";
-                }else {
-                    fotoString = "false";
-                }
+                    if(cbFoto.isChecked()){
+                        fotoString = "true";
+                    }else {
+                        fotoString = "false";
+                    }
 
-                if(cbBukuNikah.isChecked()){
-                    bukuNikahString = "true";
-                }else {
-                    bukuNikahString = "false";
-                }
+                    if(cbBukuNikah.isChecked()){
+                        bukuNikahString = "true";
+                    }else {
+                        bukuNikahString = "false";
+                    }
 
-                if(cbAkta.isChecked()){
-                    aktaString = "true";
-                }else {
-                    aktaString = "false";
-                }
+                    if(cbAkta.isChecked()){
+                        aktaString = "true";
+                    }else {
+                        aktaString = "false";
+                    }
 
-                HashMap<String, String> params = new HashMap<>();
-                //anggota_id
-                params.put("anggota_id", String.valueOf(id_agen));
-                params.put("pic", picName);
-                params.put("no_telp", no_telp);
-                params.put("jml_dewasa", String.valueOf(jmlDewasa));
-                params.put("jml_infant", String.valueOf(jmlInfant));
-                params.put("jml_balita", String.valueOf(jmlBalita));
-                params.put("jml_visa", String.valueOf(jmlvisa));
-                params.put("jml_balita_kasur", String.valueOf(jmlBalitaKasur));
-                params.put("tgl_keberangkatan", tgl_berangkat);
-                params.put("jenis", jenisPaket);
-                params.put("index_jadwal", indexJadwal);
-                params.put("index_paket", String.valueOf(selectedPaket));
-                params.put("dobel", String.valueOf(jmlDobel));
-                params.put("triple", String.valueOf(jmlTripel));
-                params.put("quard", String.valueOf(jmlQuard));
-                params.put("passport", passportString);
-                params.put("meningitis", meningitisString);
-                params.put("pas_foto", fotoString);
-                params.put("buku_nikah", bukuNikahString);
-                params.put("fc_akta", aktaString);
-                params.put("visa_progresif", String.valueOf(jmlProgresif));
-                params.put("diskon", String.valueOf(jmlDiskon));
-                params.put("keterangan", ket);
-                params.put("tanggal_followup", tglFollowup);
-                params.put("pembayaran", "BELUM");
-                params.put("perlengkapan_balita", jenisPerlengkapan);
-                params.put("perlengkapan_dewasa", jenisPerlengkapanDewasa);
+                    HashMap<String, String> params = new HashMap<>();
+                    //anggota_id
+                    params.put("anggota_id", String.valueOf(id_agen));
+                    params.put("pic", picName);
+                    params.put("no_telp", no_telp);
+                    params.put("jml_dewasa", String.valueOf(jmlDewasa));
+                    params.put("jml_infant", String.valueOf(jmlInfant));
+                    params.put("jml_balita", String.valueOf(jmlBalita));
+                    params.put("jml_visa", String.valueOf(jmlvisa));
+                    params.put("jml_balita_kasur", String.valueOf(jmlBalitaKasur));
+                    params.put("tgl_keberangkatan", tgl_berangkat);
+                    params.put("jenis", jenisPaket);
+                    params.put("index_jadwal", indexJadwal);
+                    params.put("index_paket", String.valueOf(selectedPaket));
+                    params.put("dobel", String.valueOf(jmlDobel));
+                    params.put("triple", String.valueOf(jmlTripel));
+                    params.put("quard", String.valueOf(jmlQuard));
+                    params.put("passport", passportString);
+                    params.put("meningitis", meningitisString);
+                    params.put("pas_foto", fotoString);
+                    params.put("buku_nikah", bukuNikahString);
+                    params.put("fc_akta", aktaString);
+                    params.put("visa_progresif", String.valueOf(jmlProgresif));
+                    params.put("diskon", String.valueOf(jmlDiskon));
+                    params.put("keterangan", ket);
+                    params.put("tanggal_followup", tglFollowup);
+                    params.put("pembayaran", "BELUM");
+                    params.put("perlengkapan_balita", jenisPerlengkapan);
+                    params.put("perlengkapan_dewasa", jenisPerlengkapanDewasa);
 
-                pDialog = new ProgressDialog(getContext());
-                pDialog.setMessage("Harap tunggu...");
-                pDialog.setCancelable(false);
-                pDialog.show();
+                    pDialog = new ProgressDialog(getContext());
+                    pDialog.setMessage("Harap tunggu...");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
 
-                Call<ResponseBody> result = WebApi.getAPIService().insertProspek(params);
-                result.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        pDialog.dismiss();
-                        try {
-                            if(response.body()!=null){
-                                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                    Call<ResponseBody> result = WebApi.getAPIService().insertProspek(params);
+                    result.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            pDialog.dismiss();
+                            try {
+                                if(response.body()!=null){
+                                    Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(getContext(), String.valueOf(e.getMessage()), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Error Response", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (Exception e){
-                            e.printStackTrace();
-                            Toast.makeText(getContext(), String.valueOf(e.getMessage()), Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getContext(), "Error Response", Toast.LENGTH_SHORT).show();
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        pDialog.dismiss();
-                        if (t.getMessage().equals("timeout")){
-                            Toast.makeText(getContext(), "Server timeout, Coba Lagi", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            pDialog.dismiss();
+                            if (t.getMessage().equals("timeout")){
+                                Toast.makeText(getContext(), "Server timeout, Coba Lagi", Toast.LENGTH_SHORT).show();
+                            }
+                            t.printStackTrace();
                         }
-                        t.printStackTrace();
-                    }
-                });
+                    });
+                }else {
+                    Toast.makeText(getContext(), "Pastikan Jumlah Dewasa dan Balita (Dengan Kasur) terisi sesuai dengan Jumlah Kamar", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Berangkat"
+                android:text="Berangkat (H-3)"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp" />
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Pulang"
+                android:text="Pulang (H-3)"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp" />
 

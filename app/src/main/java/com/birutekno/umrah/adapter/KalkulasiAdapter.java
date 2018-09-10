@@ -202,8 +202,8 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                 @Override
                 public void onClick(final View v) {
                     AlertDialog.Builder adb = new AlertDialog.Builder((Activity) v.getContext());
-                    adb.setTitle("Pembayaran DP/Lunas");
-                    adb.setMessage("Segera hubungi Koordinator anda untuk konfirmasi!");
+                    adb.setTitle("Kalkulasi Selesai");
+                    adb.setMessage("Apakah data Kalkulasi ini sudah selesai? Tekan OK untuk menghapus data ini");
                     adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             String sessionId = id.getText().toString();
@@ -253,7 +253,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                                     pDialog.dismiss();
                                     try {
                                         Log.d("RES", "onResponse: " + response.body());
-                                        Toast.makeText((Activity) v.getContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText((Activity) v.getContext(), "Penghapusan berhasil", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(context, KalkulasiActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -308,7 +308,7 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                             });
                         }
                     });
-                    adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    adb.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     });

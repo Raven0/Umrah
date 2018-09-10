@@ -73,7 +73,7 @@ public class LokasiActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
-        setTitle("Lokasi");
+        setTitle("Hotel");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -67,7 +67,7 @@ public class SubAgenActivity extends BaseActivity {
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
         setupToolbar(mToolbar, true);
-        setTitle("Sub Agen");
+        setTitle("Agen Saya");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
