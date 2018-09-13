@@ -38,12 +38,18 @@
                     android:textStyle="bold"
                     android:visibility="gone"/>
 
-                <TextView
-                    android:id="@+id/namaProspek"
+                <HorizontalScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Muhammad Abdul Kodir"
-                    android:textStyle="bold"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/namaProspek"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Muhammad Abdul Kodir"
+                        android:textStyle="bold"/>
+
+                </HorizontalScrollView>
 
                 <TextView
                     android:id="@+id/noTelp"

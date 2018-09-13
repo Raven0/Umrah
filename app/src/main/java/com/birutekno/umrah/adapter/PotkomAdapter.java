@@ -48,7 +48,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<PotkomAdapter.ViewHolder
         String koordinator = mFilterData.get(i).getKoordinator();
 
         viewHolder.id.setText(mFilterData.get(i).getId());
-        viewHolder.nama.setText(mFilterData.get(i).getNama());
+        viewHolder.nama.setText(mFilterData.get(i).getNama()+ " || Dari Agen : "+mFilterData.get(i).getMarketing());
         viewHolder.telp.setText("Berangkat : " + mFilterData.get(i).getTgl_berangkat());
         if (code.equals("agen")){
             if (viewHolder.idmarketing.equals(marketing)){
@@ -83,7 +83,7 @@ public class PotkomAdapter extends RecyclerView.Adapter<PotkomAdapter.ViewHolder
 
                     for (DataPotkom data: data) {
 
-                        if (data.getNama().toLowerCase().contains(charString)) {
+                        if (data.getNama().toLowerCase().contains(charString) || data.getMarketing().toLowerCase().contains(charString)) {
                             filterData.add(data);
                         }
                     }
