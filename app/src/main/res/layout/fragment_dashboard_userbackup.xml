@@ -297,7 +297,7 @@
                                 android:textStyle="bold"/>
 
                             <view
-                                class="com.birutekno.umrah.ui.chart.LineView"
+                                class="com.birutekno.aiwa.ui.chart.LineView"
                                 android:id="@+id/line_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
@@ -333,7 +333,7 @@
                                 android:textStyle="bold"/>
 
                             <view
-                                class="com.birutekno.umrah.ui.chart.LineView"
+                                class="com.birutekno.aiwa.ui.chart.LineView"
                                 android:id="@+id/line_view_two"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
