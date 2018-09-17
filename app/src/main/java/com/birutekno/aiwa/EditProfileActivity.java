@@ -51,7 +51,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     EditText ktp;
     EditText nama;
     EditText notelp;
-    String email;
+    EditText email;
     String username;
     String status;
     String koordinator;
@@ -83,7 +83,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         ktp = (EditText) findViewById(R.id.noktp);
         nama = (EditText) findViewById(R.id.nama);
         notelp = (EditText) findViewById(R.id.telp);
-//        email = (EditText) findViewById(R.id.email);
+        email = (EditText) findViewById(R.id.email);
         domisili = (EditText) findViewById(R.id.alamat);
         bank = (EditText) findViewById(R.id.bank);
         norek = (EditText) findViewById(R.id.norek);
@@ -160,7 +160,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     ktp.setText(dataAgen.getNo_ktp());
                     nama.setText(dataAgen.getNama());
                     notelp.setText(dataAgen.getNo_telp());
-                    email = dataAgen.getEmail();
+                    email.setText(dataAgen.getEmail());
                     username = dataAgen.getUsername();
                     status = dataAgen.getStatus();
                     koordinator = dataAgen.getKoordinator();
@@ -214,7 +214,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             //anggota_id
             if (jk){
                 params.put("nama", nama.getText().toString());
-                params.put("email", email);
+                params.put("email", email.getText().toString());
                 params.put("username", username);
                 params.put("password", password);
                 params.put("jenis_kelamin", jenis_kelamin);

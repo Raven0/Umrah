@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -77,6 +79,14 @@ public class ProfileActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String status = prefs.getString("status", "out");
+        if (status.equals("out")){
+            Intent intentReward = LoginActivity.createIntent(mContext);
+            ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
+            ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
+        }
     }
 
     public static Intent createIntent(Context context) {

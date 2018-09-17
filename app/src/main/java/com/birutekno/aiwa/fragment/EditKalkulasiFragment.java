@@ -103,8 +103,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
     // Input
     private RadioGroup radioGroup,radioGroup1;
-    private RadioButton rb1, rbDefault;
-    private RadioButton rb2, rbPromo;
+    private RadioButton rb1, rb2, rb3, rbDefault, rbPromo;
     private LinearLayout viewPerlengkapan, viewPerlengkapanDewasa, viewVisa, viewDiskon;
 
     private TextView orangDua;
@@ -170,6 +169,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     private Boolean perlengkapanFull = false;
     private Boolean perlengkapanDefault = false;
     private Boolean perlengkapanLite = false;
+    private Boolean perlengkapanNol = false;
     private Boolean perlengkapanPromo = false;
 
     // Reference Calculation
@@ -330,6 +330,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         rb1 = (RadioButton) view.findViewById(R.id.perlengkapanFull);
         rbDefault = (RadioButton) view.findViewById(R.id.perlengkapanDefault);
         rb2 = (RadioButton) view.findViewById(R.id.perlengkapanLite);
+        rb3 = (RadioButton) view.findViewById(R.id.perlengkapanNol);
         rbPromo = (RadioButton) view.findViewById(R.id.perlengkapanPromo);
         radioGroup.clearCheck();
         radioGroup1.clearCheck();
@@ -942,9 +943,15 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         if(perlengkapan.equals("FULL")){
                             rb1.setChecked(true);
                             rb2.setChecked(false);
+                            rb3.setChecked(false);
                         }else if (perlengkapan.equals("LITE")){
                             rb1.setChecked(false);
                             rb2.setChecked(true);
+                            rb3.setChecked(false);
+                        }else if (perlengkapan.equals("NOL")){
+                            rb1.setChecked(false);
+                            rb2.setChecked(false);
+                            rb3.setChecked(true);
                         }
                     }
 
@@ -1003,9 +1010,13 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             }else if(rb2.isChecked()){
                 perlengkapanLite = true;
                 jenisPerlengkapan = "LITE";
+            }else if(rb3.isChecked()){
+                perlengkapanNol = true;
+                jenisPerlengkapan = "NOL";
             }else {
                 perlengkapanFull = false;
                 perlengkapanLite = false;
+                perlengkapanNol= false;
                 jenisPerlengkapan = "NULL";
             }
 
@@ -1053,7 +1064,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
             if(jmlDewasa + jmlBalitaKasur == jmlKamar){
                 if(jmlBalita != 0){
-                    if (perlengkapanFull || perlengkapanLite){
+                    if (perlengkapanFull || perlengkapanLite || perlengkapanNol){
                         EditKalkulasiActivity.goToStepTotal();
                         TotalKalkulasiFragment step3Fragment = new TotalKalkulasiFragment();
                         Bundle bundle = new Bundle();
@@ -1202,9 +1213,13 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 }else if(rb2.isChecked()){
                     perlengkapanLite = true;
                     jenisPerlengkapan = "LITE";
+                }else if(rb3.isChecked()){
+                    perlengkapanNol = true;
+                    jenisPerlengkapan = "NOL";
                 }else {
                     perlengkapanFull = false;
                     perlengkapanLite = false;
+                    perlengkapanNol= false;
                     jenisPerlengkapan = "NULL";
                 }
 
@@ -1325,7 +1340,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     }
 
     public void initSpinnerJadwal(){
-        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, false);
+        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
 
         apiservice.getJSON(token).enqueue(new Callback<AIWAResponse>() {
             @Override

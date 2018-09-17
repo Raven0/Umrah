@@ -147,7 +147,9 @@ public class ItineraryActivity extends BaseActivity{
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 Log.d("Error",String.valueOf(t.getMessage()));
                 pDialog.dismiss();
-                loadJSON(periode);
+                Toast.makeText(ItineraryActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+//                loadJSON(periode);
             }
         });
     }

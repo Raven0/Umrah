@@ -144,7 +144,9 @@ public class JadwalActivity extends BaseActivity {
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
-                loadJSON(periode);
+                Toast.makeText(JadwalActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+//                loadJSON(periode);
             }
         });
     }
