@@ -258,7 +258,7 @@ public class DashboardUserFragment extends BaseFragment{
     }
 
     private void setDataTotalJamaahView(final String id, final String tahun){
-        aDialog = ProgressDialog.show(getContext(), null, "Memuat Data Grafik...", true, false);
+        aDialog = ProgressDialog.show(getContext(), null, "Memuat Data Grafik...", true, true);
         aDialog.show();
         Call<ChartResponse> call = WebApi.getAPIService().getJamaahPerbulan(id, tahun);
         call.enqueue(new Callback<ChartResponse>() {
@@ -296,13 +296,13 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
 //                setDataTotalJamaahView(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void setDataTotalPotkomView(final String id, final String tahun){
-        bDialog = ProgressDialog.show(getContext(), null, "Memuat Data Grafik...", true, false);
+        bDialog = ProgressDialog.show(getContext(), null, "Memuat Data Grafik...", true, true);
         bDialog.show();
         Call<ChartResponse> call = WebApi.getAPIService().getKomisiPerbulan(id, tahun);
         call.enqueue(new Callback<ChartResponse>() {
@@ -353,7 +353,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
 //                setDataTotalJamaahView(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -389,7 +389,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataPotensi(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -425,7 +425,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataKomisi(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -460,7 +460,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataJamaah(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -495,7 +495,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataProspek(id);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -538,7 +538,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<PeriodeResponse> call, Throwable t) {
 //                loadPeriode();
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }

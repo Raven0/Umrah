@@ -104,7 +104,11 @@ public class KalkulasiActivity extends BaseActivity {
             Type type = new TypeToken<ArrayList<DataProspek>>(){}.getType();
             ArrayList<DataProspek> dataProspeks = gson.fromJson(json, type);
 
-            loadJSONCache(dataProspeks);
+            try {
+                loadJSONCache(dataProspeks);
+            }catch (Exception ex){
+                loadJSON();
+            }
         }
 
         btnTambah.setOnClickListener(new View.OnClickListener() {

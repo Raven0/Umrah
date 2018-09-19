@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,7 +44,7 @@ public class JadwalActivity extends BaseActivity {
 
     public static final String PREFS_NAME = "AUTH";
     public static final String PREFS_CACHE = "CACHE_LOAD";
-    String id_agen,token;
+    String id_agen,token,selectedItem;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -53,6 +54,9 @@ public class JadwalActivity extends BaseActivity {
 
     @Bind(R.id.spinnerFilter)
     Spinner spinnerFilter;
+
+    @Bind(R.id.btn_update)
+    Button buttonUpdate;
 
     List<String> listPeriode = new ArrayList<String>();
     private ArrayList<DataJadwal> pojo;
@@ -92,7 +96,7 @@ public class JadwalActivity extends BaseActivity {
         spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = parent.getItemAtPosition(position).toString();
+                selectedItem = parent.getItemAtPosition(position).toString();
                 SharedPreferences prefs = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE);
                 String cache = prefs.getString("jadwal", "");
                 try {
@@ -106,7 +110,11 @@ public class JadwalActivity extends BaseActivity {
                         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
                         ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-                        loadJSONCache(dataJadwals);
+                        try {
+                            loadJSONCache(dataJadwals);
+                        }catch (Exception ex){
+                            loadJSON(selectedItem);
+                        }
                         //loadCacheData
                     }else{
                         SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
@@ -115,7 +123,7 @@ public class JadwalActivity extends BaseActivity {
                         loadJSON(selectedItem);
                     }
                 }catch (Exception ex){
-                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
                     loadJSON(selectedItem);
                 }
             }
@@ -123,6 +131,13 @@ public class JadwalActivity extends BaseActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadJSON(selectedItem);
             }
         });
 
@@ -174,7 +189,7 @@ public class JadwalActivity extends BaseActivity {
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
                 pDialog.dismiss();
-                Toast.makeText(JadwalActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(JadwalActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_LONG).show();
                 onBackPressed();
 //                loadJSON(periode);
             }
