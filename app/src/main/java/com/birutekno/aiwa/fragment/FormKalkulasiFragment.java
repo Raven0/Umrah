@@ -1186,16 +1186,20 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
 
                 } else {
                     loading.dismiss();
-                    Toast.makeText(getContext(), "Gagal mengambil data jadwal", Toast.LENGTH_SHORT).show();
-                    initSpinnerJadwal();
+                    Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 }
             }
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 loading.dismiss();
-                Toast.makeText(getContext(), "Server Jadwal bermasalah", Toast.LENGTH_SHORT).show();
-                initSpinnerJadwal();
+                Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
@@ -1367,7 +1371,10 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
             }
             @Override
             public void onFailure(Call<KalkulasiResponse> call, Throwable t) {
-                loadKalkulasi();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 

@@ -19,13 +19,20 @@ public class AcademicPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
+        DashboardUserFragment userFragment = DashboardUserFragment.newInstance(1);
+        userFragment.loadOnLoad();
+
+        DashboardAgenFragment agenFragment = DashboardAgenFragment.newInstance(2);
+        agenFragment.loadOnLoad();
+
         switch (position) {
             case 0:
-                return DashboardUserFragment.newInstance(1);
+                return userFragment;
             case 1:
-                return DashboardAgenFragment.newInstance(2);
+                return agenFragment;
             default:
-                return DashboardUserFragment.newInstance(1);
+                return userFragment;
         }
     }
 

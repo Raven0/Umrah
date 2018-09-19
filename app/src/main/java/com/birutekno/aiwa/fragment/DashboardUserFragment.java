@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.aiwa.JamaahActivity;
 import com.birutekno.aiwa.KalkulasiActivity;
@@ -54,6 +55,9 @@ public class DashboardUserFragment extends BaseFragment{
     private ProgressDialog nDialog;
     private ProgressDialog aDialog;
     private ProgressDialog bDialog;
+
+    String id_agen;
+    String token;
 
     int randomint = 12;
 
@@ -140,13 +144,11 @@ public class DashboardUserFragment extends BaseFragment{
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState) {
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        final String id_agen = prefs.getString("iduser", "0");
-        final String token = prefs.getString("token", "0");
+        id_agen = prefs.getString("iduser", "0");
+        token = prefs.getString("token", "0");
 
-        loadPeriode();
         initLineView(line);
         initLineView(line_two);
-
         loadDataProspek(String.valueOf(id_agen));
 
         periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -154,7 +156,7 @@ public class DashboardUserFragment extends BaseFragment{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 selectedPeriode = item;
-                nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, false);
+                nDialog = ProgressDialog.show(getContext(), null, "Memuat Data...", true, true);
                 nDialog.show();
                 try {
                     loadDataPotensi(String.valueOf(id_agen), item);
@@ -293,7 +295,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
-                setDataTotalJamaahView(id, tahun);
+//                setDataTotalJamaahView(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -349,7 +352,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
-                setDataTotalJamaahView(id, tahun);
+//                setDataTotalJamaahView(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -384,7 +388,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataPotensi(id, tahun);
+//                loadDataPotensi(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -419,7 +424,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataKomisi(id, tahun);
+//                loadDataKomisi(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -453,7 +459,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataJamaah(id, tahun);
+//                loadDataJamaah(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -487,7 +494,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataProspek(id);
+//                loadDataProspek(id);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -529,9 +537,14 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<PeriodeResponse> call, Throwable t) {
-                loadPeriode();
+//                loadPeriode();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void loadOnLoad(){
+        loadPeriode();
     }
 
     public int removeLastThree(String args) {

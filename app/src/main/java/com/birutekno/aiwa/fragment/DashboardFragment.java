@@ -47,11 +47,6 @@ public class DashboardFragment extends BaseFragment{
 
     private AcademicPagerAdapter mAdapter;
 
-//    public static Intent createIntent(Context context) {
-//        Intent intent = new Intent(context, DashboardFragment.class);
-//        return intent;
-//    }
-
     public static DashboardFragment newInstance() {
         DashboardFragment fragment = new DashboardFragment();
         return fragment;

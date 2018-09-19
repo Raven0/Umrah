@@ -46,7 +46,6 @@ public class NotificationFragment extends BaseFragment{
 
     private ArrayList<DataNotification> pojo;
     private NotificationAdapter mAdapter;
-    private ProgressDialog pDialog;
 
     public static NotificationFragment newInstance() {
         NotificationFragment fragment = new NotificationFragment();

@@ -25,7 +25,10 @@ import com.birutekno.aiwa.helper.AIWAResponse;
 import com.birutekno.aiwa.helper.UtilsApi;
 import com.birutekno.aiwa.model.DataJadwal;
 import com.birutekno.aiwa.ui.BaseActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +42,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class JadwalActivity extends BaseActivity {
 
     public static final String PREFS_NAME = "AUTH";
+    public static final String PREFS_CACHE = "CACHE_LOAD";
     String id_agen,token;
 
     @Bind(R.id.toolbar)
@@ -89,8 +93,27 @@ public class JadwalActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
+                SharedPreferences prefs = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE);
+                String cache = prefs.getString("jadwal", "");
                 try {
-                    loadJSON(selectedItem);
+                    if (cache.equals(selectedItem)){
+                        SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+                        editor.putString("jadwal", selectedItem);
+                        editor.apply();
+
+                        Gson gson = new Gson();
+                        String json = prefs.getString("pojo_jadwal", "");
+                        Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
+                        ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
+
+                        loadJSONCache(dataJadwals);
+                        //loadCacheData
+                    }else{
+                        SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+                        editor.putString("jadwal", selectedItem);
+                        editor.apply();
+                        loadJSON(selectedItem);
+                    }
                 }catch (Exception ex){
                     Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
                     loadJSON(selectedItem);
@@ -127,6 +150,13 @@ public class JadwalActivity extends BaseActivity {
                     try {
                         AIWAResponse jsonResponse = response.body();
                         pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+
+                        SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+                        Gson gson = new Gson();
+                        String json = gson.toJson(pojo);
+                        editor.putString("pojo_jadwal",json);
+                        editor.apply();
+
                         adapterB = new JadwalAiwaAdapter(pojo, getBaseContext());
                         recyclerView.setAdapter(adapterB);
                     }catch (Exception ex){
@@ -149,6 +179,11 @@ public class JadwalActivity extends BaseActivity {
 //                loadJSON(periode);
             }
         });
+    }
+
+    private void loadJSONCache(ArrayList<DataJadwal> cache){
+        adapterB = new JadwalAiwaAdapter(cache, getBaseContext());
+        recyclerView.setAdapter(adapterB);
     }
 
     public void initSpinnerPeriode() {

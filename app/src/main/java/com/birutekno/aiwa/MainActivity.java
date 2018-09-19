@@ -63,7 +63,6 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     @OnClick(R.id.notificationTab)
     void notificationTabClicked() {
-//        fragment.loadJSON();
         mPager.setCurrentItem(2);
         position = 2;
     }

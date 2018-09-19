@@ -75,9 +75,6 @@ public class DashboardAgenFragment extends BaseFragment{
     @Bind(R.id.jamaah)
     TextView jamaah;
 
-//    @Bind(R.id.progressJamaah)
-//    ProgressBar progressJamaah;
-
     private ArrayList<DataAgen> pojo;
     private ArrayList<DataPeriode> pojd;
     List<String> listAgen = new ArrayList<String>();
@@ -104,13 +101,11 @@ public class DashboardAgenFragment extends BaseFragment{
 
     @Override
     protected void onViewReady(@Nullable Bundle savedInstanceState ) {
-
         progressProspek = (ProgressBar) getView().findViewById(R.id.progressProspek);
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         id_agen = prefs.getString("iduser", "0");
         token = prefs.getString("token", "0");
 
-        loadPeriode();
         initLineView(line_two);
         loadAgen(id_agen);
 
@@ -206,14 +201,13 @@ public class DashboardAgenFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
-                setDataKomisiView(id, tahun);
+//                setDataKomisiView(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void loadDataJamaah(final String id, final String tahun){
-//        progressJamaah.setVisibility(View.VISIBLE);
-//        jamaah.setVisibility(View.GONE);
         Call<DashboardModel> call = WebApi.getAPIService().getTotalJamaah(id, tahun);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
@@ -239,7 +233,8 @@ public class DashboardAgenFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataJamaah(id, tahun);
+//                loadDataJamaah(id, tahun);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -273,7 +268,8 @@ public class DashboardAgenFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
-                loadDataProspek(id);
+//                loadDataProspek(id);
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -308,7 +304,8 @@ public class DashboardAgenFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<PeriodeResponse> call, Throwable t) {
-                loadPeriode();
+//                loadPeriode();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -352,9 +349,14 @@ public class DashboardAgenFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<AgenResponse> call, Throwable t) {
-                loadPeriode();
+//                loadPeriode();
+                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void loadOnLoad(){
+        loadPeriode();
     }
 
     public int removeLastThree(String args) {

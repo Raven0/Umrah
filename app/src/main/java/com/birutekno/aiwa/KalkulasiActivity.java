@@ -24,7 +24,10 @@ import com.birutekno.aiwa.helper.ProspekResponse;
 import com.birutekno.aiwa.helper.WebApi;
 import com.birutekno.aiwa.model.DataProspek;
 import com.birutekno.aiwa.ui.BaseActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -37,6 +40,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class KalkulasiActivity extends BaseActivity {
 
     public static final String PREFS_NAME = "AUTH";
+    public static final String PREFS_CACHE = "CACHE_LOAD";
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -82,7 +86,26 @@ public class KalkulasiActivity extends BaseActivity {
         });
 
         initViews();
-        loadJSON();
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE);
+        int cache = prefs.getInt("kalkulasi", 0);
+        if (cache == 0){
+            SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+            editor.putInt("kalkulasi", 1);
+            editor.apply();
+            loadJSON();
+        }else if (cache == 1){
+            SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+            editor.putInt("kalkulasi", 0);
+            editor.apply();
+
+            Gson gson = new Gson();
+            String json = prefs.getString("pojo_kalkulasi", "");
+            Type type = new TypeToken<ArrayList<DataProspek>>(){}.getType();
+            ArrayList<DataProspek> dataProspeks = gson.fromJson(json, type);
+
+            loadJSONCache(dataProspeks);
+        }
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +150,13 @@ public class KalkulasiActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     ProspekResponse jsonResponse = response.body();
                     pojo = new ArrayList<>(Arrays.asList(jsonResponse.getData()));
+
+                    SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(pojo);
+                    editor.putString("pojo_kalkulasi",json);
+                    editor.apply();
+
                     mAdapter = new KalkulasiAdapter(pojo, getBaseContext());
                     mRecyclerView.setAdapter(mAdapter);
                     if (mAdapter.getItemCount() == 0){
@@ -152,6 +182,18 @@ public class KalkulasiActivity extends BaseActivity {
                 pDialog.dismiss();
             }
         });
+    }
+
+    private void loadJSONCache(ArrayList<DataProspek> cache){
+        mAdapter = new KalkulasiAdapter(cache, getBaseContext());
+        mRecyclerView.setAdapter(mAdapter);
+        if (mAdapter.getItemCount() == 0){
+            loadview.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+        }else {
+            loadview.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     //SEARCH

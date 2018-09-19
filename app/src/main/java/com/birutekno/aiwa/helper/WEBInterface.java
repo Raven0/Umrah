@@ -164,6 +164,8 @@ public interface WEBInterface {
     Call<GalleryResponse> getGalleryFoto();
     @GET("gallery/video/")
     Call<GalleryResponse> getGalleryVideo();
+    @GET("gallery/dashboard/")
+    Call<GalleryResponse> getFotoDashboard();
 
     //DATA BROSUR
     @GET("brosur/")
