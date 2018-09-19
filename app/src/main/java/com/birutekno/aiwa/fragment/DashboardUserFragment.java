@@ -27,6 +27,7 @@ import com.birutekno.aiwa.model.DashboardModel;
 import com.birutekno.aiwa.model.DataPeriode;
 import com.birutekno.aiwa.ui.chart.LineView;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
+import com.google.gson.Gson;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -50,6 +51,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class DashboardUserFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
+    public static final String PREFS_CACHE = "CACHE_LOAD";
     private static final String TYPE = "type";
 
     private ProgressDialog nDialog;
@@ -296,6 +298,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
 //                setDataTotalJamaahView(id, tahun);
+                Log.d("GRAFIK JAMAAH", "onFailure: ");
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
@@ -352,6 +355,7 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
+                Log.d("POTKOM", "onFailure: ");
 //                setDataTotalJamaahView(id, tahun);
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
@@ -388,6 +392,7 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
+                Log.d("POTENSI", "onFailure: ");
 //                loadDataPotensi(id, tahun);
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
@@ -424,6 +429,7 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
+                Log.d("KOMISI", "onFailure: ");
 //                loadDataKomisi(id, tahun);
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
@@ -460,6 +466,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataJamaah(id, tahun);
+                Log.d("JAMAAH", "onFailure: ");
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
@@ -495,6 +502,7 @@ public class DashboardUserFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataProspek(id);
+                Log.d("PROSPEK", "onFailure: ");
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
@@ -523,7 +531,15 @@ public class DashboardUserFragment extends BaseFragment{
                         Log.d("RESP", "onBody: " +response.body());
                     }
                     PeriodeResponse PeriodeResponse = response.body();
+
                     pojd = new ArrayList<>(Arrays.asList(PeriodeResponse.getData()));
+
+                    SharedPreferences.Editor editor = getContext().getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(pojd);
+                    editor.putString("pojo_periode",json);
+                    editor.apply();
+
                     for (int i = 0; i < pojd.size() ; i++ ){
                         listPeriode.add(pojd.get(i).getJudul());
                     }
@@ -537,8 +553,8 @@ public class DashboardUserFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<PeriodeResponse> call, Throwable t) {
-//                loadPeriode();
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
+                loadPeriode();
+//                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }

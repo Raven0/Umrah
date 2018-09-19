@@ -1,6 +1,5 @@
 package com.birutekno.aiwa;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -58,11 +58,14 @@ public class JadwalActivity extends BaseActivity {
     @Bind(R.id.btn_update)
     Button buttonUpdate;
 
+    @Bind(R.id.progress)
+    ProgressBar progressBar;
+
     List<String> listPeriode = new ArrayList<String>();
     private ArrayList<DataJadwal> pojo;
     private JadwalAiwaAdapter adapterB;
 
-    private ProgressDialog pDialog;
+//    private ProgressDialog pDialog;
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, JadwalActivity.class);
@@ -110,21 +113,34 @@ public class JadwalActivity extends BaseActivity {
                         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
                         ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-                        try {
-                            loadJSONCache(dataJadwals);
-                        }catch (Exception ex){
-                            loadJSON(selectedItem);
-                        }
+//                        try {
+//                            loadJSONCache(dataJadwals);
+//                        }catch (Exception ex){
+//                            loadJSON(selectedItem, dataJadwals);
+//                        }
+                        loadJSON(selectedItem,dataJadwals);
                         //loadCacheData
                     }else{
                         SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
                         editor.putString("jadwal", selectedItem);
                         editor.apply();
-                        loadJSON(selectedItem);
+
+                        Gson gson = new Gson();
+                        String json = prefs.getString("pojo_jadwal", "");
+                        Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
+                        ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
+
+                        loadJSON(selectedItem, dataJadwals);
                     }
                 }catch (Exception ex){
 //                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
-                    loadJSON(selectedItem);
+
+                    Gson gson = new Gson();
+                    String json = prefs.getString("pojo_jadwal", "");
+                    Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
+                    ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
+
+                    loadJSON(selectedItem, dataJadwals);
                 }
             }
 
@@ -137,10 +153,16 @@ public class JadwalActivity extends BaseActivity {
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadJSON(selectedItem);
+                SharedPreferences prefs = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE);
+
+                Gson gson = new Gson();
+                String json = prefs.getString("pojo_jadwal", "");
+                Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
+                ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
+
+                loadJSON(selectedItem, dataJadwals);
             }
         });
-
     }
 
     private void initViews(){
@@ -151,16 +173,18 @@ public class JadwalActivity extends BaseActivity {
         initSpinnerPeriode();
     }
 
-    private void loadJSON(final String periode){
-        pDialog = new ProgressDialog(JadwalActivity.this);
-        pDialog.setMessage("Harap tunggu...");
-        pDialog.setCancelable(false);
-        pDialog.show();
+    private void loadJSON(final String periode, final ArrayList<DataJadwal> cache){
+//        pDialog = new ProgressDialog(JadwalActivity.this);
+//        pDialog.setMessage("Harap tunggu...");
+//        pDialog.setCancelable(false);
+//        pDialog.show();
+        loadJSONCache(cache);
         Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON(periode);
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
-                pDialog.dismiss();
+//                pDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
                 if(response.isSuccessful()){
                     try {
                         AIWAResponse jsonResponse = response.body();
@@ -174,6 +198,7 @@ public class JadwalActivity extends BaseActivity {
 
                         adapterB = new JadwalAiwaAdapter(pojo, getBaseContext());
                         recyclerView.setAdapter(adapterB);
+                        Log.d("SUKSES", "onResponse: SUKSES AHAHAHAHAHAHAHAHAHAH");
                     }catch (Exception ex){
                         if (ex.getMessage() == null){
                             Toast.makeText(JadwalActivity.this, "Data jadwal masih kosong, silahkan hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
@@ -187,18 +212,24 @@ public class JadwalActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-                Log.d("Error",t.getMessage());
-                pDialog.dismiss();
-                Toast.makeText(JadwalActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_LONG).show();
-                onBackPressed();
+//                Log.d("Error",t.getMessage());
+//                pDialog.dismiss();
+//                Toast.makeText(JadwalActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_LONG).show();
+//                onBackPressed();
 //                loadJSON(periode);
+                loadJSONCache(cache);
             }
         });
     }
 
     private void loadJSONCache(ArrayList<DataJadwal> cache){
-        adapterB = new JadwalAiwaAdapter(cache, getBaseContext());
-        recyclerView.setAdapter(adapterB);
+        try {
+            adapterB = new JadwalAiwaAdapter(cache, getBaseContext());
+            recyclerView.setAdapter(adapterB);
+            progressBar.setVisibility(View.GONE);
+        }catch (Exception ex){
+            loadJSON(token, cache);
+        }
     }
 
     public void initSpinnerPeriode() {

@@ -1348,16 +1348,18 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
         List<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-        try {
-            initSpinnerJadwalCache(dataJadwals);
-        }catch (Exception ex){
-            initSpinnerJadwal();
-        }
+//        try {
+//            initSpinnerJadwalCache(dataJadwals);
+//            initSpinnerJadwal(dataJadwals);
+//        }catch (Exception ex){
+//            initSpinnerJadwal(dataJadwals);
+//        }
+        initSpinnerJadwal(dataJadwals);
     }
 
-    public void initSpinnerJadwal(){
-        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
-
+    public void initSpinnerJadwal(final List<DataJadwal> cache){
+//        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
+        initSpinnerJadwalCache(cache);
         apiservice.getJSON(token).enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
@@ -1373,12 +1375,18 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         paketJadwal.add(jadwal.get(0).getJml_hari());
                     }
 
-                    adapterJadwal = new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_spinner_item, listJadwal);
-                    adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    jadwal.setAdapter(adapterJadwal);
-                    jadwalLoaded = true;
-                    loadData(id);
+                    try{
+                        adapterJadwal = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_spinner_item, listJadwal);
+                        adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        jadwal.setAdapter(adapterJadwal);
+                        jadwalLoaded = true;
+                        loadData(id);
+                        Log.d("SUKSES", "onResponse: SUKSES AHAHAHAHAHAHAHAHAHAH");
+                    }catch (Exception ex){
+
+                    }
+
                 } else {
                     loading.dismiss();
                     Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
@@ -1390,11 +1398,12 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-                loading.dismiss();
-                Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+//                loading.dismiss();
+//                Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+                initSpinnerJadwalCache(cache);
             }
         });
     }
@@ -1410,12 +1419,16 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
             paketJadwal.add(jadwal.get(0).getJml_hari());
         }
 
-        adapterJadwal = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, listJadwal);
-        adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        jadwal.setAdapter(adapterJadwal);
-        jadwalLoaded = true;
-        loadData(id);
+        try {
+            adapterJadwal = new ArrayAdapter<String>(getContext(),
+                    android.R.layout.simple_spinner_item, listJadwal);
+            adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            jadwal.setAdapter(adapterJadwal);
+            jadwalLoaded = true;
+            loadData(id);
+        }catch (Exception ex){
+            initSpinnerJadwal(cache);
+        }
     }
 
     String isPromo(int a){

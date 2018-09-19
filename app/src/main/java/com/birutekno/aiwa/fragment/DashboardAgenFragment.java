@@ -24,6 +24,7 @@ import com.birutekno.aiwa.model.DataAgen;
 import com.birutekno.aiwa.model.DataPeriode;
 import com.birutekno.aiwa.ui.chart.LineView;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by No Name on 7/29/2017.
  */
@@ -43,6 +46,7 @@ import retrofit2.Response;
 public class DashboardAgenFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
+    public static final String PREFS_CACHE = "CACHE_LOAD";
     String id_agen,token;
 
     private static final String TYPE = "type";
@@ -202,7 +206,6 @@ public class DashboardAgenFragment extends BaseFragment{
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
 //                setDataKomisiView(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -234,7 +237,6 @@ public class DashboardAgenFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataJamaah(id, tahun);
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -269,6 +271,7 @@ public class DashboardAgenFragment extends BaseFragment{
             @Override
             public void onFailure(Call<DashboardModel> call, Throwable t) {
 //                loadDataProspek(id);
+                Log.d("PROSPEK AGEN", "onFailure: ");
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
@@ -291,6 +294,13 @@ public class DashboardAgenFragment extends BaseFragment{
                     }
                     PeriodeResponse PeriodeResponse = response.body();
                     pojd = new ArrayList<>(Arrays.asList(PeriodeResponse.getData()));
+
+                    SharedPreferences.Editor editor = getContext().getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(pojd);
+                    editor.putString("pojo_periode",json);
+                    editor.apply();
+
                     for (int i = 0; i < pojd.size() ; i++ ){
                         listPeriode.add(pojd.get(i).getJudul());
                     }
@@ -304,8 +314,8 @@ public class DashboardAgenFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<PeriodeResponse> call, Throwable t) {
-//                loadPeriode();
-                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
+                loadPeriode();
+//                Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -350,6 +360,7 @@ public class DashboardAgenFragment extends BaseFragment{
             @Override
             public void onFailure(Call<AgenResponse> call, Throwable t) {
 //                loadPeriode();
+                Log.d("LOAD AGEN", "onFailure: ");
                 Toast.makeText(getContext(), "Server AIWA sedang dalam pemeliharaan, hubungi koordinator anda atau coba lagi", Toast.LENGTH_LONG).show();
             }
         });
