@@ -93,7 +93,7 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
     HashMap<String, String> map = new HashMap<String, String>();
 
     private AIWAInterface apiservice;
-//    ProgressDialog loading;
+    ProgressDialog loading;
 
     private View view;
     private TextView namaJadwal, totalIndicator;
@@ -1168,25 +1168,23 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
         List<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-//        try {
-//            initSpinnerJadwalCache(dataJadwals);
-//            initSpinnerJadwal(dataJadwals);
-//        }catch (Exception ex){
-//            initSpinnerJadwal(dataJadwals);
-//        }
-        initSpinnerJadwal(dataJadwals);
+        try {
+            initSpinnerJadwal(dataJadwals);
+        }catch (Exception ex){
+            initSpinnerJadwalCache(dataJadwals);
+        }
 
         jadwalLoaded = true;
     }
 
     public void initSpinnerJadwal(final List<DataJadwal> cache){
-//        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
-        initSpinnerJadwalCache(cache);
+        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
+        loading.show();
         apiservice.getJSON(token).enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
                 if (response.isSuccessful()) {
-//                    loading.dismiss();
+                    loading.dismiss();
                     alldata = Arrays.asList(response.body().getData());
                     for (int i = 0; i < alldata.size(); i++){
                         List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
@@ -1204,26 +1202,18 @@ public class FormKalkulasiFragment extends Fragment implements View.OnClickListe
                         jadwal.setAdapter(adapter);
                         Log.d("SUKSES", "onResponse: SUKSES AHAHAHAHAHAHAHAHAHAH");
                     }catch (Exception ex){
-
+                        initSpinnerJadwalCache(cache);
                     }
 
-
                 } else {
-//                    loading.dismiss();
-                    Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    loading.dismiss();
+                    initSpinnerJadwalCache(cache);
                 }
             }
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-//                loading.dismiss();
-//                Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
+                loading.dismiss();
                 initSpinnerJadwalCache(cache);
             }
         });

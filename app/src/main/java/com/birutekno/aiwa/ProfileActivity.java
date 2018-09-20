@@ -169,10 +169,11 @@ public class ProfileActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("viewpager_position", 3);
-        startActivity(intent);
+//        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.putExtra("viewpager_position", 3);
+//        startActivity(intent);
+        super.onBackPressed();
     }
 
     @Override

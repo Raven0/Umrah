@@ -65,8 +65,6 @@ public class ItineraryActivity extends BaseActivity{
     private ArrayList<DataJadwal> pojo;
     private ItineraryAiwaAdapter adapter;
 
-//    private ProgressDialog pDialog;
-
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, ItineraryActivity.class);
         return intent;
@@ -113,13 +111,12 @@ public class ItineraryActivity extends BaseActivity{
                         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
                         ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-//                        try {
-//                            loadJSONCache(dataJadwals);
-//                        }catch (Exception ex){
-//                            loadJSON(selectedItem,dataJadwals);
-//                        }
-                        loadJSON(selectedItem,dataJadwals);
-                        //loadCacheData
+                        try {
+                            loadJSON(selectedItem, dataJadwals);
+                        }catch (Exception ex){
+                            loadJSONCache(dataJadwals);
+                        }
+
                     }else{
                         SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
                         editor.putString("itinerary", selectedItem);
@@ -130,17 +127,19 @@ public class ItineraryActivity extends BaseActivity{
                         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
                         ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-                        loadJSON(selectedItem,dataJadwals);
+                        try {
+                            loadJSON(selectedItem, dataJadwals);
+                        }catch (Exception ex){
+                            loadJSONCache(dataJadwals);
+                        }
                     }
                 }catch (Exception ex){
-//                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
-
                     Gson gson = new Gson();
                     String json = prefs.getString("pojo_jadwal", "");
                     Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
                     ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-                    loadJSON(selectedItem,dataJadwals);
+                    loadJSONCache(dataJadwals);
                 }
             }
 
@@ -174,16 +173,10 @@ public class ItineraryActivity extends BaseActivity{
     }
 
     private void loadJSON(final String periode, final ArrayList<DataJadwal> cache){
-//        pDialog = new ProgressDialog(ItineraryActivity.this);
-//        pDialog.setMessage("Harap tunggu...");
-//        pDialog.setCancelable(false);
-//        pDialog.show();
-        loadJSONCache(cache);
         Call<AIWAResponse> call = UtilsApi.getAPIService().getJSON(periode);
         call.enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
-//                pDialog.dismiss();
                 progressBar.setVisibility(View.GONE);
                 if(response.isSuccessful()){
                     try{
@@ -212,11 +205,6 @@ public class ItineraryActivity extends BaseActivity{
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-//                Log.d("Error",String.valueOf(t.getMessage()));
-//                pDialog.dismiss();
-//                Toast.makeText(ItineraryActivity.this, "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_LONG).show();
-//                onBackPressed();
-//                loadJSON(periode);
                 loadJSONCache(cache);
             }
         });
@@ -312,10 +300,10 @@ public class ItineraryActivity extends BaseActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(ItineraryActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("viewpager_position", 1);
-        startActivity(intent);
+//        Intent intent = new Intent(ItineraryActivity.this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.putExtra("viewpager_position", 1);
+//        startActivity(intent);
     }
 
     @Override

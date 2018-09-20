@@ -1348,18 +1348,16 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
         Type type = new TypeToken<ArrayList<DataJadwal>>(){}.getType();
         List<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
-//        try {
-//            initSpinnerJadwalCache(dataJadwals);
-//            initSpinnerJadwal(dataJadwals);
-//        }catch (Exception ex){
-//            initSpinnerJadwal(dataJadwals);
-//        }
-        initSpinnerJadwal(dataJadwals);
+        try {
+            initSpinnerJadwal(dataJadwals);
+        }catch (Exception ex){
+            initSpinnerJadwalCache(dataJadwals);
+        }
     }
 
     public void initSpinnerJadwal(final List<DataJadwal> cache){
-//        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
-        initSpinnerJadwalCache(cache);
+        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
+        loading.show();
         apiservice.getJSON(token).enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
@@ -1384,25 +1382,17 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         loadData(id);
                         Log.d("SUKSES", "onResponse: SUKSES AHAHAHAHAHAHAHAHAHAH");
                     }catch (Exception ex){
-
+                        initSpinnerJadwalCache(cache);
                     }
 
                 } else {
                     loading.dismiss();
-                    Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    initSpinnerJadwalCache(cache);
                 }
             }
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-//                loading.dismiss();
-//                Toast.makeText(getContext(), "Server kantor pusat sedang dalam pemeliharaan, hubungi koordinator anda!", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), KalkulasiActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
                 initSpinnerJadwalCache(cache);
             }
         });

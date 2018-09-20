@@ -249,10 +249,11 @@ public class KalkulasiActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(KalkulasiActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("viewpager_position", pos);
-        startActivity(intent);
+//        Intent intent = new Intent(KalkulasiActivity.this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.putExtra("viewpager_position", pos);
+//        startActivity(intent);
+        super.onBackPressed();
     }
 
     @Override

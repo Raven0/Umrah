@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import com.birutekno.aiwa.adapter.HotelAdapter;
 import com.birutekno.aiwa.helper.HotelResponse;
@@ -52,6 +53,12 @@ public class HotelActivity extends BaseActivity {
         setupToolbar(mToolbar, true);
         kota = getIntent().getStringExtra("kota");
         setTitle(kota);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         initViews();
         loadJSON(kota.toLowerCase());
@@ -93,5 +100,14 @@ public class HotelActivity extends BaseActivity {
                 loadJSON(kota);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        Intent intent = new Intent(ItineraryActivity.this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.putExtra("viewpager_position", 1);
+//        startActivity(intent);
     }
 }
