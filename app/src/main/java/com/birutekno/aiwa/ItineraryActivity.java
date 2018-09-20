@@ -212,6 +212,7 @@ public class ItineraryActivity extends BaseActivity{
 
     private void loadJSONCache(ArrayList<DataJadwal> cache){
         try {
+            cache.size();
             adapter = new ItineraryAiwaAdapter(cache, getBaseContext());
             recyclerView.setAdapter(adapter);
             progressBar.setVisibility(View.GONE);

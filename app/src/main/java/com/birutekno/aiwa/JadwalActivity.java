@@ -115,6 +115,7 @@ public class JadwalActivity extends BaseActivity {
                             loadJSON(selectedItem, dataJadwals);
                         }catch (Exception ex){
                             loadJSONCache(dataJadwals);
+                            Log.d("FAILIF", "onItemSelected: " + ex.getMessage());
                         }
                     }else{
                         SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
@@ -130,6 +131,7 @@ public class JadwalActivity extends BaseActivity {
                             loadJSON(selectedItem, dataJadwals);
                         }catch (Exception ex){
                             loadJSONCache(dataJadwals);
+                            Log.d("FAILELSE", "onItemSelected: " + ex.getMessage());
                         }
                     }
                 }catch (Exception ex){
@@ -139,6 +141,7 @@ public class JadwalActivity extends BaseActivity {
                     ArrayList<DataJadwal> dataJadwals = gson.fromJson(json, type);
 
                     loadJSONCache(dataJadwals);
+                    Log.d("FAILCATCH", "onItemSelected: " + ex.getMessage());
                 }
             }
 
@@ -205,17 +208,20 @@ public class JadwalActivity extends BaseActivity {
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
                 loadJSONCache(cache);
+                Log.d("FAILONFAILLOAD", "onItemSelected: " + t.getMessage());
             }
         });
     }
 
     private void loadJSONCache(ArrayList<DataJadwal> cache){
         try {
+            cache.size();
             adapterB = new JadwalAiwaAdapter(cache, getBaseContext());
             recyclerView.setAdapter(adapterB);
             progressBar.setVisibility(View.GONE);
         }catch (Exception ex){
             loadJSON(token, cache);
+            Log.d("FAILCACHE", "onItemSelected: " + ex.getMessage());
         }
     }
 

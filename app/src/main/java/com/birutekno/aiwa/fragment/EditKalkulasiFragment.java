@@ -74,6 +74,8 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class EditKalkulasiFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
 
+    int attemp = 0;
+
     public static final String PREFS_NAME = "AUTH";
     public static final String PREFS_CACHE = "CACHE_LOAD";
     private List<Jadwal> objJadwal;
@@ -1356,8 +1358,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
     }
 
     public void initSpinnerJadwal(final List<DataJadwal> cache){
-        loading = ProgressDialog.show(getContext(), null, "Harap tunggu...", true, true);
-        loading.show();
+        loading = ProgressDialog.show(getContext(), null, "Harap tunggu, memeriksa data jadwal", true, false);
         apiservice.getJSON(token).enqueue(new Callback<AIWAResponse>() {
             @Override
             public void onResponse(Call<AIWAResponse> call, Response<AIWAResponse> response) {
@@ -1393,23 +1394,32 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<AIWAResponse> call, Throwable t) {
-                initSpinnerJadwalCache(cache);
+                attemp++;
+                if (attemp == 3){
+                    Intent intent = new Intent(getContext(), KalkulasiActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Toast.makeText(getContext(), "Server Kantor tidak memberikan data, tunggu beberapa menit lagi!", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }else {
+                    loading.dismiss();
+                    initSpinnerJadwalCache(cache);
+                }
             }
         });
     }
 
     public void initSpinnerJadwalCache(List<DataJadwal> cache){
         alldata = cache;
-        for (int i = 0; i < alldata.size(); i++){
-            List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
-            listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari() + "\nPromo :" + isPromo(jadwal.get(0).getPromo()));
-            ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
-            tglJadwal.add(jadwal.get(0).getTgl_berangkat());
-            idJadwal.add(jadwal.get(0).getId());
-            paketJadwal.add(jadwal.get(0).getJml_hari());
-        }
-
         try {
+            for (int i = 0; i < alldata.size(); i++){
+                List <Jadwal> jadwal = Arrays.asList(alldata.get(i).getJadwal());
+                listJadwal.add(convertDate(jadwal.get(0).getTgl_berangkat()) + "\nRute : " + jadwal.get(0).getRute_berangkat() + " => " + jadwal .get(0).getRute_pulang() + "\nPesawat : " + jadwal.get(0).getPesawat_berangkat() + "\nSisa Seat: " + jadwal.get(0).getSisa() + "\nHari :" + jadwal.get(0).getJml_hari() + "\nPromo :" + isPromo(jadwal.get(0).getPromo()));
+                ketJadwal.add("Maskapai : " + jadwal.get(0).getMaskapai() + " Hari : " + jadwal.get(0).getJml_hari());
+                tglJadwal.add(jadwal.get(0).getTgl_berangkat());
+                idJadwal.add(jadwal.get(0).getId());
+                paketJadwal.add(jadwal.get(0).getJml_hari());
+            }
+
             adapterJadwal = new ArrayAdapter<String>(getContext(),
                     android.R.layout.simple_spinner_item, listJadwal);
             adapterJadwal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
