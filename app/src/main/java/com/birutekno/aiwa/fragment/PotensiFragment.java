@@ -23,7 +23,10 @@ import com.birutekno.aiwa.model.DashboardModel;
 import com.birutekno.aiwa.model.DataPeriode;
 import com.birutekno.aiwa.model.DataPotkom;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by No Name on 7/29/2017.
  */
@@ -42,6 +47,7 @@ import retrofit2.Response;
 public class PotensiFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
+    public static final String PREFS_CACHE = "CACHE_LOAD";
 
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -83,7 +89,13 @@ public class PotensiFragment extends BaseFragment{
         token = prefs.getString("token", "0");
 
         initViews();
-        loadPeriode();
+
+        SharedPreferences sp = getContext().getSharedPreferences(PREFS_CACHE, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sp.getString("pojo_periode", "");
+        Type type = new TypeToken<ArrayList<DataPeriode>>(){}.getType();
+        ArrayList<DataPeriode> dataPeriodes = gson.fromJson(json, type);
+        loadPeriode(dataPeriodes);
 
         periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,7 +126,7 @@ public class PotensiFragment extends BaseFragment{
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void loadPeriode(){
+    private void loadPeriode(final ArrayList<DataPeriode> cache){
         Call<PeriodeResponse> call = WebApi.getAPIService().getPeriode();
         call.enqueue(new Callback<PeriodeResponse>() {
             @Override
@@ -144,9 +156,23 @@ public class PotensiFragment extends BaseFragment{
             }
             @Override
             public void onFailure(Call<PeriodeResponse> call, Throwable t) {
-                loadPeriode();
+                loadPeriodeCache(cache);
             }
         });
+    }
+
+    private void loadPeriodeCache(ArrayList<DataPeriode> cache){
+        try {
+            for (int i = 0; i < cache.size() ; i++ ){
+                listPeriode.add(cache.get(i).getJudul());
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, listPeriode);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            periode.setAdapter(adapter);
+        }catch (Exception ex){
+            loadPeriode(cache);
+            Log.d("FAILCACHE", "onItemSelected: " + ex.getMessage());
+        }
     }
 
     private void loadJSON(String periode){

@@ -9,6 +9,8 @@ public class DataNotification {
 
     private String anggota_id;
 
+    private String tgl;
+
     public String getId ()
     {
         return id;
@@ -47,5 +49,13 @@ public class DataNotification {
     public void setAnggota_id (String anggota_id)
     {
         this.anggota_id = anggota_id;
+    }
+
+    public String getTgl() {
+        return tgl;
+    }
+
+    public void setTgl(String tgl) {
+        this.tgl = tgl;
     }
 }

@@ -56,6 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(NotificationAdapter.ViewHolder viewHolder, int i) {
 
         viewHolder.pesan.setText(mFilterData.get(i).getPesan());
+        viewHolder.tgl.setText(mFilterData.get(i).getTgl());
         viewHolder.id = Integer.parseInt(mFilterData.get(i).getId());
 
     }
@@ -73,12 +74,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
         private int id;
         private CardView cardView;
-        private TextView pesan;
+        private TextView pesan,tgl;
         private Button btn;
         public ViewHolder(final View view) {
             super(view);
 
             pesan = (TextView)view.findViewById(R.id.pesan);
+            tgl = (TextView)view.findViewById(R.id.tglNotif);
             btn = (Button) view.findViewById(R.id.queryButton);
             cardView = (CardView)view.findViewById(R.id.cardNotif);
 

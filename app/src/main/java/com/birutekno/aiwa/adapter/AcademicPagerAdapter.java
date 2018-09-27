@@ -21,10 +21,10 @@ public class AcademicPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         DashboardUserFragment userFragment = DashboardUserFragment.newInstance(1);
-        userFragment.loadOnLoad();
+//        userFragment.loadOnLoad();
 
         DashboardAgenFragment agenFragment = DashboardAgenFragment.newInstance(2);
-        agenFragment.loadOnLoad();
+//        agenFragment.loadOnLoad();
 
         switch (position) {
             case 0:
