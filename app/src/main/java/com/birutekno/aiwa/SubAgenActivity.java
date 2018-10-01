@@ -28,7 +28,7 @@ import com.birutekno.aiwa.ui.BaseActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,16 +37,16 @@ public class SubAgenActivity extends BaseActivity {
 
     public static final String PREFS_NAME = "AUTH";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.loadBtn)
+    @BindView(R.id.loadBtn)
     Button loadBtn;
 
-    @Bind(R.id.loadView)
+    @BindView(R.id.loadView)
     LinearLayout loadview;
 
     private ArrayList<DataAgen> pojo;

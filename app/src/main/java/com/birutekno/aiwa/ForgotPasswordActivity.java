@@ -17,7 +17,7 @@ import com.birutekno.aiwa.ui.BaseActivity;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +32,7 @@ public class ForgotPasswordActivity extends BaseActivity {
     String emailForgot;
     private ProgressDialog pDialog;
 
-    @Bind(R.id.email)
+    @BindView(R.id.email)
     EditText email;
 
     @OnClick(R.id.kirim)

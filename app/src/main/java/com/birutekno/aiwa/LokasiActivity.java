@@ -10,12 +10,12 @@ import android.view.View;
 
 import com.birutekno.aiwa.ui.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class LokasiActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @OnClick(R.id.mekah)

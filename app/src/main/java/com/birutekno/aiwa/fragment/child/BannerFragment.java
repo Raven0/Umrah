@@ -13,7 +13,7 @@ import com.birutekno.aiwa.model.DataGallery;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by Suitmedia on 9/21/2016.
@@ -21,10 +21,10 @@ import butterknife.Bind;
 
 public class BannerFragment extends BaseFragment {
 
-    @Bind(R.id.image)
+    @BindView(R.id.image)
     ImageView mImage;
 
-    @Bind(R.id.progress)
+    @BindView(R.id.progress)
     ProgressBar progressBar;
 
     private DataGallery mBanner = new DataGallery();
@@ -49,7 +49,7 @@ public class BannerFragment extends BaseFragment {
             try {
                 Picasso.get().load(link).fit().centerCrop().into(mImage);
             }catch (Exception ex){
-                Log.d("ERROR_MSG", "onBindViewHolder: " + ex.getMessage());
+                Log.d("ERROR_MSG", "onBindViewViewHolder: " + ex.getMessage());
             }
 //            mImage.setImageResource(mBanner.getFile());
 //            Log.e("BANNER", "not" + mBanner.getImage());

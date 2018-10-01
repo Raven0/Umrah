@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.birutekno.aiwa.R;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -15,22 +15,22 @@ import butterknife.Bind;
 
 public class FasilitasFragment extends BaseFragment{
 
-    @Bind(R.id.wifi)
+    @BindView(R.id.wifi)
     TextView wifi;
 
-    @Bind(R.id.park)
+    @BindView(R.id.park)
     TextView park;
 
-    @Bind(R.id.roko)
+    @BindView(R.id.roko)
     TextView roko;
 
-    @Bind(R.id.ac)
+    @BindView(R.id.ac)
     TextView ac;
 
-    @Bind(R.id.keluarga)
+    @BindView(R.id.keluarga)
     TextView keluarga;
 
-    @Bind(R.id.makanan)
+    @BindView(R.id.makanan)
     TextView makanan;
     public static FasilitasFragment newInstance() {
         FasilitasFragment fragment = new FasilitasFragment();

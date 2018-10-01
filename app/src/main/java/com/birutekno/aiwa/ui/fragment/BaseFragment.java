@@ -80,7 +80,7 @@ public abstract class BaseFragment<Data extends Parcelable> extends RxFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @Override

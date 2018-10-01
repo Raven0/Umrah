@@ -31,7 +31,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,19 +42,19 @@ public class KalkulasiActivity extends BaseActivity {
     public static final String PREFS_NAME = "AUTH";
     public static final String PREFS_CACHE = "CACHE_LOAD";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.tambah)
+    @BindView(R.id.tambah)
     Button btnTambah;
 
-    @Bind(R.id.loadBtn)
+    @BindView(R.id.loadBtn)
     Button loadBtn;
 
-    @Bind(R.id.loadView)
+    @BindView(R.id.loadView)
     LinearLayout loadview;
 
     private ArrayList<DataProspek> pojo;

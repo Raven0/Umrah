@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.birutekno.aiwa.R;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -20,13 +20,13 @@ import butterknife.Bind;
 
 public class InfoFragment extends BaseFragment{
 
-    @Bind(R.id.infotv)
+    @BindView(R.id.infotv)
     TextView info;
 
-    @Bind(R.id.maps)
+    @BindView(R.id.maps)
     LinearLayout mapsv;
 //
-//    @Bind(R.id.whatsapp)
+//    @BindView(R.id.whatsapp)
 //    LinearLayout whatsapp;
 
     public static InfoFragment newInstance() {

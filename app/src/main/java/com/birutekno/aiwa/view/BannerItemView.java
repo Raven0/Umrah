@@ -1,11 +1,7 @@
 package com.birutekno.aiwa.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.birutekno.aiwa.R;
 import com.birutekno.aiwa.helper.Shortcuts;
@@ -14,7 +10,7 @@ import com.birutekno.aiwa.ui.adapter.BaseRecyclerAdapter;
 import com.birutekno.aiwa.ui.adapter.viewholder.BaseItemViewHolder;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by No Name on 7/29/2017.
@@ -22,7 +18,7 @@ import butterknife.Bind;
 
 public class BannerItemView extends BaseItemViewHolder<Banner> {
 
-    @Bind(R.id.image)
+    @BindView(R.id.image)
     protected SimpleDraweeView mImage;
 
     protected OnActionListener mActionListener;

@@ -21,9 +21,11 @@ public class BaseApplication extends Application {
         Fresco.initialize(this);
 //        FirebaseApp.initializeApp(this);
 
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
-                .deleteRealmIfMigrationNeeded()
-                .build();
+        Realm.init(this);
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build();
+//        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
+//                .deleteRealmIfMigrationNeeded()
+//                .build();
         Realm.setDefaultConfiguration(realmConfiguration);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

@@ -18,7 +18,7 @@ import com.birutekno.aiwa.R;
 import com.birutekno.aiwa.SubAgenActivity;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -29,7 +29,7 @@ public class SettingFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
 
-    @Bind(R.id.komisiKoordCard)
+    @BindView(R.id.komisiKoordCard)
     CardView komisiKoord;
 
     @OnClick(R.id.profilCard)

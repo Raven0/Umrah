@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,31 +54,31 @@ public class DashboardAgenFragment extends BaseFragment{
     private static final String TYPE = "type";
     int randomint = 12;
 
-    @Bind(R.id.agenAlert)
+    @BindView(R.id.agenAlert)
     TextView agenAlert;
 
-    @Bind(R.id.line_view_two)
+    @BindView(R.id.line_view_two)
     LineView line_two;
 
-    @Bind(R.id.spinner_search)
+    @BindView(R.id.spinner_search)
     Spinner spinner;
 
-    @Bind(R.id.periode)
+    @BindView(R.id.periode)
     Spinner periode;
 
-    @Bind(R.id.prospekCard)
+    @BindView(R.id.prospekCard)
     CardView prospekCard;
 
-    @Bind(R.id.prospek)
+    @BindView(R.id.prospek)
     TextView prospek;
 
-    @Bind(R.id.progressProspek)
+    @BindView(R.id.progressProspek)
     ProgressBar progressProspek;
 
-    @Bind(R.id.jamaahCard)
+    @BindView(R.id.jamaahCard)
     CardView jamaahCard;
 
-    @Bind(R.id.jamaah)
+    @BindView(R.id.jamaah)
     TextView jamaah;
 
     private ArrayList<DataAgen> pojo;

@@ -16,34 +16,34 @@ import android.widget.TextView;
 import com.birutekno.aiwa.adapter.PotkomKoordPagerAdapter;
 import com.birutekno.aiwa.ui.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PotkomKoordActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.komisiText)
+    @BindView(R.id.komisiText)
     TextView komisiText;
 
-    @Bind(R.id.komisiTab)
+    @BindView(R.id.komisiTab)
     LinearLayout komisiTab;
 
-    @Bind(R.id.komisiIndicator)
+    @BindView(R.id.komisiIndicator)
     LinearLayout komisiIndicator;
 
-    @Bind(R.id.potensiText)
+    @BindView(R.id.potensiText)
     TextView potensiText;
 
-    @Bind(R.id.potensiTab)
+    @BindView(R.id.potensiTab)
     LinearLayout potensiTab;
 
-    @Bind(R.id.potensiIndicator)
+    @BindView(R.id.potensiIndicator)
     LinearLayout potensiIndicator;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager mPager;
 
     @OnClick(R.id.komisiTab)

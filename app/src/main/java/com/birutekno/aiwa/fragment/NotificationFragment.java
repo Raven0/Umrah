@@ -1,6 +1,5 @@
 package com.birutekno.aiwa.fragment;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +20,7 @@ import com.birutekno.aiwa.ui.fragment.BaseFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,14 +33,14 @@ import retrofit2.Response;
 public class NotificationFragment extends BaseFragment{
 
     public static final String PREFS_NAME = "AUTH";
-    
-    @Bind(R.id.recyclerView)
+
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    @Bind(R.id.progressBar)
+    @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
-    @Bind(R.id.queryButton)
+    @BindView(R.id.queryButton)
     Button clearBtn;
 
     private ArrayList<DataNotification> pojo;

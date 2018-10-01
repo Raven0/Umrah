@@ -16,43 +16,43 @@ import android.widget.TextView;
 import com.birutekno.aiwa.adapter.JamaahPagerAdapter;
 import com.birutekno.aiwa.ui.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class JamaahActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.allText)
+    @BindView(R.id.allText)
     TextView mAllText;
 
-    @Bind(R.id.allTab)
+    @BindView(R.id.allTab)
     LinearLayout mAllTab;
 
-    @Bind(R.id.allIndicator)
+    @BindView(R.id.allIndicator)
     LinearLayout mAllIndicator;
 
-    @Bind(R.id.berangkatText)
+    @BindView(R.id.berangkatText)
     TextView mGoText;
 
-    @Bind(R.id.berangkatTab)
+    @BindView(R.id.berangkatTab)
     LinearLayout mGoTab;
 
-    @Bind(R.id.berangkatIndicator)
+    @BindView(R.id.berangkatIndicator)
     LinearLayout mGoIndicator;
 
-    @Bind(R.id.pulangText)
+    @BindView(R.id.pulangText)
     TextView mBackText;
 
-    @Bind(R.id.pulangTab)
+    @BindView(R.id.pulangTab)
     LinearLayout mBackTab;
 
-    @Bind(R.id.pulangIndicator)
+    @BindView(R.id.pulangIndicator)
     LinearLayout mBackIndicator;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager mPager;
 
     @OnClick(R.id.allTab)

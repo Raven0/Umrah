@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.birutekno.aiwa.adapter.GalleryPagerAdapter;
 import com.birutekno.aiwa.ui.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -26,28 +26,28 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class GalleryActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.fotoText)
+    @BindView(R.id.fotoText)
     TextView mBillingText;
 
-    @Bind(R.id.fotoTab)
+    @BindView(R.id.fotoTab)
     LinearLayout mBillingTab;
 
-    @Bind(R.id.fotoIndicator)
+    @BindView(R.id.fotoIndicator)
     LinearLayout mBillingIndicator;
 
-    @Bind(R.id.videoText)
+    @BindView(R.id.videoText)
     TextView mNotPaidText;
 
-    @Bind(R.id.videoTab)
+    @BindView(R.id.videoTab)
     LinearLayout mNotPaidTab;
 
-    @Bind(R.id.videoIndicator)
+    @BindView(R.id.videoIndicator)
     LinearLayout mNotPaidIndicator;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager mPager;
 
     @OnClick(R.id.fotoTab)

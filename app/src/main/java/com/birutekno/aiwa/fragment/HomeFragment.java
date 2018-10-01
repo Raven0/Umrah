@@ -28,7 +28,7 @@ import com.birutekno.aiwa.ui.fragment.BaseFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,10 +88,10 @@ public class HomeFragment extends BaseFragment{
         ActivityCompat.startActivity(getActivity(), intent, optionsProfile.toBundle());
     }
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     protected AutoScrollViewPager mPager;
 
-    @Bind(R.id.circle_indicator)
+    @BindView(R.id.circle_indicator)
     protected CirclePageIndicator mIndicator;
 
     private ProgressDialog pDialog;

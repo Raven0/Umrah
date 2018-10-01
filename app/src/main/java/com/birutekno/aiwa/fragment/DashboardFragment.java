@@ -11,7 +11,7 @@ import com.birutekno.aiwa.R;
 import com.birutekno.aiwa.adapter.AcademicPagerAdapter;
 import com.birutekno.aiwa.ui.fragment.BaseFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -20,19 +20,19 @@ import butterknife.OnClick;
 
 public class DashboardFragment extends BaseFragment{
 
-    @Bind(R.id.sayaText)
+    @BindView(R.id.sayaText)
     TextView mMateriText;
 
-    @Bind(R.id.agenText)
+    @BindView(R.id.agenText)
     TextView mSoalText;
 
-    @Bind(R.id.sayaTab)
+    @BindView(R.id.sayaTab)
     LinearLayout mMateriTab;
 
-    @Bind(R.id.agenTab)
+    @BindView(R.id.agenTab)
     LinearLayout mSoalTab;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager mPager;
 
     @OnClick(R.id.sayaTab)

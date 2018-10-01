@@ -18,15 +18,15 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class JadwalActivityBACKUP extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     BaseRecyclerView mRecyclerView;
 
     private JadwalAdapter mAdapter;

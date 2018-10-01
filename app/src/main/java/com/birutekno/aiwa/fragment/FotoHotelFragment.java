@@ -17,7 +17,7 @@ import com.birutekno.aiwa.ui.fragment.BaseFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class FotoHotelFragment extends BaseFragment{
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     private ArrayList<DataGallery> pojo;

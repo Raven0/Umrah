@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.birutekno.aiwa.adapter.MainPagerAdapter;
 import com.birutekno.aiwa.ui.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -31,34 +31,34 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private int position;
 
-    @Bind(R.id.swipe_main)
+    @BindView(R.id.swipe_main)
     protected SwipeRefreshLayout swipeRefreshLayout;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     protected ViewPager mPager;
 
-    @Bind(R.id.notificationImage)
+    @BindView(R.id.notificationImage)
     protected ImageView mNImage;
 
-    @Bind(R.id.notificationText)
+    @BindView(R.id.notificationText)
     protected TextView mNtext;
 
-    @Bind(R.id.homeImage)
+    @BindView(R.id.homeImage)
     protected ImageView mHImage;
 
-    @Bind(R.id.homeText)
+    @BindView(R.id.homeText)
     protected TextView mHtext;
 
-    @Bind(R.id.profileImage)
+    @BindView(R.id.profileImage)
     protected ImageView mPImage;
 
-    @Bind(R.id.profileText)
+    @BindView(R.id.profileText)
     protected TextView mPtext;
 
-    @Bind(R.id.dashboardImage)
+    @BindView(R.id.dashboardImage)
     protected ImageView mDImage;
 
-    @Bind(R.id.dashboardText)
+    @BindView(R.id.dashboardText)
     protected TextView mDtext;
 
     @OnClick(R.id.notificationTab)

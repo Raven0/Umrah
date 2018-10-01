@@ -28,7 +28,7 @@ import com.birutekno.aiwa.ui.BaseActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,55 +47,55 @@ public class DetailHotelActivity extends BaseActivity {
     private ArrayList<DataGallery> data;
     private ProgressDialog pDialog;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.infoText)
+    @BindView(R.id.infoText)
     TextView mInfoText;
 
-    @Bind(R.id.infoTab)
+    @BindView(R.id.infoTab)
     LinearLayout mInfoTab;
 
-    @Bind(R.id.infoIndicator)
+    @BindView(R.id.infoIndicator)
     LinearLayout mInfoIndicator;
 
-    @Bind(R.id.fasilitasText)
+    @BindView(R.id.fasilitasText)
     TextView mFasilitasText;
 
-    @Bind(R.id.fasilitasTab)
+    @BindView(R.id.fasilitasTab)
     LinearLayout mFasilitasTab;
 
-    @Bind(R.id.fasilitasIndicator)
+    @BindView(R.id.fasilitasIndicator)
     LinearLayout mFasilitasIndicator;
 
-    @Bind(R.id.lokasiText)
+    @BindView(R.id.lokasiText)
     TextView mLokasiText;
 
-    @Bind(R.id.lokasiTab)
+    @BindView(R.id.lokasiTab)
     LinearLayout mLokasiTab;
 
-    @Bind(R.id.lokasiIndicator)
+    @BindView(R.id.lokasiIndicator)
     LinearLayout mLokasiIndicator;
 
-    @Bind(R.id.videoText)
+    @BindView(R.id.videoText)
     TextView mVideoText;
 
-    @Bind(R.id.videoTab)
+    @BindView(R.id.videoTab)
     LinearLayout mVideoTab;
 
-    @Bind(R.id.videoIndicator)
+    @BindView(R.id.videoIndicator)
     LinearLayout mVideocator;
 
-    @Bind(R.id.pagerAnj)
+    @BindView(R.id.pagerAnj)
     ViewPager mPager;
 
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     ImageView fab;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     protected AutoScrollViewPager bPager;
 
-    @Bind(R.id.circle_indicator)
+    @BindView(R.id.circle_indicator)
     protected CirclePageIndicator mIndicator;
 
     @OnClick(R.id.infoTab)

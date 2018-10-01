@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,19 +46,19 @@ public class ItineraryActivity extends BaseActivity{
     public static final String PREFS_CACHE = "CACHE_LOAD";
     String id_agen,token,selectedItem;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    @Bind(R.id.spinnerFilter)
+    @BindView(R.id.spinnerFilter)
     Spinner spinnerFilter;
 
-    @Bind(R.id.btn_update)
+    @BindView(R.id.btn_update)
     Button buttonUpdate;
 
-    @Bind(R.id.progress)
+    @BindView(R.id.progress)
     ProgressBar progressBar;
 
     List<String> listPeriode = new ArrayList<String>();

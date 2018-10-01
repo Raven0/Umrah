@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,19 +49,19 @@ public class PotensiFragment extends BaseFragment{
     public static final String PREFS_NAME = "AUTH";
     public static final String PREFS_CACHE = "CACHE_LOAD";
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    @Bind(R.id.judul)
+    @BindView(R.id.judul)
     TextView judul;
 
-    @Bind(R.id.nominal)
+    @BindView(R.id.nominal)
     TextView nominal;
 
-    @Bind(R.id.searchField)
+    @BindView(R.id.searchField)
     android.support.v7.widget.SearchView searchView;
 
-    @Bind(R.id.spinnerFilter)
+    @BindView(R.id.spinnerFilter)
     Spinner periode;
 
     List<String> listPeriode = new ArrayList<String>();

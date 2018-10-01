@@ -39,7 +39,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,61 +65,61 @@ public class DashboardUserFragment extends BaseFragment{
 
     int randomint = 12;
 
-    @Bind(R.id.line_view)
+    @BindView(R.id.line_view)
     LineView line;
 
-    @Bind(R.id.line_view_two)
+    @BindView(R.id.line_view_two)
     LineView line_two;
 
-    @Bind(R.id.periode)
+    @BindView(R.id.periode)
     Spinner periode;
 
-    @Bind(R.id.potensiCard)
+    @BindView(R.id.potensiCard)
     CardView potensiCard;
 
-    @Bind(R.id.potensi)
+    @BindView(R.id.potensi)
     TextView potensi;
 
-    @Bind(R.id.progressPotensi)
+    @BindView(R.id.progressPotensi)
     ProgressBar progressPotensi;
 
-    @Bind(R.id.komisiCard)
+    @BindView(R.id.komisiCard)
     CardView komisiCard;
 
-    @Bind(R.id.komisi)
+    @BindView(R.id.komisi)
     TextView komisi;
 
-    @Bind(R.id.progressKomisi)
+    @BindView(R.id.progressKomisi)
     ProgressBar progressKomisi;
 
-    @Bind(R.id.prospekCard)
+    @BindView(R.id.prospekCard)
     CardView prospekCard;
 
-    @Bind(R.id.prospek)
+    @BindView(R.id.prospek)
     TextView prospek;
 
-    @Bind(R.id.progressProspek)
+    @BindView(R.id.progressProspek)
     ProgressBar progressProspek;
 
-    @Bind(R.id.jamaahCard)
+    @BindView(R.id.jamaahCard)
     CardView jamaahCard;
 
-    @Bind(R.id.jamaah)
+    @BindView(R.id.jamaah)
     TextView jamaah;
 
-    @Bind(R.id.progressJamaah)
+    @BindView(R.id.progressJamaah)
     ProgressBar progressJamaah;
 
-    @Bind(R.id.cardJamaah)
+    @BindView(R.id.cardJamaah)
     CardView cardjam;
 
-    @Bind(R.id.cardKomisi)
+    @BindView(R.id.cardKomisi)
     CardView cardkom;
 
-    @Bind(R.id.judulCardJamaah)
+    @BindView(R.id.judulCardJamaah)
     TextView jcardjam;
 
-    @Bind(R.id.judulCardKomisi)
+    @BindView(R.id.judulCardKomisi)
     TextView jcardkom;
 
     private ArrayList<DataPeriode> pojd;
