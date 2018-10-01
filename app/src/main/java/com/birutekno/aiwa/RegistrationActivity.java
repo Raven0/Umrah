@@ -160,14 +160,19 @@ public class RegistrationActivity extends BaseActivity {
                                 Toast.makeText(mContext, "Registrasi berhasil, Tunggu Approval", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(mContext, LoginActivity.class);
                                 startActivity(intent);
-                            }else if(status.equals("fail")){
+                            }else if(status.equals("email")){
                                 Toast.makeText(mContext, "Email sudah terdaftar!", Toast.LENGTH_SHORT).show();
+                            }else if(status.equals("user")){
+                                Toast.makeText(mContext, "Username sudah terdaftar!", Toast.LENGTH_SHORT).show();
+                            }else if(status.equals("invalid")){
+                                Toast.makeText(mContext, "Masukkan email yang valid!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }catch (Exception e){
                         e.printStackTrace();
-                        Toast.makeText(mContext, String.valueOf(e.getMessage()), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(mContext, "Error Response", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -175,7 +180,7 @@ public class RegistrationActivity extends BaseActivity {
                 public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
                     t.printStackTrace();
-                    Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                 }
             });
         }else {

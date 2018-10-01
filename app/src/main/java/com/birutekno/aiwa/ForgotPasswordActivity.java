@@ -63,20 +63,22 @@ public class ForgotPasswordActivity extends BaseActivity {
                                 Intent intentReward = LoginActivity.createIntent(mContext);
                                 ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
                                 ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
-                            }else if(status.equals("Email tidak di temukan.")){
+                            }else if(status.equals("email")){
                                 Toast.makeText(mContext, "Email tidak terdaftar", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }catch (Exception e){
                         e.printStackTrace();
-                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AuthModel> call, Throwable t) {
                     pDialog.dismiss();
-                    Toast.makeText(mContext, "Silahkan cek email anda!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                     Intent intentReward = LoginActivity.createIntent(mContext);
                     ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
                     ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());

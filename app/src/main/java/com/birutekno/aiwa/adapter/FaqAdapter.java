@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,18 +126,21 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder> impl
             expandableLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Memuat data...", Toast.LENGTH_SHORT).show();
-
                     question = String.valueOf(judul.getText());
                     answer = String.valueOf(jawaban.getText());
 
                     whatsapp = "*"+question+"*\n"+answer;
-                    Intent shareIntent = new Intent();
-                    shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);
-                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(Intent.createChooser(shareIntent,"Share with"));
+                    try {
+                        Toast.makeText(view.getContext(), "Memuat data...", Toast.LENGTH_SHORT).show();
+                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                        shareIntent.setType("text/plain");
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, whatsapp);
+                        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        view.getContext().startActivity(Intent.createChooser(shareIntent,"Share with"));
+                    }catch (Exception ex){
+                        Log.d("FAILJING", "onClick: " + ex.getMessage());
+                        Toast.makeText(context, "Memuat data gagal!, silahkan coba lagi!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 

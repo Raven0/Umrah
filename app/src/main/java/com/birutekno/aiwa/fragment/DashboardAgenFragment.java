@@ -133,7 +133,6 @@ public class DashboardAgenFragment extends BaseFragment{
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(mContext, "selected", Toast.LENGTH_SHORT).show();
                 selectedid = idAgen.get(position);
                 loadDataJamaah(selectedid,selectedperiode);
                 loadDataProspek(selectedid);

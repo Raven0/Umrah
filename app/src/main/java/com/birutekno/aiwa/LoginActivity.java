@@ -97,15 +97,15 @@ public class LoginActivity extends BaseActivity {
                                 Intent intentReward = MainActivity.createIntent(mContext);
                                 ActivityOptionsCompat optionsReward = ActivityOptionsCompat.makeCustomAnimation(mContext, R.anim.slide_in_right, R.anim.slide_out_left);
                                 ActivityCompat.startActivity(mContext, intentReward, optionsReward.toBundle());
-                            }else if(status.equals("Anda belum terverifikasi oleh admin!")){
+                            }else if(status.equals("unverified")){
                                 Toast.makeText(mContext, "Akun Anda belum di Approve", Toast.LENGTH_SHORT).show();
-                            }else if(status.equals("failed")){
+                            }else{
                                 Toast.makeText(mContext, "Username atau Password salah", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }catch (Exception e){
                         e.printStackTrace();
-                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -114,7 +114,9 @@ public class LoginActivity extends BaseActivity {
                     pDialog.dismiss();
                     t.printStackTrace();
                     if (t.getMessage().equals("timeout")){
-                        Toast.makeText(mContext, "Database timeout, silahkan coba lagi!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
