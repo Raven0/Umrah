@@ -546,7 +546,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 if (TextUtils.isEmpty(dobel.getText())){
                     jmlDobel = 0;
                     doubleBool = false;
-                    orangDua.setText("Orang");
+                    orangDua.setText("Bed");
                 }else {
                     try {
                         jmlDobel = Integer.parseInt(dobel.getText().toString().trim());
@@ -558,9 +558,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         }
 
                         if (jmlDobel == 2 || jmlDobel == 02){
-                            orangDua.setText("Orang (OK)");
+                            orangDua.setText("Bed (OK)");
                         }else {
-                            orangDua.setText("Orang");
+                            orangDua.setText("Bed");
                         }
                     }catch (Exception ex){
                         dobel.setText("0");
@@ -592,7 +592,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 if (TextUtils.isEmpty(tripel.getText())){
                     jmlTripel = 0;
                     tripleBool = false;
-                    orangTiga.setText("Orang");
+                    orangTiga.setText("Bed");
                 }else {
                     try {
                         jmlTripel = Integer.parseInt(tripel.getText().toString().trim());
@@ -604,9 +604,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         }
 
                         if (jmlTripel == 3 || jmlTripel == 03){
-                            orangTiga.setText("Orang (OK)");
+                            orangTiga.setText("Bed (OK)");
                         }else {
-                            orangTiga.setText("Orang");
+                            orangTiga.setText("Bed");
                         }
                     }catch (Exception ex){
                         tripel.setText("0");
@@ -638,7 +638,7 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                 if (TextUtils.isEmpty(quard.getText())){
                     jmlQuard = 0;
                     quardBool = false;
-                    orangEmpat.setText("Orang");
+                    orangEmpat.setText("Bed");
                 }else {
                     try {
                         jmlQuard = Integer.parseInt(quard.getText().toString().trim());
@@ -650,9 +650,9 @@ public class EditKalkulasiFragment extends Fragment implements View.OnClickListe
                         }
 
                         if (jmlQuard == 4 || jmlQuard == 04){
-                            orangEmpat.setText("Orang (OK)");
+                            orangEmpat.setText("Bed (OK)");
                         }else {
-                            orangEmpat.setText("Orang");
+                            orangEmpat.setText("Bed");
                         }
                     }catch (Exception ex){
                         quard.setText("0");

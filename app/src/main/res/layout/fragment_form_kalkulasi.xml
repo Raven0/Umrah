@@ -230,7 +230,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:text="Perlengkapan Balita"
+                            android:text="Perlengkapan Balita No Bed"
                             android:textStyle="bold"
                             android:textColor="#000"/>
 
@@ -397,7 +397,7 @@
                                     android:id="@+id/orangDua"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
-                                    android:text="Orang" />
+                                    android:text="Bed" />
 
                             </LinearLayout>
 
@@ -435,7 +435,7 @@
                                     android:id="@+id/orangTiga"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
-                                    android:text="Orang" />
+                                    android:text="Bed" />
 
                             </LinearLayout>
 
@@ -473,7 +473,7 @@
                                     android:id="@+id/orangEmpat"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
-                                    android:text="Orang" />
+                                    android:text="Bed" />
 
                             </LinearLayout>
 
