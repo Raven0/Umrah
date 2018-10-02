@@ -29,12 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.birutekno.umrah.helper.AutoScrollViewPager
+        <com.birutekno.aiwa.helper.AutoScrollViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.birutekno.umrah.helper.CirclePageIndicator
+        <com.birutekno.aiwa.helper.CirclePageIndicator
             android:id="@+id/circle_indicator"
             style="@style/CustomCirclePageIndicator"
             android:layout_width="match_parent"

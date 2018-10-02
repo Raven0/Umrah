@@ -202,7 +202,7 @@
                                 android:id="@+id/perlengkapanDefault"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Perlengkapan Default"/>
+                                android:text="Perlengkapan Reguler"/>
 
                             <android.support.v7.widget.AppCompatRadioButton
                                 android:id="@+id/perlengkapanPromo"
@@ -230,7 +230,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:text="Perlengkapan Balita"
+                            android:text="Perlengkapan Balita No Bed"
                             android:textStyle="bold"
                             android:textColor="#000"/>
 
@@ -250,6 +250,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Handling + Travel Insurance "/>
+
+                            <android.support.v7.widget.AppCompatRadioButton
+                                android:id="@+id/perlengkapanNol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perlengkapan Rp.0 "/>
 
                         </RadioGroup>
 
@@ -391,7 +397,7 @@
                                     android:id="@+id/orangDua"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
-                                    android:text="Orang" />
+                                    android:text="Bed" />
 
                             </LinearLayout>
 
@@ -429,7 +435,7 @@
                                     android:id="@+id/orangTiga"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
-                                    android:text="Orang" />
+                                    android:text="Bed" />
 
                             </LinearLayout>
 
@@ -467,7 +473,7 @@
                                     android:id="@+id/orangEmpat"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
-                                    android:text="Orang" />
+                                    android:text="Bed" />
 
                             </LinearLayout>
 

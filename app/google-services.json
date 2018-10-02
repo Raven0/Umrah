@@ -8,6 +8,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:996409152675:android:f2c4bcdd7b3a3a63",
+        "android_client_info": {
+          "package_name": "com.birutekno.aiwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996409152675-00niriu3qd24qh46avec7gdiecbo0qi6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.birutekno.aiwa",
+            "certificate_hash": "355e76b96471a407770d0f128d2b3177068ff402"
+          }
+        },
+        {
+          "client_id": "996409152675-mil0fbd7nics0uac8o2b1u2f7dl09qft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEbAcaXMGj1-rpnsFbmKT1EG8zukJ6jbg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996409152675-mil0fbd7nics0uac8o2b1u2f7dl09qft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:996409152675:android:da5f978883033219",
         "android_client_info": {
           "package_name": "com.birutekno.umrah"

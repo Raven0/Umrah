@@ -42,6 +42,7 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         android:focusable="true"
+        android:padding="5dp"
         android:focusableInTouchMode="true"
         android:gravity="center">
 
@@ -60,22 +61,19 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="wrap_content"
+            android:gravity="end">
 
-            <!--<android.support.v7.widget.SearchView-->
-            <!--android:id="@+id/searchView"-->
-            <!--android:layout_width="130dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:paddingLeft="20dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:background="@drawable/button_outline_black"-->
-            <!--android:textSize="15dp"-->
-            <!--android:hint="Search"-->
-            <!--android:drawableRight="@drawable/drawable_search"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentRight="true">-->
-
-            <!--</android.support.v7.widget.SearchView>-->
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_rounded_red"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#fff"
+                android:text="perbarui data"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
@@ -85,6 +83,12 @@
         <!--android:id="@+id/recyclerView"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"/>-->
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -158,13 +158,19 @@
                             android:gravity="right"
                             android:textSize="16dp"/>
 
-                        <TextView
-                            android:id="@+id/emailAgen"
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:layout_marginLeft="10dp"
-                            android:theme="@style/EditTextThemes"/>
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/emailAgen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:layout_marginLeft="10dp"
+                                android:theme="@style/EditTextThemes"/>
+
+                        </HorizontalScrollView>
 
                     </LinearLayout>
 
