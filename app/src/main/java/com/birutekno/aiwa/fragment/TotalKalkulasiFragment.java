@@ -377,8 +377,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 hasilAkhirDouble.setText("Rp. "+numberFormat(String.valueOf(hitunganDouble)));
 
                 if (balitaBool){
-                    doubleJudul.setText("PERHITUNGAN JENIS DOUBLE (BALITA DENGAN BED)");
-                    contentDouble ="*PERHITUNGAN JENIS DOUBLE (BALITA DENGAN BED)*\n"+
+                    doubleJudul.setText("PERHITUNGAN JENIS DOUBLE (DEWASA & BALITA DENGAN BED)");
+                    contentDouble ="*PERHITUNGAN JENIS DOUBLE (DEWASA & BALITA DENGAN BED)*\n"+
                             "Rp. "+ numberFormat(String.valueOf(hargaDouble)) + " " +jenisPaket + " DOUBLE\n" +
                             "Rp. "+numberFormat(String.valueOf(hargaDefault))+" (Perlengkapan & Asuransi)\n" +
                             "______+\n" +
@@ -407,8 +407,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 hasilAkhirDouble.setText("Rp. "+numberFormat(String.valueOf(hitunganDouble)));
 
                 if (balitaBool){
-                    doubleJudul.setText("PERHITUNGAN JENIS DOUBLE (BALITA DENGAN BED)");
-                    contentDouble ="*PERHITUNGAN JENIS DOUBLE (BALITA DENGAN BED)*\n"+
+                    doubleJudul.setText("PERHITUNGAN JENIS DOUBLE (DEWASA & BALITA DENGAN BED)");
+                    contentDouble ="*PERHITUNGAN JENIS DOUBLE (DEWASA & BALITA DENGAN BED)*\n"+
                             "Rp. "+ numberFormat(String.valueOf(hargaDouble)) + " " +jenisPaket + " DOUBLE\n" +
                             "Rp. "+numberFormat(String.valueOf(hargaPromo))+" (PROMO)\n" +
                             "______+\n" +
@@ -447,8 +447,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 hasilAkhirTriple.setText("Rp. "+numberFormat(String.valueOf(hitunganTriple)));
 
                 if (balitaBool){
-                    tripelJudul.setText("PERHITUNGAN JENIS TRIPLE (BALITA DENGAN BED)");
-                    contentTriple ="*PERHITUNGAN JENIS TRIPLE (BALITA DENGAN BED)*\n"+
+                    tripelJudul.setText("PERHITUNGAN JENIS TRIPLE (DEWASA & BALITA DENGAN BED)");
+                    contentTriple ="*PERHITUNGAN JENIS TRIPLE (DEWASA & BALITA DENGAN BED)*\n"+
                             "Rp. "+ numberFormat(String.valueOf(hargaTriple)) + " " +jenisPaket + " TRIPLE\n" +
                             "Rp. "+numberFormat(String.valueOf(hargaDefault))+" (Perlengkapan & Asuransi)\n" +
                             "______+\n" +
@@ -477,8 +477,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 hasilAkhirTriple.setText("Rp. "+numberFormat(String.valueOf(hitunganTriple)));
 
                 if (balitaBool){
-                    tripelJudul.setText("PERHITUNGAN JENIS TRIPLE (BALITA DENGAN BED)");
-                    contentTriple ="*PERHITUNGAN JENIS TRIPLE (BALITA DENGAN BED)*\n"+
+                    tripelJudul.setText("PERHITUNGAN JENIS TRIPLE (DEWASA & BALITA DENGAN BED)");
+                    contentTriple ="*PERHITUNGAN JENIS TRIPLE (DEWASA & BALITA DENGAN BED)*\n"+
                             "Rp. "+ numberFormat(String.valueOf(hargaTriple)) + " " +jenisPaket + " TRIPLE\n" +
                             "Rp. "+numberFormat(String.valueOf(hargaPromo))+" (PROMO)\n" +
                             "______+\n" +
@@ -517,8 +517,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 hasilAkhir.setText("Rp. "+numberFormat(String.valueOf(hitunganQuard)));
 
                 if (balitaBool){
-                    quardJudul.setText("PERHITUNGAN JENIS QUARD (BALITA DENGAN BED)");
-                    contentQuard ="*PERHITUNGAN JENIS QUARD (BALITA DENGAN BED)*\n"+
+                    quardJudul.setText("PERHITUNGAN JENIS QUARD (DEWASA & BALITA DENGAN BED)");
+                    contentQuard ="*PERHITUNGAN JENIS QUARD (DEWASA & BALITA DENGAN BED)*\n"+
                             "Rp. "+ numberFormat(String.valueOf(hargaQuard ))+ " " +jenisPaket + " QUAD\n" +
                             "Rp. "+numberFormat(String.valueOf(hargaDefault))+"  (Perlengkapan & Asuransi)\n" +
                             "______+\n" +
@@ -547,8 +547,8 @@ public class TotalKalkulasiFragment extends Fragment {
                 hasilAkhir.setText("Rp. "+numberFormat(String.valueOf(hitunganQuard)));
 
                 if (balitaBool){
-                    quardJudul.setText("PERHITUNGAN JENIS QUARD (BALITA DENGAN BED)");
-                    contentQuard ="*PERHITUNGAN JENIS QUARD (BALITA DENGAN BED)*\n"+
+                    quardJudul.setText("PERHITUNGAN JENIS QUARD (DEWASA & BALITA DENGAN BED)");
+                    contentQuard ="*PERHITUNGAN JENIS QUARD (DEWASA & BALITA DENGAN BED)*\n"+
                             "Rp. "+ numberFormat(String.valueOf(hargaQuard ))+ " " +jenisPaket + " QUAD\n" +
                             "Rp. "+numberFormat(String.valueOf(hargaPromo))+"  (PROMO)\n" +
                             "______+\n" +

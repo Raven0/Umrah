@@ -208,7 +208,6 @@ public class KomisiKoordFragment extends BaseFragment{
     }
 
     private void loadDataKomisi(final String id, final String tahunSelected){
-        // TODO: Filter Periode
         Call<DashboardModel> call = WebApi.getAPIService().getUangKoordKomisi(id,tahunSelected);
         call.enqueue(new Callback<DashboardModel>() {
             @Override

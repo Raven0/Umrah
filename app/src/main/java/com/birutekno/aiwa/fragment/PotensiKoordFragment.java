@@ -208,7 +208,6 @@ public class PotensiKoordFragment extends BaseFragment{
     }
 
     private void loadDataPotensi(final String id, final String tahunSelected){
-        // TODO: Filter Periode
         Call<DashboardModel> call = WebApi.getAPIService().getUangKoordPotensi(id, tahunSelected);
         call.enqueue(new Callback<DashboardModel>() {
             @Override
