@@ -2,6 +2,7 @@ package com.birutekno.aiwa;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.birutekno.aiwa.adapter.MainPagerAdapter;
 import com.birutekno.aiwa.ui.BaseActivity;
@@ -28,6 +30,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     public static final String PREFS_NAME = "AUTH";
+    private ProgressDialog pDialog;
 
     private int position;
 
@@ -238,16 +241,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         ask.setMessage("Tekan tombol Ya jika anda ingin logout dari aplikasi ini");
         ask.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString("iduser", "0");
-                editor.putString("token", "null");
-                editor.putString("status", "out");
-                editor.putString("password", "null");
-                editor.apply();
-
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                String id = prefs.getString("iduser", null);
+                logout(id);
             }
         });
         ask.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -255,6 +251,73 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             }
         });
         ask.show();
+    }
+
+    private void logout(String id){
+        Toast.makeText(mContext, "Logout Berhasil", Toast.LENGTH_SHORT).show();
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("iduser", "0");
+        editor.putString("token", "null");
+        editor.putString("status", "out");
+        editor.putString("password", "null");
+        editor.apply();
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+//        HashMap<String, String> params = new HashMap<>();
+//        params.put("id", id);
+//
+//        pDialog = new ProgressDialog(mContext);
+//        pDialog.setMessage("Harap tunggu...");
+//        pDialog.setCancelable(false);
+//        pDialog.show();
+//
+//        Call<AuthModel> result = WebApi.getAPIService().logoutAgen(params);
+//        result.enqueue(new Callback<AuthModel>() {
+//            @Override
+//            public void onResponse(Call<AuthModel> call, retrofit2.Response<AuthModel> response) {
+//                pDialog.dismiss();
+//                try {
+//                    if(response.body()!=null) {
+//                        Response success = response.body().getResponses();
+//                        String status = success.getStatus();
+//                        if (status.equals("success")) {
+//                            Toast.makeText(mContext, "Logout Berhasil", Toast.LENGTH_SHORT).show();
+//                            SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+//                            editor.putString("iduser", "0");
+//                            editor.putString("token", "null");
+//                            editor.putString("status", "out");
+//                            editor.putString("password", "null");
+//                            editor.apply();
+//
+//                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(intent);
+//                            finish();
+//                        }else{
+//                            Toast.makeText(mContext, "Gagal Logout", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                    Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<AuthModel> call, Throwable t) {
+//                pDialog.dismiss();
+//                t.printStackTrace();
+//                if (t.getMessage().equals("timeout")){
+//                    Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Toast.makeText(mContext, "Server AIWA sedang dalam pemeliharaan", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
     @Override

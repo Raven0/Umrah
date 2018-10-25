@@ -96,6 +96,11 @@ public interface WEBInterface {
     @POST("login")
     Call<AuthModel> loginAgen(@FieldMap HashMap<String, String> params);
 
+    //LOGOUT AGEN
+    @FormUrlEncoded
+    @POST("logout")
+    Call<AuthModel> logoutAgen(@FieldMap HashMap<String, String> params);
+
     //FORGOT AGEN
     @FormUrlEncoded
     @Headers("Accept: application/json")

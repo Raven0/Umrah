@@ -37,6 +37,16 @@ public class DataPotkom {
 
     private String marketing;
 
+    public String getMarketing_name() {
+        return marketing_name;
+    }
+
+    public void setMarketing_name(String marketing_name) {
+        this.marketing_name = marketing_name;
+    }
+
+    private String marketing_name;
+
     private String id_umrah;
 
     private String bulan_pulang;
