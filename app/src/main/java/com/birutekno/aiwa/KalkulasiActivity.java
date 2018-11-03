@@ -88,11 +88,12 @@ public class KalkulasiActivity extends BaseActivity {
         initViews();
 
         SharedPreferences prefs = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE);
-        int cache = prefs.getInt("kalkulasi", 0);
+//        int cache = prefs.getInt("kalkulasi", 0);
+        int cache = 0;
         if (cache == 0){
-            SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
-            editor.putInt("kalkulasi", 1);
-            editor.apply();
+//            SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();
+//            editor.putInt("kalkulasi", 1);
+//            editor.apply();
             loadJSON();
         }else if (cache == 1){
             SharedPreferences.Editor editor = getSharedPreferences(PREFS_CACHE, MODE_PRIVATE).edit();

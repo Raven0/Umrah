@@ -3,11 +3,11 @@ package com.birutekno.aiwa.adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -189,12 +189,31 @@ public class KalkulasiAdapter extends RecyclerView.Adapter<KalkulasiAdapter.View
                 @Override
                 public void onClick(View v) {
 //                    String smsNumber="919426640584@s.whatsapp.net";
-                    Uri uri = Uri.parse("smsto:" + no_telp);
-                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                    i.putExtra("sms_body", "aiwa");
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.setPackage("com.whatsapp");
-                    context.startActivity(i);
+//                    Uri uri = Uri.parse("smsto:" + no_telp);
+//                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//                    i.putExtra("sms_body", "aiwa");
+//                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    i.setPackage("com.whatsapp");
+//                    context.startActivity(i);
+
+                    String toNumber = no_telp; // contains spaces.
+                    toNumber = toNumber.replace("+", "").replace(" ", "");
+
+//                        Uri uri = Uri.parse("smsto:" + no_telp);
+//                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//                        i.putExtra("sms_body", "Prakash Gajera");
+//                        i.setPackage("com.whatsapp");
+//                        context.startActivity(i);
+
+
+                    Intent sendIntent =new Intent("android.intent.action.MAIN");
+                    sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.setType("text/plain");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,"");
+                    sendIntent.putExtra("jid", toNumber +"@s.whatsapp.net");
+                    sendIntent.setPackage("com.whatsapp");
+                    context.startActivity(sendIntent);
                 }
             });
 

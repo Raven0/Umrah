@@ -1,9 +1,9 @@
 package com.birutekno.aiwa.adapter;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -113,11 +113,25 @@ public class SubagenAdapter extends RecyclerView.Adapter<SubagenAdapter.ViewHold
                     if (TextUtils.isEmpty(no_telp)){
                         Toast.makeText(context, "Agen yang bersangkutan belum melengkapi Nomor Telefon", Toast.LENGTH_SHORT).show();
                     }else {
-                        Uri uri = Uri.parse("smsto:" + no_telp);
-                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                        i.putExtra("sms_body", "Prakash Gajera");
-                        i.setPackage("com.whatsapp");
-                        context.startActivity(i);
+
+                        String toNumber = no_telp; // contains spaces.
+                        toNumber = toNumber.replace("+", "").replace(" ", "");
+
+//                        Uri uri = Uri.parse("smsto:" + no_telp);
+//                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//                        i.putExtra("sms_body", "Prakash Gajera");
+//                        i.setPackage("com.whatsapp");
+//                        context.startActivity(i);
+
+
+                        Intent sendIntent =new Intent("android.intent.action.MAIN");
+                        sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.setType("text/plain");
+                        sendIntent.putExtra(Intent.EXTRA_TEXT,"");
+                        sendIntent.putExtra("jid", toNumber +"@s.whatsapp.net");
+                        sendIntent.setPackage("com.whatsapp");
+                        context.startActivity(sendIntent);
                     }
                 }
             });
