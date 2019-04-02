@@ -16,15 +16,15 @@ Project ini menggunakan Retrofit sebagai main Network infrastructure nya, dan Re
 
 ## **Struktur Project**
 
-├── root                # Tempat semua Activity
-|   ├── adapter         # Tempat semua Adapter
-|   ├── fragment        # Tempat semua Fragment
-|       ├── child       # Tempat fragment Banner
-|   ├── helper          # Tempat Helper (Network API, Push Notif Service, Response)
-|   ├── model           # Tempat semua Model untuk Response
-|   ├── ui              # base ui dari project iSchool
-|   └── view            # base view dari project iSchool
-|
+├── root                # Tempat semua Activity</br>
+|   ├── adapter         # Tempat semua Adapter</br>
+|   ├── fragment        # Tempat semua Fragment</br>
+|       ├── child       # Tempat fragment Banner</br>
+|   ├── helper          # Tempat Helper (Network API, Push Notif Service, Response)</br>
+|   ├── model           # Tempat semua Model untuk Response</br>
+|   ├── ui              # base ui dari project iSchool</br>
+|   └── view            # base view dari project iSchool</br>
+|</br>
 
 ## **Flow Apps**
 
@@ -51,9 +51,10 @@ Struktur Modul Menu pada Project ini didefinisikan pada directories **root**. Me
 
 Jika di dalam Activity tersebut terdapat ListView atau RecyclerView, maka file yang digunakan dalam Modul tersebut bisa dibuka melalui directories **adapter**, begitu juga pada fragment bisa dibuka melalui directories **fragment**. </br>
 
-Jika ingin melakukan perubahan sebagai mana seperti bahasa java pada umumnya, file yang berkaitan bisa anda buka di atas file java tersebut yang di panggil melalui fungsi **import**
+Jika ingin melakukan perubahan sebagai mana seperti bahasa java pada umumnya, file yang berkaitan bisa anda buka di atas file java tersebut yang di panggil melalui fungsi **import**. Begitu juga pada view, jika ingin membuat perubahan pada view, maka cari file yang mendefinisikan resourceLayout.
 
 ## **Release GooglePlay**
 
+App Release di simpan [di sini](https://github.com/Raven0/Umrah/tree/master/app/release)
 JKS di simpan pada root folder [key.jks](https://github.com/Raven0/Umrah/blob/master/key.jks) </br>
 **password** : aiwa2018.
