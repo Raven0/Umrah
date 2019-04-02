@@ -268,7 +268,7 @@ public class TotalKalkulasiFragment extends Fragment {
         diskonBalitaStandar = bundle.getInt("diskonBalitaStandar");
 
         berangkatTanggal.setText(bundle.getString("berangkatTgl"));
-        hariJadwal.setText(bundle.getString("jml_hari") + " Hari");
+        hariJadwal.setText(bundle.getString("jml_hari"));
         maskapai.setText(bundle.getString("maskapai"));
         landing.setText(bundle.getString("landing"));
         nopesawat.setText(bundle.getString("pesawat"));

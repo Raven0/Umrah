@@ -69,7 +69,7 @@ public class JadwalAiwaAdapter extends RecyclerView.Adapter<JadwalAiwaAdapter.Vi
         viewHolder.pulang.setText(convertDate(jadwal.get(0).getTgl_pulang()));
         viewHolder.detailBerangkat.setText(jadwal.get(0).getRute_berangkat());
         viewHolder.detailPulang.setText(jadwal.get(0).getRute_pulang());
-        viewHolder.paketHari.setText( "Paket " + jadwal.get(0).getJml_hari() + " Hari.\n"+"Sisa Seat : " + jadwal.get(0).getSisa());
+        viewHolder.paketHari.setText(jadwal.get(0).getJml_hari() + "\nSisa Seat : " + jadwal.get(0).getSisa());
 
         if(jadwal.get(0).getPromo() == 0){
             viewHolder.promot.setVisibility(View.GONE);

@@ -136,8 +136,11 @@ public class PotkomAdapter extends RecyclerView.Adapter<PotkomAdapter.ViewHolder
 
     public String numberFormat(String args){
         NumberFormat formatter = new DecimalFormat("#,###");
-        int myNumber = Integer.parseInt(args);
-        String formattedNumber = formatter.format(myNumber);
+        String formattedNumber = null;
+        if(args != null){
+            int myNumber = Integer.parseInt(args);
+            formattedNumber = formatter.format(myNumber);
+        }
         return formattedNumber;
     }
 
